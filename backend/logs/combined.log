@@ -51,3 +51,9 @@
 {"level":"error","message":"[Error] Error: Invalid email or password","service":"backend-api","stack":"Error: Invalid email or password\n    at Function.login (C:\\Users\\91884\\Documents\\Aussie work\\gauyog\\backend\\src\\modules\\auth\\auth.service.ts:61:13)\n    at login (C:\\Users\\91884\\Documents\\Aussie work\\gauyog\\backend\\src\\modules\\auth\\auth.controller.ts:16:20)","timestamp":"2026-04-06T07:10:14.419Z"}
 {"level":"info","message":"PostgreSQL connected successfully","service":"backend-api","timestamp":"2026-04-06T07:14:51.731Z"}
 {"level":"info","message":"Server running in development mode on port 5000","service":"backend-api","timestamp":"2026-04-06T07:14:51.745Z"}
+{"level":"info","message":"PostgreSQL connected successfully","service":"backend-api","timestamp":"2026-04-06T08:38:48.245Z"}
+{"level":"info","message":"Server running in development mode on port 5000","service":"backend-api","timestamp":"2026-04-06T08:38:48.266Z"}
+{"level":"info","message":"PostgreSQL connected successfully","service":"backend-api","timestamp":"2026-04-06T08:45:40.062Z"}
+{"level":"info","message":"Server running in development mode on port 5000","service":"backend-api","timestamp":"2026-04-06T08:45:40.075Z"}
+{"level":"info","message":"PostgreSQL connected successfully","service":"backend-api","timestamp":"2026-04-06T09:35:08.923Z"}
+{"level":"info","message":"Server running in development mode on port 5000","service":"backend-api","timestamp":"2026-04-06T09:35:08.943Z"}

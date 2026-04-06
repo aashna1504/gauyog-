@@ -40,7 +40,23 @@ async function main() {
 
   console.log(`[+] Admin User Created: ${adminUser.email} (password: password123)`);
   console.log(`[+] Normal User Created: ${normalUser.email} (password: password123)`);
-  
+
+  const products = [
+    { name: "Fresh Cow Milk", price: 60, stock: 100, description: "Daily | Dairy | 1kg | Sourced from high-quality grass-fed cows, our fresh milk is processed with zero additives." },
+    { name: "A2 Desi Ghee", price: 850, stock: 50, description: "Premium | Ghee | 500g | Traditional Bilona-method ghee made from A2 cow milk." },
+    { name: "Organic Butter", price: 210, stock: 60, description: "Fresh | Dairy | 250g | Pure, unsalted organic butter churned the traditional way." },
+    { name: "Probiotic Curd", price: 45, stock: 80, description: "Healthy | Dairy | 500g | Thick, creamy curd set with natural cultures." },
+    { name: "Natural Paneer", price: 150, stock: 40, description: "Handmade | Dairy | 250g | Soft, handmade cottage cheese with no preservatives." },
+    { name: "Bio-Fertilizer", price: 320, stock: 200, description: "Eco | Garden | 1kg | Nutrient-rich organic fertilizer to help your home garden thrive naturally." },
+    { name: "Organic Honey", price: 450, stock: 35, description: "Pure | Pantry | 250g | Raw, unprocessed forest honey collected by local tribes." },
+  ];
+
+  await prisma.product.deleteMany();
+  for (const p of products) {
+    await prisma.product.create({ data: p });
+  }
+
+  console.log(`[+] Seeded ${products.length} products`);
   console.log('Seeding completed successfully.');
 }
 

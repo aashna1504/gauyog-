@@ -112,7 +112,7 @@ export default function TermsConditionsPage() {
           className="divide-y divide-slate-100"
         >
           <TermsSection index={0} title="User Agreement">
-            By accessing Gauyog Kendra Sanctuary, you agree to follow our Vedic
+            By accessing Gauyog Kendr Sanctuary, you agree to follow our Vedic
             principles of interaction. We provide access to high-quality organic
             products under the condition that users provide accurate information
             and use our digital tools responsibly for their intended sanctuary

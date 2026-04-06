@@ -21,7 +21,7 @@ function about() {
     {
       title: "Mission",
       subtitle: "What we do",
-      desc: "At Gauyog Kendra, we are dedicated to preserving traditional Vedic practices through sustainable and organic living. We offer pure, farm-sourced products crafted with care and authenticity.",
+      desc: "At Gauyog Kendr, we are dedicated to preserving traditional Vedic practices through sustainable and organic living. We offer pure, farm-sourced products crafted with care and authenticity.",
       icon: <Target className="text-white" size={20} />,
       color: "bg-[#4a703f]", // Vedic Green
       glowColor: "text-green-100/60",
@@ -70,25 +70,25 @@ function about() {
   const reasons = [
     {
       id: "01",
-      title: "100% Charcoal Free",
-      subtitle: "Purity First",
-      desc: "Unlike standard market dhoop, our blends contain zero charcoal, ensuring a clean burn that doesn't irritate your lungs or your space.",
+      title: "Pure by Nature",
+      subtitle: "100% Chemical-Free",
+      desc: "Crafted with natural ingredients, our products are free from harmful chemicals, ensuring a clean and safe experience.",
       color: "bg-[#4a703f]", // Vedic Green
       icon: <ShieldCheck size={24} />,
     },
     {
       id: "02",
-      title: "No Bamboo Core",
-      subtitle: "Zero Toxicity",
-      desc: "Burning bamboo is considered inauspicious and toxic in Vedic traditions. We use raw, hand-rolled resins for a truly sacred experience.",
+      title: "Ethical Sourcing",
+      subtitle: "From Gaushala to You",
+      desc: "All ingredients are responsibly sourced from our sanctuary and trusted natural sources, ensuring quality and care.",
       color: "bg-[#e9aa43]", // Golden Amber
       icon: <Flame size={24} />,
     },
     {
       id: "03",
-      title: "Himalayan Sourced",
-      subtitle: "Ethical Origins",
-      desc: "We work directly with Himalayan gatherers to source rare herbs like Jatamansi and Guggal, ensuring fair pay and wild-crafted quality.",
+      title: "Holistic Wellness",
+      subtitle: "Inspired by Vedic Wisdom",
+      desc: "Every product is designed to promote balance, positivity, and a healthier lifestyle through traditional knowledge.",
       color: "bg-[#7bbd25]", // Acid Green
       icon: <Leaf size={24} />,
     },
@@ -180,14 +180,14 @@ function about() {
               </div>
 
               <h1 className="text-6xl md:text-8xl lg:text-8xl font-black text-slate-900 tracking-[-0.05em] leading-[0.85] mb-8">
-                The Soul of <br />
-                <span className="text-[#7bbd25] italic">Purity.</span>
+                Pure by Nature
+                <br />
+                <span className="text-[#7bbd25] italic"> Proven by Earth.</span>
               </h1>
 
               {/* One-line Value Proposition */}
               <p className="text-lg md:text-xl text-slate-500 font-medium max-w-xl leading-relaxed mb-10 border-l-2 border-slate-200 pl-6">
-                Bridging ancient Himalayan rituals with conscious living through
-                100% organic, bamboo-less aromatherapy.
+                We bring together tradition and sustainability to create a healthier, more conscious way of living.
               </p>
 
               {/* CTA Buttons */}
@@ -535,12 +535,12 @@ function about() {
             >
               <div className="h-[1px] w-12 bg-[#4a703f]" />
               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">
-                The Gauyog Kendra Advantages
+                The Gauyog Kendr Advantages
               </span>
             </motion.div>
 
             <h2 className="text-5xl md:text-7xl font-black text-slate-900 tracking-[-0.05em] leading-[0.85] z-10 relative">
-              Why <br /> <span className="text-[#4a703f]">Gauyog Kendra</span>
+              Why <br /> <span className="text-[#4a703f]">Gauyog Kendr</span>
             </h2>
 
             <span className="absolute -bottom-10 right-0 text-[12vw] font-black text-slate-50 opacity-[0.04] select-none pointer-events-none uppercase tracking-tighter">
@@ -609,7 +609,7 @@ function about() {
               {/* The Image - Swapped object-cover for object-contain */}
               <img
                 src="https://res.cloudinary.com/dbpzzvcik/image/upload/v1775037259/cow_v6ymwb.png"
-                alt="Gauyog Kendra Sanctuary"
+                alt="Gauyog Kendr Sanctuary"
                 className="w-full h-auto max-h-[90%] object-contain object-center transform transition-transform duration-1000 group-hover:scale-110 p-4"
               />
 
@@ -622,7 +622,7 @@ function about() {
                   The Sanctuary
                 </span>
                 <h3 className="text-4xl font-black text-white tracking-tighter italic">
-                  Gauyog Kendra.
+                  Gauyog Kendr.
                 </h3>
               </div>
             </div>

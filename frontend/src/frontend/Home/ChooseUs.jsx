@@ -75,7 +75,7 @@ export default function WhyChooseUs() {
           <div className="lg:pl-10">
             <header className="mb-14">
               <div className="text-[#7bbd25] font-bold text-xs uppercase tracking-[0.4em] mb-4 flex items-center gap-3">
-                <span className="w-10 h-[1px] bg-[#4a703f]" /> Why Gauyog Kendra
+                <span className="w-10 h-[1px] bg-[#4a703f]" /> Why Gauyog Kendr
               </div>
               <h2 className="text-5xl md:text-6xl font-black leading-tight text-gray-900 tracking-tighter">
                 Pure By <span className="text-[#7bbd25]">Nature,</span> <br />

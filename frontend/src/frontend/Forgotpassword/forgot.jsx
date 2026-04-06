@@ -76,7 +76,7 @@ export default function ModernForgotPassword() {
         {!isSent ? (
           <>
             <p className="text-center text-sm font-bold text-slate-600 mb-10 leading-relaxed max-w-[340px] mx-auto">
-              Enter the email address associated with your Gauyog Kendra
+              Enter the email address associated with your Gauyog Kendr
               account, and we'll send a secure reset link.
             </p>
 

@@ -80,11 +80,10 @@ export default function VedicDhoopMosaicPage() {
                     <button
                       key={idx}
                       onClick={() => setActiveImg(idx)}
-                      className={`w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden border-2 transition-all p-1 ${
-                        activeImg === idx
+                      className={`w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden border-2 transition-all p-1 ${activeImg === idx
                           ? "border-[#7bbd25] bg-white scale-110 shadow-lg"
                           : "border-transparent bg-slate-50 opacity-50"
-                      }`}
+                        }`}
                     >
                       <img
                         src={img}
