@@ -1,0 +1,28 @@
+import jwt from 'jsonwebtoken';
+import { config } from '../config/env';
+import { Role } from '@prisma/client';
+
+export interface JwtPayload {
+  userId: string;
+  role: Role;
+}
+
+export const generateAccessToken = (payload: JwtPayload): string => {
+  return jwt.sign(payload, config.jwt.accessSecret, {
+    expiresIn: config.jwt.accessExpiresIn as jwt.SignOptions['expiresIn'],
+  });
+};
+
+export const generateRefreshToken = (payload: JwtPayload): string => {
+  return jwt.sign(payload, config.jwt.refreshSecret, {
+    expiresIn: config.jwt.refreshExpiresIn as jwt.SignOptions['expiresIn'],
+  });
+};
+
+export const verifyAccessToken = (token: string): JwtPayload => {
+  return jwt.verify(token, config.jwt.accessSecret) as JwtPayload;
+};
+
+export const verifyRefreshToken = (token: string): JwtPayload => {
+  return jwt.verify(token, config.jwt.refreshSecret) as JwtPayload;
+};
