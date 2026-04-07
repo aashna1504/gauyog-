@@ -418,7 +418,7 @@ export default function Header() {
                         </div>
                       </div>
                       <div className="flex gap-3 mt-2">
-                        <button className="flex-1 bg-[#4a703f] hover:bg-[#744926] text-white py-2 rounded-full text-[12px] font-black uppercase tracking-widest">
+                        <button className="flex-1 bg-[#4a703f] hover:bg-[#744926] text-white py-2 rounded-full text-xs font-black uppercase tracking-widest">
                           Buy Now
                         </button>
                         <button className="p-2 text-slate-300 hover:text-red-500 transition-colors border border-slate-100 rounded-full">
@@ -435,7 +435,7 @@ export default function Header() {
                   <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">
                     Estimated Total
                   </span>
-                  <span className="text-xl font-[1000] text-[#1a2e26]">
+                  <span className="text-xl font-black text-[#1a2e26]">
                     ₹
                     {cartItems
                       .reduce(
