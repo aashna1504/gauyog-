@@ -2,14 +2,14 @@
 
 import { useRouter } from 'next/navigation';
 import { DashboardShell } from '@/components/layout/DashboardShell';
-import { ProductForm, type ProductFormValues } from '@/components/forms/ProductForm';
+import { ProductForm, type ProductFormOutput } from '@/components/forms/ProductForm';
 import { useCreateProduct } from '@/hooks/useProducts';
 
 export default function NewProductPage() {
   const router = useRouter();
   const { mutateAsync: createProduct, isPending } = useCreateProduct();
 
-  const handleSubmit = async (values: ProductFormValues) => {
+  const handleSubmit = async (values: ProductFormOutput) => {
     await createProduct(values);
     router.push('/products');
   };

@@ -11,8 +11,16 @@ export async function loginRequest(email: string, password: string): Promise<Aut
   return data.data;
 }
 
-export async function refreshTokenRequest(refreshToken: string): Promise<AuthResponse> {
+export async function signupRequest(email: string, password: string): Promise<AuthResponse> {
   const { data } = await axios.post<ApiResponse<AuthResponse>>(
+    `${BASE}/auth/signup`,
+    { email, password, role: 'ADMIN' },
+  );
+  return data.data;
+}
+
+export async function refreshTokenRequest(refreshToken: string): Promise<{ accessToken: string }> {
+  const { data } = await axios.post<ApiResponse<{ accessToken: string }>>(
     `${BASE}/auth/refresh`,
     { refreshToken },
   );

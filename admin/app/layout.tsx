@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Libre_Baskerville } from 'next/font/google';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth/options';
 import { Providers } from '@/components/Providers';
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+const libreBaskerville = Libre_Baskerville({ subsets: ['latin'], weight: ['400', '700'] });
 
 export const metadata: Metadata = {
   title: { default: 'Gauyog Admin', template: '%s | Gauyog Admin' },
@@ -18,7 +18,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={libreBaskerville.className}>
         <Providers session={session}>
           {children}
         </Providers>

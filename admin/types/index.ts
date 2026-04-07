@@ -64,8 +64,16 @@ export interface UserWithDetails extends User {
 export interface Product {
   id: string;
   name: string;
+  scientificName: string | null;
   description: string;
+  ingredients: string | null;
   price: number;
+  discountPrice: number | null;
+  category: string;
+  inStock: boolean;
+  weight: string | null;
+  imageUrl: string | null;
+  galleryImages: string[];
   stock: number;
   createdAt: string;
   updatedAt: string;
@@ -73,8 +81,16 @@ export interface Product {
 
 export interface CreateProductInput {
   name: string;
+  scientificName?: string;
   description: string;
+  ingredients?: string;
   price: number;
+  discountPrice?: number;
+  category: string;
+  inStock?: boolean;
+  weight?: string;
+  imageUrl?: string;
+  galleryImages?: string[];
   stock: number;
 }
 

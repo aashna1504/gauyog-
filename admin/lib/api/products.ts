@@ -1,9 +1,19 @@
 import apiClient from './axios';
 import type { Product, CreateProductInput, UpdateProductInput, ApiResponse } from '@/types';
 
+interface ProductsResponse {
+  products: Product[];
+  meta: {
+    total: number;
+    page: number;
+    limit: number;
+    totalPages: number;
+  };
+}
+
 export async function getProducts(): Promise<Product[]> {
-  const { data } = await apiClient.get<ApiResponse<Product[]>>('/products');
-  return data.data;
+  const { data } = await apiClient.get<ApiResponse<ProductsResponse>>('/products');
+  return data.data.products;
 }
 
 export async function getProduct(id: string): Promise<Product> {

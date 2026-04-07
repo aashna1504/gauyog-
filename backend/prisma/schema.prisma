@@ -38,14 +38,22 @@ model DeliveryDetails {
 }
 
 model Product {
-  id          String     @id @default(uuid())
-  name        String
-  description String
-  price       Float
-  stock       Int
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  cartItems   CartItem[]
+  id             String     @id @default(uuid())
+  name           String
+  scientificName String?
+  description    String
+  ingredients    String?
+  price          Float
+  discountPrice  Float?
+  category       String     @default("Dairy")
+  inStock        Boolean    @default(true)
+  weight         String?
+  imageUrl       String?
+  galleryImages  String[]   @default([])
+  stock          Int
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+  cartItems      CartItem[]
 }
 
 model Cart {

@@ -52,11 +52,12 @@ export class AuthService {
       where: { email: data.email },
     });
 
-    if (!user) {
+    if (!user || !user.password) {
       throw new AppError('Invalid email or password', 401);
     }
 
-    const isValidPassword = await bcrypt.compare(data.password, user.password);
+    const hashedPassword = user.password;
+    const isValidPassword = await bcrypt.compare(data.password, hashedPassword);
     if (!isValidPassword) {
       throw new AppError('Invalid email or password', 401);
     }

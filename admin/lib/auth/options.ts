@@ -1,6 +1,6 @@
 import { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { loginRequest } from '@/lib/api/auth';
+import { loginRequest, refreshTokenRequest } from '@/lib/api/auth';
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -44,6 +44,24 @@ export const authOptions: NextAuthOptions = {
         token.role = u.role;
         token.accessToken = u.accessToken;
         token.refreshToken = u.refreshToken;
+        // Store expiry: backend default is 15m, refresh 1 min before
+        token.accessTokenExpiry = Date.now() + 14 * 60 * 1000;
+        return token;
+      }
+
+      // Token still valid
+      if (Date.now() < token.accessTokenExpiry) {
+        return token;
+      }
+
+      // Access token expired — try to refresh
+      try {
+        const { accessToken } = await refreshTokenRequest(token.refreshToken);
+        token.accessToken = accessToken;
+        token.accessTokenExpiry = Date.now() + 14 * 60 * 1000;
+        delete token.error;
+      } catch {
+        token.error = 'RefreshAccessTokenError';
       }
       return token;
     },

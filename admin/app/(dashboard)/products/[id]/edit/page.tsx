@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { DashboardShell } from '@/components/layout/DashboardShell';
-import { ProductForm, type ProductFormValues } from '@/components/forms/ProductForm';
+import { ProductForm, type ProductFormOutput } from '@/components/forms/ProductForm';
 import { useProduct, useUpdateProduct } from '@/hooks/useProducts';
 import { Skeleton } from '@/components/ui/skeleton';
 
@@ -15,7 +15,7 @@ export default function EditProductPage({ params }: EditProductPageProps) {
   const { data: product, isLoading } = useProduct(params.id);
   const { mutateAsync: updateProduct, isPending } = useUpdateProduct(params.id);
 
-  const handleSubmit = async (values: ProductFormValues) => {
+  const handleSubmit = async (values: ProductFormOutput) => {
     await updateProduct(values);
     router.push('/products');
   };
@@ -48,8 +48,16 @@ export default function EditProductPage({ params }: EditProductPageProps) {
         <ProductForm
           defaultValues={{
             name: product.name,
+            scientificName: product.scientificName ?? '',
             description: product.description,
+            ingredients: product.ingredients ?? '',
             price: product.price,
+            discountPrice: product.discountPrice ?? undefined,
+            category: product.category,
+            inStock: product.inStock,
+            weight: product.weight ?? '',
+            imageUrl: product.imageUrl ?? '',
+            galleryImagesRaw: product.galleryImages?.join(', ') ?? '',
             stock: product.stock,
           }}
           onSubmit={handleSubmit}
