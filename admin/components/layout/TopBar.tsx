@@ -1,8 +1,7 @@
 'use client';
 
 import { useSession, signOut } from 'next-auth/react';
-import { Moon, Sun, LogOut, User, Settings } from 'lucide-react';
-import { useTheme } from 'next-themes';
+import { LogOut, Settings, Menu } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
@@ -13,15 +12,12 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { getInitials } from '@/lib/utils';
 import { toast } from 'sonner';
+import { useUIStore } from '@/store/uiStore';
 
-interface TopBarProps {
-  title?: string;
-}
-
-export function TopBar({ title }: TopBarProps) {
+export function TopBar() {
   const { data: session } = useSession();
-  const { theme, setTheme } = useTheme();
   const router = useRouter();
+  const { toggleMobileSidebar } = useUIStore();
 
   const handleSignOut = async () => {
     await signOut({ redirect: false });
@@ -32,23 +28,22 @@ export function TopBar({ title }: TopBarProps) {
   const initials = getInitials(session?.user?.email?.split('@')[0]);
 
   return (
-    <header className="flex h-14 shrink-0 items-center justify-between border-b bg-background/95 px-4 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <h1 className="text-base font-semibold text-foreground">{title}</h1>
-
-      <div className="flex items-center gap-2">
-        {/* Theme toggle */}
+    <header className="flex h-14 shrink-0 items-center justify-between border-b bg-background/95 px-3 sm:px-4 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      {/* Left: hamburger (mobile) */}
+      <div className="flex items-center gap-3">
         <Button
           variant="ghost"
           size="icon"
-          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-          className="h-8 w-8"
+          className="h-8 w-8 md:hidden"
+          onClick={toggleMobileSidebar}
+          aria-label="Open menu"
         >
-          <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          <span className="sr-only">Toggle theme</span>
+          <Menu className="h-5 w-5" />
         </Button>
+      </div>
 
-        {/* User dropdown */}
+      {/* Right: user menu */}
+      <div className="flex items-center gap-2 ml-auto">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="relative h-8 gap-2 px-2 rounded-full">
@@ -80,7 +75,10 @@ export function TopBar({ title }: TopBarProps) {
               Settings
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={handleSignOut} className="text-destructive focus:text-destructive">
+            <DropdownMenuItem
+              onClick={handleSignOut}
+              className="text-destructive focus:text-destructive hover:bg-destructive/10"
+            >
               <LogOut className="h-4 w-4" />
               Sign out
             </DropdownMenuItem>

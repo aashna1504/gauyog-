@@ -1,11 +1,20 @@
 import apiClient from './axios';
 import type { User, ApiResponse } from '@/types';
 
-// Note: These endpoints assume the backend exposes admin user management routes.
-// The backend's Prisma schema has a User model — extend as your backend grows.
+export interface UsersResult {
+  users: User[];
+  meta: {
+    total: number;
+    page: number;
+    limit: number;
+    totalPages: number;
+  };
+}
 
-export async function getUsers(): Promise<User[]> {
-  const { data } = await apiClient.get<ApiResponse<User[]>>('/users');
+export async function getUsers(page = 1, limit = 20, search?: string): Promise<UsersResult> {
+  const params: Record<string, string | number> = { page, limit };
+  if (search) params.search = search;
+  const { data } = await apiClient.get<ApiResponse<UsersResult>>('/users', { params });
   return data.data;
 }
 

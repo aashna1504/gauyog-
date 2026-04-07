@@ -30,7 +30,7 @@ export function Providers({ children, session }: ProvidersProps) {
   return (
     <SessionProvider session={session}>
       <QueryClientProvider client={queryClient}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="light" disableTransitionOnChange>
           {children}
           <Toaster richColors position="top-right" />
           <ReactQueryDevtools initialIsOpen={false} />

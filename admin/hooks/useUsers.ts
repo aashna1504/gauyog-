@@ -13,7 +13,7 @@ export const userKeys = {
 export function useUsers() {
   return useQuery({
     queryKey: userKeys.all,
-    queryFn: getUsers,
+    queryFn: () => getUsers(1, 20),
     staleTime: 30_000,
   });
 }

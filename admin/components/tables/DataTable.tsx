@@ -13,10 +13,9 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import { ChevronDown, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { cn } from '@/lib/utils';
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -61,20 +60,21 @@ export function DataTable<TData, TValue>({
             placeholder={searchPlaceholder}
             value={(table.getColumn(searchKey)?.getFilterValue() as string) ?? ''}
             onChange={(e) => table.getColumn(searchKey)?.setFilterValue(e.target.value)}
-            className="max-w-sm"
+            className="w-full max-w-sm"
           />
         </div>
       )}
 
-      <div className="rounded-lg border overflow-hidden">
-        <table className="w-full">
+      {/* Horizontally scrollable on small screens */}
+      <div className="rounded-lg border overflow-hidden overflow-x-auto">
+        <table className="w-full min-w-[500px]">
           <thead className="bg-muted/50">
             {table.getHeaderGroups().map((hg) => (
               <tr key={hg.id}>
                 {hg.headers.map((header) => (
                   <th
                     key={header.id}
-                    className="h-10 px-4 text-left align-middle text-xs font-semibold text-muted-foreground uppercase tracking-wider"
+                    className="h-10 px-4 text-left align-middle text-xs font-semibold text-muted-foreground uppercase tracking-wider whitespace-nowrap"
                   >
                     {header.isPlaceholder
                       ? null
@@ -111,7 +111,7 @@ export function DataTable<TData, TValue>({
       </div>
 
       {/* Pagination */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-2">
         <p className="text-sm text-muted-foreground">
           {table.getFilteredSelectedRowModel().rows.length > 0
             ? `${table.getFilteredSelectedRowModel().rows.length} of `
@@ -119,19 +119,35 @@ export function DataTable<TData, TValue>({
           {table.getFilteredRowModel().rows.length} row(s)
         </p>
         <div className="flex items-center gap-1">
-          <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => table.setPageIndex(0)} disabled={!table.getCanPreviousPage()}>
+          <Button
+            variant="outline" size="icon" className="h-8 w-8"
+            onClick={() => table.setPageIndex(0)}
+            disabled={!table.getCanPreviousPage()}
+          >
             <ChevronsLeft className="h-4 w-4" />
           </Button>
-          <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
+          <Button
+            variant="outline" size="icon" className="h-8 w-8"
+            onClick={() => table.previousPage()}
+            disabled={!table.getCanPreviousPage()}
+          >
             <ChevronLeft className="h-4 w-4" />
           </Button>
-          <span className="text-sm px-2 text-muted-foreground">
-            Page {table.getState().pagination.pageIndex + 1} / {table.getPageCount()}
+          <span className="text-sm px-2 text-muted-foreground whitespace-nowrap">
+            {table.getState().pagination.pageIndex + 1} / {table.getPageCount()}
           </span>
-          <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
+          <Button
+            variant="outline" size="icon" className="h-8 w-8"
+            onClick={() => table.nextPage()}
+            disabled={!table.getCanNextPage()}
+          >
             <ChevronRight className="h-4 w-4" />
           </Button>
-          <Button variant="outline" size="icon" className="h-8 w-8" onClick={() => table.setPageIndex(table.getPageCount() - 1)} disabled={!table.getCanNextPage()}>
+          <Button
+            variant="outline" size="icon" className="h-8 w-8"
+            onClick={() => table.setPageIndex(table.getPageCount() - 1)}
+            disabled={!table.getCanNextPage()}
+          >
             <ChevronsRight className="h-4 w-4" />
           </Button>
         </div>
