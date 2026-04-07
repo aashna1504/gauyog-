@@ -190,7 +190,7 @@ export default function Header() {
                               <p className="font-black text-white text-sm capitalize truncate">
                                 {userName}
                               </p>
-                              <p className="text-[14px] text-white/70 truncate">
+                              <p className="text-sm text-white/70 truncate">
                                 {user?.email}
                               </p>
                             </div>
@@ -263,7 +263,7 @@ export default function Header() {
                   size={22}
                   className="text-blue-500 fill-blue-500"
                 />
-                <span className="absolute -top-1 -right-1 bg-[#7bbd25] text-white text-[8px] font-black w-3.5 h-3.5 flex items-center justify-center rounded-full">
+                <span className="absolute -top-1 -right-1 bg-[#7bbd25] text-white text-[10px] font-black w-3.5 h-3.5 flex items-center justify-center rounded-full">
                   {cartCount}
                 </span>
               </div>
@@ -305,7 +305,7 @@ export default function Header() {
                   >
                     <Link
                       to={link.path}
-                      className={`flex items-center justify-between text-lg font-[1000] uppercase tracking-tighter ${
+                      className={`flex items-center justify-between text-lg font-black uppercase tracking-tighter ${
                         location.pathname === link.path
                           ? "text-[#7bbd25]"
                           : "text-slate-900"
@@ -332,7 +332,7 @@ export default function Header() {
                     </div>
                     <button
                       onClick={handleLogout}
-                      className="w-full py-4 bg-red-500 text-white rounded-full font-black uppercase tracking-widest text-[11px] flex items-center justify-center gap-2"
+                      className="w-full py-4 bg-red-500 text-white rounded-full font-black uppercase tracking-widest text-xs flex items-center justify-center gap-2"
                     >
                       Sign Out <LogOut size={16} />
                     </button>
@@ -340,7 +340,7 @@ export default function Header() {
                 ) : (
                   <button
                     onClick={() => navigate("/signin")}
-                    className="w-full py-4 bg-[#744926] text-white rounded-full font-black uppercase tracking-widest text-[11px] flex items-center justify-center gap-2"
+                    className="w-full py-4 bg-[#744926] text-white rounded-full font-black uppercase tracking-widest text-xs flex items-center justify-center gap-2"
                   >
                     Get Started <ArrowRightCircle size={16} />
                   </button>
@@ -373,7 +373,7 @@ export default function Header() {
                 <div className="relative flex items-center gap-5 p-2 group">
                   <div className="w-1.5 h-12 bg-[#744926] rounded-full transition-all duration-500 group-hover:h-14" />
                   <div className="flex flex-col">
-                    <h2 className="text-3xl font-[1000] tracking-[-0.05em] text-[#1a2e26] leading-none mb-1.5">
+                    <h2 className="text-3xl font-black tracking-[-0.05em] text-[#1a2e26] leading-none mb-1.5">
                       My Cart
                     </h2>
                     <p className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-400">

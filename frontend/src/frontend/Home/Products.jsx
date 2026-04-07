@@ -43,6 +43,18 @@ const products = [
     image: "https://pngimg.com/d/rice_PNG17.png",
     desc: "Nutrient-rich bio fertilizer to make your home garden thrive — completely chemical free.",
   },
+  {
+    id: 4,
+    name: "Organic Fertilizer",
+    price: 120,
+    tag: "Eco Friendly",
+    color: "from-green-50 to-emerald-100",
+    category: "Garden",
+    size: "1kg",
+    rating: 4.6,
+    image: "https://pngimg.com/d/rice_PNG17.png",
+    desc: "Nutrient-rich bio fertilizer to make your home garden thrive — completely chemical free.",
+  },
 ];
 
 export default function ProductSection() {
@@ -131,7 +143,7 @@ export default function ProductSection() {
         </div>
 
         {/* Product grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <AnimatePresence mode="popLayout">
             {products.map((p) => (
               <ProductCard key={p.id} product={p} />

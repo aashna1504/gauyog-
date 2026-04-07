@@ -3,4 +3,53 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  /* ── Typography Scale ──────────────────────────────────────────
+     Use these classes for consistent sizing across the site.
 
+     Display / Hero  : .type-display   → text-6xl lg:text-8xl  (page hero)
+     Heading 1       : .type-h1        → text-5xl lg:text-7xl  (section hero)
+     Heading 2       : .type-h2        → text-4xl md:text-5xl  (section title)
+     Heading 3       : .type-h3        → text-2xl md:text-3xl  (card/drawer title)
+     Heading 4       : .type-h4        → text-xl               (card name)
+     Body Large      : .type-body-lg   → text-lg               (intro copy)
+     Body            : .type-body      → text-base             (normal text)
+     Body Small      : .type-body-sm   → text-sm               (nav links, footer links)
+     Label / Caption : .type-label     → text-xs               (badges, tags, metadata)
+  ─────────────────────────────────────────────────────────────── */
+  .type-display {
+    @apply text-6xl lg:text-8xl font-black leading-none tracking-tighter;
+  }
+  .type-h1 {
+    @apply text-5xl lg:text-7xl font-bold leading-[1.1];
+  }
+  .type-h2 {
+    @apply text-4xl md:text-5xl font-black leading-tight tracking-tighter;
+  }
+  .type-h3 {
+    @apply text-2xl md:text-3xl font-black leading-tight tracking-tight;
+  }
+  .type-h4 {
+    @apply text-xl font-bold leading-snug tracking-tight;
+  }
+  .type-body-lg {
+    @apply text-lg font-medium leading-relaxed;
+  }
+  .type-body {
+    @apply text-base font-medium leading-relaxed;
+  }
+  .type-body-sm {
+    @apply text-sm font-medium leading-relaxed;
+  }
+  .type-label {
+    @apply text-xs font-black uppercase tracking-widest;
+  }
+
+  /* ── Button sizes ──────────────────────────────────────────── */
+  .btn-text {
+    @apply text-sm font-bold uppercase tracking-widest;
+  }
+  .btn-text-sm {
+    @apply text-xs font-black uppercase tracking-widest;
+  }
+}
