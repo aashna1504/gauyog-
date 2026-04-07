@@ -187,7 +187,8 @@ function about() {
 
               {/* One-line Value Proposition */}
               <p className="text-lg md:text-xl text-slate-500 font-medium max-w-xl leading-relaxed mb-10 border-l-2 border-slate-200 pl-6">
-                We bring together tradition and sustainability to create a healthier, more conscious way of living.
+                We bring together tradition and sustainability to create a
+                healthier, more conscious way of living.
               </p>
 
               {/* CTA Buttons */}
@@ -224,7 +225,7 @@ function about() {
               {/* Main Image Container */}
               <div className="aspect-[4/5] bg-slate-200 rounded-[60px] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] relative group">
                 <img
-                  src="https://res.cloudinary.com/dbpzzvcik/image/upload/v1775044121/Screenshot_2026-04-01_171816_klxne1.png"
+                  src="https://res.cloudinary.com/dbpzzvcik/image/upload/v1775475441/young-indian-farmer-agriculture-field_75648-6268_wipfy2.avif"
                   alt="Vedic Dhoop Ritual"
                   className="w-full h-full object-cover hover:grayscale-0 transition-all duration-1000 scale-110 group-hover:scale-100"
                 />

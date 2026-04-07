@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Menu,
   X,
@@ -6,14 +6,19 @@ import {
   User,
   ShoppingCart,
   Trash2,
-  ShoppingBag,
   ChevronRight,
+  LogOut,
+  LayoutDashboard,
+  Settings,
+  UserCircle2,
+  Heart,
+  PersonStanding,
 } from "lucide-react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import useAuthStore from "../../store/authStore";
 import useCartStore from "../../store/cartStore";
-import toast from "react-hot-toast";
+import useNotificationStore from "../../store/notificationStore";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -22,19 +27,36 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showUserMenu, setShowUserMenu] = useState(false);
+
+  const userMenuRef = useRef(null);
 
   const { isAuthenticated, logout, user } = useAuthStore();
   const { cartCount, cartItems, fetchCart } = useCartStore();
+  const notify = useNotificationStore((s) => s.show);
 
   useEffect(() => {
-    if (isAuthenticated) {
-      fetchCart();
-    }
+    if (isAuthenticated) fetchCart();
   }, [isAuthenticated, fetchCart]);
+
+  // Close user menu on outside click
+  useEffect(() => {
+    const handler = (e) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(e.target)) {
+        setShowUserMenu(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
 
   const handleLogout = () => {
     logout();
-    toast.success("Logged out successfully");
+    setShowUserMenu(false);
+    notify(
+      `See you soon, ${user?.email?.split("@")[0] || "friend"}!`,
+      "logout",
+    );
     navigate("/");
   };
 
@@ -42,6 +64,7 @@ export default function Header() {
   useEffect(() => {
     setMenuOpen(false);
     setCartOpen(false);
+    setShowUserMenu(false);
   }, [location.pathname]);
 
   useEffect(() => {
@@ -57,6 +80,9 @@ export default function Header() {
     { name: "Refund Policy", path: "/refund" },
     { name: "Contact Us", path: "/contact" },
   ];
+
+  const userInitial = user?.email?.[0]?.toUpperCase() || "U";
+  const userName = user?.email?.split("@")[0] || "User";
 
   return (
     <>
@@ -102,6 +128,7 @@ export default function Header() {
             {/* DESKTOP ACTIONS */}
             <div className="hidden lg:flex items-center gap-5 text-gray-700">
               <div className="flex items-center gap-4 pr-4 border-r border-gray-100">
+                {/* Dashboard shortcut */}
                 <div
                   onClick={() => navigate("/dashboard")}
                   className="cursor-pointer"
@@ -111,6 +138,7 @@ export default function Header() {
                     className="text-yellow-500 fill-yellow-500 hover:text-yellow-600 transition-colors"
                   />
                 </div>
+                {/* Cart */}
                 <div
                   className="relative cursor-pointer group"
                   onClick={() => setCartOpen(true)}
@@ -124,15 +152,93 @@ export default function Header() {
                   </span>
                 </div>
               </div>
+
               {isAuthenticated ? (
-                <div className="flex items-center gap-3">
-                  <span className="text-sm font-bold text-gray-700">Hey, {user?.email?.split('@')[0]}</span>
+                /* ── USER MENU ─────────────────────────────── */
+                <div className="relative" ref={userMenuRef}>
                   <button
-                    onClick={handleLogout}
-                    className="bg-red-500 hover:bg-red-600 text-white px-5 py-2.5 rounded-full text-sm font-bold transition-all"
+                    onClick={() => setShowUserMenu((v) => !v)}
+                    className={`w-10 h-10 rounded-full font-black text-sm flex items-center justify-center transition-all shadow-md ${
+                      showUserMenu
+                        ? "bg-[#744926] text-white scale-95"
+                        : "bg-[#4a703f] text-white hover:bg-[#744926]"
+                    }`}
                   >
-                    Logout
+                    {userInitial}
                   </button>
+
+                  <AnimatePresence>
+                    {showUserMenu && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 340,
+                          damping: 26,
+                        }}
+                        className="absolute top-14 right-0 w-64 bg-white rounded-[28px] shadow-2xl shadow-black/10 border border-slate-100 overflow-hidden z-50"
+                      >
+                        {/* Header gradient */}
+                        <div className="bg-gradient-to-br from-[#4a703f] to-[#7bbd25] p-3">
+                          <div className="flex items-center gap-3">
+                            <div className="w-11 h-11 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center font-black text-lg text-white border border-white/30">
+                              {userInitial}
+                            </div>
+                            <div className="min-w-0">
+                              <p className="font-black text-white text-sm capitalize truncate">
+                                {userName}
+                              </p>
+                              <p className="text-[14px] text-white/70 truncate">
+                                {user?.email}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Actions */}
+                        <div className="p-2.5 space-y-0.5">
+                          <button
+                            onClick={() => {
+                              navigate("/dashboard");
+                              setShowUserMenu(false);
+                            }}
+                            className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold text-slate-700 hover:bg-slate-100 transition-all text-left"
+                          >
+                            <PersonStanding
+                              size={18}
+                              className="text-[#4a703f]"
+                            />
+                            Dashboard
+                          </button>
+                          <button
+                            onClick={() => {
+                              navigate("/favorites");
+                              setShowUserMenu(false);
+                            }}
+                            className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold text-slate-700 hover:bg-slate-100 transition-all text-left"
+                          >
+                            <Heart
+                              size={16}
+                              className="text-red-600 fill-red-600"
+                            />
+                            WishList
+                          </button>
+
+                          <div className="h-px bg-slate-100 mx-2 my-1" />
+
+                          <button
+                            onClick={handleLogout}
+                            className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold text-red-500 hover:bg-red-50 transition-all text-left"
+                          >
+                            <LogOut size={16} />
+                            Sign Out
+                          </button>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               ) : (
                 <button
@@ -172,11 +278,10 @@ export default function Header() {
         </div>
       </header>
 
-      {/* --- MOBILE DROPDOWN MENU --- */}
+      {/* ── MOBILE DROPDOWN MENU ──────────────────────────────────── */}
       <AnimatePresence>
         {menuOpen && (
           <>
-            {/* Dark Overlay */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -184,7 +289,6 @@ export default function Header() {
               onClick={() => setMenuOpen(false)}
               className="fixed inset-0 bg-black/20 backdrop-blur-sm z-[110] lg:hidden"
             />
-            {/* Dropdown Content */}
             <motion.div
               initial={{ y: -20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -212,14 +316,27 @@ export default function Header() {
                     </Link>
                   </motion.div>
                 ))}
+
                 <div className="h-[1px] bg-slate-50 w-full" />
+
                 {isAuthenticated ? (
-                  <button
-                    onClick={handleLogout}
-                    className="w-full py-4 bg-red-500 text-white rounded-full font-black uppercase tracking-widest text-[11px] flex items-center justify-center gap-2"
-                  >
-                    Logout <ArrowRightCircle size={16} />
-                  </button>
+                  <div className="space-y-2">
+                    {/* Mobile user info strip */}
+                    <div className="flex items-center gap-3 px-1 mb-1">
+                      <div className="w-8 h-8 bg-[#4a703f] text-white rounded-full flex items-center justify-center font-black text-sm">
+                        {userInitial}
+                      </div>
+                      <span className="text-sm font-black text-slate-700 truncate">
+                        {userName}
+                      </span>
+                    </div>
+                    <button
+                      onClick={handleLogout}
+                      className="w-full py-4 bg-red-500 text-white rounded-full font-black uppercase tracking-widest text-[11px] flex items-center justify-center gap-2"
+                    >
+                      Sign Out <LogOut size={16} />
+                    </button>
+                  </div>
                 ) : (
                   <button
                     onClick={() => navigate("/signin")}
@@ -234,7 +351,7 @@ export default function Header() {
         )}
       </AnimatePresence>
 
-      {/* --- YOUR ORIGINAL CART DRAWER (DO NOT CHANGE DESIGN) --- */}
+      {/* ── CART DRAWER ───────────────────────────────────────────── */}
       <AnimatePresence>
         {cartOpen && (
           <>
@@ -277,7 +394,7 @@ export default function Header() {
                 {cartItems.map((item) => (
                   <div
                     key={item.id}
-                    className="flex gap-5 group p-2 hover:bg-[#e9aa43]/10 rounded-2xl transition-all border border-transparent "
+                    className="flex gap-5 group p-2 hover:bg-[#e9aa43]/10 rounded-2xl transition-all border border-transparent"
                   >
                     <div className="w-24 h-24 bg-[#e9aa43]/20 rounded-full overflow-hidden flex-shrink-0 border border-slate-100">
                       <img
@@ -319,7 +436,13 @@ export default function Header() {
                     Estimated Total
                   </span>
                   <span className="text-xl font-[1000] text-[#1a2e26]">
-                    ₹{cartItems.reduce((acc, item) => acc + ((item.rawPrice || 0) * item.qty), 0).toLocaleString('en-IN')}
+                    ₹
+                    {cartItems
+                      .reduce(
+                        (acc, item) => acc + (item.rawPrice || 0) * item.qty,
+                        0,
+                      )
+                      .toLocaleString("en-IN")}
                   </span>
                 </div>
                 <button

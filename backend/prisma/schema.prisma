@@ -12,14 +12,29 @@ enum Role {
   ADMIN
 }
 model User {
+  id              String           @id @default(uuid())
+  email           String           @unique
+  password        String?
+  name            String?
+  role            Role             @default(USER)
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  cart            Cart?
+  deliveryDetails DeliveryDetails?
+}
+
+model DeliveryDetails {
   id        String   @id @default(uuid())
-  email     String   @unique
-  password  String?
-  name      String?
-  role      Role     @default(USER)
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  firstName String?
+  lastName  String?
+  phone     String?
+  email     String?
+  building  String?
+  address   String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  cart      Cart?
 }
 
 model Product {

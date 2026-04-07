@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import api from "../../api/axios";
 import useAuthStore from "../../store/authStore";
+import useNotificationStore from "../../store/notificationStore";
 import toast from "react-hot-toast";
 import {
   Mail,
@@ -22,14 +23,16 @@ export default function ModernSignIn() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const setAuth = useAuthStore((state) => state.setAuth);
+  const notify = useNotificationStore((s) => s.show);
 
   const handleSignIn = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     try {
       const res = await api.post('/auth/login', { email, password });
-      setAuth(res.data.data.user, res.data.data.accessToken, res.data.data.refreshToken);
-      toast.success("Logged in successfully!");
+      const u = res.data.data.user;
+      setAuth(u, res.data.data.accessToken, res.data.data.refreshToken);
+      notify(`Welcome back, ${u.email.split("@")[0]}!`, "login");
       navigate("/");
     } catch (error) {
       toast.error(error.response?.data?.message || "Login failed");

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   Home,
@@ -8,14 +8,70 @@ import {
   Mail,
   MapPin,
   Save,
+  CheckCircle,
+  Loader,
 } from "lucide-react";
+import api from "../../api/axios";
 
 export default function NexusAddressPage() {
-  const [tag, setTag] = useState("Home");
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    phone: "",
+    email: "",
+    building: "",
+    address: "",
+  });
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    api
+      .get("/delivery")
+      .then((res) => {
+        const d = res.data?.data;
+        if (d) {
+          setForm({
+            firstName: d.firstName ?? "",
+            lastName: d.lastName ?? "",
+            phone: d.phone ?? "",
+            email: d.email ?? "",
+            building: d.building ?? "",
+            address: d.address ?? "",
+          });
+        }
+      })
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, []);
+
+  const handleChange = (field) => (e) => {
+    setForm((prev) => ({ ...prev, [field]: e.target.value }));
+    setSaved(false);
+    setError("");
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSaving(true);
+    setError("");
+    try {
+      await api.put("/delivery", form);
+      setSaved(true);
+    } catch (err) {
+      setError(
+        err?.response?.data?.message || "Failed to save. Please try again."
+      );
+    } finally {
+      setSaving(false);
+    }
+  };
 
   return (
     <div className="w-full max-w-[1200px] mx-auto px-6 py-12 mt-24 text-slate-900">
-      {/* --- SAME BREADCRUMB --- */}
+      {/* BREADCRUMB */}
       <nav className="flex items-center gap-2 mb-8 px-2">
         <button
           onClick={() => (window.location.href = "/dashboard")}
@@ -33,7 +89,7 @@ export default function NexusAddressPage() {
         </span>
       </nav>
 
-      {/* --- SAME HEADER --- */}
+      {/* HEADER */}
       <header className="mb-12 border-l-4 border-[#4a703f] pl-6">
         <motion.h1
           initial={{ opacity: 0, x: -20 }}
@@ -47,64 +103,103 @@ export default function NexusAddressPage() {
         </p>
       </header>
 
-      {/* --- SAME CARD CONTAINER (REPLACED TABLE WITH FORM) --- */}
       <div className="bg-white border border-slate-100 rounded-[40px] shadow-2xl shadow-slate-200/40 overflow-hidden">
-        {/* OPTIONAL TOP BAR (MATCHING TABLE HEADER STYLE) */}
+        {/* TOP BAR */}
         <div className="bg-[#4a703f] px-10 py-6">
           <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/80">
             Delivery Details
           </span>
         </div>
 
-        {/* FORM */}
-        <div className="p-8 md:p-10 space-y-8">
-          {/* NAME */}
-          <div className="grid md:grid-cols-2 gap-6">
-            <Input label="First Name" placeholder="Aashna" />
-            <Input label="Last Name" placeholder="Sagar" />
+        {loading ? (
+          <div className="p-16 flex justify-center items-center">
+            <Loader size={24} className="animate-spin text-[#4a703f]" />
           </div>
-
-          {/* CONTACT */}
-          <div className="grid md:grid-cols-2 gap-6">
-            <Input
-              label="Phone Number"
-              placeholder="+91 00000 00000"
-              icon={<Phone size={16} />}
-            />
-            <Input
-              label="Email Address"
-              placeholder="example@gmail.com"
-              icon={<Mail size={16} />}
-            />
-          </div>
-
-          {/* ADDRESS SECTION */}
-          <div className="border-t border-slate-100 pt-8 space-y-6">
-            <div className="flex items-center gap-2">
-              <Navigation size={14} className="text-[#7bbd25]" />
-              <h3 className="text-[11px] font-black uppercase tracking-[0.3em] text-[#4a703f]">
-                Address Information
-              </h3>
+        ) : (
+          <form onSubmit={handleSubmit} className="p-8 md:p-10 space-y-8">
+            {/* NAME */}
+            <div className="grid md:grid-cols-2 gap-6">
+              <Input
+                label="First Name"
+                placeholder="Aashna"
+                value={form.firstName}
+                onChange={handleChange("firstName")}
+              />
+              <Input
+                label="Last Name"
+                placeholder="Sagar"
+                value={form.lastName}
+                onChange={handleChange("lastName")}
+              />
             </div>
 
-            <Input
-              label="Building / House / Flat no / Floor"
-              placeholder="Flat 202, Tower B"
-            />
+            {/* CONTACT */}
+            <div className="grid md:grid-cols-2 gap-6">
+              <Input
+                label="Phone Number"
+                placeholder="+91 00000 00000"
+                icon={<Phone size={16} />}
+                value={form.phone}
+                onChange={handleChange("phone")}
+              />
+              <Input
+                label="Email Address"
+                placeholder="example@gmail.com"
+                icon={<Mail size={16} />}
+                value={form.email}
+                onChange={handleChange("email")}
+              />
+            </div>
 
-            <Input
-              label="Address"
-              placeholder="Street, Area, Landmark"
-              icon={<MapPin size={16} />}
-            />
-          </div>
+            {/* ADDRESS SECTION */}
+            <div className="border-t border-slate-100 pt-8 space-y-6">
+              <div className="flex items-center gap-2">
+                <Navigation size={14} className="text-[#7bbd25]" />
+                <h3 className="text-[11px] font-black uppercase tracking-[0.3em] text-[#4a703f]">
+                  Address Information
+                </h3>
+              </div>
 
-          {/* BUTTON */}
-          <button className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#4a703f] text-white rounded-full text-[11px] font-black uppercase tracking-widest hover:scale-[1.02] transition shadow-lg shadow-[#1a2e26]/20">
-            <Save size={16} />
-            Save Address
-          </button>
-        </div>
+              <Input
+                label="Building / House / Flat no / Floor"
+                placeholder="Flat 202, Tower B"
+                value={form.building}
+                onChange={handleChange("building")}
+              />
+
+              <Input
+                label="Address"
+                placeholder="Street, Area, Landmark"
+                icon={<MapPin size={16} />}
+                value={form.address}
+                onChange={handleChange("address")}
+              />
+            </div>
+
+            {/* FEEDBACK */}
+            {error && (
+              <p className="text-xs font-semibold text-red-500 text-center">
+                {error}
+              </p>
+            )}
+
+            {/* BUTTON */}
+            <button
+              type="submit"
+              disabled={saving}
+              className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#4a703f] text-white rounded-full text-[11px] font-black uppercase tracking-widest hover:scale-[1.02] transition shadow-lg shadow-[#1a2e26]/20 disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100"
+            >
+              {saving ? (
+                <Loader size={16} className="animate-spin" />
+              ) : saved ? (
+                <CheckCircle size={16} />
+              ) : (
+                <Save size={16} />
+              )}
+              {saving ? "Saving…" : saved ? "Saved!" : "Save Address"}
+            </button>
+          </form>
+        )}
       </div>
     </div>
   );
@@ -120,7 +215,7 @@ function Label({ children }) {
   );
 }
 
-function Input({ label, placeholder, icon }) {
+function Input({ label, placeholder, icon, value, onChange }) {
   return (
     <div>
       <Label>{label}</Label>
@@ -128,6 +223,8 @@ function Input({ label, placeholder, icon }) {
         <input
           type="text"
           placeholder={placeholder}
+          value={value}
+          onChange={onChange}
           className="w-full bg-white border border-slate-100 pl-4 pr-10 py-4 rounded-full text-xs font-bold outline-none focus:border-[#4a703f] focus:shadow-lg focus:shadow-[#4a703f]/5 transition-all"
         />
         {icon && (

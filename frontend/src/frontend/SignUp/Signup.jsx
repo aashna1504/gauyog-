@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import api from "../../api/axios";
 import useAuthStore from "../../store/authStore";
+import useNotificationStore from "../../store/notificationStore";
 import toast from "react-hot-toast";
 import {
   Mail,
@@ -24,6 +25,7 @@ export default function ModernSignUp() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
   const setAuth = useAuthStore((state) => state.setAuth);
+  const notify = useNotificationStore((s) => s.show);
 
   // --- BACKEND HANDLER ---
   const handleSignUp = async (e) => {
@@ -34,8 +36,9 @@ export default function ModernSignUp() {
     setIsLoading(true);
     try {
       const res = await api.post('/auth/signup', { email, password, role: "USER" });
-      setAuth(res.data.data.user, res.data.data.accessToken, res.data.data.refreshToken);
-      toast.success("Account created successfully!");
+      const u = res.data.data.user;
+      setAuth(u, res.data.data.accessToken, res.data.data.refreshToken);
+      notify(`Account ready, ${u.email.split("@")[0]}!`, "signup");
       navigate("/");
     } catch (error) {
       toast.error(error.response?.data?.message || "Signup failed");

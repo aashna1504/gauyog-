@@ -3,9 +3,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const slides = [
-  "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775466588/Untitled_design_dhde6s.png",
-  "https://images.unsplash.com/photo-1551434678-e076c223a692",
-  "https://images.unsplash.com/photo-1492724441997-5dc865305da7",
+  "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775474951/happy-smiling-indian-farmer-with-tractor-real-farming-life-rural-india_1257902-6315_uxkces.avif",
+  "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775474759/istockphoto-990897254-170667a_yi0zzr.jpg",
+  "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775474246/agri-app-photo-fn-1200x799_dq1qas.jpg",
 ];
 
 export default function BannerSlider() {
@@ -29,7 +29,7 @@ export default function BannerSlider() {
 
   return (
     <div
-      className="relative w-full h-[50vh] md:h-[85vh] lg:h-[90vh] overflow-hidden bg-slate-900"
+      className="relative w-full h-[50vh] md:h-[85vh] lg:h-[100vh] overflow-hidden bg-slate-900"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -91,10 +91,11 @@ export default function BannerSlider() {
           <button
             key={i}
             onClick={() => setIndex(i)}
-            className={`transition-all duration-500 rounded-full ${i === index
+            className={`transition-all duration-500 rounded-full ${
+              i === index
                 ? "w-8 h-2 bg-[#7bbd25]"
                 : "w-2 h-2 bg-white/50 hover:bg-white"
-              }`}
+            }`}
             aria-label={`Go to slide ${i + 1}`}
           />
         ))}
