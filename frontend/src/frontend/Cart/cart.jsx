@@ -37,7 +37,7 @@ export default function ModernCartPage() {
   return (
     <div className="min-h-screen bg-[#fcfdfd] lg:pt-40 pt-32 pb-20 px-4 md:px-8">
       <div className="max-w-[1200px] mx-auto">
-        {/* 1. STEP PROGRESS BAR */}
+      
         <div className="flex justify-between items-center mb-8 md:mb-12 max-w-3xl mx-auto relative px-2 md:px-0">
           <div className="absolute top-[20px] md:top-6 left-0 w-full h-[2px] bg-slate-100 -z-10" />
           {steps.map((step) => (
@@ -65,9 +65,9 @@ export default function ModernCartPage() {
           ))}
         </div>
 
-        {/* 2. MAIN LAYOUT: REVERSED ON MOBILE */}
+      
         <div className="flex flex-col lg:grid lg:grid-cols-3 gap-8 items-start">
-          {/* --- ORDER SUMMARY (TOP ON MOBILE, RIGHT ON DESKTOP) --- */}
+     
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -114,7 +114,7 @@ export default function ModernCartPage() {
             </button>
           </motion.div>
 
-          {/* --- CART ITEMS (BOTTOM ON MOBILE, LEFT ON DESKTOP) --- */}
+          
           <div className="order-2 lg:order-1 lg:col-span-2 w-full space-y-6">
             <div className="flex items-center justify-between px-2">
               <h2 className="text-xl md:text-2xl font-[900] text-slate-950 tracking-tighter uppercase ">
@@ -131,7 +131,7 @@ export default function ModernCartPage() {
               className="bg-white border border-slate-100 rounded-[25px] md:rounded-[35px] p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow"
             >
               <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-8">
-                {/* Image */}
+               
                 <div className="w-full sm:w-32 h-40 sm:h-32 bg-slate-50 rounded-[20px] md:rounded-[24px] flex items-center justify-center border border-slate-100 overflow-hidden group">
                   <img
                     src="https://pngimg.com/d/rice_PNG17.png"
@@ -140,7 +140,7 @@ export default function ModernCartPage() {
                   />
                 </div>
 
-                {/* Details */}
+               
                 <div className="flex-1 text-center sm:text-left w-full">
                   <h3 className="text-sm font-black text-slate-900 uppercase tracking-tight mb-1">
                     ORGANIC FERTILIZER
@@ -172,7 +172,7 @@ export default function ModernCartPage() {
                   </div>
                 </div>
 
-                {/* Total & Remove */}
+               
                 <div className="flex flex-row sm:flex-col items-center justify-between sm:justify-center gap-4 w-full sm:w-auto border-t sm:border-t-0 pt-4 sm:pt-0 border-slate-50">
                   <div className="text-left sm:text-right">
                     <p className="text-[9px] font-black text-slate-400 uppercase mb-0.5">
@@ -195,7 +195,7 @@ export default function ModernCartPage() {
   );
 }
 
-// Sub-component for cleaner summary rows
+
 function SummaryRow({ label, value, valueClass = "text-white" }) {
   return (
     <div className="flex justify-between items-center text-[11px] md:text-[12px] font-bold uppercase tracking-widest text-white/70">

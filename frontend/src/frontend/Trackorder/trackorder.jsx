@@ -34,7 +34,7 @@ export default function TrackOrderPage() {
 
   return (
     <div className="min-h-screen bg-[#fcfdfd] selection:bg-[#4a703f] selection:text-white ">
-      {/* --- CENTERED HERO BANNER --- */}
+    
       <motion.div
         initial="hidden"
         animate="visible"
@@ -43,7 +43,7 @@ export default function TrackOrderPage() {
       >
         <div className="absolute inset-0 bg-gradient-to-b from-[#f8fbf6] to-white" />
 
-        {/* SIGNATURE RIGHT GLOW */}
+      
         <div
           className="absolute top-1/2 -right-1/4 -translate-y-1/2 w-[60%] h-[150%] opacity-20 blur-[120px] rounded-full pointer-events-none animate-pulse"
           style={{
@@ -87,7 +87,7 @@ export default function TrackOrderPage() {
         </div>
       </motion.div>
 
-      {/* --- TRACKING INPUT SECTION --- */}
+      
       <div className="max-w-7xl mx-auto px-6 -mt-12 relative z-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -138,7 +138,7 @@ export default function TrackOrderPage() {
           </div>
         </motion.div>
 
-        {/* --- SHIPMENT FEATURES --- */}
+        
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mt-24 mb-32">
           <FeatureBlock
             icon={Package}

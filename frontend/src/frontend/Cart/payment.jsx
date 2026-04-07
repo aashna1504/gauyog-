@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-// --- 1. HELPER / SUB-COMPONENTS ---
+
 
 const PaymentMethodCard = ({ icon, title, desc, active, onClick }) => (
   <button
@@ -89,7 +89,7 @@ const InputLabel = ({ label, placeholder, icon: Icon }) => (
   </div>
 );
 
-// --- 2. MAIN PAGE COMPONENT ---
+
 
 export default function ModernPaymentPage() {
   const [method, setMethod] = useState("card");
@@ -115,7 +115,7 @@ export default function ModernPaymentPage() {
   return (
     <div className="min-h-screen bg-[#fcfdfd] lg:pt-40 pt-32 pb-20 px-4 md:px-8 selection:bg-[#4a703f] selection:text-white">
       <div className="max-w-[1200px] mx-auto">
-        {/* STEP PROGRESS BAR */}
+       
         <div className="flex justify-between items-center mb-12 max-w-3xl mx-auto relative px-2">
           <div className="absolute top-6 left-0 w-full h-[2px] bg-slate-100 -z-10" />
           {steps.map((step) => (
@@ -141,9 +141,9 @@ export default function ModernPaymentPage() {
           ))}
         </div>
 
-        {/* CONTENT LAYOUT */}
+       
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
-          {/* PAYMENT DETAILS */}
+        
           <div className="lg:col-span-2 space-y-8 order-2 lg:order-1">
             <div className="px-2">
               <h2 className="text-2xl font-[900] text-slate-950 tracking-tighter uppercase ">
@@ -154,7 +154,7 @@ export default function ModernPaymentPage() {
               </p>
             </div>
 
-            {/* SELECTION GRID */}
+         
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 px-2">
               <PaymentMethodCard
                 icon={<CreditCard size={22} />}
@@ -179,7 +179,7 @@ export default function ModernPaymentPage() {
               />
             </div>
 
-            {/* PAYMENT FORM CARD */}
+           
             <motion.div
               key={method}
               initial={{ opacity: 0, y: 10 }}
@@ -244,7 +244,7 @@ export default function ModernPaymentPage() {
               )}
             </motion.div>
 
-            {/* TRUST INDICATORS */}
+          
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-2">
               <div className="flex items-center gap-4 bg-white p-5 rounded-[25px] border border-slate-100 group hover:shadow-lg transition-all duration-500">
                 <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-500 flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -275,7 +275,7 @@ export default function ModernPaymentPage() {
             </div>
           </div>
 
-          {/* ORDER SUMMARY */}
+      
           <div className="order-1 lg:order-2">
             <motion.div
               initial={{ opacity: 0, y: -10 }}
@@ -304,7 +304,7 @@ export default function ModernPaymentPage() {
                 <h4 className="text-4xl font-black">$40.00</h4>
               </div>
 
-              {/* UPDATED BUTTON TO TRIGGER POPUP */}
+             
               <button
                 onClick={() => setShowSuccess(true)}
                 className="group w-full bg-white hover:bg-[#e9aa43] hover:text-white text-black py-5 rounded-full flex items-center justify-center gap-3 transition-all font-black uppercase text-[10px] md:text-xs"
@@ -320,11 +320,11 @@ export default function ModernPaymentPage() {
         </div>
       </div>
 
-      {/* --- SUCCESS POPUP MODAL --- */}
+   
       <AnimatePresence>
         {showSuccess && (
           <div className="fixed inset-0 z-[110] flex items-center justify-center px-4">
-            {/* Backdrop */}
+           
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -333,14 +333,14 @@ export default function ModernPaymentPage() {
               className="absolute inset-0 bg-slate-950/80 backdrop-blur-md"
             />
 
-            {/* Modal Content */}
+           
             <motion.div
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               className="relative bg-white w-full max-w-sm rounded-[40px] p-10 text-center shadow-2xl overflow-hidden"
             >
-              {/* Top Accent Bar */}
+            
               <div className="absolute top-0 left-0 w-full h-2 bg-[#7bbd25]" />
 
               <div className="flex flex-col items-center">
@@ -375,7 +375,7 @@ export default function ModernPaymentPage() {
                 </div>
               </div>
 
-              {/* Close Icon */}
+             
               <button
                 onClick={() => setShowSuccess(false)}
                 className="absolute top-6 right-6 text-slate-300 hover:text-slate-900 transition-colors"

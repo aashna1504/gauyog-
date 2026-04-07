@@ -12,14 +12,7 @@ import {
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-/**
- * ProductCard — shared card used across home page sections and the shop listing.
- *
- * Props:
- *   product: { id, name, price, tag, color, image, category?, size?, rating?, desc? }
- *   onAddToCart: (product) => void   — optional callback
- *   onBuyNow:   (product) => void   — optional callback
- */
+
 export default function ProductCard({ product, onAddToCart, onBuyNow }) {
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
@@ -27,7 +20,7 @@ export default function ProductCard({ product, onAddToCart, onBuyNow }) {
 
   return (
     <>
-      {/* ── CARD ─────────────────────────────────────────────── */}
+     
       <motion.div
         layout
         initial={{ opacity: 0, scale: 0.9 }}
@@ -37,11 +30,11 @@ export default function ProductCard({ product, onAddToCart, onBuyNow }) {
         className="group"
       >
         <div className="bg-white rounded-[40px] p-4 border border-gray-100 flex flex-col h-full transition-all duration-500 hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.12)]">
-          {/* — Image area — */}
+        
           <div
             className={`relative h-64 w-full bg-gradient-to-br ${p.color} rounded-[32px] overflow-hidden flex items-center justify-center`}
           >
-            {/* Tag badge */}
+           
             <div className="absolute top-4 left-4 z-10">
               <span className="backdrop-blur-md bg-white/70 px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-widest text-gray-800 border border-white/40">
                 {p.tag}
@@ -54,8 +47,7 @@ export default function ProductCard({ product, onAddToCart, onBuyNow }) {
               alt={p.name}
             />
 
-            {/* Hover overlay actions */}
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center gap-3 bg-black/5 backdrop-blur-[2px]">
+             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center gap-3 bg-black/5 backdrop-blur-[2px]">
               <button
                 onClick={() => setShowModal(true)}
                 className="w-12 h-12 bg-white rounded-full shadow-xl flex items-center justify-center text-gray-700 hover:bg-[#7bbd25] hover:text-white transition-all transform translate-y-4 group-hover:translate-y-0"
@@ -68,11 +60,11 @@ export default function ProductCard({ product, onAddToCart, onBuyNow }) {
             </div>
           </div>
 
-          {/* — Info — */}
+          
           <div className="mt-6 flex flex-col flex-grow px-2">
             <div className="flex justify-between items-start mb-4">
               <div className="flex-1">
-                {/* Stars */}
+               
                 <div className="flex gap-1 mb-2">
                   {[...Array(5)].map((_, i) => (
                     <Star
@@ -99,7 +91,7 @@ export default function ProductCard({ product, onAddToCart, onBuyNow }) {
               </p>
             </div>
 
-            {/* CTA buttons */}
+           
             <div className="space-y-2 mt-auto">
               <button
                 onClick={() => onBuyNow?.(p)}
@@ -118,11 +110,11 @@ export default function ProductCard({ product, onAddToCart, onBuyNow }) {
         </div>
       </motion.div>
 
-      {/* ── PREVIEW MODAL ────────────────────────────────────── */}
+     
       <AnimatePresence>
         {showModal && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8">
-            {/* Backdrop */}
+           
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -138,7 +130,7 @@ export default function ProductCard({ product, onAddToCart, onBuyNow }) {
               transition={{ type: "spring", stiffness: 300, damping: 28 }}
               className="relative bg-white w-full max-w-5xl rounded-[40px] md:rounded-[56px] overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[90vh]"
             >
-              {/* Action bar */}
+            
               <div className="absolute top-6 right-6 z-50 flex items-center gap-3">
                 <div className="flex bg-white/90 backdrop-blur-md p-1.5 rounded-full shadow-xl border border-white/50">
                   <motion.button
@@ -163,7 +155,7 @@ export default function ProductCard({ product, onAddToCart, onBuyNow }) {
                 </button>
               </div>
 
-              {/* Left — product image */}
+            
               <div
                 className={`w-full md:w-5/12 bg-gradient-to-br ${p.color} flex items-center justify-center p-12 relative min-h-[300px]`}
               >
@@ -179,7 +171,7 @@ export default function ProductCard({ product, onAddToCart, onBuyNow }) {
                 </span>
               </div>
 
-              {/* Right — details */}
+             
               <div className="w-full md:w-7/12 p-8 md:p-14 bg-white overflow-y-auto self-center">
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-green-50 text-[#4a703f] rounded-full text-[10px] font-black uppercase mb-6 tracking-widest border border-green-100">
                   <ShieldCheck size={14} /> Certified Organic

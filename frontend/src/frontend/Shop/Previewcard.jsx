@@ -38,9 +38,9 @@ export default function VedicDhoopMosaicPage() {
         <div className="fixed top-0 right-0 w-[40%] h-[40%] bg-[#7bbd25]/5 rounded-full blur-[120px] -z-10" />
 
         <main className="max-w-[1500px] mx-auto mt-9 lg:mt-0">
-          {/* Mobile: Flex column | Desktop: Grid 12 cols */}
+          
           <div className="flex flex-col lg:grid lg:grid-cols-12 gap-6 items-stretch">
-            {/* --- TOP SECTION (Badge & Heading) - Mobile Order: 1 --- */}
+          
             <div className="order-1 lg:hidden mb-4">
               <motion.div initial="hidden" animate="visible" variants={reveal}>
                 <div className="flex items-center gap-3 mb-4">
@@ -66,7 +66,7 @@ export default function VedicDhoopMosaicPage() {
               </motion.div>
             </div>
 
-            {/* --- LEFT: IMAGE GALLERY - Mobile Order: 2 | Desktop: 5 Cols --- */}
+            
             <div className="order-2 lg:col-span-5 lg:sticky lg:top-8 h-fit">
               <motion.div
                 initial="hidden"
@@ -74,7 +74,7 @@ export default function VedicDhoopMosaicPage() {
                 variants={reveal}
                 className="relative aspect-[4/5] bg-white rounded-[40px] shadow-2xl shadow-[#4a703f]/10 border border-[#4a703f]/20 flex items-center justify-center overflow-hidden"
               >
-                {/* Vertical Thumbnails */}
+                
                 <div className="absolute left-4 md:left-6 top-1/2 -translate-y-1/2 flex flex-col gap-3 z-20">
                   {productImages.map((img, idx) => (
                     <button
@@ -94,7 +94,7 @@ export default function VedicDhoopMosaicPage() {
                   ))}
                 </div>
 
-                {/* Actions */}
+            
                 <div className="absolute top-6 right-6 md:top-8 md:right-8 z-20 flex flex-col gap-3">
                   <button className="p-3 md:p-4 bg-white/80 backdrop-blur-md rounded-full shadow-xl text-slate-400 hover:text-red-500 border border-white transition-colors">
                     <Heart
@@ -127,9 +127,8 @@ export default function VedicDhoopMosaicPage() {
               </motion.div>
             </div>
 
-            {/* --- RIGHT: BENTO FLOW - Mobile Order: 3 | Desktop: 7 Cols --- */}
             <div className="order-3 lg:col-span-7 space-y-10 md:space-y-16 lg:pl-6 xl:pl-10 mt-6 lg:mt-0">
-              {/* Desktop Header (Hidden on Mobile) */}
+              
               <motion.div
                 initial="hidden"
                 animate="visible"
@@ -186,7 +185,6 @@ export default function VedicDhoopMosaicPage() {
                 </div>
               </motion.div>
 
-              {/* Action Buttons (Always visible here) */}
               <div className="flex flex-col sm:flex-row items-center gap-4">
                 <button className="w-full sm:w-auto flex-1 bg-[#744926] hover:bg-[#4a703f] text-white px-8 py-5 rounded-full font-black text-[11px] uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-3 shadow-xl active:scale-95">
                   <ShoppingBag size={18} /> Add to Cart
@@ -196,7 +194,7 @@ export default function VedicDhoopMosaicPage() {
                 </button>
               </div>
 
-              {/* Specs Grid */}
+            
               <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-slate-200 border-y border-slate-200">
                 {[
                   {
@@ -237,7 +235,7 @@ export default function VedicDhoopMosaicPage() {
                 ))}
               </div>
 
-              {/* Composition */}
+              
               <div className="space-y-12">
                 <section>
                   <h3 className="text-[10px] font-black uppercase tracking-[0.4em] text-[#4a703f] mb-6 flex items-center gap-4">
@@ -297,7 +295,6 @@ export default function VedicDhoopMosaicPage() {
                 </div>
               </div>
 
-              {/* Eco Info */}
               <div className="bg-[#e9aa43]/10 p-6 md:p-8 rounded-[40px] border border-[#e9aa43]/20 flex flex-col md:flex-row items-center justify-between gap-8 group">
                 <div className="flex items-center gap-6">
                   <div className="size-16 bg-white rounded-full flex items-center justify-center text-[#e9aa43] shadow-lg group-hover:rotate-12 transition-transform">

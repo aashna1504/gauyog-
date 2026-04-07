@@ -67,7 +67,7 @@ export default function KineticContactBanner() {
         variants={containerVariants}
         className="relative w-full py-20 md:py-24 bg-[#fcfdfd ] overflow-hidden border-b border-gray-100"
       >
-        {/* MATCHING BACKGROUND ACCENTS - Perfect Consistency */}
+      
         <motion.div
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
@@ -77,9 +77,9 @@ export default function KineticContactBanner() {
         <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-[#744926]/5 rounded-full blur-[80px] -z-10" />
 
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 items-center gap-12 relative z-10">
-          {/* LEFT: TEXT STACK (7 Columns - Exact Mirror of Shop) */}
+         
           <div className="md:col-span-7 text-center md:text-left">
-            {/* Tagline */}
+           
             <motion.div
               variants={itemVariants}
               className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white rounded-full shadow-sm border border-gray-100"
@@ -90,7 +90,7 @@ export default function KineticContactBanner() {
               </span>
             </motion.div>
 
-            {/* Main Title - Same 9xl/8xl Baskerville Style */}
+            
             <motion.h1
               variants={itemVariants}
               className="text-6xl md:text-8xl font-black text-gray-900 leading-none tracking-tighter"
@@ -103,7 +103,7 @@ export default function KineticContactBanner() {
               <span className="text-[#7bbd25] italic font-medium"> Us.</span>
             </motion.h1>
 
-            {/* Description */}
+          
             <motion.p
               variants={itemVariants}
               className="mt-6 text-gray-500 text-lg md:text-xl max-w-md mx-auto md:mx-0 leading-relaxed font-medium"
@@ -112,26 +112,26 @@ export default function KineticContactBanner() {
             </motion.p>
           </div>
 
-          {/* RIGHT: KINETIC "AURA GLOBE" (5 Columns - Replacing the Box) */}
+          
           <motion.div
             initial={{ opacity: 0, x: 40, scale: 0.9 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
             transition={{ duration: 1, ease: "easeOut", delay: 0.6 }}
             className="md:col-span-5 relative size-72 md:size-80 mx-auto md:mr-0 flex items-center justify-center group"
           >
-            {/* 1. THE MAIN "AURA GLOBE" (Floating Sphere of Light) */}
+            
             <div className="relative z-10 size-60 md:size-64 rounded-full border border-slate-100/50 flex flex-col items-center justify-center overflow-hidden">
-              {/* 3D-styled brand, but massive and soft */}
+             
               <div className="absolute inset-0 bg-gradient-to-tr from-[#4a703f]/10 to-transparent pointer-events-none" />
             </div>
 
-            {/* 2. THE GLASS ORBITAL PILLS (Dynamic Information) */}
+           
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
               className="absolute inset-0 z-20 pointer-events-none"
             >
-              {/* Floating Info Pill 1 - Glass-morphism */}
+            
               <div className="absolute top-1/2 -right-12 -translate-y-1/2 flex items-center gap-3 bg-white/40 backdrop-blur-xl px-5 py-3 rounded-full shadow-lg border border-white/30 transform group-hover:bg-slate-900 group-hover:text-white transition-all duration-500">
                 <div className="size-8 rounded-full bg-[#4a703f] flex items-center justify-center text-white">
                   <Clock size={16} />
@@ -146,7 +146,7 @@ export default function KineticContactBanner() {
                 </div>
               </div>
 
-              {/* Floating Info Pill 2 - Opposite Side */}
+             
               <div className="absolute top-1/2 -left-12 -translate-y-1/2 flex items-center gap-3 bg-white/40 backdrop-blur-xl px-5 py-3 rounded-full shadow-lg border border-white/30 transform group-hover:bg-[#7bbd25] group-hover:text-white transition-all duration-500">
                 <Globe
                   size={24}
@@ -158,11 +158,11 @@ export default function KineticContactBanner() {
               </div>
             </motion.div>
 
-            {/* 3. Decorative Orbiting Rings - Matching the spin detail of Shop box */}
+            
             <div className="absolute inset-0 border border-dashed border-slate-200 rounded-full animate-[spin_40s_linear_infinite]" />
             <div className="absolute -inset-8 border border-slate-100/50 rounded-full -z-10 animate-[spin_30s_linear_infinite_reverse]" />
 
-            {/* 4. Glowing Backdrop - Matching the site's energy */}
+         
             <motion.div
               animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }}
               transition={{ duration: 4, repeat: Infinity }}
@@ -172,14 +172,14 @@ export default function KineticContactBanner() {
         </div>
       </motion.div>
       <section className="w-full bg-white py-12 md:py-16 overflow-hidden relative border-t border-gray-50">
-        {/* Background Decorative Text - Architectural Style */}
+       
         <div className="absolute top-1/2 left-0 -translate-y-1/2 text-gray-50/50 font-black text-[12vw] leading-none select-none pointer-events-none tracking-tighter">
           CONNECTIVITY
         </div>
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="flex flex-col lg:flex-row items-end justify-between gap-12">
-            {/* Left Side: Editorial Style Heading */}
+           
             <div className="max-w-xl space-y-4">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
@@ -198,7 +198,7 @@ export default function KineticContactBanner() {
               </h2>
             </div>
 
-            {/* Right Side: Bento-Style Stat Row */}
+          
             <div className="w-full lg:w-auto grid grid-cols-1 md:grid-cols-3 gap-4">
               {stats.map((item) => (
                 <motion.div
@@ -227,15 +227,14 @@ export default function KineticContactBanner() {
         </div>
       </section>
       <section className="w-full min-h-[800px] flex flex-col lg:flex-row overflow-hidden bg-white">
-        {/* LEFT SECTION: THE INFO CANVAS (50% or 5/12) */}
-        {/* WRAP THE ENTIRE BOTTOM PART IN A MAX-WIDTH CONTAINER */}
+       
         <section className="w-full bg-[#fcfdfd ] pb-24">
           <div className="max-w-7xl mx-auto px-6">
-            {/* THE UNIFIED CARD: This wraps both the Green Info and the Form */}
+         
             <div className="flex flex-col lg:flex-row overflow-hidden bg-white rounded-[48px] shadow-[0_30px_100px_rgba(0,0,0,0.04)] border border-gray-100 min-h-[750px]">
-              {/* LEFT SIDE: THE FLOATING INFO CANVAS (40%) */}
+             
               <div className="w-full lg:w-[40%] p-10 md:p-14 flex flex-col items-center justify-between relative group overflow-hidden">
-                {/* Layered Background Assets */}
+                
                 <div className="absolute inset-0">
                   <div className="absolute inset-0 bg-[#4a703f] opacity-[0.98]" />
                   <img
@@ -243,17 +242,17 @@ export default function KineticContactBanner() {
                     className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-20 grayscale"
                     alt="Nature texture"
                   />
-                  {/* Dynamic Glows */}
+                
                   <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#7bbd25]/20 blur-[80px] rounded-full" />
                   <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-black/10 blur-[80px] rounded-full" />
                 </div>
 
-                {/* Brand Mark Decor */}
+               
                 <div className="relative z-10 flex flex-col items-center gap-3">
                   <div className="w-8 h-[1px] bg-white/20" />
                 </div>
 
-                {/* Content Area */}
+             
                 <div className="relative z-10 w-full flex flex-col items-center text-center">
                   <h2 className="text-5xl font-black text-white leading-tight tracking-tighter mb-10">
                     Reach <br />
@@ -262,7 +261,7 @@ export default function KineticContactBanner() {
                     </span>
                   </h2>
 
-                  {/* Spaced List */}
+               
                   <div className="w-full max-w-xs space-y-8">
                     {[
                       {
@@ -309,7 +308,7 @@ export default function KineticContactBanner() {
                   </div>
                 </div>
 
-                {/* Floating Social Dock */}
+                
                 <div className="relative z-10 flex gap-3 p-1 bg-black/10 backdrop-blur-xl rounded-full border border-white/5">
                   {[<Instagram />, <Twitter />, <Facebook />].map(
                     (icon, idx) => (
@@ -324,7 +323,7 @@ export default function KineticContactBanner() {
                 </div>
               </div>
 
-              {/* RIGHT SIDE: THE FORM CANVAS (60%) */}
+             
               <div className="w-full lg:w-[60%] bg-[#fdfefd] p-10 md:p-16 flex flex-col justify-center relative">
                 <form
                   className="max-w-md w-full mx-auto"
@@ -344,7 +343,7 @@ export default function KineticContactBanner() {
                   </div>
 
                   <div className="space-y-5">
-                    {/* Name Field */}
+                   
                     <div className="space-y-1.5 group">
                       <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 group-focus-within:text-[#7bbd25]">
                         Full Name
@@ -362,7 +361,7 @@ export default function KineticContactBanner() {
                       </div>
                     </div>
 
-                    {/* Email Field */}
+                   
                     <div className="space-y-1.5 group">
                       <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 group-focus-within:text-[#7bbd25]">
                         Email Address
@@ -380,7 +379,7 @@ export default function KineticContactBanner() {
                       </div>
                     </div>
 
-                    {/* Message Field */}
+                    
                     <div className="space-y-1.5 group">
                       <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 group-focus-within:text-[#7bbd25]">
                         Your Message
@@ -392,7 +391,7 @@ export default function KineticContactBanner() {
                       />
                     </div>
 
-                    {/* Submit Button */}
+                
                     <motion.button
                       whileHover={{ y: -2 }}
                       whileTap={{ scale: 0.98 }}

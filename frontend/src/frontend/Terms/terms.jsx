@@ -31,7 +31,6 @@ const itemVariants = {
   },
 };
 
-// --- MINIMALIST TYPOGRAPHIC SECTION ---
 const TermsSection = ({ title, children, index }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
@@ -58,26 +57,25 @@ const TermsSection = ({ title, children, index }) => (
 export default function TermsConditionsPage() {
   return (
     <div className="min-h-screen bg-[#fcfdfd] selection:bg-[#4a703f] selection:text-white">
-      {/* --- MODERN PREMIUM HERO BANNER --- */}
+    
       <motion.div
         initial="hidden"
         animate="visible"
         variants={containerVariants}
         className="relative w-full py-20 md:py-24 overflow-hidden"
       >
-        {/* BACKGROUND GRADIENT */}
+        
         <div className="absolute inset-0 bg-gradient-to-br from-[#f8fbf6] via-white to-[#f4f9ef]" />
 
-        {/* FLOATING BLUR ELEMENTS */}
+       
         <div className="absolute top-[-80px] left-[-60px] w-[300px] h-[300px] bg-[#7bbd25]/20 rounded-full blur-[120px]" />
         <div className="absolute bottom-[-100px] right-[-80px] w-[350px] h-[350px] bg-[#4a703f]/20 rounded-full blur-[140px]" />
 
-        {/* GRID OVERLAY (modern subtle touch) */}
         <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(#000_1px,transparent_1px),linear-gradient(90deg,#000_1px,transparent_1px)] bg-[size:40px_40px]" />
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center mt-20">
-            {/* LEFT CONTENT */}
+          
             <div>
               <motion.h1
                 variants={itemVariants}
@@ -102,7 +100,7 @@ export default function TermsConditionsPage() {
         </div>
       </motion.div>
 
-      {/* --- SIMPLE TYPOGRAPHIC BODY --- */}
+      
       <div className="max-w-7xl mx-auto px-6 py-10">
         <motion.div
           initial="hidden"

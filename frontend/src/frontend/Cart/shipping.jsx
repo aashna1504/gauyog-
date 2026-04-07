@@ -15,8 +15,6 @@ import {
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-// --- 1. HELPER / SUB-COMPONENTS ---
-// Defining these first ensures they are ready for the main page to use.
 
 const LogisticsLabel = ({ icon, color, title, desc }) => {
   const colorMap = {
@@ -71,7 +69,7 @@ const InputLabel = ({ label, placeholder }) => (
   </div>
 );
 
-// --- 2. MAIN PAGE COMPONENT ---
+
 
 export default function ModernShippingPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -96,7 +94,7 @@ export default function ModernShippingPage() {
   return (
     <div className="min-h-screen bg-[#fcfdfd] lg:pt-40 pt-32 pb-10 md:pb-20 px-4 md:px-8">
       <div className="max-w-[1200px] mx-auto">
-        {/* STEP PROGRESS BAR */}
+   
         <div className="flex justify-between items-center mb-10 md:mb-12 max-w-3xl mx-auto relative px-2">
           <div className="absolute top-[22px] md:top-6 left-0 w-full h-[1px] md:h-[2px] bg-slate-100 -z-10" />
           {steps.map((step) => (
@@ -124,9 +122,9 @@ export default function ModernShippingPage() {
           ))}
         </div>
 
-        {/* CONTENT LAYOUT */}
+     
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-start">
-          {/* SHIPPING DETAILS */}
+          
           <div className="lg:col-span-2 space-y-6 md:space-y-8 order-2 lg:order-1">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-2">
               <h2 className="text-xl md:text-2xl font-[900] text-slate-950 tracking-tighter uppercase ">
@@ -189,7 +187,7 @@ export default function ModernShippingPage() {
               </div>
             </motion.div>
 
-            {/* Tactile Labels Section */}
+            
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
               <LogisticsLabel
                 icon={<Globe size={24} strokeWidth={1.5} />}
@@ -206,7 +204,7 @@ export default function ModernShippingPage() {
             </div>
           </div>
 
-          {/* ORDER SUMMARY */}
+         
           <div className="order-1 lg:order-2">
             <motion.div
               initial={{ opacity: 0, y: -10 }}
@@ -248,7 +246,7 @@ export default function ModernShippingPage() {
         </div>
       </div>
 
-      {/* ADDRESS MODAL */}
+     
       <AnimatePresence>
         {isModalOpen && (
           <div className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center p-0 sm:p-4">

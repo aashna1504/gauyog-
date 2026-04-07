@@ -12,10 +12,8 @@ import {
   Home,
   ChevronRight as BreadcrumbSeparator,
 } from "lucide-react";
-// import { useNavigate } from "react-router-dom"; // Uncomment this if using React Router
-
+ import { useNavigate } from "react-router-dom"; 
 export default function NexusOrderLedger() {
-  // const navigate = useNavigate(); // Uncomment this
   const [searchTerm, setSearchTerm] = useState("");
   const [entries, setEntries] = useState(10);
 
@@ -40,7 +38,6 @@ export default function NexusOrderLedger() {
 
   return (
     <div className="w-full max-w-[1200px] mx-auto px-6 py-12 mt-24 text-slate-900">
-      {/* --- BREADCRUMB NAVIGATION --- */}
       <nav className="flex items-center gap-2 mb-8 px-2">
         <button
           onClick={() => (window.location.href = "/dashboard")}
@@ -58,7 +55,6 @@ export default function NexusOrderLedger() {
         </span>
       </nav>
 
-      {/* 1. PAGE HEADER & DESCRIPTION */}
       <header className="mb-12 border-l-4 border-[#4a703f] pl-6">
         <motion.h1
           initial={{ opacity: 0, x: -20 }}
@@ -73,7 +69,6 @@ export default function NexusOrderLedger() {
         </p>
       </header>
 
-      {/* 2. SMART TOOLBAR */}
       <div className="flex flex-col lg:flex-row justify-between items-center gap-6 mb-8">
         <div className="flex items-center gap-3 bg-white border border-slate-100 p-2 rounded-full shadow-sm w-full lg:w-auto">
           <div className="flex items-center px-4 py-2.5 bg-slate-50 rounded-full">
@@ -111,9 +106,7 @@ export default function NexusOrderLedger() {
         </div>
       </div>
 
-      {/* 3. THE LIST CONTAINER */}
       <div className="bg-white border border-slate-100 rounded-[40px] shadow-2xl shadow-slate-200/40 overflow-hidden">
-        {/* TABLE HEAD (Desktop Only) */}
         <div className="hidden md:grid grid-cols-6 bg-[#4a703f] px-10 py-6">
           {["Order ID", "Total", "Tax", "Discount", "Status", "Action"].map(
             (label) => (
@@ -127,7 +120,6 @@ export default function NexusOrderLedger() {
           )}
         </div>
 
-        {/* ORDER ROWS / CARDS */}
         <div className="divide-y divide-slate-50">
           {orders.map((order, index) => (
             <motion.div
@@ -206,7 +198,6 @@ export default function NexusOrderLedger() {
         </div>
       </div>
 
-      {/* 4. FOOTER PAGINATION */}
       <footer className="mt-10 flex flex-col sm:flex-row justify-between items-center gap-6 px-4">
         <p className="text-[10px] font-black text-slate-800 uppercase tracking-[0.3em]">
           Showing 1 to {orders.length} of {orders.length} records

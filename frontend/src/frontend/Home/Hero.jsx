@@ -33,7 +33,7 @@ export default function BannerSlider() {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* SLIDES */}
+     
       <AnimatePresence mode="wait">
         <motion.img
           key={index}
@@ -42,17 +42,15 @@ export default function BannerSlider() {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.95 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          /* h-full w-full + object-cover ensures the image fills the 
-             container without distortion on any device.
-          */
+        
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
       </AnimatePresence>
 
-      {/* OVERLAY GRADIENT - Makes text/dots pop on bright images */}
+    
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 pointer-events-none" />
 
-      {/* NAVIGATION ARROWS - Hidden on mobile for better UX, shown on hover/desktop */}
+      
       <div className="hidden md:block">
         <AnimatePresence>
           {hovered && (
@@ -85,7 +83,6 @@ export default function BannerSlider() {
         </AnimatePresence>
       </div>
 
-      {/* DOTS / INDICATORS */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-30">
         {slides.map((_, i) => (
           <button

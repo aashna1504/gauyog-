@@ -147,17 +147,17 @@ export default function ProductListingPage() {
 
   return (
     <div className="bg-[#fcfdfd] min-h-screen pb-24 relative">
-      {/* HEADER */}
+     
       <div className="max-w-7xl mx-auto px-6 pt-20 pb-12 text-center">
         <h1 className="text-5xl md:text-6xl font-black text-gray-900">
           Harvest <span>Market</span>
         </h1>
       </div>
 
-      {/* FILTER BAR */}
+     
       <div className="sticky top-4 z-40 max-w-7xl mx-auto px-6 mb-16">
         <div className="bg-white/90 backdrop-blur-xl p-3 rounded-[32px] shadow-2xl shadow-green-900/5 border border-white flex flex-wrap items-center gap-3">
-          {/* Category */}
+       
           <div className="relative flex-1 min-w-[140px] group">
             <Filter
               size={16}
@@ -180,7 +180,7 @@ export default function ProductListingPage() {
             />
           </div>
 
-          {/* Size */}
+        
           <div className="relative flex-1 min-w-[140px]">
             <select
               value={activeSize}
@@ -199,7 +199,7 @@ export default function ProductListingPage() {
             />
           </div>
 
-          {/* Sort */}
+        
           <div className="relative flex-[1.5] min-w-[200px]">
             <select
               value={sortBy}
@@ -218,7 +218,7 @@ export default function ProductListingPage() {
         </div>
       </div>
 
-      {/* PRODUCT GRID */}
+      
       <main className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <AnimatePresence mode="popLayout">

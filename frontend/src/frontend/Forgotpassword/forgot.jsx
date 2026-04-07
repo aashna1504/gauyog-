@@ -15,35 +15,34 @@ export default function ModernForgotPassword() {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  // --- BACKEND HANDLER ---
+  
   const handleResetRequest = async (e) => {
     e.preventDefault();
     if (!email) return;
     setIsLoading(true);
 
-    // Simulate Backend API call: fetch('/api/forgot-password', { method: 'POST', body: ... })
+   
     console.log(`Sending reset link to: ${email}`);
 
     setTimeout(() => {
       setIsLoading(false);
-      setIsSent(true); // Toggle the visual state to "Success"
+      setIsSent(true); 
     }, 1800);
   };
 
   return (
     <div className="min-h-screen bg-[#fcfdfd] flex items-center justify-center p-6 relative overflow-hidden m-9 ">
-      {/* BACKGROUND SPIRIT: Organic Abstract Auras (Matches Login) */}
+    
       <div className="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] bg-[#7bbd25]/10 blur-[120px] rounded-full animate-pulse" />
       <div className="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-[#4a703f]/5 blur-[120px] rounded-full" />
 
-      {/* THE COMPACT CARD (420px Width to match Login) */}
+    
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         className="relative w-full max-w-[420px] z-10"
       >
-        {/* HEADER: Minimalist & Bold */}
         <div className="mb-12 text-center  mt-12 ">
           <h1 className="text-4xl font-[900] text-slate-950 tracking-tighter mb-2 leading-none">
             <motion.div
@@ -72,7 +71,6 @@ export default function ModernForgotPassword() {
           </p>
         </div>
 
-        {/* --- FORM STATE --- */}
         {!isSent ? (
           <>
             <p className="text-center text-sm font-bold text-slate-600 mb-10 leading-relaxed max-w-[340px] mx-auto">
@@ -81,7 +79,7 @@ export default function ModernForgotPassword() {
             </p>
 
             <form className="space-y-4" onSubmit={handleResetRequest}>
-              {/* FIELD: EMAIL */}
+              
               <div className="space-y-1.5 group">
                 <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 group-focus-within:text-[#7bbd25] ml-1 transition-colors">
                   Registered Email Address
@@ -102,7 +100,7 @@ export default function ModernForgotPassword() {
                 </div>
               </div>
 
-              {/* PRIMARY ACTION */}
+            
               <motion.button
                 type="submit"
                 disabled={isLoading}
@@ -120,7 +118,7 @@ export default function ModernForgotPassword() {
             </form>
           </>
         ) : (
-          /* --- SUCCESS STATE --- */
+        
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -143,7 +141,7 @@ export default function ModernForgotPassword() {
           </motion.div>
         )}
 
-        {/* OR DIVIDER */}
+        
         <div className="relative my-10 flex items-center justify-center">
           <div className="w-full h-[1px] bg-slate-100" />
           <span className="absolute bg-[#fcfdfd] px-6 text-[9px] font-[900] text-slate-300 uppercase tracking-[0.5em]">
@@ -151,7 +149,6 @@ export default function ModernForgotPassword() {
           </span>
         </div>
 
-        {/* FOOTER: ACCOUNT OPTIONS */}
         <div className="text-center group cursor-pointer space-y-4">
           <p className="text-[11px] font-bold text-slate-400 flex flex-col items-center gap-2">
             Just remembered?

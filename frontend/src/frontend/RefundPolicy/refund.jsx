@@ -32,7 +32,7 @@ const itemVariants = {
   },
 };
 
-// --- REFINED POLICY ROW (USES FULL SPACE) ---
+
 const PolicyRow = ({ icon: Icon, title, children, index }) => (
   <motion.div
     initial={{ opacity: 0 }}
@@ -61,7 +61,7 @@ const PolicyRow = ({ icon: Icon, title, children, index }) => (
 export default function RefundPolicyPage() {
   return (
     <div className="min-h-screen bg-[#fcfdfd] selection:bg-[#4a703f] selection:text-white">
-      {/* --- KINETIC BANNER WITH STRONGER BLUR EFFECT --- */}
+      
       <motion.div
         initial="hidden"
         animate="visible"
@@ -79,7 +79,7 @@ export default function RefundPolicyPage() {
         />
 
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 items-center gap-8 relative z-10  mt-20 lg:mt-14">
-          {/* LEFT: TEXT STACK */}
+         
           <div className="md:col-span-7 text-center md:text-left">
             <motion.div
               variants={itemVariants}
@@ -113,12 +113,12 @@ export default function RefundPolicyPage() {
             </motion.p>
           </div>
 
-          {/* RIGHT: UPDATED CONTENT */}
+         
           <motion.div
             variants={itemVariants}
             className="md:col-span-5 relative h-48 md:h-64 flex items-center justify-center group z-10"
           >
-            {/* Main Interactive Card */}
+           
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -156,10 +156,10 @@ export default function RefundPolicyPage() {
         </div>
       </motion.div>
 
-      {/* --- FULL WIDTH POLICY DETAILS SECTION --- */}
+   
       <div className="max-w-7xl mx-auto px-6 py-20 md:py-24 selection:bg-[#4a703f] selection:text-white">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          {/* DETAILED CONTENT AREA (USES FULL SPACE) */}
+       
           <div className="lg:col-span-12 space-y-2">
             <PolicyRow index={0} icon={Clock} title="Return Window">
               <p>

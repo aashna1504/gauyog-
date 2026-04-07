@@ -40,7 +40,7 @@ export default function AuthNotification() {
           <div
             className={`bg-gradient-to-br ${cfg.gradient} rounded-[22px] p-4 shadow-2xl shadow-black/25 text-white flex items-start gap-3 relative overflow-hidden`}
           >
-            {/* Auto-dismiss progress bar */}
+          
             <motion.div
               initial={{ scaleX: 1 }}
               animate={{ scaleX: 0 }}
@@ -48,12 +48,12 @@ export default function AuthNotification() {
               className="absolute bottom-0 left-0 h-[3px] bg-white/30 w-full origin-left rounded-full"
             />
 
-            {/* Icon bubble */}
+           
             <div className="w-9 h-9 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0 backdrop-blur-sm">
               {cfg.icon}
             </div>
 
-            {/* Text */}
+           
             <div className="flex-1 pt-0.5 min-w-0">
               <p className="text-[9px] font-black uppercase tracking-[0.3em] opacity-75 mb-0.5">
                 {cfg.label}
@@ -63,7 +63,6 @@ export default function AuthNotification() {
               </p>
             </div>
 
-            {/* Close */}
             <button
               onClick={hide}
               className="opacity-60 hover:opacity-100 transition-opacity mt-0.5 flex-shrink-0"

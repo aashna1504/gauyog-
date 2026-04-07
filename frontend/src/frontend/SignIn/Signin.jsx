@@ -43,7 +43,7 @@ export default function ModernSignIn() {
 
   return (
     <div className="min-h-screen bg-[#fcfdfd] flex items-center justify-center p-6 relative overflow-hidden m-9">
-      {/* BACKGROUND SPIRIT */}
+     
       <div className="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] bg-[#7bbd25]/10 blur-[120px] rounded-full animate-pulse" />
       <div className="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-[#4a703f]/5 blur-[120px] rounded-full" />
 
@@ -54,7 +54,7 @@ export default function ModernSignIn() {
         className="relative w-full max-w-[420px] z-10"
       >
         <div className="mb-10 flex flex-col items-center">
-          {/* Row container for Icon + Heading */}
+          
           <div className="flex items-center gap-4 mb-2">
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
@@ -75,7 +75,7 @@ export default function ModernSignIn() {
             </motion.h1>
           </div>
 
-          {/* Subheading stays centered below the row */}
+         
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -87,7 +87,7 @@ export default function ModernSignIn() {
         </div>
 
         <form className="space-y-4" onSubmit={handleSignIn}>
-          {/* Email Input */}
+         
           <div className="space-y-1.5 group">
             <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 group-focus-within:text-[#7bbd25] ml-1 transition-colors">
               Email or Mobile Number
@@ -108,7 +108,7 @@ export default function ModernSignIn() {
             </div>
           </div>
 
-          {/* Password Input */}
+   
           <div className="space-y-1.5 group">
             <div className="flex justify-between items-center px-1">
               <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 group-focus-within:text-[#7bbd25] transition-colors">

@@ -10,7 +10,7 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15, // Items will appear one after another
+      staggerChildren: 0.15,
       delayChildren: 0.2,
     },
   },
@@ -44,7 +44,6 @@ export default function ModernShopBanner() {
         variants={containerVariants}
         className="relative w-full py-20 md:py-24 bg-[#fcfdfd ] overflow-hidden border-b border-gray-100"
       >
-        {/* MINIMALIST ACCENT SHAPES */}
         <motion.div
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
@@ -54,9 +53,7 @@ export default function ModernShopBanner() {
         <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-[#744926]/5 rounded-full blur-[80px]" />
 
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-12">
-          {/* LEFT: TEXT STACK */}
           <div className="relative z-10 text-center md:text-left flex-1">
-            {/* Tagline */}
             <motion.div
               variants={itemVariants}
               className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white rounded-full shadow-sm border border-gray-100"
@@ -67,7 +64,6 @@ export default function ModernShopBanner() {
               </span>
             </motion.div>
 
-            {/* Main Title */}
             <motion.h1
               variants={itemVariants}
               className="text-6xl md:text-8xl font-black text-gray-900 leading-none tracking-tighter"
@@ -82,7 +78,6 @@ export default function ModernShopBanner() {
               </span>
             </motion.h1>
 
-            {/* Description */}
             <motion.p
               variants={itemVariants}
               className="mt-6 text-gray-500 text-lg max-w-md mx-auto md:mx-0 leading-relaxed font-medium"
@@ -93,7 +88,6 @@ export default function ModernShopBanner() {
             </motion.p>
           </div>
 
-          {/* RIGHT: FLOATING "SHOP STATS" BOX */}
           <motion.div
             variants={statsBoxVariants}
             className="relative flex-shrink-0"
@@ -141,7 +135,6 @@ export default function ModernShopBanner() {
                       className="absolute inset-0 border-4 border-t-[#7bbd25] border-r-transparent border-b-transparent border-l-transparent rounded-full"
                     />
 
-                    {/* THE ANIMATED TICK MARK */}
                     <svg
                       viewBox="0 0 24 24"
                       fill="none"
@@ -156,7 +149,7 @@ export default function ModernShopBanner() {
                         animate={{ pathLength: 1, opacity: 1 }}
                         transition={{
                           duration: 0.8,
-                          delay: 1.5, // Starts after the banner loads
+                          delay: 1.5, 
                           ease: "easeInOut",
                         }}
                         d="M20 6L9 17L4 12"
@@ -167,7 +160,7 @@ export default function ModernShopBanner() {
               </div>
             </div>
 
-            {/* Subtle Glow behind the box */}
+           
             <motion.div
               animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }}
               transition={{ duration: 4, repeat: Infinity }}
@@ -177,7 +170,6 @@ export default function ModernShopBanner() {
         </div>
       </motion.div>
 
-      {/* Product Listing reveal */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}

@@ -27,7 +27,7 @@ export default function ModernSignUp() {
   const setAuth = useAuthStore((state) => state.setAuth);
   const notify = useNotificationStore((s) => s.show);
 
-  // --- BACKEND HANDLER ---
+  
   const handleSignUp = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
@@ -54,8 +54,8 @@ export default function ModernSignUp() {
   return (
     <GoogleOAuthProvider clientId="YOUR_GOOGLE_CLIENT_ID">
       <div className="min-h-screen bg-[#fcfdfd] flex items-center justify-center p-6 relative overflow-hidden m-9 lg:pt-32 pt-20">
-        {" "}
-        {/* BACKGROUND SPIRIT */}
+       
+        
         <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-[#7bbd25]/10 blur-[120px] rounded-full animate-pulse" />
         <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-[#4a703f]/5 blur-[120px] rounded-full" />
         <motion.div
@@ -64,9 +64,9 @@ export default function ModernSignUp() {
           transition={{ duration: 0.6 }}
           className="relative w-full max-w-[500px] z-10"
         >
-          {/* HEADER */}
+          
           <div className="mb-10 flex flex-col items-center">
-            {/* Row container for Icon + Heading */}
+          
             <div className="flex items-center gap-4 mb-2">
               <motion.div
                 initial={{ scale: 0.8, opacity: 0 }}
@@ -91,7 +91,7 @@ export default function ModernSignUp() {
               </motion.h1>
             </div>
 
-            {/* Subheading stays centered below the row */}
+          
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -103,7 +103,7 @@ export default function ModernSignUp() {
           </div>
 
           <form className="space-y-4" onSubmit={handleSignUp}>
-            {/* ROW 1: NAME */}
+          
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-1.5 group">
                 <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 group-focus-within:text-[#7bbd25] ml-1 transition-colors">
@@ -137,7 +137,7 @@ export default function ModernSignUp() {
               </div>
             </div>
 
-            {/* FIELD: EMAIL */}
+            
             <div className="space-y-1.5 group">
               <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 group-focus-within:text-[#7bbd25] ml-1 transition-colors">
                 Email
@@ -158,7 +158,7 @@ export default function ModernSignUp() {
               </div>
             </div>
 
-            {/* FIELD: MOBILE */}
+          
             <div className="space-y-1.5 group">
               <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 group-focus-within:text-[#7bbd25] ml-1 transition-colors">
                 Mobile Number
@@ -177,7 +177,7 @@ export default function ModernSignUp() {
               </div>
             </div>
 
-            {/* ROW 2: PASSWORDS */}
+          
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-1.5 group">
                 <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 group-focus-within:text-[#7bbd25] ml-1 transition-colors">
@@ -222,7 +222,7 @@ export default function ModernSignUp() {
               </div>
             </div>
 
-            {/* TERMS AND CONDITIONS */}
+           
             <div className="flex items-start gap-3 py-2 ml-1">
               <div className="relative flex items-center mt-0.5">
                 <input
@@ -255,7 +255,7 @@ export default function ModernSignUp() {
               </label>
             </div>
 
-            {/* PRIMARY ACTION */}
+          
             <motion.button
               disabled={isLoading}
               whileTap={{ scale: 0.98 }}
@@ -271,7 +271,6 @@ export default function ModernSignUp() {
             </motion.button>
           </form>
 
-          {/* OR DIVIDER */}
           <div className="relative my-10 flex items-center justify-center">
             <div className="w-full h-[1px] bg-slate-100" />
             <span className="absolute bg-[#fcfdfd] px-6 text-[9px] font-[900] text-slate-300 uppercase tracking-[0.5em]">
@@ -279,7 +278,6 @@ export default function ModernSignUp() {
             </span>
           </div>
 
-          {/* GOOGLE SIGN UP */}
           <div className="flex justify-center mb-8">
             <GoogleLogin
               onSuccess={handleGoogleSuccess}
@@ -292,7 +290,6 @@ export default function ModernSignUp() {
             />
           </div>
 
-          {/* FOOTER: LOGIN REDIRECT */}
           <div className="text-center">
             <p className="text-[14px] font-bold text-slate-600">
               Already have an Account?{" "}

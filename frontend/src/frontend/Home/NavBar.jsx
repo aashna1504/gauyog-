@@ -97,7 +97,7 @@ export default function Header() {
               scrolled ? "shadow-xl ring-1 ring-black/5" : "shadow-lg"
             }`}
           >
-            {/* LOGO */}
+           
             <Link
               to="/"
               className="flex-shrink-0 transition-transform active:scale-95"
@@ -109,7 +109,7 @@ export default function Header() {
               />
             </Link>
 
-            {/* DESKTOP NAV */}
+           
             <ul className="hidden lg:flex items-center gap-8 text-gray-600 font-semibold text-sm uppercase tracking-wider">
               {navLinks.map((link) => (
                 <li key={link.path}>
@@ -125,10 +125,10 @@ export default function Header() {
               ))}
             </ul>
 
-            {/* DESKTOP ACTIONS */}
+            
             <div className="hidden lg:flex items-center gap-5 text-gray-700">
               <div className="flex items-center gap-4 pr-4 border-r border-gray-100">
-                {/* Dashboard shortcut */}
+               
                 <div
                   onClick={() => navigate("/dashboard")}
                   className="cursor-pointer"
@@ -138,7 +138,7 @@ export default function Header() {
                     className="text-yellow-500 fill-yellow-500 hover:text-yellow-600 transition-colors"
                   />
                 </div>
-                {/* Cart */}
+              
                 <div
                   className="relative cursor-pointer group"
                   onClick={() => setCartOpen(true)}
@@ -154,7 +154,7 @@ export default function Header() {
               </div>
 
               {isAuthenticated ? (
-                /* ── USER MENU ─────────────────────────────── */
+               
                 <div className="relative" ref={userMenuRef}>
                   <button
                     onClick={() => setShowUserMenu((v) => !v)}
@@ -180,7 +180,7 @@ export default function Header() {
                         }}
                         className="absolute top-14 right-0 w-64 bg-white rounded-[28px] shadow-2xl shadow-black/10 border border-slate-100 overflow-hidden z-50"
                       >
-                        {/* Header gradient */}
+                        
                         <div className="bg-gradient-to-br from-[#4a703f] to-[#7bbd25] p-3">
                           <div className="flex items-center gap-3">
                             <div className="w-11 h-11 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center font-black text-lg text-white border border-white/30">
@@ -197,7 +197,7 @@ export default function Header() {
                           </div>
                         </div>
 
-                        {/* Actions */}
+                       
                         <div className="p-2.5 space-y-0.5">
                           <button
                             onClick={() => {
@@ -250,7 +250,7 @@ export default function Header() {
               )}
             </div>
 
-            {/* MOBILE TOGGLE */}
+            
             <div className="flex lg:hidden items-center gap-3">
               <div onClick={() => navigate("/dashboard")} className="p-1">
                 <User size={22} className="text-yellow-500 fill-yellow-500" />
@@ -278,7 +278,7 @@ export default function Header() {
         </div>
       </header>
 
-      {/* ── MOBILE DROPDOWN MENU ──────────────────────────────────── */}
+      
       <AnimatePresence>
         {menuOpen && (
           <>
@@ -321,7 +321,7 @@ export default function Header() {
 
                 {isAuthenticated ? (
                   <div className="space-y-2">
-                    {/* Mobile user info strip */}
+                   
                     <div className="flex items-center gap-3 px-1 mb-1">
                       <div className="w-8 h-8 bg-[#4a703f] text-white rounded-full flex items-center justify-center font-black text-sm">
                         {userInitial}
@@ -351,7 +351,7 @@ export default function Header() {
         )}
       </AnimatePresence>
 
-      {/* ── CART DRAWER ───────────────────────────────────────────── */}
+      
       <AnimatePresence>
         {cartOpen && (
           <>

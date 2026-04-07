@@ -113,7 +113,7 @@ export default function AllProducts() {
   return (
     <div className="bg-white py-24 px-6">
       <div className="max-w-7xl mx-auto">
-        {/* Section header */}
+        
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
           <div className="space-y-4">
             <div className="flex items-center gap-2 text-[#7bbd25] font-bold text-xs uppercase tracking-widest">
@@ -124,7 +124,7 @@ export default function AllProducts() {
             </h2>
           </div>
 
-          {/* Category filter pills */}
+          
           <div className="flex flex-wrap gap-2 bg-gray-50 p-2 rounded-full border border-gray-100">
             {categories.map((cat) => (
               <button
@@ -142,7 +142,7 @@ export default function AllProducts() {
           </div>
         </div>
 
-        {/* Grid */}
+      
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <AnimatePresence mode="popLayout">
             {filtered.map((p) => (
@@ -151,7 +151,7 @@ export default function AllProducts() {
           </AnimatePresence>
         </div>
 
-        {/* Load more */}
+       
         <div
           onClick={() => (window.location.href = "/shop")}
           className="mt-10 text-center"

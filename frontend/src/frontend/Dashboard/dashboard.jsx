@@ -60,7 +60,7 @@ export default function FloatingNexusDashboard() {
 
   return (
     <div className="min-h-screen bg-[#fcfdfd] flex items-center justify-center p-4 md:p-8 relative overflow-hidden mt-24">
-      {/* --- LOGOUT POPUP (Small & Discrete) --- */}
+     
       <AnimatePresence>
         {showLogoutConfirm && (
           <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-slate-900/10 backdrop-blur-sm">
@@ -107,7 +107,6 @@ export default function FloatingNexusDashboard() {
         )}
       </AnimatePresence>
 
-      {/* BACKGROUND BRANDING */}
       <div className="absolute min-h-screen w-full bg-[#fcfdfd] overflow-hidden rounded-t-full">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -117,13 +116,13 @@ export default function FloatingNexusDashboard() {
         />
       </div>
 
-      {/* MAIN CONTAINER */}
+      
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="relative w-full max-w-[1200px] h-[85vh] bg-white/40 backdrop-blur-xl border border-white rounded-[40px] shadow-2xl shadow-slate-200/50 flex flex-col md:flex-row overflow-hidden z-10"
       >
-        {/* SIDEBAR */}
+    
         <aside className="hidden md:flex w-24 lg:w-64 bg-[#4a703f] h-full p-8 flex-col items-center lg:items-stretch gap-10">
           <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-xl self-center">
             <UserCircle2
@@ -159,7 +158,7 @@ export default function FloatingNexusDashboard() {
             })}
           </nav>
 
-          {/* SIDEBAR LOGOUT TRIGGER */}
+      
           <button
             onClick={() => setShowLogoutConfirm(true)}
             className="mt-auto flex items-center gap-3 text-white/60 hover:text-red-400 transition-colors px-5 font-bold text-xs uppercase tracking-widest"
@@ -168,7 +167,6 @@ export default function FloatingNexusDashboard() {
           </button>
         </aside>
 
-        {/* DASHBOARD CONTENT AREA */}
         <main className="flex-1 p-6 md:p-12 overflow-y-auto bg-white/60 pb-32 md:pb-12">
           <header className="mb-5 flex justify-between items-end px-2">
             <h1 className="text-3xl font-[900] text-slate-950 tracking-tighter">
@@ -180,9 +178,9 @@ export default function FloatingNexusDashboard() {
             <div className="w-1/3 h-full bg-[#4a703f]" />
           </div>
 
-          {/* GRID START */}
+         
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* BOX 1: USER */}
+       
             <div className="bg-white border border-slate-100 p-6 rounded-[32px] shadow-sm flex flex-col justify-between hover:border-[#7bbd25] transition-colors group">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center text-slate-300 group-hover:text-[#4a703f]">
@@ -205,7 +203,7 @@ export default function FloatingNexusDashboard() {
               </button>
             </div>
 
-            {/* BOX 2: TRACK ORDERS */}
+            
             <div
               className="bg-white border border-slate-100 p-6 rounded-[32px] shadow-sm flex flex-col justify-between hover:border-[#4a703f] transition-all cursor-pointer group"
               onClick={() => navigate("/orders")}
@@ -229,7 +227,7 @@ export default function FloatingNexusDashboard() {
               </button>
             </div>
 
-            {/* BOX 3: CART LISTING */}
+           
             <div
               className="bg-white border border-slate-100 p-6 rounded-[32px] shadow-sm flex flex-col justify-between hover:border-blue-200 transition-all cursor-pointer group"
               onClick={() => navigate("/cart")}
@@ -275,9 +273,9 @@ export default function FloatingNexusDashboard() {
               </button>
             </div>
 
-            {/* BOX 4: SUPPORT - Fully Optimized */}
+          
             <div className="lg:col-span-3 bg-[#4a703f] p-6 md:p-10 rounded-[40px] shadow-2xl text-white relative overflow-hidden group mt-4 isolate border border-white/10">
-              {/* High Z-Index Container to block any background YouTube links */}
+              
               <div className="relative z-50 flex flex-col lg:flex-row items-center justify-between gap-8">
                 <div className="text-center lg:text-left">
                   <div className="flex items-center justify-center lg:justify-start gap-2 mb-2">
@@ -292,11 +290,11 @@ export default function FloatingNexusDashboard() {
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
-                  {/* CALL BUTTON - Hardcoded force-dial logic */}
+                 
                   <a
                     href="tel:+917984997996"
                     onClick={(e) => {
-                      e.stopPropagation(); // Prevents the click from "bleeding" into parent containers
+                      e.stopPropagation(); 
                       window.location.href = "tel:+917984997996";
                     }}
                     className="flex-1 lg:flex-none flex items-center justify-center gap-3 bg-[#e9aa43] text-white px-10 py-5 rounded-full transition-all shadow-xl hover:bg-white hover:text-[#4a703f] active:scale-95 group/btn"
@@ -310,9 +308,9 @@ export default function FloatingNexusDashboard() {
                     </span>
                   </a>
 
-                  {/* EMAIL BUTTON - Fixed with mailto: protocol */}
+                  
                   <a
-                    href="mailto:support@gauyog.com" // Update with your actual email
+                    href="mailto:support@gauyog.com" 
                     onClick={(e) => {
                       e.stopPropagation();
                       window.location.href = "mailto:support@gauyog.com";
@@ -330,14 +328,13 @@ export default function FloatingNexusDashboard() {
                 </div>
               </div>
 
-              {/* AMBIENT BACKGROUND DECOR - Changed to z-0 so it stays behind buttons */}
+             
               <div className="absolute top-[-20%] right-[-5%] w-80 h-80 bg-[#7bbd25]/20 blur-[100px] rounded-full group-hover:bg-[#e9aa43]/20 transition-all duration-1000 z-0" />
               <div className="absolute bottom-[-20%] left-[-5%] w-60 h-60 bg-black/20 blur-[80px] rounded-full z-0" />
             </div>
           </div>
         </main>
 
-        {/* MOBILE BOTTOM NAVIGATION */}
         <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-[#4a703f] border-t border-white/10 px-4 pb-8 pt-3 z-[150] flex justify-around items-center rounded-t-[32px] shadow-2xl">
           {navItems.map((item) => {
             const isActive = location.pathname === item.path;
@@ -358,7 +355,7 @@ export default function FloatingNexusDashboard() {
               </Link>
             );
           })}
-          {/* MOBILE LOGOUT TRIGGER */}
+         
           <button
             onClick={() => setShowLogoutConfirm(true)}
             className="flex flex-col items-center gap-1 p-2 transition-all opacity-60 hover:opacity-100 text-red-300"
