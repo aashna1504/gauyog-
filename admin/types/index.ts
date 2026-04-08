@@ -72,6 +72,7 @@ export interface Product {
   category: string;
   inStock: boolean;
   weight: string | null;
+  weightOptions: string[];
   imageUrl: string | null;
   galleryImages: string[];
   stock: number;
@@ -89,6 +90,7 @@ export interface CreateProductInput {
   category: string;
   inStock?: boolean;
   weight?: string;
+  weightOptions?: string[];
   imageUrl?: string;
   galleryImages?: string[];
   stock: number;
@@ -128,4 +130,15 @@ export interface ChartDataPoint {
   name: string;
   value: number;
   revenue?: number;
+}
+
+export interface ContactMessage {
+  id: string;
+  name: string;
+  email: string;
+  phone: string | null;
+  message: string;
+  status: string;
+  createdAt: string;
+  updatedAt: string;
 }

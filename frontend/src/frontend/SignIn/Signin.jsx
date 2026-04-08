@@ -29,7 +29,7 @@ export default function ModernSignIn() {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const res = await api.post('/auth/login', { email, password });
+      const res = await api.post("/auth/login", { email, password });
       const u = res.data.data.user;
       setAuth(u, res.data.data.accessToken, res.data.data.refreshToken);
       notify(`Welcome back, ${u.email.split("@")[0]}!`, "login");
@@ -41,9 +41,27 @@ export default function ModernSignIn() {
     }
   };
 
+  const handleGoogleSuccess = async (response) => {
+    if (!response.credential) {
+      toast.error("Google authentication failed");
+      return;
+    }
+
+    try {
+      const res = await api.post("/auth/google", {
+        credential: response.credential,
+      });
+      const u = res.data.data.user;
+      setAuth(u, res.data.data.accessToken, res.data.data.refreshToken);
+      notify(`Welcome back, ${u.email.split("@")[0]}!`, "login");
+      navigate("/");
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Google login failed");
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-[#fcfdfd] flex items-center justify-center p-6 relative overflow-hidden m-9">
-     
+    <div className="min-h-screen bg-[#fcfdfd] flex items-center justify-center p-6 relative overflow-hidden m-9 mt-16">
       <div className="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] bg-[#7bbd25]/10 blur-[120px] rounded-full animate-pulse" />
       <div className="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-[#4a703f]/5 blur-[120px] rounded-full" />
 
@@ -54,7 +72,6 @@ export default function ModernSignIn() {
         className="relative w-full max-w-[420px] z-10"
       >
         <div className="mb-10 flex flex-col items-center">
-          
           <div className="flex items-center gap-4 mb-2">
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
@@ -75,7 +92,6 @@ export default function ModernSignIn() {
             </motion.h1>
           </div>
 
-         
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -87,7 +103,6 @@ export default function ModernSignIn() {
         </div>
 
         <form className="space-y-4" onSubmit={handleSignIn}>
-         
           <div className="space-y-1.5 group">
             <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 group-focus-within:text-[#7bbd25] ml-1 transition-colors">
               Email or Mobile Number
@@ -108,7 +123,6 @@ export default function ModernSignIn() {
             </div>
           </div>
 
-   
           <div className="space-y-1.5 group">
             <div className="flex justify-between items-center px-1">
               <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 group-focus-within:text-[#7bbd25] transition-colors">
@@ -175,6 +189,17 @@ export default function ModernSignIn() {
           <span className="absolute bg-[#fcfdfd] px-6 text-[9px] font-[900] text-slate-300 uppercase tracking-[0.5em]">
             OR
           </span>
+        </div>
+
+        <div className="flex justify-center mb-8">
+          <GoogleLogin
+            onSuccess={handleGoogleSuccess}
+            onError={() => toast.error("Google login failed")}
+            shape="pill"
+            theme="outline"
+            size="large"
+            text="signin_with"
+          />
         </div>
 
         <div className="text-center mt-0">

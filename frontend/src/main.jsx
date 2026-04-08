@@ -7,14 +7,14 @@ import "./index.css";
 import Layout from "./Layout.jsx";
 import App from "./App.jsx";
 import Shop from "./frontend/Shop/shop.jsx";
-import PreviewCard from "./frontend/Shop/previewcard.jsx";
+import PreviewCard from "./frontend/Shop/Previewcard.jsx";
 import AboutUs from "./frontend/AboutUs/about.jsx";
 import ContactUs from "./frontend/ContactUs/contact.jsx";
 import SignIn from "./frontend/SignIn/Signin.jsx";
 import SignUp from "./frontend/SignUp/Signup.jsx";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import ModernSignUp from "./frontend/SignUp/Signup.jsx";
 import Forgotpassword from "./frontend/Forgotpassword/forgot.jsx";
+import ResetPassword from "./frontend/ResetPassword/reset.jsx";
 import Dashboard from "./frontend/Dashboard/dashboard.jsx";
 import Settings from "./frontend/Dashboard/settings.jsx";
 import Orderlist from "./frontend/Dashboard/orderlist.jsx";
@@ -48,7 +48,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/previewcard",
+        path: "/product/:id",
         element: (
           <Suspense fallback={<div> Loading ... </div>}>
             <PreviewCard />
@@ -83,7 +83,7 @@ const router = createBrowserRouter([
         path: "/signup",
         element: (
           <Suspense fallback={<div> Loading ... </div>}>
-            <ModernSignUp />
+            <SignUp />
           </Suspense>
         ),
       },
@@ -92,6 +92,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<div> Loading ... </div>}>
             <Forgotpassword />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/reset-password",
+        element: (
+          <Suspense fallback={<div> Loading ... </div>}>
+            <ResetPassword />
           </Suspense>
         ),
       },
@@ -193,9 +201,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
-    {/* <GoogleOAuthProvider clientId="YOUR_CLIENT_ID_HERE.apps.googleusercontent.com">
-      <SignIn />
-    </GoogleOAuthProvider> */}
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID || "992028642246-c7b2ic4m1031ko1irio6929b7bok0lb6.apps.googleusercontent.com"}>
+      <RouterProvider router={router} />
+    </GoogleOAuthProvider>
   </React.StrictMode>,
 );

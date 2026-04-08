@@ -8,8 +8,10 @@ import { errorHandler } from './middleware/error.middleware';
 import authRoutes from './modules/auth/auth.routes';
 import productRoutes from './modules/product/product.routes';
 import cartRoutes from './modules/cart/cart.routes';
+import wishlistRoutes from './modules/wishlist/wishlist.routes';
 import deliveryRoutes from './modules/delivery/delivery.routes';
 import userRoutes from './modules/user/user.routes';
+import contactRoutes from './modules/contact/contact.routes';
 
 const app: Express = express();
 
@@ -28,8 +30,10 @@ app.get('/health', (req: Request, res: Response) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/cart', cartRoutes);
+app.use('/api/wishlist', wishlistRoutes);
 app.use('/api/delivery', deliveryRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/contact', contactRoutes);
 
 // Global Error Handler
 app.use(errorHandler);

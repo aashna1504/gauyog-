@@ -21,6 +21,8 @@ model User {
   updatedAt       DateTime         @updatedAt
   cart            Cart?
   deliveryDetails DeliveryDetails?
+  wishlist        Wishlist[]
+  resetTokens     PasswordResetToken[]
 }
 
 model DeliveryDetails {
@@ -48,12 +50,14 @@ model Product {
   category       String     @default("Dairy")
   inStock        Boolean    @default(true)
   weight         String?
+  weightOptions  String[]   @default([])
   imageUrl       String?
   galleryImages  String[]   @default([])
   stock          Int
   createdAt      DateTime   @default(now())
   updatedAt      DateTime   @updatedAt
   cartItems      CartItem[]
+  wishlistItems  Wishlist[]
 }
 
 model Cart {
@@ -62,6 +66,17 @@ model Cart {
   user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime   @default(now())
   items     CartItem[]
+}
+
+model Wishlist {
+  id        String   @id @default(uuid())
+  userId    String
+  productId String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, productId])
 }
 
 model CartItem {
@@ -73,4 +88,27 @@ model CartItem {
   product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 
   @@unique([cartId, productId])
+}
+
+model ContactMessage {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  phone     String?
+  message   String
+  status    String   @default("NEW")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PasswordResetToken {
+  id        String   @id @default(uuid())
+  userId    String
+  tokenHash String   @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }

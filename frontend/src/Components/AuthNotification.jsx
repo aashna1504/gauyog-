@@ -5,18 +5,43 @@ import useNotificationStore from "../store/notificationStore";
 const CONFIGS = {
   login: {
     icon: <CheckCircle size={20} />,
-    gradient: "from-[#4a703f] to-[#7bbd25]",
+    gradient: "from-[#166534] to-[#22c55e]",
     label: "Signed In",
   },
   signup: {
     icon: <UserPlus size={20} />,
-    gradient: "from-[#4a703f] to-[#7bbd25]",
+    gradient: "from-[#166534] to-[#22c55e]",
     label: "Welcome Aboard",
   },
   logout: {
     icon: <LogOut size={20} />,
-    gradient: "from-[#800000] to-[#dc2626]",
+    gradient: "from-[#7f1d1d] to-[#dc2626]",
     label: "Signed Out",
+  },
+  cart_add: {
+    icon: <CheckCircle size={20} />,
+    gradient: "from-[#166534] to-[#22c55e]",
+    label: "Added To Cart",
+  },
+  cart_remove: {
+    icon: <LogOut size={20} />,
+    gradient: "from-[#7f1d1d] to-[#dc2626]",
+    label: "Removed From Cart",
+  },
+  wishlist_add: {
+    icon: <CheckCircle size={20} />,
+    gradient: "from-[#166534] to-[#22c55e]",
+    label: "Added To Wishlist",
+  },
+  wishlist_remove: {
+    icon: <LogOut size={20} />,
+    gradient: "from-[#7f1d1d] to-[#dc2626]",
+    label: "Removed From Wishlist",
+  },
+  wishlist_auth: {
+    icon: <LogOut size={20} />,
+    gradient: "from-[#7f1d1d] to-[#dc2626]",
+    label: "Sign In Required",
   },
 };
 
@@ -35,7 +60,7 @@ export default function AuthNotification() {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: -18, scale: 0.94 }}
           transition={{ type: "spring", stiffness: 320, damping: 26 }}
-          className="fixed top-28 right-5 z-[999] w-[300px] pointer-events-auto"
+          className="fixed top-24 right-4 md:right-6 z-[999] w-[calc(100%-2rem)] max-w-[400px] pointer-events-auto"
         >
           <div
             className={`bg-gradient-to-br ${cfg.gradient} rounded-[22px] p-4 shadow-2xl shadow-black/25 text-white flex items-start gap-3 relative overflow-hidden`}
@@ -44,7 +69,7 @@ export default function AuthNotification() {
             <motion.div
               initial={{ scaleX: 1 }}
               animate={{ scaleX: 0 }}
-              transition={{ duration: 3.3, ease: "linear" }}
+              transition={{ duration: 3.8, ease: "linear" }}
               className="absolute bottom-0 left-0 h-[3px] bg-white/30 w-full origin-left rounded-full"
             />
 
@@ -58,7 +83,7 @@ export default function AuthNotification() {
               <p className="text-[9px] font-black uppercase tracking-[0.3em] opacity-75 mb-0.5">
                 {cfg.label}
               </p>
-              <p className="text-sm font-bold leading-snug truncate">
+              <p className="text-sm font-bold leading-snug">
                 {notification.message}
               </p>
             </div>

@@ -1,21 +1,21 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { DashboardShell } from '@/components/layout/DashboardShell';
 import { ProductForm, type ProductFormOutput } from '@/components/forms/ProductForm';
 import { useProduct, useUpdateProduct } from '@/hooks/useProducts';
 import { Skeleton } from '@/components/ui/skeleton';
 
-interface EditProductPageProps {
-  params: { id: string };
-}
-
-export default function EditProductPage({ params }: EditProductPageProps) {
+export default function EditProductPage() {
   const router = useRouter();
-  const { data: product, isLoading } = useProduct(params.id);
-  const { mutateAsync: updateProduct, isPending } = useUpdateProduct(params.id);
+  const params = useParams<{ id: string }>();
+  const productId = params?.id;
+
+  const { data: product, isLoading } = useProduct(productId || '');
+  const { mutateAsync: updateProduct, isPending } = useUpdateProduct(productId || '');
 
   const handleSubmit = async (values: ProductFormOutput) => {
+    if (!productId) return;
     await updateProduct(values);
     router.push('/products');
   };
@@ -56,6 +56,7 @@ export default function EditProductPage({ params }: EditProductPageProps) {
             category: product.category,
             inStock: product.inStock,
             weight: product.weight ?? '',
+            weightOptions: product.weightOptions ?? [],
             imageUrl: product.imageUrl ?? '',
             galleryImagesRaw: product.galleryImages?.join(', ') ?? '',
             stock: product.stock,

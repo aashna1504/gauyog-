@@ -8,6 +8,8 @@ import {
   HelpCircle,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import api from "../../api/axios";
+import toast from "react-hot-toast";
 
 export default function ModernForgotPassword() {
   const [email, setEmail] = useState("");
@@ -20,14 +22,15 @@ export default function ModernForgotPassword() {
     e.preventDefault();
     if (!email) return;
     setIsLoading(true);
-
-   
-    console.log(`Sending reset link to: ${email}`);
-
-    setTimeout(() => {
+    try {
+      await api.post("/auth/forgot-password", { email });
+      setIsSent(true);
+      toast.success("Reset link sent to your email");
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to send reset link");
+    } finally {
       setIsLoading(false);
-      setIsSent(true); 
-    }, 1800);
+    }
   };
 
   return (
@@ -133,7 +136,7 @@ export default function ModernForgotPassword() {
               Didn't receive the email?
             </p>
             <button
-              onClick={handleResetRequest}
+              onClick={(e) => handleResetRequest(e)}
               className="text-[#7bbd25] font-black uppercase text-[10px] tracking-widest hover:text-[#4a703f] transition-colors"
             >
               {isLoading ? "Retrying..." : "Resend Link"}

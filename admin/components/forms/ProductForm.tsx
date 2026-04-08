@@ -28,6 +28,17 @@ const CATEGORIES = [
   "Pantry",
 ];
 
+const WEIGHT_OPTIONS = [
+  "100ml",
+  "250ml",
+  "500ml",
+  "1L",
+  "100g",
+  "250g",
+  "500g",
+  "1kg",
+];
+
 const productSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   scientificName: z.string().optional(),
@@ -43,6 +54,7 @@ const productSchema = z.object({
   category: z.string().min(1, "Category is required"),
   inStock: z.boolean(),
   weight: z.string().optional(),
+  weightOptions: z.array(z.string()).default([]),
   imageUrl: z.string().optional(),
   galleryImagesRaw: z.string().optional(),
   stock: z.coerce.number().int().min(0, "Stock cannot be negative"),
@@ -71,6 +83,8 @@ export function ProductForm({
     register,
     handleSubmit,
     control,
+    setValue,
+    watch,
     formState: { errors },
   } = useForm<ProductFormValues>({
     resolver: zodResolver(productSchema),
@@ -84,12 +98,19 @@ export function ProductForm({
       category: "Dairy",
       inStock: true,
       weight: "",
+      weightOptions: [],
       imageUrl: "",
       galleryImagesRaw: "",
       stock: 0,
       ...defaultValues,
     },
   });
+
+  const selectedWeightOptions = watch("weightOptions");
+  const selectedWeight = watch("weight");
+  const dropdownWeightOptions = Array.from(
+    new Set([...(selectedWeightOptions || []), ...(selectedWeight ? [selectedWeight] : [])])
+  );
 
   const handleFormSubmit = (values: ProductFormValues) => {
     const { galleryImagesRaw, ...rest } = values;
@@ -165,12 +186,77 @@ export function ProductForm({
               )}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="weight">Weight / Volume</Label>
-              <Input
-                id="weight"
-                placeholder="e.g. 500ml, 1kg"
-                {...register("weight")}
+              <Label htmlFor="weight">Default Weight / Volume</Label>
+              <Controller
+                name="weight"
+                control={control}
+                render={({ field }) => (
+                  <Select
+                    value={field.value || "none"}
+                    onValueChange={(value) =>
+                      field.onChange(value === "none" ? "" : value)
+                    }
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select default weight" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="none">No default</SelectItem>
+                      {dropdownWeightOptions.map((option) => (
+                        <SelectItem key={option} value={option}>
+                          {option}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                )}
               />
+              <p className="text-xs text-muted-foreground">
+                Shown as the default selected weight on storefront.
+              </p>
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <Label>Available Weights / Volumes</Label>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+              {WEIGHT_OPTIONS.map((option) => {
+                const checked = selectedWeightOptions.includes(option);
+                return (
+                  <label
+                    key={option}
+                    className={`flex items-center gap-2 rounded-md border px-3 py-2 text-sm cursor-pointer transition-colors ${
+                      checked
+                        ? "border-primary bg-primary/5"
+                        : "border-border hover:bg-muted/40"
+                    }`}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={checked}
+                      onChange={(e) => {
+                        const updated = e.target.checked
+                          ? [...selectedWeightOptions, option]
+                          : selectedWeightOptions.filter((w) => w !== option);
+
+                        setValue("weightOptions", updated, {
+                          shouldDirty: true,
+                          shouldTouch: true,
+                        });
+
+                        const currentDefault = selectedWeight;
+                        if (currentDefault && !updated.includes(currentDefault)) {
+                          setValue("weight", "", {
+                            shouldDirty: true,
+                            shouldTouch: true,
+                          });
+                        }
+                      }}
+                    />
+                    <span>{option}</span>
+                  </label>
+                );
+              })}
             </div>
           </div>
 

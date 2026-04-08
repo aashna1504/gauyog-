@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   ChevronRight,
   MessageCircle,
@@ -22,6 +22,8 @@ import {
   ArrowRightCircle,
 } from "lucide-react";
 import { Globe2, Sparkles, Zap, Shield } from "lucide-react";
+import api from "../../api/axios";
+import toast from "react-hot-toast";
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -59,6 +61,32 @@ const stats = [
   },
 ];
 export default function KineticContactBanner() {
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleChange = (key, value) => {
+    setForm((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!form.name || !form.email || !form.message) {
+      toast.error("Please fill all required fields");
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      await api.post("/contact", form);
+      toast.success("Message sent successfully");
+      setForm({ name: "", email: "", message: "" });
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to send message");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="mt-16 lg:mt-10">
       <motion.div
@@ -327,7 +355,7 @@ export default function KineticContactBanner() {
               <div className="w-full lg:w-[60%] bg-[#fdfefd] p-10 md:p-16 flex flex-col justify-center relative">
                 <form
                   className="max-w-md w-full mx-auto"
-                  onSubmit={(e) => e.preventDefault()}
+                  onSubmit={handleSubmit}
                 >
                   <div className="mb-10 space-y-3">
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 text-[#7bbd25] text-[9px] font-black uppercase tracking-[0.2em]">
@@ -352,6 +380,8 @@ export default function KineticContactBanner() {
                         <input
                           type="text"
                           placeholder="John Doe"
+                          value={form.name}
+                          onChange={(e) => handleChange("name", e.target.value)}
                           className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3.5 rounded-full outline-none focus:bg-white focus:border-[#7bbd25] focus:ring-4 focus:ring-[#7bbd25]/5 transition-all text-sm font-bold text-gray-900"
                         />
                         <User
@@ -370,6 +400,8 @@ export default function KineticContactBanner() {
                         <input
                           type="email"
                           placeholder="john@example.com"
+                          value={form.email}
+                          onChange={(e) => handleChange("email", e.target.value)}
                           className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3.5 rounded-full outline-none focus:bg-white focus:border-[#7bbd25] focus:ring-4 focus:ring-[#7bbd25]/5 transition-all text-sm font-bold text-gray-900"
                         />
                         <Mail
@@ -387,17 +419,21 @@ export default function KineticContactBanner() {
                       <textarea
                         rows="3"
                         placeholder="How can we help?"
+                        value={form.message}
+                        onChange={(e) => handleChange("message", e.target.value)}
                         className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3.5 rounded-full outline-none focus:bg-white focus:border-[#7bbd25] focus:ring-4 focus:ring-[#7bbd25]/5 transition-all text-sm font-bold text-gray-900 resize-none"
                       />
                     </div>
 
                 
                     <motion.button
+                      type="submit"
+                      disabled={isSubmitting}
                       whileHover={{ y: -2 }}
                       whileTap={{ scale: 0.98 }}
-                      className="w-full mt-4 bg-[#4a703f] hover:bg-[#744926] text-white py-4 rounded-full flex items-center justify-center gap-3 font-black uppercase tracking-[0.2em] text-[10px] transition-all duration-500 shadow-lg shadow-gray-200 group"
+                      className="w-full mt-4 bg-[#4a703f] hover:bg-[#744926] disabled:opacity-60 text-white py-4 rounded-full flex items-center justify-center gap-3 font-black uppercase tracking-[0.2em] text-[10px] transition-all duration-500 shadow-lg shadow-gray-200 group"
                     >
-                      Send Message
+                      {isSubmitting ? "Sending..." : "Send Message"}
                       <ArrowRight
                         size={16}
                         className="group-hover:translate-x-1 transition-transform"

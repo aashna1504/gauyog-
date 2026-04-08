@@ -2,13 +2,20 @@ import { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import ProductCard from "../../Components/ProductCard";
 import api from "../../api/axios";
+import useCartStore from "../../store/cartStore";
+import useWishlistStore from "../../store/wishlistStore";
+import { useNavigate } from "react-router-dom";
 
 export default function AllProducts() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("All");
+  const navigate = useNavigate();
 
   const categories = ["All", "Dairy", "Ghee", "Herbs", "Grains", "Wellness", "Garden", "Pantry"];
+
+  const { addItem: addToCart, removeByProductId, isInCart, fetchCart } = useCartStore();
+  const { toggleWishlist, isInWishlist, fetchWishlist } = useWishlistStore();
 
   useEffect(() => {
     api
@@ -19,10 +26,36 @@ export default function AllProducts() {
       })
       .catch(() => setProducts([]))
       .finally(() => setLoading(false));
+    fetchCart();
+    fetchWishlist();
   }, []);
 
   const filtered =
     filter === "All" ? products : products.filter((p) => p.category === filter);
+
+  const handleAddToCart = async (product) => {
+    const result = isInCart(product.id)
+      ? await removeByProductId(product.id)
+      : await addToCart(product);
+    if (!result?.success && result?.message) {
+      alert(result.message);
+    }
+  };
+
+  const handleBuyNow = async (product) => {
+    if (!isInCart(product.id)) {
+      const result = await addToCart(product);
+      if (!result?.success) {
+        if (result?.message) alert(result.message);
+        return;
+      }
+    }
+    navigate("/payment");
+  };
+
+  const handleToggleWishlist = async (product) => {
+    await toggleWishlist(product);
+  };
 
   return (
     <div className="bg-white py-24 px-6">
@@ -64,7 +97,14 @@ export default function AllProducts() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <AnimatePresence mode="popLayout">
               {filtered.map((p) => (
-                <ProductCard key={p.id} product={p} />
+                <ProductCard
+                  key={p.id}
+                  product={{ ...p, inCart: isInCart(p.id) }}
+                  onAddToCart={handleAddToCart}
+                  onBuyNow={handleBuyNow}
+                  onToggleWishlist={handleToggleWishlist}
+                  isInWishlist={isInWishlist(p.id)}
+                />
               ))}
             </AnimatePresence>
           </div>
