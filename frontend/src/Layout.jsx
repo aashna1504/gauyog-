@@ -1,5 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 import ScrollToTop from "./ScrollToTop.jsx";
 import NavBar from "./frontend/Home/NavBar.jsx";
 import Footer from "./frontend/Home/Footer.jsx";
@@ -11,6 +12,13 @@ const Layout = () => {
       <ScrollToTop />
       <NavBar />
       <AuthNotification />
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          duration: 4000,
+          style: { borderRadius: "999px", fontWeight: 700, fontSize: "12px" },
+        }}
+      />
       <main className="flex-grow">
         <Outlet />
       </main>

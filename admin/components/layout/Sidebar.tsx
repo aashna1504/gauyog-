@@ -23,6 +23,7 @@ const navItems = [
   { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { label: "Users", href: "/users", icon: Users },
   { label: "Products", href: "/products", icon: Package },
+  { label: "Orders", href: "/orders", icon: ShoppingCart },
   { label: "Contacts", href: "/contacts", icon: Mail },
   { label: "Settings", href: "/settings", icon: Settings },
 ];

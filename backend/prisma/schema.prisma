@@ -23,6 +23,7 @@ model User {
   deliveryDetails DeliveryDetails?
   wishlist        Wishlist[]
   resetTokens     PasswordResetToken[]
+  orders          Order[]
 }
 
 model DeliveryDetails {
@@ -58,6 +59,7 @@ model Product {
   updatedAt      DateTime   @updatedAt
   cartItems      CartItem[]
   wishlistItems  Wishlist[]
+  orderItems     OrderItem[]
 }
 
 model Cart {
@@ -111,4 +113,51 @@ model PasswordResetToken {
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+enum PaymentMethod {
+  CARD
+  UPI
+  COD
+}
+
+model Order {
+  id            String        @id @default(uuid())
+  userId        String
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  status        OrderStatus   @default(PENDING)
+  paymentMethod PaymentMethod @default(COD)
+  subtotal      Float
+  shipping      Float         @default(0)
+  tax           Float         @default(0)
+  total         Float
+  firstName     String?
+  lastName      String?
+  phone         String?
+  email         String?
+  address       String?
+  building      String?
+  items         OrderItem[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model OrderItem {
+  id        String  @id @default(uuid())
+  orderId   String
+  productId String
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id])
+  quantity  Int
+  price     Float
+  name      String
 }

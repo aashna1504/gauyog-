@@ -15,7 +15,16 @@ export default function ProductListingPage() {
   const [sortBy, setSortBy] = useState("Relevant");
   const navigate = useNavigate();
 
-  const categories = ["All", "Dairy", "Ghee", "Herbs", "Grains", "Wellness", "Garden", "Pantry"];
+  const categories = [
+    "All",
+    "Dairy",
+    "Ghee",
+    "Herbs",
+    "Grains",
+    "Wellness",
+    "Garden",
+    "Pantry",
+  ];
   const sizes = useMemo(() => {
     const allWeights = products.flatMap((p) => [
       ...(p.weightOptions || []),
@@ -24,7 +33,12 @@ export default function ProductListingPage() {
     return ["All Sizes", ...Array.from(new Set(allWeights))];
   }, [products]);
 
-  const { addItem: addToCart, removeByProductId, isInCart, fetchCart } = useCartStore();
+  const {
+    addItem: addToCart,
+    removeByProductId,
+    isInCart,
+    fetchCart,
+  } = useCartStore();
   const { toggleWishlist, isInWishlist, fetchWishlist } = useWishlistStore();
 
   useEffect(() => {
@@ -46,7 +60,7 @@ export default function ProductListingPage() {
         (activeCategory === "All" || p.category === activeCategory) &&
         (activeSize === "All Sizes" ||
           p.weight === activeSize ||
-          (p.weightOptions || []).includes(activeSize))
+          (p.weightOptions || []).includes(activeSize)),
     );
     if (sortBy === "PriceH") list = [...list].sort((a, b) => b.price - a.price);
     if (sortBy === "PriceL") list = [...list].sort((a, b) => a.price - b.price);
@@ -79,26 +93,117 @@ export default function ProductListingPage() {
 
   return (
     <div className="bg-[#fcfdfd] min-h-screen pb-24 relative">
-      <div className="max-w-7xl mx-auto px-6 pt-20 pb-12 text-center">
-        <h1 className="text-5xl md:text-6xl font-black text-gray-900">
-          Harvest <span>Market</span>
-        </h1>
-      </div>
+      <section className="w-full bg-[#fdfcfb] py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          {/* --- COMBINED HEADING SECTION --- */}
+          <div className="w-full max-w-4xl mx-auto text-center mb-20 space-y-5">
+            {/* Gold Subheading with centered line accents */}
+            <div className="flex items-center justify-center gap-3">
+              <div className="w-8 h-[1px] bg-[#d4a044]/40" />
+              <span className="text-[10px] md:text-[11px] font-black uppercase tracking-[0.4em] text-[#d4a044]">
+                Trust & Quality
+              </span>
+              <div className="w-8 h-[1px] bg-[#d4a044]/40" />
+            </div>
+
+            {/* Main Heading */}
+            <h2 className="text-4xl md:text-6xl  font-bold text-[#2d3a29] tracking-tight">
+              Everything from <br />
+              <span className="text-[#7bbd25] italic">Mother Earth</span>
+            </h2>
+
+            {/* Centered Description */}
+            <p className="text-slate-500 text-base md:text-lg leading-relaxed max-w-2xl mx-auto font-medium">
+              Our commitment to excellence is backed by international standards
+              and natural processes, ensuring every product is pure by nature
+              and proven by earth.
+            </p>
+          </div>
+
+          {/* --- COLORED ICONS / CERTIFICATIONS GRID --- */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+            {[
+              {
+                name: "Organic Certified",
+                img: "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775715583/100-percent-natural-and-organic-product-badge-label-rubber-stamp-emblem-template-organic-ingredient-badge-logo-suitable-for-product-packaging-design-elements-with-leaf-png_cricy6.png",
+                color: "hover:border-[#7bbd25]",
+              },
+              {
+                name: "ISO Standards",
+                img: "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775715667/pngtree-iso-9001-certified---quality-standard-seal-certificate-verified-standard-vector-png-image_22204284_z6qquk.png",
+                color: "hover:border-blue-400",
+              },
+              {
+                name: "Best Quality",
+                img: "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775716925/R_g3ngmr.png",
+                color: "hover:border-yellow-500",
+              },
+              {
+                name: "Lab Tested",
+                img: "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775716286/lab-tested-label-sign-round-stamp-band-ribbon-vector-33848228-removebg-preview_t8vpa3.png",
+                color: "hover:border-black",
+              },
+              {
+                name: "FSSAI Compliant",
+                img: "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775716580/Screenshot_2026-04-09_120539-removebg-preview_ocr40w.png",
+                color: "hover:border-orange-500",
+              },
+              {
+                name: "Export Quality",
+                img: "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775715916/pngtree-export-quality-label-sign-png-image_7690335_mulizh.png",
+                color: "hover:border-red-500",
+              },
+            ].map((cert, idx) => (
+              <div
+                key={idx}
+                className="group flex flex-col items-center space-y-4"
+              >
+                {/* Icon Circle - Increased to w-32 h-32 for better presence */}
+                <div
+                  className={`w-32 h-32 rounded-full bg-white border border-slate-100 shadow-sm flex items-center justify-center transition-all duration-500 transform group-hover:-translate-y-2 group-hover:shadow-xl ${cert.color} border-t-2 group-hover:border-opacity-100`}
+                >
+                  {/* Uniform Image Wrapper - This forces all images to be the same size */}
+                  <div className="w-20 h-20 flex items-center justify-center overflow-hidden">
+                    <img
+                      src={cert.img}
+                      alt={cert.name}
+                      className="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-110"
+                    />
+                  </div>
+                </div>
+
+                {/* Label */}
+                <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 group-hover:text-[#2d3a29] transition-colors text-center leading-tight">
+                  {cert.name}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <div className="sticky top-4 z-40 max-w-7xl mx-auto px-6 mb-16">
         <div className="bg-white/90 backdrop-blur-xl p-3 rounded-[32px] shadow-2xl shadow-green-900/5 border border-white flex flex-wrap items-center gap-3">
           <div className="relative flex-1 min-w-[140px] group">
-            <Filter size={16} className="absolute left-5 top-1/2 -translate-y-1/2 text-[#7bbd25]" />
+            <Filter
+              size={16}
+              className="absolute left-5 top-1/2 -translate-y-1/2 text-[#7bbd25]"
+            />
             <select
               value={activeCategory}
               onChange={(e) => setActiveCategory(e.target.value)}
               className="w-full appearance-none bg-gray-50 border-none pl-12 pr-10 py-4 rounded-full text-[10px] font-black uppercase tracking-widest text-gray-700 focus:ring-2 focus:ring-[#7bbd25]/20 cursor-pointer"
             >
               {categories.map((c) => (
-                <option key={c} value={c}>{c} Category</option>
+                <option key={c} value={c}>
+                  {c} Category
+                </option>
               ))}
             </select>
-            <ChevronDown size={14} className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-300 pointer-events-none" />
+            <ChevronDown
+              size={14}
+              className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-300 pointer-events-none"
+            />
           </div>
 
           <div className="relative flex-1 min-w-[140px]">
@@ -108,10 +213,15 @@ export default function ProductListingPage() {
               className="w-full appearance-none bg-gray-50 border-none px-6 py-4 rounded-full text-[10px] font-black uppercase tracking-widest text-gray-700 focus:ring-2 focus:ring-[#7bbd25]/20 cursor-pointer"
             >
               {sizes.map((s) => (
-                <option key={s} value={s}>{s}</option>
+                <option key={s} value={s}>
+                  {s}
+                </option>
               ))}
             </select>
-            <ChevronDown size={14} className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-300 pointer-events-none" />
+            <ChevronDown
+              size={14}
+              className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-300 pointer-events-none"
+            />
           </div>
 
           <div className="relative flex-[1.5] min-w-[200px]">
@@ -124,7 +234,10 @@ export default function ProductListingPage() {
               <option value="PriceH">Price: High to Low</option>
               <option value="PriceL">Price: Low to High</option>
             </select>
-            <ChevronDown size={14} className="absolute right-6 top-1/2 -translate-y-1/2 text-white/50 pointer-events-none" />
+            <ChevronDown
+              size={14}
+              className="absolute right-6 top-1/2 -translate-y-1/2 text-white/50 pointer-events-none"
+            />
           </div>
         </div>
       </div>
@@ -133,11 +246,16 @@ export default function ProductListingPage() {
         {loading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {Array.from({ length: 8 }).map((_, i) => (
-              <div key={i} className="bg-white rounded-[40px] h-96 animate-pulse" />
+              <div
+                key={i}
+                className="bg-white rounded-[40px] h-96 animate-pulse"
+              />
             ))}
           </div>
         ) : filteredProducts.length === 0 ? (
-          <p className="text-center text-gray-400 py-24 text-lg font-medium">No products found.</p>
+          <p className="text-center text-gray-400 py-24 text-lg font-medium">
+            No products found.
+          </p>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <AnimatePresence mode="popLayout">

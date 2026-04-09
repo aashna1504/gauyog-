@@ -6,7 +6,16 @@ import { Target, Eye, ShieldCheck } from "lucide-react";
 import { ArrowRight } from "lucide-react";
 import { MapPin, Phone, Clock, Navigation } from "lucide-react";
 import { Instagram, Linkedin, Facebook, Youtube } from "lucide-react";
-import { Mail, Flame, Leaf, CheckCircle2 } from "lucide-react";
+import {
+  Mail,
+  Flame,
+  Leaf,
+  CheckCircle2,
+  Factory,
+  Users2,
+  Globe2,
+  Sprout,
+} from "lucide-react";
 import { useRef } from "react";
 function about() {
   const reveal = {
@@ -23,7 +32,7 @@ function about() {
       subtitle: "What we do",
       desc: "At Gauyog Kendr, we are dedicated to preserving traditional Vedic practices through sustainable and organic living. We offer pure, farm-sourced products crafted with care and authenticity.",
       icon: <Target className="text-white" size={20} />,
-      color: "bg-[#4a703f]", // Vedic Green
+      color: "bg-red-600", // Vedic Green
       glowColor: "text-green-100/60",
     },
     {
@@ -67,30 +76,35 @@ function about() {
       color: "bg-[#4a703f]", // Acid Green
     },
   ];
-  const reasons = [
+  const advantageData = [
     {
-      id: "01",
-      title: "Pure by Nature",
-      subtitle: "100% Chemical-Free",
-      desc: "Crafted with natural ingredients, our products are free from harmful chemicals, ensuring a clean and safe experience.",
-      color: "bg-[#4a703f]", // Vedic Green
-      icon: <ShieldCheck size={24} />,
+      title: "Own Manufacturing",
+      subtitle: "In-House Quality",
+      desc: "In-house production facility in Gujarat with full quality control.",
+      icon: <Factory strokeWidth={1.5} />,
+      color: "text-[#4a703f]",
+      dotColor: "bg-[#4a703f]",
     },
     {
-      id: "02",
-      title: "Ethical Sourcing",
-      subtitle: "From Gaushala to You",
-      desc: "All ingredients are responsibly sourced from our sanctuary and trusted natural sources, ensuring quality and care.",
-      color: "bg-[#e9aa43]", // Golden Amber
-      icon: <Flame size={24} />,
+      title: "Women & Community",
+      subtitle: "Rural Livelihoods",
+      desc: "Our workforce is majority women from local villages.",
+      icon: <Users2 strokeWidth={1.5} />,
+      color: "text-[#d4a044]",
     },
     {
-      id: "03",
-      title: "Holistic Wellness",
-      subtitle: "Inspired by Vedic Wisdom",
-      desc: "Every product is designed to promote balance, positivity, and a healthier lifestyle through traditional knowledge.",
-      color: "bg-[#7bbd25]", // Acid Green
-      icon: <Leaf size={24} />,
+      title: "International Expertise",
+      subtitle: "Global Standards",
+      desc: "Bridging Indian organics with global market needs.",
+      icon: <Globe2 strokeWidth={1.5} />,
+      color: "text-blue-600",
+    },
+    {
+      title: "Farmer Focused",
+      subtitle: "Natural Success",
+      desc: "Helping farmers succeed with natural, effective methods.",
+      icon: <Sprout strokeWidth={1.5} />,
+      color: "text-[#7bbd25]",
     },
   ];
   const galleryImages = [
@@ -243,86 +257,316 @@ function about() {
       </section>
       <div className="bg-[#fcfdfd ] min-h-screen text-slate-900 selection:bg-[#7bbd25]/30">
         <div className="fixed top-0 right-0 w-[40%] h-[40%] bg-[#7bbd25]/5 rounded-full blur-[120px] -z-10" />
+        <div className="bg-[#4a703f]">
+          <main className="max-w-[1400px] mx-auto px-6 py-12 ">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="text-center mb-16"
+            >
+              <h2 className="text-6xl md:text-8xl font-black text-slate-100 tracking-tighter leading-[0.85]">
+                Built <span className="text-[#7bbd25]">on Truth.</span>
+              </h2>
+            </motion.div>
 
-        <main className="max-w-[1400px] mx-auto px-6 py-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-6xl md:text-8xl font-black text-slate-900 tracking-tighter leading-[0.85]">
-              Built <span className="text-[#7bbd25]">on Truth.</span>
-            </h2>
-          </motion.div>
+            <div className="relative">
+              <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-slate-100 to-transparent hidden md:block" />
 
-          <div className="relative">
-            <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-slate-200 to-transparent hidden md:block" />
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-4 relative z-10">
-              {missionCards.map((card, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ delay: index * 0.2 }}
-                  className="relative group flex flex-col items-center md:items-start text-center md:text-left px-4"
-                >
-                  <div className="relative mb-8">
-                    <div
-                      className={`absolute inset-0 rounded-full blur-2xl opacity-20 group-hover:opacity-40 group-hover:scale-150 transition-all duration-700 ${card.color}`}
-                    />
-
-                    <div
-                      className={`relative z-10 size-md rounded-full border border-slate-100 bg-white flex items-center justify-center shadow-sm group-hover:shadow-xl group-hover:-translate-y-2 transition-all duration-500`}
-                    >
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-4 relative z-10">
+                {missionCards.map((card, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: index * 0.2 }}
+                    className="relative group flex flex-col items-center md:items-start text-center md:text-left px-4"
+                  >
+                    <div className="relative mb-8">
                       <div
-                        className={`size-10 rounded-full ${card.color} flex items-center justify-center text-white shadow-inner`}
+                        className={`absolute inset-0 rounded-full blur-2xl opacity-20 group-hover:opacity-40 group-hover:scale-150 transition-all duration-700 ${card.color}`}
+                      />
+
+                      <div
+                        className={`relative z-10 size-md rounded-full border border-slate-100 bg-white flex items-center justify-center shadow-sm group-hover:shadow-xl group-hover:-translate-y-2 transition-all duration-500`}
                       >
-                        {React.cloneElement(card.icon, { size: 18 })}
+                        <div
+                          className={`size-10 rounded-full ${card.color} flex items-center justify-center text-white shadow-inner`}
+                        >
+                          {React.cloneElement(card.icon, { size: 18 })}
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div className="space-y-3">
-                    <div className="flex flex-col">
-                      <span className="text-sm font-black uppercase tracking-[0.4em] text-slate-300 group-hover:text-[#4a703f] transition-colors">
-                        0{index + 1}
-                      </span>
-                      <h3 className="text-2xl font-black tracking-tight text-slate-900">
-                        {card.title}
-                      </h3>
+                    <div className="space-y-3">
+                      <div className="flex flex-col">
+                        <span className="text-sm font-black uppercase tracking-[0.4em] text-slate-300 group-hover:text-[#4a703f] transition-colors">
+                          0{index + 1}
+                        </span>
+                        <h3 className="text-2xl font-black tracking-tight text-[#7bbd25]">
+                          {card.title}
+                        </h3>
+                      </div>
+
+                      <p className="text-sm font-bold uppercase tracking-widest text-[#4a703f]/60 italic">
+                        {card.subtitle}
+                      </p>
+
+                      <p className="text-slate-100 text-sm md:text-base leading-relaxed font-medium max-w-[280px]">
+                        {card.desc}
+                      </p>
                     </div>
 
-                    <p className="text-sm font-bold uppercase tracking-widest text-[#4a703f]/60 italic">
-                      {card.subtitle}
-                    </p>
+                    <motion.div
+                      animate={{ y: [0, -10, 0] }}
+                      transition={{
+                        repeat: Infinity,
+                        duration: 3,
+                        delay: index * 0.5,
+                      }}
+                      className={`hidden md:block absolute -right-2 top-1/2 size-1.5 rounded-full ${card.color} opacity-30`}
+                    />
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </main>
+        </div>
+        <div className="w-full bg-[#fdfcfb]">
+          {/* SECTION 1: OUR PARTNERSHIP */}
+          <section className="max-w-7xl mx-auto py-20 px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            {/* Left Image Placeholder */}
+            <div className="lg:col-span-4">
+              <div className="aspect-[3/4] rounded-[32px] overflow-hidden bg-gradient-to-br from-[#7bbd25]/20 to-[#4a703f]/40 relative border border-slate-100 shadow-sm">
+                <div className="absolute inset-0 flex items-center justify-center p-8 text-center">
+                  <p className="text-[#4a703f]  italic text-sm opacity-60">
+                    John, Hitesh and Ram at our Gujarat facility
+                  </p>
+                </div>
+                <img
+                  src="https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302434/0fc480c8-6acf-4ff0-a587-cea5c58e069b_lii8qp.jpg"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
 
-                    <p className="text-slate-500 text-sm md:text-base leading-relaxed font-medium max-w-[280px]">
-                      {card.desc}
-                    </p>
-                  </div>
+            {/* Right Text Content */}
+            <div className="lg:col-span-8 space-y-8">
+              <div className="space-y-4">
+                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#d4a044]">
+                  Our Partnership
+                </span>
+                <h2 className="text-4xl md:text-5xl  font-bold text-[#2d3a29] leading-tight">
+                  Where Western Vision Meets Indian Heritage
+                </h2>
+                <p className="text-slate-700 text-lg leading-relaxed font-medium">
+                  Gauyog Kendr is a unique collaboration — a hands-on
+                  partnership between international business strategy and
+                  deep-rooted Indian agricultural expertise.
+                </p>
+              </div>
 
-                  <motion.div
-                    animate={{ y: [0, -10, 0] }}
-                    transition={{
-                      repeat: Infinity,
-                      duration: 3,
-                      delay: index * 0.5,
-                    }}
-                    className={`hidden md:block absolute -right-2 top-1/2 size-1.5 rounded-full ${card.color} opacity-30`}
+              <div className="space-y-6 text-slate-600 leading-relaxed text-base">
+                <p>
+                  John Paynter brings decades of international business
+                  experience, connecting Gauyog Kendr’s premium organic products
+                  to global markets across Europe, the Middle East, and Africa.
+                  Working alongside him, Hitesh Pampaniya leads manufacturing
+                  operations in Gujarat, drawing on generations of farming
+                  knowledge and managing a dedicated team of local workers.
+                  Rambhai, the third director, plays a vital role on the ground
+                  — overseeing day-to-day production, coordinating with local
+                  farming communities, and ensuring every product meets Gauyog
+                  Kendr’s exacting standards.
+                </p>
+                <p>
+                  Together, the three directors have built a company where
+                  Western quality standards meet traditional Indian organic
+                  methods — and where coconut palms sway alongside composting
+                  operations under the Gujarat sun. It’s a partnership built on
+                  trust, shared values, and a genuine passion for what mother
+                  earth can provide.
+                </p>
+              </div>
+
+              {/* Director Avatars */}
+              {/* <div className="flex flex-wrap gap-8 pt-4">
+                <Director
+                  name="John Paynter"
+                  role="International Strategy Director"
+                  initial="JP"
+                />
+                <Director
+                  name="Hitesh Pampaniya"
+                  role="Managing Director, India Operations"
+                  initial="HP"
+                />
+                <Director
+                  name="Rambhai"
+                  role="Director, Production & Community"
+                  initial="R"
+                />
+              </div> */}
+            </div>
+          </section>
+          <section className="py-32 px-6 bg-[#fcfdfd] overflow-hidden border-y">
+            <div className="max-w-7xl mx-auto">
+              {/* --- Unified Header Section --- */}
+              <div className="relative mb-24 max-w-2xl">
+                {/* Faint watermark text for depth */}
+                <span className="absolute top-0 right-0 text-[10vw] font-black text-[#4a703f] opacity-[0.02] select-none pointer-events-none uppercase tracking-tighter">
+                  TRUST
+                </span>
+
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="h-[1px] w-12 bg-[#4a703f]" />
+                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">
+                    The Gauyog Kendr Advantages
+                  </span>
+                </div>
+                <h2 className="text-5xl md:text-7xl font-black text-slate-950 tracking-[-0.05em] leading-[0.85]">
+                  Why <span className="text-[#4a703f]">Gauyog Kendr</span>
+                </h2>
+                <p className="text-slate-500 text-xl leading-relaxed mt-6 font-medium">
+                  A cohesive approach combining production control, social
+                  empowerment, and global market vision.
+                </p>
+              </div>
+
+              {/* --- Modern 4-in-One-Row Layout --- */}
+              {/* The design uses overlapping soft glows instead of boxes to connect the items */}
+              <div className="relative">
+                {/* Subtle Background Glows that connect the columns */}
+                <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-[#4a703f]/5 rounded-full blur-[100px] -z-10" />
+                <div className="absolute top-1/4 right-0 w-[300px] h-[300px] bg-[#d4a044]/5 rounded-full blur-[80px] -z-10" />
+
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-x-12 gap-y-16 items-start relative">
+                  {advantageData.map((item, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.15, duration: 0.6 }}
+                      viewport={{ once: true }}
+                      className="group flex flex-col items-center md:items-start text-center md:text-left space-y-5"
+                    >
+                      {/* Main Content Area */}
+                      <div className="space-y-4">
+                        {/* Modernized Icon with soft glow */}
+                        <div
+                          className={`relative ${item.color} group-hover:scale-110 transition-transform duration-500`}
+                        >
+                          <div className="absolute inset-0 bg-current opacity-10 blur-xl rounded-full" />
+                          <span className="text-5xl block relative z-10">
+                            {item.icon}
+                          </span>
+                        </div>
+
+                        {/* Subtitle / Labelling */}
+                        <p className="text-[11px] font-black uppercase tracking-[0.3em] text-slate-400 group-hover:text-slate-600 transition-colors pt-2">
+                          {item.subtitle}
+                        </p>
+
+                        {/* Main Title - Smaller and cleaner */}
+                        <h3 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight leading-tight">
+                          {item.title}
+                        </h3>
+
+                        {/* Description - Cleaner line width for readability */}
+                        <p className="text-slate-500 text-sm md:text-base leading-relaxed font-medium max-w-xs group-hover:text-slate-800 transition-colors">
+                          {item.desc}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* SECTION 2: COMMUNITY & WOMEN */}
+          <section className="bg-[#4a703f] text-white py-24 px-6 overflow-hidden">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div className="space-y-8">
+                <div className="space-y-4">
+                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#d4a044]">
+                    Community & Women
+                  </span>
+                  <h2 className="text-4xl md:text-5xl  font-bold leading-tight">
+                    Empowering the Hands that Feed the Earth
+                  </h2>
+                </div>
+
+                <div className="space-y-6 text-white/80 leading-relaxed font-medium">
+                  <p>
+                    At Gauyog Kendr, the women of Gujarat are the backbone of
+                    our production — and our proudest story.
+                  </p>
+                  <p>
+                    Our facility provides meaningful employment to women from
+                    local communities who sort, process, and prepare raw organic
+                    materials by hand. From sorting fresh green leaves for
+                    bio-inputs to operating weighing stations, these women bring
+                    skill, care, and dedication to every product we make.
+                  </p>
+                  <p>
+                    We believe sustainable business means investing in the
+                    people around you. By offering fair wages, safe working
+                    conditions, and steady employment in rural Gujarat, we help
+                    families thrive while producing the purest organic products
+                    possible. When you choose Gauyog Kendr, you’re supporting a
+                    community — not just buying a product.
+                  </p>
+                </div>
+
+                {/* Bottom Stats */}
+                <div className="grid grid-cols-3 gap-8 pt-8 border-t border-white/10">
+                  <Stat value="60%+" label="WOMEN WORKFORCE" />
+                  <Stat value="50+" label="LOCAL FAMILIES SUPPORTED" />
+                  <Stat value="100%" label="FAIR WAGE COMMITMENT" />
+                </div>
+              </div>
+
+              {/* Pure Image Grid Column */}
+              <div className="grid grid-cols-2 gap-4">
+                {/* Card 1: Hand-Sorted */}
+                <div className="group aspect-square bg-[#336a36] rounded-3xl border border-white/10 overflow-hidden relative shadow-inner">
+                  {/* Full Image */}
+                  <img
+                    src="https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302625/e51625c5-4e05-45ee-ade3-3739297e5a59_chikgj.jpg" // Replace with your image path (cover recommended)
+                    alt="Hand-sorted workforce"
+                    className="w-full h-full object-cover  filter brightness-110 transition-transform duration-700 ease-out group-hover:scale-110"
                   />
-                </motion.div>
-              ))}
-            </div>
-          </div>
+                  {/* Optional subtle gradient overlay to match dark brand */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
 
-          <div className="mt-20 flex justify-center">
-            <div className="h-[2px] w-24 bg-slate-200 relative">
-              <div className="absolute inset-0 bg-[#7bbd25] w-0 group-hover:w-full transition-all duration-1000" />
+                {/* Card 2: Quality Weighed */}
+                <div className="group aspect-square bg-[#336a36] rounded-3xl border border-white/10 overflow-hidden relative shadow-inner">
+                  {/* Full Image */}
+                  <img
+                    src="https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302570/2e52526a-bb97-4628-8b23-8facf9e28c73_zzazcn.jpg" // Replace with your image path (cover recommended)
+                    alt="Quality weighing process"
+                    className="w-full h-full object-cover filter brightness-110 transition-transform duration-700 ease-out group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+
+                {/* Card 3: Stronger Together (Wide) */}
+                <div className="group col-span-2 aspect-[2/1] rounded-3xl border border-white/10 overflow-hidden relative shadow-inner">
+                  {/* Full Image */}
+                  <img
+                    src="https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302469/3eff6049-8246-4172-859b-2b6ecad4a9da_kbigrv.jpg" // Replace with your image path (contain or cover recommended)
+                    alt="Gauyog Kendr full team"
+                    className="w-full h-full object-cover filter brightness-110 transition-transform duration-700 ease-out group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+              </div>
             </div>
-          </div>
-        </main>
-        <section className="py-16 px-6 md:px-12 bg-[#fcfdfd ]">
+          </section>
+        </div>
+
+        <section className="py-16 px-6 md:px-12 bg-[#fcfdfd]">
           <div className="max-w-7xl mx-auto">
             <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
               <div className="max-w-xl">
@@ -340,7 +584,7 @@ function about() {
                   <span className="text-[#7bbd25]">Behind the Bloom.</span>
                 </h2>
               </div>
-              <p className="text-slate-500 font-medium max-w-xs text-sm leading-relaxed border-l-2 border-slate-100 pl-4">
+              <p className="text-slate-500 font-medium max-w-xs text-lg leading-relaxed border-l-2 border-slate-100 pl-4">
                 A small group of seekers dedicated to restoring the purity of
                 ancient Himalayan traditions.
               </p>
@@ -406,24 +650,29 @@ function about() {
           </div>
         </section>
       </div>
-      <section className="py-24 px-6 md:px-12 bg-[#fcfdfd] overflow-hidden">
+      <section className="py-24 px-6 md:px-12 bg-[#4a703f] overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div className="max-w-xl">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                className="flex items-center gap-2 mb-3"
-              >
-                <div className="size-1.5 rounded-full bg-[#7bbd25]" />
-                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">
-                  Field Documentation
-                </span>
-              </motion.div>
-              <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-slate-900 leading-[0.9]">
-                Direct from <br />
-                <span className="text-[#7bbd25]">The Source.</span>
-              </h2>
+            <div className=" flex flex-col md:flex-row md:items-end justify-between gap-6">
+              <div className="">
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  className="flex items-center gap-2 mb-3"
+                >
+                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-300">
+                    Behind the Scenes
+                  </span>
+                </motion.div>
+                <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-slate-100 leading-[0.9]">
+                  From Our Hands <br />{" "}
+                  <span className="text-[#7bbd25]"> To Your Fields</span>
+                </h2>
+              </div>
+              <p className="text-slate-100 font-medium text-lg leading-relaxed border-l-2 border-slate-100 pl-4">
+                A glimpse into our operations — the people, processes, and
+                passion behind every Gauyog Kendr product.
+              </p>
             </div>
 
             <div className="flex md:hidden items-center gap-4">
@@ -494,74 +743,7 @@ function about() {
           </div>
         </div>
       </section>
-      <section className="py-20 px-6 md:px-12 bg-[#fcfdfd] overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          <div className="relative mb-12">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              className="flex items-center gap-3 mb-6"
-            >
-              <div className="h-[1px] w-12 bg-[#4a703f]" />
-              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">
-                The Gauyog Kendr Advantages
-              </span>
-            </motion.div>
 
-            <h2 className="text-5xl md:text-7xl font-black text-slate-900 tracking-[-0.05em] leading-[0.85] z-10 relative">
-              Why <br /> <span className="text-[#4a703f]">Gauyog Kendr</span>
-            </h2>
-
-            <span className="absolute -bottom-10 right-0 text-[12vw] font-black text-slate-50 opacity-[0.04] select-none pointer-events-none uppercase tracking-tighter">
-              Ethical
-            </span>
-          </div>
-
-          <div className="flex flex-col">
-            {reasons.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group relative py-10 md:py-14 border-b border-slate-100 flex flex-col md:flex-row md:items-center gap-8 md:gap-16 hover:bg-[#fcfdfd ]/50 transition-all duration-500 px-4 md:px-8 overflow-hidden"
-              >
-                <div className="relative flex items-center md:w-1/4">
-                  <span className="text-7xl md:text-8xl font-black leading-none tracking-tighter text-slate-700 group-hover:text-[#7bbd25] transition-colors duration-500 relative z-10">
-                    0{index + 1}
-                  </span>
-                  <motion.div
-                    className={`absolute left-0 bottom-0 w-full h-0 group-hover:h-full ${item.color} opacity-10 transition-all duration-500 -z-10 rounded-xl`}
-                  />
-                  <div
-                    className={`ml-6 h-12 w-[2px] bg-slate-100 group-hover:bg-[#7bbd25] transition-all duration-500 hidden md:block`}
-                  />
-                </div>
-
-                <div className="md:w-1/3">
-                  <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#7bbd25] mb-2 opacity-60 group-hover:opacity-100 transition-opacity">
-                    {item.subtitle}
-                  </p>
-                  <h3 className="text-3xl md:text-4xl font-black tracking-tight text-slate-900 leading-none">
-                    {item.title}
-                  </h3>
-                </div>
-
-                <div className="md:w-5/12">
-                  <p className="text-slate-500 text-base md:text-lg leading-relaxed font-medium group-hover:text-slate-700 transition-colors">
-                    {item.desc}
-                  </p>
-                </div>
-
-                <div
-                  className={`absolute left-0 top-0 w-[4px] h-0 group-hover:h-full transition-all duration-500 ${item.color}`}
-                />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
       <section className="py-16 px-6 md:px-12 bg-[#fcfdfd ] overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col lg:flex-row items-stretch gap-0 bg-white rounded-[40px] md:rounded-[60px] border border-slate-100 shadow-sm overflow-hidden">
@@ -670,5 +852,30 @@ function about() {
     </div>
   );
 }
+function Director({ name, role, initial }) {
+  return (
+    <div className="flex items-center gap-4">
+      <div className="h-12 w-12 rounded-full bg-[#1e4620] text-white flex items-center justify-center font-bold text-sm">
+        {initial}
+      </div>
+      <div>
+        <h4 className="text-sm font-black text-slate-900">{name}</h4>
+        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+          {role}
+        </p>
+      </div>
+    </div>
+  );
+}
 
+function Stat({ value, label }) {
+  return (
+    <div className="space-y-1">
+      <div className="text-2xl font-bold text-[#d4a044]">{value}</div>
+      <div className="text-[9px] font-black tracking-widest text-white/60 leading-tight uppercase">
+        {label}
+      </div>
+    </div>
+  );
+}
 export default about;
