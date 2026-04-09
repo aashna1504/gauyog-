@@ -228,9 +228,6 @@ export default function ModernSignUp() {
 
           <div className="flex items-start gap-3 py-2 ml-1">
             <div className="relative flex items-center mt-0.5">
-              <div>
-                <h1>Sign</h1>
-              </div>
               <input
                 required
                 type="checkbox"

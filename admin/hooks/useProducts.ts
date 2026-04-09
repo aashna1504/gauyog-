@@ -9,6 +9,7 @@ import {
   updateProduct,
   deleteProduct,
 } from '@/lib/api/products';
+import { statsKeys } from '@/hooks/useStats';
 import type { CreateProductInput, UpdateProductInput } from '@/types';
 
 export const productKeys = {
@@ -38,6 +39,7 @@ export function useCreateProduct() {
     mutationFn: (input: CreateProductInput) => createProduct(input),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: productKeys.all });
+      qc.invalidateQueries({ queryKey: statsKeys.all });
       toast.success('Product created successfully');
     },
     onError: (err: Error) => toast.error(err.message || 'Failed to create product'),
@@ -51,6 +53,7 @@ export function useUpdateProduct(id: string) {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: productKeys.all });
       qc.invalidateQueries({ queryKey: productKeys.detail(id) });
+      qc.invalidateQueries({ queryKey: statsKeys.all });
       toast.success('Product updated successfully');
     },
     onError: (err: Error) => toast.error(err.message || 'Failed to update product'),
@@ -63,6 +66,7 @@ export function useDeleteProduct() {
     mutationFn: (id: string) => deleteProduct(id),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: productKeys.all });
+      qc.invalidateQueries({ queryKey: statsKeys.all });
       toast.success('Product deleted');
     },
     onError: (err: Error) => toast.error(err.message || 'Failed to delete product'),

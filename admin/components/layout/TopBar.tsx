@@ -56,8 +56,15 @@ export function TopBar() {
                 <span className="text-xs font-semibold leading-none">
                   {session?.user?.email?.split('@')[0]}
                 </span>
-                <Badge variant="secondary" className="h-4 px-1 text-[10px] mt-0.5">
-                  Admin
+                <Badge
+                  variant="secondary"
+                  className={`h-4 px-1 text-[10px] mt-0.5 ${
+                    session?.user?.role === 'ADMIN'
+                      ? 'bg-[#4a703f]/10 text-[#4a703f]'
+                      : 'bg-blue-100 text-blue-700'
+                  }`}
+                >
+                  {session?.user?.role === 'ADMIN' ? 'Admin' : 'Sales'}
                 </Badge>
               </div>
             </Button>

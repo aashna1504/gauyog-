@@ -232,7 +232,7 @@ function about() {
             >
               <div className="aspect-[4/5] bg-slate-200 rounded-[60px] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] relative group">
                 <img
-                  src="https://res.cloudinary.com/dbpzzvcik/image/upload/v1775475441/young-indian-farmer-agriculture-field_75648-6268_wipfy2.avif"
+                  src="https://res.cloudinary.com/dbpzzvcik/image/upload/v1775725181/istockphoto-806276128-612x612_q6xlv2.jpg"
                   alt="Vedic Dhoop Ritual"
                   className="w-full h-full object-cover hover:grayscale-0 transition-all duration-1000 scale-110 group-hover:scale-100"
                 />

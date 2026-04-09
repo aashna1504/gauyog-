@@ -1,8 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { useState } from 'react';
+import { useSession } from 'next-auth/react';
 import { ColumnDef } from '@tanstack/react-table';
 import { MoreHorizontal, Pencil, Trash2, ArrowUpDown, Package } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -81,6 +81,8 @@ function DeleteDialog({
 
 export function ProductsTable() {
   const { data: products, isLoading } = useProducts();
+  const { data: session } = useSession();
+  const isAdmin = session?.user?.role === 'ADMIN';
   const [deleteTarget, setDeleteTarget] = useState<Product | null>(null);
 
   const columns: ColumnDef<Product>[] = [
@@ -150,41 +152,57 @@ export function ProductsTable() {
       },
     },
     {
-      accessorKey: 'inStock',
-      header: 'In Stock',
-      cell: ({ row }) => <StockToggle product={row.original} />,
-    },
-    {
-      id: 'actions',
+      accessorKey: 'stock',
+      header: 'Stock',
       cell: ({ row }) => {
-        const product = row.original;
+        const stock = row.original.stock;
         return (
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="h-8 w-8">
-                <MoreHorizontal className="h-4 w-4" />
-                <span className="sr-only">Actions</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem asChild>
-                <Link href={`/products/${product.id}/edit`}>
-                  <Pencil className="h-4 w-4" /> Edit
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                className="text-destructive focus:text-destructive"
-                onClick={() => setDeleteTarget(product)}
-              >
-                <Trash2 className="h-4 w-4" /> Delete
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <Badge variant={stock <= 5 ? 'destructive' : 'secondary'} className="text-xs">
+            {stock}
+          </Badge>
         );
       },
     },
+    ...(isAdmin
+      ? ([
+          {
+            accessorKey: 'inStock',
+            header: 'Toggle Stock',
+            cell: ({ row }: { row: { original: Product } }) => <StockToggle product={row.original} />,
+          },
+          {
+            id: 'actions',
+            cell: ({ row }: { row: { original: Product } }) => {
+              const product = row.original;
+              return (
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" size="icon" className="h-8 w-8">
+                      <MoreHorizontal className="h-4 w-4" />
+                      <span className="sr-only">Actions</span>
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem asChild>
+                      <Link href={`/products/${product.id}/edit`}>
+                        <Pencil className="h-4 w-4" /> Edit
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      className="text-destructive focus:text-destructive"
+                      onClick={() => setDeleteTarget(product)}
+                    >
+                      <Trash2 className="h-4 w-4" /> Delete
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              );
+            },
+          },
+        ] as ColumnDef<Product>[])
+      : []),
   ];
 
   if (isLoading) {
@@ -203,11 +221,13 @@ export function ProductsTable() {
         searchKey="name"
         searchPlaceholder="Search products..."
       />
-      <DeleteDialog
-        product={deleteTarget}
-        open={!!deleteTarget}
-        onClose={() => setDeleteTarget(null)}
-      />
+      {isAdmin && (
+        <DeleteDialog
+          product={deleteTarget}
+          open={!!deleteTarget}
+          onClose={() => setDeleteTarget(null)}
+        />
+      )}
     </>
   );
 }

@@ -23,6 +23,7 @@ import Cart from "./frontend/Cart/cart.jsx";
 import Shipping from "./frontend/Cart/shipping.jsx";
 import RefundPolicy from "./frontend/RefundPolicy/refund.jsx";
 import Terms from "./frontend/Terms/terms.jsx";
+import PrivacyPolicy from "./frontend/PrivacyPolicy/privacy.jsx";
 import TrackOrder from "./frontend/Trackorder/trackorder.jsx";
 import Payment from "./frontend/Cart/payment.jsx";
 import ProtectedRoute from "./Components/ProtectedRoute.jsx";
@@ -176,6 +177,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<div> Loading ... </div>}>
             <Terms />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/privacy",
+        element: (
+          <Suspense fallback={<div> Loading ... </div>}>
+            <PrivacyPolicy />
           </Suspense>
         ),
       },

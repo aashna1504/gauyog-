@@ -46,7 +46,6 @@ const PolicyRow = ({ icon: Icon, title, children, index }) => (
     </div>
     <div className="space-y-5">
       <div className="flex items-center gap-4 text-slate-400 group-hover:text-[#4a703f] transition-colors duration-300">
-        <Icon size={20} strokeWidth={2} />
         <h3 className="text-sm md:text-lg font-black text-slate-900 uppercase tracking-wider italic">
           {title}
         </h3>
@@ -161,7 +160,7 @@ export default function RefundPolicyPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
        
           <div className="lg:col-span-12 space-y-2">
-            <PolicyRow index={0} icon={Clock} title="Return Window">
+            <PolicyRow index={0} title="Return Window">
               <p>
                 We offer a strict <strong>7-day return policy</strong> for most
                 sanctuary items. Please ensure products are unused and in
@@ -172,7 +171,7 @@ export default function RefundPolicyPage() {
               </p>
             </PolicyRow>
 
-            <PolicyRow index={1} icon={AlertCircle} title="Exemptions">
+            <PolicyRow index={1} title="Exemptions">
               <p>
                 To maintain the highest bio-security standards within our
                 sanctuary, organic fertilizers, fresh manure-based products, and
@@ -184,7 +183,7 @@ export default function RefundPolicyPage() {
               </p>
             </PolicyRow>
 
-            <PolicyRow index={2} icon={Truck} title="Shipping Policy">
+            <PolicyRow index={2} title="Shipping Policy">
               <p>
                 You will be responsible for paying your own shipping costs for
                 returning your item. Return shipping costs are handled by the
@@ -197,7 +196,7 @@ export default function RefundPolicyPage() {
 
             <PolicyRow
               index={3}
-              icon={PackageCheck}
+             
               title="Inspection and Restocking"
             >
               <p>

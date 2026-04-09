@@ -3,6 +3,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { getUsers, getUser, updateUser, deleteUser } from '@/lib/api/users';
+import { statsKeys } from '@/hooks/useStats';
 import type { User } from '@/types';
 
 export const userKeys = {
@@ -34,6 +35,7 @@ export function useUpdateUser(id: string) {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: userKeys.all });
       qc.invalidateQueries({ queryKey: userKeys.detail(id) });
+      qc.invalidateQueries({ queryKey: statsKeys.all });
       toast.success('User updated');
     },
     onError: (err: Error) => toast.error(err.message || 'Failed to update user'),
@@ -46,6 +48,7 @@ export function useDeleteUser() {
     mutationFn: (id: string) => deleteUser(id),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: userKeys.all });
+      qc.invalidateQueries({ queryKey: statsKeys.all });
       toast.success('User deleted');
     },
     onError: (err: Error) => toast.error(err.message || 'Failed to delete user'),

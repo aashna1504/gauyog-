@@ -1,13 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
 } from 'recharts';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Skeleton } from '@/components/ui/skeleton';
 import { formatCurrency } from '@/lib/utils';
-import apiClient from '@/lib/api/axios';
 
 interface MonthlyEntry {
   name: string;
@@ -24,18 +21,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   );
 };
 
-export function RevenueChart() {
-  const [data, setData] = useState<MonthlyEntry[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    apiClient
-      .get('/orders/stats')
-      .then((res) => setData(res.data?.data?.monthlyRevenue ?? []))
-      .catch(() => setData([]))
-      .finally(() => setLoading(false));
-  }, []);
-
+export function RevenueChart({ data }: { data: MonthlyEntry[] }) {
   const totalRevenue = data.reduce((acc, d) => acc + d.value, 0);
   const hasOrders = data.some((d) => d.value > 0);
 
@@ -44,13 +30,12 @@ export function RevenueChart() {
       <CardHeader>
         <CardTitle className="text-base">Revenue Overview</CardTitle>
         <CardDescription>
-          Last 12 months · Total: <span className="font-semibold text-foreground">{formatCurrency(totalRevenue)}</span>
+          Last 12 months · Total:{' '}
+          <span className="font-semibold text-foreground">{formatCurrency(totalRevenue)}</span>
         </CardDescription>
       </CardHeader>
       <CardContent>
-        {loading ? (
-          <Skeleton className="h-[220px] w-full rounded-xl" />
-        ) : !hasOrders ? (
+        {!hasOrders ? (
           <div className="h-[220px] flex items-center justify-center text-sm text-muted-foreground">
             No orders yet — revenue will appear here once orders are placed.
           </div>

@@ -241,7 +241,7 @@ function InfoRow({ label, value, mono }: { label: string; value: string; mono?: 
       <span className="text-muted-foreground">{label}</span>
       <span
         className={`font-medium text-right max-w-[60%] truncate ${
-          mono ? 'font-mono text-xs' : ''
+          mono ? ' text-xs' : ''
         }`}
       >
         {value}

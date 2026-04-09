@@ -359,8 +359,8 @@ export default function KineticContactBanner() {
               <span className="text-[#7bbd25] italic">Foundation</span>
             </h2>
             <p className="mt-6 text-slate-500 text-lg max-w-xl">
-              Every product returns value to the earth through a circular approach.
-        
+              Every product returns value to the earth through a circular
+              approach.
             </p>
           </div>
 
@@ -375,8 +375,6 @@ export default function KineticContactBanner() {
                 viewport={{ once: true }}
                 className="group"
               >
-               
-
                 {/* Title - Bold and Serif */}
                 <h3 className="text-2xl  font-bold text-[#2d3a29] mb-4">
                   {item.title}
@@ -402,60 +400,9 @@ export default function KineticContactBanner() {
           </div>
         </div>
       </section>
-      <section className="w-full bg-white py-12 md:py-16 overflow-hidden relative border-t border-gray-50">
-        <div className="absolute top-1/2 left-0 -translate-y-1/2 text-gray-50/50 font-black text-[12vw] leading-none select-none pointer-events-none tracking-tighter">
-          CONNECTIVITY
-        </div>
 
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="flex flex-col lg:flex-row items-end justify-between gap-12">
-            <div className="max-w-xl space-y-4">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                className="flex items-center gap-3 text-[#7bbd25]"
-              >
-                <span className="text-[10px] font-black uppercase tracking-[0.4em]">
-                  The Network
-                </span>
-              </motion.div>
-              <h2 className="text-4xl md:text-5xl font-black text-[#4a703f] leading-[0.9] tracking-tighter">
-                A seamless flow <br />
-                <span className="text-gray-300 italic font-light">
-                  from us to you.
-                </span>
-              </h2>
-            </div>
-
-            <div className="w-full lg:w-auto grid grid-cols-1 md:grid-cols-3 gap-4">
-              {stats.map((item) => (
-                <motion.div
-                  key={item.id}
-                  whileHover={{ y: -5 }}
-                  className="p-6 bg-[#fcfdfd ] border border-gray-100 rounded-[32px] min-w-[240px] group transition-all duration-500 hover:shadow-2xl hover:shadow-[#7bbd25]/5"
-                >
-                  <div className="flex justify-between items-start mb-6">
-                    <span className="text-[10px] font-black text-gray-800 group-hover:text-[#7bbd25] transition-colors">
-                      {item.id}
-                    </span>
-                    <div className="p-2 bg-white rounded-full shadow-sm text-[#4a703f] group-hover:bg-[#7bbd25] group-hover:text-white transition-all duration-500">
-                      {item.icon}
-                    </div>
-                  </div>
-                  <h4 className="text-sm font-black text-[#4a703f] uppercase tracking-widest mb-1">
-                    {item.title}
-                  </h4>
-                  <p className="text-gray-400 text-xs font-bold italic uppercase tracking-wider">
-                    {item.detail}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
       <section className="w-full min-h-[800px] flex flex-col lg:flex-row overflow-hidden bg-white">
-        <section className="w-full bg-[#fcfdfd ] pb-24">
+        <section className="w-full bg-[#fcfdfd] pb-24">
           <div className="max-w-7xl mx-auto px-6">
             <div className="flex flex-col lg:flex-row overflow-hidden bg-white rounded-[48px] shadow-[0_30px_100px_rgba(0,0,0,0.04)] border border-gray-100 min-h-[750px]">
               <div className="w-full lg:w-[40%] p-10 md:p-14 flex flex-col items-center justify-between relative group overflow-hidden">

@@ -88,9 +88,9 @@ export default function AdminAuthPage() {
           return;
         }
 
-        // ── Step 2: check admin role before creating a session ──
-        if (loginData.user.role !== "ADMIN") {
-          toast.error("Access denied. This portal is for admins only.");
+        // ── Step 2: check staff role before creating a session ──
+        if (loginData.user.role !== "ADMIN" && loginData.user.role !== "SALES") {
+          toast.error("Access denied. This portal is for staff only.");
           return;
         }
 
@@ -106,7 +106,8 @@ export default function AdminAuthPage() {
           return;
         }
 
-        toast.success("Welcome back, Admin!");
+        const roleName = loginData.user.role === "ADMIN" ? "Admin" : "Sales Team";
+        toast.success(`Welcome back, ${roleName}!`);
         router.push("/dashboard");
       } else {
         // ── Signup: create an ADMIN account ──
@@ -181,7 +182,7 @@ export default function AdminAuthPage() {
             </CardTitle>
             <CardDescription className="text-xs">
               {authMode === "signin"
-                ? "Enter your secure admin credentials."
+                ? "Enter your staff credentials to continue."
                 : "Register a new administrative identity."}
             </CardDescription>
           </CardHeader>

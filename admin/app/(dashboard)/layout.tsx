@@ -7,7 +7,7 @@ import { TopBar } from '@/components/layout/TopBar';
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
   const session = await getServerSession(authOptions);
 
-  if (!session || session.user.role !== 'ADMIN') {
+  if (!session || (session.user.role !== 'ADMIN' && session.user.role !== 'SALES')) {
     redirect('/login');
   }
 

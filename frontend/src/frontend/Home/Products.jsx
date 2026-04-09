@@ -112,8 +112,11 @@ export default function ProductSection() {
               >
                 Explore Our Products
               </button>
-              <button className="border-2 border-slate-200 hover:border-[#7bbd25] hover:text-[#7bbd25] text-slate-600 px-8 py-4 rounded-full font-bold transition-all active:scale-95">
-                Partner With Us
+              <button
+                onClick={() => (window.location.href = "/contact")}
+                className="border-2 border-slate-200 hover:border-[#7bbd25] hover:text-[#7bbd25] text-slate-600 px-8 py-4 rounded-full font-bold transition-all active:scale-95"
+              >
+                Connect With Us
               </button>
             </div>
           </div>
@@ -152,13 +155,13 @@ export default function ProductSection() {
               ))}
             </div>
 
-            <p className="text-[10px] font-mono text-slate-300 tracking-widest">
+            <p className="text-[10px] text-slate-300 tracking-widest">
               CIN : U28160GJ2024PTC154513
             </p>
           </div>
         </div>
       </section>
-      <div className="bg-[#fcfdfd] py-20 px-6 relative overflow-hidden">
+      <div className="bg-[#fcfdfd] pt-20 px-6 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-green-50 rounded-full blur-[120px] -z-10 opacity-60" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-50 rounded-full blur-[100px] -z-10 opacity-40" />
 
@@ -193,14 +196,14 @@ export default function ProductSection() {
                 New Arrival 2026
               </div>
               <h2 className="text-5xl lg:text-7xl font-bold text-gray-900 leading-[1.1]">
-                Taste the{" "}
-                <span className="text-[#7bbd25] italic">Difference</span> <br />
-                of Nature.
+                Your
+                <span className="text-[#7bbd25] italic">
+                  Trusted Natural Partner
+                </span>
               </h2>
               <p className="text-gray-500 text-lg max-w-md leading-relaxed mx-auto md:mx-0">
-                Experience the farm-to-table revolution with our premium
-                collection of dairy and organic essentials. Freshness you can
-                trust.
+                International standards, Indian roots, and a genuine commitment
+                to communities, farmers, and the earth.
               </p>
               <div className="flex flex-wrap items-center justify-center md:justify-start gap-6 pt-4">
                 <button
@@ -212,148 +215,12 @@ export default function ProductSection() {
               </div>
             </div>
           </div>
-          <section className="relative bg-[#fdfcfb] py-32 px-6 overflow-hidden">
-            {/* Soft Background Accents */}
-            <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#7bbd25]/5 rounded-full blur-[120px] -z-10" />
-            <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-[#4a703f]/5 rounded-full blur-[100px] -z-10" />
 
-            <div className="max-w-7xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
-                {/* --- LEFT SIDE: CONTENT & SEGMENTS --- */}
-                <div className="lg:col-span-7 space-y-12">
-                  <div className="space-y-6">
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#d4a044]/10 border border-[#d4a044]/20">
-                      <Globe size={14} className="text-[#d4a044]" />
-                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#d4a044]">
-                        Global Reach & Impact
-                      </span>
-                    </div>
-
-                    <h2 className="text-5xl md:text-7xl  font-bold text-slate-950 leading-[1.05] tracking-tight">
-                      Bridging{" "}
-                      <span className="text-[#7bbd25] italic font-medium">
-                        Heritage
-                      </span>{" "}
-                      <br />
-                      to Modern Markets
-                    </h2>
-
-                    <p className="text-slate-500 text-xl leading-relaxed max-w-xl font-medium">
-                      We empower diverse market segments across continents,
-                      scaling from industrial distributors to high-end boutique
-                      retailers.
-                    </p>
-                  </div>
-
-                  {/* Modern Segment List */}
-                  <div className="grid gap-4">
-                    {[
-                      {
-                        title: "Agricultural Distributors",
-                        icon: <Building2 />,
-                        desc: "Bulk organic fertilisers for wholesale across EMEA markets.",
-                        color: "bg-blue-500/10 text-blue-600",
-                      },
-                      {
-                        title: "Horticulture & Hydroponics",
-                        icon: <Sprout />,
-                        desc: "Specialised coco peat substrates for commercial greenhouses.",
-                        color: "bg-[#7bbd25]/10 text-[#4a703f]",
-                      },
-                      {
-                        title: "Farming Co-operatives",
-                        icon: <Users2 />,
-                        desc: "High-quality organic inputs for large-scale natural farming.",
-                        color: "bg-[#d4a044]/10 text-[#d4a044]",
-                      },
-                    ].map((item, i) => (
-                      <div
-                        key={i}
-                        className="group relative flex items-center gap-6 p-6 rounded-[2rem] bg-white border border-slate-100 hover:border-[#4a703f]/20 hover:shadow-2xl hover:shadow-[#4a703f]/5 transition-all duration-500 cursor-default"
-                      >
-                        <div
-                          className={`flex-shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center transition-transform group-hover:scale-110 ${item.color}`}
-                        >
-                          {item.icon}
-                        </div>
-                        <div>
-                          <h4 className="text-lg font-bold text-slate-900">
-                            {item.title}
-                          </h4>
-                          <p className="text-slate-500 text-sm leading-relaxed">
-                            {item.desc}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* --- RIGHT SIDE: STATS & QUOTE --- */}
-                <div className="lg:col-span-5 flex flex-col gap-6">
-                  {/* Glass Stat Grid */}
-                  <div className="grid grid-cols-2 gap-4">
-                    {[
-                      { val: "5+", lab: "Years", icon: <Clock size={20} /> },
-                      {
-                        val: "100%",
-                        lab: "Organic",
-                        icon: <Award size={20} />,
-                      },
-                    ].map((stat, i) => (
-                      <div
-                        key={i}
-                        className="bg-white/60 backdrop-blur-md border border-white p-10 rounded-[2.5rem] flex flex-col items-center text-center space-y-2 shadow-sm"
-                      >
-                        <div className="text-[#4a703f]/40 mb-2">
-                          {stat.icon}
-                        </div>
-                        <span className="text-4xl  font-black text-slate-950">
-                          {stat.val}
-                        </span>
-                        <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">
-                          {stat.lab}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* High-Impact Testimonial */}
-                  <div className="flex-1 relative overflow-hidden bg-[#4a703f] rounded-[3rem] p-12 text-white shadow-2xl shadow-[#4a703f]/30">
-                    {/* Decorative Quote Mark */}
-                    <div className="absolute -top-6 -right-6 text-white/10 italic  text-[12rem] pointer-events-none">
-                      "
-                    </div>
-
-                    <div className="relative z-10 h-full flex flex-col justify-between space-y-12">
-                      <p className="text-2xl md:text-3xl  italic leading-snug">
-                        "Gauyog Kendr blends genuine organic quality with
-                        world-class service. You feel the community in every
-                        shipment."
-                      </p>
-
-                      <div className="space-y-4">
-                        <div className="w-12 h-1 bg-[#d4a044]" />
-                        <div>
-                          <p className="font-black text-[10px] uppercase tracking-[0.3em] text-[#7bbd25]">
-                            International Distribution Partner
-                          </p>
-                          <p className="text-white/60 text-[10px] font-medium mt-1">
-                            Strategic Supply Chain Division
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
           <div className="flex justify-between items-end mb-10">
             <div className="space-y-2">
-              <h3 className="text-4xl font-bold text-gray-900">
-                Featured Essentials
-              </h3>
+              <h2 className="text-5xl lg:text-7xl font-bold text-gray-900 leading-[1.1]">
+                Everything from Mother Earth
+              </h2>
               <div className="h-1.5 w-16 bg-[#7bbd25] rounded-full" />
             </div>
             <div className="flex gap-3">
@@ -398,6 +265,141 @@ export default function ProductSection() {
             </div>
           )}
         </div>
+        <section className="relative bg-[#fdfcfb] py-32 px-6 overflow-hidden">
+          {/* Soft Background Accents */}
+          <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#7bbd25]/5 rounded-full blur-[120px] -z-10" />
+          <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-[#4a703f]/5 rounded-full blur-[100px] -z-10" />
+
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
+              {/* --- LEFT SIDE: CONTENT & SEGMENTS --- */}
+              <div className="lg:col-span-7 space-y-12">
+                <div className="space-y-6">
+                  <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#d4a044]/10 border border-[#d4a044]/20">
+                    <Globe size={14} className="text-[#d4a044]" />
+                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#d4a044]">
+                      Global Reach & Impact
+                    </span>
+                  </div>
+
+                  <h2 className="text-5xl md:text-7xl  font-bold text-slate-950 leading-[1.05] tracking-tight">
+                    Bridging{" "}
+                    <span className="text-[#7bbd25] italic font-medium">
+                      Heritage
+                    </span>{" "}
+                    <br />
+                    to Modern Markets
+                  </h2>
+
+                  <p className="text-slate-500 text-xl leading-relaxed max-w-xl font-medium">
+                    We empower diverse market segments across continents,
+                    scaling from industrial distributors to high-end boutique
+                    retailers.
+                  </p>
+                </div>
+
+                {/* Modern Segment List */}
+                <div className="grid gap-4">
+                  {[
+                    {
+                      title: "Agricultural Distributors",
+                      icon: <Building2 />,
+                      desc: "Bulk organic fertilisers for wholesale across EMEA markets.",
+                      color: "bg-blue-500/10 text-blue-600",
+                    },
+                    {
+                      title: "Horticulture & Hydroponics",
+                      icon: <Sprout />,
+                      desc: "Specialised coco peat substrates for commercial greenhouses.",
+                      color: "bg-[#7bbd25]/10 text-[#4a703f]",
+                    },
+                    {
+                      title: "Farming Co-operatives",
+                      icon: <Users2 />,
+                      desc: "High-quality organic inputs for large-scale natural farming.",
+                      color: "bg-[#d4a044]/10 text-[#d4a044]",
+                    },
+                  ].map((item, i) => (
+                    <div
+                      key={i}
+                      className="group relative flex items-center gap-6 p-6 rounded-[2rem] bg-white border border-slate-100 hover:border-[#4a703f]/20 hover:shadow-2xl hover:shadow-[#4a703f]/5 transition-all duration-500 cursor-default"
+                    >
+                      <div
+                        className={`flex-shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center transition-transform group-hover:scale-110 ${item.color}`}
+                      >
+                        {item.icon}
+                      </div>
+                      <div>
+                        <h4 className="text-lg font-bold text-slate-900">
+                          {item.title}
+                        </h4>
+                        <p className="text-slate-500 text-sm leading-relaxed">
+                          {item.desc}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* --- RIGHT SIDE: STATS & QUOTE --- */}
+              <div className="lg:col-span-5 flex flex-col gap-6">
+                {/* Glass Stat Grid */}
+                <div className="grid grid-cols-2 gap-4">
+                  {[
+                    { val: "5+", lab: "Years", icon: <Clock size={20} /> },
+                    {
+                      val: "100%",
+                      lab: "Organic",
+                      icon: <Award size={20} />,
+                    },
+                  ].map((stat, i) => (
+                    <div
+                      key={i}
+                      className="bg-white/60 backdrop-blur-md border border-white p-10 rounded-[2.5rem] flex flex-col items-center text-center space-y-2 shadow-sm"
+                    >
+                      <div className="text-[#4a703f]/40 mb-2">{stat.icon}</div>
+                      <span className="text-4xl  font-black text-slate-950">
+                        {stat.val}
+                      </span>
+                      <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">
+                        {stat.lab}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* High-Impact Testimonial */}
+                <div className="flex-1 relative overflow-hidden bg-[#4a703f] rounded-[3rem] p-12 text-white shadow-2xl shadow-[#4a703f]/30">
+                  {/* Decorative Quote Mark */}
+                  <div className="absolute -top-6 -right-6 text-white/10 italic  text-[12rem] pointer-events-none">
+                    "
+                  </div>
+
+                  <div className="relative z-10 h-full flex flex-col justify-between space-y-12">
+                    <p className="text-2xl md:text-3xl  italic leading-snug">
+                      "Gauyog Kendr blends genuine organic quality with
+                      world-class service. You feel the community in every
+                      shipment."
+                    </p>
+
+                    <div className="space-y-4">
+                      <div className="w-12 h-1 bg-[#d4a044]" />
+                      <div>
+                        <p className="font-black text-[10px] uppercase tracking-[0.3em] text-[#7bbd25]">
+                          International Distribution Partner
+                        </p>
+                        <p className="text-white/60 text-[10px] font-medium mt-1">
+                          Strategic Supply Chain Division
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   );

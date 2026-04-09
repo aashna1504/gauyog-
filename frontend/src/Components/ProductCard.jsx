@@ -103,7 +103,7 @@ export default function ProductCard({
                 onClick={handleWishlist}
                 className={`w-12 h-12 bg-white rounded-full shadow-xl flex items-center justify-center transition-all transform translate-y-4 group-hover:translate-y-0 delay-75 ${
                   isInWishlist
-                    ? "bg-red-500 text-red-800"
+                    ? "bg-red-500 text-red-800 "
                     : "text-gray-700 hover:bg-red-500 hover:text-white"
                 }`}
               >

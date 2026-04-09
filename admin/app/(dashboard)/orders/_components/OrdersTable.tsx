@@ -57,7 +57,7 @@ export function OrdersTable() {
       accessorKey: 'id',
       header: 'Order ID',
       cell: ({ row }) => (
-        <span className="font-mono text-xs">#{row.original.id.slice(0, 8).toUpperCase()}</span>
+        <span className=" text-xs">#{row.original.id.slice(0, 8).toUpperCase()}</span>
       ),
     },
     {

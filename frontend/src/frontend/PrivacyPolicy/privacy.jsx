@@ -1,18 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import {
-  Gavel,
-  ChevronRight,
-  MousePointer2,
-  Scale,
-  ShieldCheck,
-  FileText,
-  UserCheck,
-  Globe,
-  Lock,
-  ArrowRight,
-} from "lucide-react";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -31,7 +18,7 @@ const itemVariants = {
   },
 };
 
-const TermsSection = ({ title, children }) => (
+const PrivacySection = ({ title, children }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -51,9 +38,10 @@ const TermsSection = ({ title, children }) => (
   </motion.div>
 );
 
-export default function TermsConditionsPage() {
+export default function PrivacyPolicyPage() {
   return (
     <div className="min-h-screen bg-[#fcfdfd] selection:bg-[#4a703f] selection:text-white">
+
       <motion.div
         initial="hidden"
         animate="visible"
@@ -74,9 +62,9 @@ export default function TermsConditionsPage() {
                 variants={itemVariants}
                 className="text-5xl md:text-7xl font-extrabold text-gray-900 leading-tight"
               >
-                Terms &
+                Privacy 
                 <span className="text-[#7bbd25] italic font-semibold">
-                  Conditions
+                  Policy
                 </span>
               </motion.h1>
 
@@ -84,9 +72,9 @@ export default function TermsConditionsPage() {
                 variants={itemVariants}
                 className="mt-6 text-gray-500 max-w-md text-base"
               >
-                Please review our terms carefully to understand your rights,
-                responsibilities, and how we operate within our sanctuary
-                ecosystem.
+                Gauyog Kendr (Gauyog Kendr Manufacturing Pvt Ltd) is committed
+                to protecting your privacy and handling your personal
+                information with care and transparency.
               </motion.p>
             </div>
           </div>
@@ -101,43 +89,52 @@ export default function TermsConditionsPage() {
           variants={containerVariants}
           className="divide-y divide-slate-100"
         >
-          <TermsSection index={0} title="User Agreement">
-            By accessing Gauyog Kendr Sanctuary, you agree to follow our Vedic
-            principles of interaction. We provide access to high-quality organic
-            products under the condition that users provide accurate information
-            and use our digital tools responsibly for their intended sanctuary
-            purposes.
-          </TermsSection>
+          <PrivacySection title="Information We Collect">
+            When you contact us, request a quote, or place an order, we may
+            collect your name, email address, phone number, shipping address,
+            and business details. We collect only what is necessary to fulfil
+            your request and provide our services.
+          </PrivacySection>
 
-          <TermsSection index={1} title="Intellectual Property">
-            All visual assets, including photography of our sanctuary grounds
-            and livestock, as well as our specific organic formulations, are
-            protected. No part of this digital presence may be reproduced for
-            commercial gain without explicit written consent from the sanctuary
-            administration.
-          </TermsSection>
+          <PrivacySection title="How We Use Your Information">
+            Your information is used to process orders and enquiries, provide
+            customer support, send relevant product updates (with your
+            consent), and improve our services. We do not sell, rent, or share
+            your personal data with third parties for marketing purposes.
+          </PrivacySection>
 
-          <TermsSection index={2} title="Product Limitations">
-            Our organic offerings and ritual items are subject to availability.
-            As we prioritize the natural cycles of the sanctuary, we reserve the
-            right to limit quantities or discontinue products without notice. We
-            are not liable for the results of ritual practices performed with
-            our products.
-          </TermsSection>
+          <PrivacySection title="Data Security">
+            We implement appropriate technical and organisational measures to
+            protect your personal information against unauthorised access,
+            alteration, or loss.
+          </PrivacySection>
 
-          <TermsSection index={3} title="Data Governance">
-            We value your privacy as much as our sanctuary's peace. Your data is
-            encrypted and used strictly for logistical fulfillment. We do not
-            engage in data harvesting or third-party sharing, ensuring your
-            digital footprint remains secure within our ecosystem.
-          </TermsSection>
+          <PrivacySection title="Cookies">
+            Our website may use essential cookies to ensure proper
+            functionality. We do not use tracking or advertising cookies
+            without your consent.
+          </PrivacySection>
 
-          <TermsSection index={4} title="Governance">
-            These terms are governed by the laws applicable to our sanctuary's
-            location. Any disputes arising from the use of our services will be
-            handled through peaceful mediation in accordance with local legal
-            frameworks.
-          </TermsSection>
+          <PrivacySection title="Your Rights">
+            You have the right to access, correct, or request deletion of your
+            personal data at any time. To exercise these rights or for any
+            privacy-related enquiries, please contact us at{" "}
+            <a
+              href="mailto:john@gauyogkendr.com"
+              className="text-[#7bbd25] hover:underline"
+            >
+              john@gauyogkendr.com
+            </a>
+            .
+          </PrivacySection>
+
+          <PrivacySection title="Registered Details">
+            <p>CIN: U28160GJ2024PTC154513</p>
+            <p>
+              Registered Office: Village Badalpara, Taluka Veraval, Gir
+              Somnath, Gujarat, India – 362268
+            </p>
+          </PrivacySection>
         </motion.div>
       </div>
     </div>

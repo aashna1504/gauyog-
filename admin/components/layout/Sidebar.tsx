@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
 import {
   LayoutDashboard,
   Users,
@@ -19,24 +20,35 @@ import { useUIStore } from "@/store/uiStore";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
-const navItems = [
-  { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
-  { label: "Users", href: "/users", icon: Users },
-  { label: "Products", href: "/products", icon: Package },
-  { label: "Orders", href: "/orders", icon: ShoppingCart },
-  { label: "Contacts", href: "/contacts", icon: Mail },
-  { label: "Settings", href: "/settings", icon: Settings },
+type NavItem = {
+  label: string;
+  href: string;
+  icon: React.ElementType;
+  roles: string[];
+};
+
+const navItems: NavItem[] = [
+  { label: "Dashboard", href: "/dashboard",  icon: LayoutDashboard, roles: ["ADMIN", "SALES"] },
+  { label: "Users",     href: "/users",       icon: Users,           roles: ["ADMIN"] },
+  { label: "Products",  href: "/products",    icon: Package,         roles: ["ADMIN", "SALES"] },
+  { label: "Orders",    href: "/orders",      icon: ShoppingCart,    roles: ["ADMIN", "SALES"] },
+  { label: "Contacts",  href: "/contacts",    icon: Mail,            roles: ["ADMIN", "SALES"] },
+  { label: "Settings",  href: "/settings",    icon: Settings,        roles: ["ADMIN"] },
 ];
 
 function SidebarContent({
   collapsed,
   onClose,
+  role,
 }: {
   collapsed: boolean;
   onClose?: () => void;
+  role: string;
 }) {
   const pathname = usePathname();
   const { toggleSidebar } = useUIStore();
+
+  const visibleItems = navItems.filter((item) => item.roles.includes(role));
 
   return (
     <div className="flex h-full flex-col bg-sidebar text-sidebar-foreground">
@@ -56,7 +68,7 @@ function SidebarContent({
               Gauyog
             </p>
             <p className="text-xs text-sidebar-foreground/60 mt-0.5">
-              Admin Panel
+              {role === "ADMIN" ? "Admin Panel" : "Sales Portal"}
             </p>
           </div>
         )}
@@ -75,7 +87,7 @@ function SidebarContent({
 
       {/* Nav */}
       <nav className="flex-1 overflow-y-auto p-2 space-y-0.5">
-        {navItems.map(({ label, href, icon: Icon }) => {
+        {visibleItems.map(({ label, href, icon: Icon }) => {
           const active = pathname === href || pathname.startsWith(href + "/");
           return (
             <Link
@@ -127,8 +139,9 @@ function SidebarContent({
 }
 
 export function Sidebar() {
-  const { sidebarCollapsed, mobileSidebarOpen, closeMobileSidebar } =
-    useUIStore();
+  const { sidebarCollapsed, mobileSidebarOpen, closeMobileSidebar } = useUIStore();
+  const { data: session } = useSession();
+  const role = session?.user?.role ?? "SALES";
 
   return (
     <>
@@ -147,7 +160,7 @@ export function Sidebar() {
           mobileSidebarOpen ? "translate-x-0" : "-translate-x-full",
         )}
       >
-        <SidebarContent collapsed={false} onClose={closeMobileSidebar} />
+        <SidebarContent collapsed={false} onClose={closeMobileSidebar} role={role} />
       </aside>
 
       {/* ── Desktop sidebar (static, collapsible) ── */}
@@ -157,7 +170,7 @@ export function Sidebar() {
           sidebarCollapsed ? "w-16" : "w-60",
         )}
       >
-        <SidebarContent collapsed={sidebarCollapsed} />
+        <SidebarContent collapsed={sidebarCollapsed} role={role} />
       </aside>
     </>
   );

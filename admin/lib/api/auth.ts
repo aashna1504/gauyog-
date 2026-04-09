@@ -19,6 +19,14 @@ export async function signupRequest(email: string, password: string): Promise<Au
   return data.data;
 }
 
+export async function createStaffUserRequest(email: string, password: string, role: 'SALES'): Promise<AuthResponse> {
+  const { data } = await axios.post<ApiResponse<AuthResponse>>(
+    `${BASE}/auth/signup`,
+    { email, password, role },
+  );
+  return data.data;
+}
+
 export async function refreshTokenRequest(refreshToken: string): Promise<{ accessToken: string }> {
   const { data } = await axios.post<ApiResponse<{ accessToken: string }>>(
     `${BASE}/auth/refresh`,

@@ -1,12 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell,
 } from 'recharts';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Skeleton } from '@/components/ui/skeleton';
-import apiClient from '@/lib/api/axios';
 
 interface StockEntry {
   name: string;
@@ -14,8 +11,8 @@ interface StockEntry {
 }
 
 const getBarColor = (stock: number) => {
-  if (stock === 0)  return 'hsl(0, 84%, 60%)';
-  if (stock < 10)   return 'hsl(38, 92%, 50%)';
+  if (stock === 0) return 'hsl(0, 84%, 60%)';
+  if (stock < 10)  return 'hsl(38, 92%, 50%)';
   return 'hsl(142, 71%, 45%)';
 };
 
@@ -32,18 +29,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   );
 };
 
-export function StockChart() {
-  const [data, setData] = useState<StockEntry[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    apiClient
-      .get('/orders/stats')
-      .then((res) => setData(res.data?.data?.stockLevels ?? []))
-      .catch(() => setData([]))
-      .finally(() => setLoading(false));
-  }, []);
-
+export function StockChart({ data }: { data: StockEntry[] }) {
   return (
     <Card>
       <CardHeader>
@@ -55,9 +41,7 @@ export function StockChart() {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        {loading ? (
-          <Skeleton className="h-[220px] w-full rounded-xl" />
-        ) : data.length === 0 ? (
+        {data.length === 0 ? (
           <p className="text-sm text-muted-foreground text-center py-16">No products found.</p>
         ) : (
           <ResponsiveContainer width="100%" height={220}>

@@ -4,21 +4,37 @@ import { NextResponse } from 'next/server';
 export default withAuth(
   function middleware(req) {
     const token = req.nextauth.token;
-    const isAdminRoute = req.nextUrl.pathname.startsWith('/dashboard') ||
-      req.nextUrl.pathname.startsWith('/users') ||
-      req.nextUrl.pathname.startsWith('/products') ||
-      req.nextUrl.pathname.startsWith('/carts') ||
-      req.nextUrl.pathname.startsWith('/settings');
+    const pathname = req.nextUrl.pathname;
+    const role = token?.role as string | undefined;
 
-    if (isAdminRoute && token?.role !== 'ADMIN') {
-      return NextResponse.redirect(new URL('/login?error=unauthorized', req.url));
+    // Admin-only routes — SALES cannot access
+    const isAdminOnly =
+      pathname.startsWith('/users') ||
+      pathname.startsWith('/settings') ||
+      pathname.startsWith('/carts');
+
+    if (isAdminOnly && role !== 'ADMIN') {
+      return NextResponse.redirect(new URL('/dashboard?error=unauthorized', req.url));
+    }
+
+    // Product write routes — SALES cannot access
+    const isProductWrite =
+      pathname === '/products/new' ||
+      /^\/products\/[^/]+\/edit/.test(pathname);
+
+    if (isProductWrite && role !== 'ADMIN') {
+      return NextResponse.redirect(new URL('/products?error=unauthorized', req.url));
     }
 
     return NextResponse.next();
   },
   {
     callbacks: {
-      authorized: ({ token }) => !!token,
+      // Allow both ADMIN and SALES through the auth gate
+      authorized: ({ token }) => {
+        if (!token) return false;
+        return token.role === 'ADMIN' || token.role === 'SALES';
+      },
     },
     pages: {
       signIn: '/login',
@@ -31,6 +47,8 @@ export const config = {
     '/dashboard/:path*',
     '/users/:path*',
     '/products/:path*',
+    '/orders/:path*',
+    '/contacts/:path*',
     '/carts/:path*',
     '/settings/:path*',
   ],

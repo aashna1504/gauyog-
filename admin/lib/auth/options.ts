@@ -16,9 +16,9 @@ export const authOptions: NextAuthOptions = {
         try {
           const result = await loginRequest(credentials.email, credentials.password);
 
-          // Only allow ADMIN users
-          if (result.user.role !== 'ADMIN') {
-            throw new Error('Access denied. Admin only.');
+          // Only allow ADMIN and SALES users
+          if (result.user.role !== 'ADMIN' && result.user.role !== 'SALES') {
+            throw new Error('Access denied. Staff portal only.');
           }
 
           return {
