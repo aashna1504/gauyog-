@@ -105,14 +105,14 @@ export default function ModernSignIn() {
         <form className="space-y-4" onSubmit={handleSignIn}>
           <div className="space-y-1.5 group">
             <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 group-focus-within:text-[#7bbd25] ml-1 transition-colors">
-              Email or Mobile Number
+              Email
             </label>
             <div className="relative">
               <input
                 required
-                type="text"
+                type="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value.trim())}
                 placeholder="name@example.com"
                 className="w-full bg-white border border-slate-200 px-5 py-4 rounded-full text-sm font-bold text-slate-900 outline-none focus:border-slate-950 focus:ring-[6px] focus:ring-slate-950/[0.03] transition-all"
               />

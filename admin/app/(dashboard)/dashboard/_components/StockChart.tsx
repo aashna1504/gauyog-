@@ -29,6 +29,16 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   );
 };
 
+const CustomXAxisTick = ({ x, y, payload }: any) => {
+  const name: string = payload.value ?? '';
+  const short = name.length > 10 ? name.slice(0, 10) + '…' : name;
+  return (
+    <text x={x} y={y + 10} textAnchor="middle" fontSize={10} fill="currentColor" className="fill-muted-foreground">
+      {short}
+    </text>
+  );
+};
+
 export function StockChart({ data }: { data: StockEntry[] }) {
   return (
     <Card>
@@ -44,10 +54,10 @@ export function StockChart({ data }: { data: StockEntry[] }) {
         {data.length === 0 ? (
           <p className="text-sm text-muted-foreground text-center py-16">No products found.</p>
         ) : (
-          <ResponsiveContainer width="100%" height={220}>
-            <BarChart data={data} margin={{ top: 5, right: 10, left: 0, bottom: 20 }}>
+          <ResponsiveContainer width="100%" height={240}>
+            <BarChart data={data} margin={{ top: 5, right: 10, left: 0, bottom: 30 }}>
               <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
-              <XAxis dataKey="name" tick={{ fontSize: 10 }} angle={-30} textAnchor="end" interval={0} />
+              <XAxis dataKey="name" tick={<CustomXAxisTick />} interval={0} />
               <YAxis tick={{ fontSize: 11 }} allowDecimals={false} />
               <Tooltip content={<CustomTooltip />} />
               <Bar dataKey="stock" radius={[4, 4, 0, 0]} name="Units">

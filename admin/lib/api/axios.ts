@@ -1,5 +1,5 @@
 import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
-import { getSession } from 'next-auth/react';
+import { getSession, signOut } from 'next-auth/react';
 
 const apiClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -23,9 +23,8 @@ apiClient.interceptors.response.use(
   (response) => response,
   (error: AxiosError) => {
     if (error.response?.status === 401) {
-      // Let NextAuth handle session expiry via middleware
       if (typeof window !== 'undefined') {
-        window.location.href = '/login';
+        signOut({ callbackUrl: '/login' });
       }
     }
     return Promise.reject(error);

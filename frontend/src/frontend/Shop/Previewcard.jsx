@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { ShoppingBag, Heart, Package, Layers } from "lucide-react";
+import { ShoppingBag, Heart, Package, Layers, ShoppingCart } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../../api/axios";
@@ -154,53 +154,56 @@ export default function VedicDhoopMosaicPage() {
                 </button>
               </div>
 
-              {/* Main image */}
-              <div className="relative flex items-center justify-center min-h-[460px] md:min-h-[560px] bg-gradient-to-br from-[#eef5e8] via-white to-[#f3f8ee] px-6 py-8">
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={activeImg}
-                    initial={{ opacity: 0, scale: 0.88 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 1.04 }}
-                    transition={{ type: "spring", damping: 22, stiffness: 200 }}
-                    src={productImages[activeImg]}
-                    alt={product.name}
-                    className="w-full max-w-[440px] md:max-w-[520px] object-contain drop-shadow-[0_30px_50px_rgba(74,112,63,0.18)]"
-                    onError={(e) => {
-                      e.currentTarget.src = PLACEHOLDER_IMG;
-                    }}
-                  />
-                </AnimatePresence>
-                <span className="absolute bottom-4 right-6 text-[50px] md:text-[80px] font-black text-[#4a703f]/5 leading-none tracking-tighter uppercase select-none pointer-events-none">
-                  Gauyog
-                </span>
-              </div>
+              {/* Image area: thumbnails on left + main image on right */}
+              <div className="flex gap-3 p-4">
+                {/* Left thumbnail column */}
+                {productImages.length > 1 && (
+                  <div className="flex flex-col gap-2 overflow-y-auto max-h-[500px] md:max-h-[580px] pr-1 scrollbar-thin">
+                    {productImages.map((img, idx) => (
+                      <button
+                        key={`${img}-${idx}`}
+                        onClick={() => setActiveImg(idx)}
+                        className={`flex-shrink-0 w-14 h-14 rounded-xl overflow-hidden border-2 p-1 transition-all duration-200 ${
+                          activeImg === idx
+                            ? "border-[#7bbd25] shadow-md shadow-green-100 scale-105 bg-white"
+                            : "border-transparent bg-slate-50 opacity-50 hover:opacity-90 hover:border-slate-200"
+                        }`}
+                      >
+                        <img
+                          src={img}
+                          className="w-full h-full object-contain"
+                          alt={`view ${idx + 1}`}
+                          onError={(e) => {
+                            e.currentTarget.src = PLACEHOLDER_IMG;
+                          }}
+                        />
+                      </button>
+                    ))}
+                  </div>
+                )}
 
-              {/* Thumbnail strip */}
-              {productImages.length > 1 && (
-                <div className="flex gap-3 px-5 py-4 border-t border-slate-100 overflow-x-auto">
-                  {productImages.map((img, idx) => (
-                    <button
-                      key={`${img}-${idx}`}
-                      onClick={() => setActiveImg(idx)}
-                      className={`flex-shrink-0 w-16 h-16 rounded-xl overflow-hidden border-2 p-1 transition-all duration-200 ${
-                        activeImg === idx
-                          ? "border-[#7bbd25] shadow-md shadow-green-100 scale-105 bg-white"
-                          : "border-transparent bg-slate-50 opacity-50 hover:opacity-90 hover:border-slate-200"
-                      }`}
-                    >
-                      <img
-                        src={img}
-                        className="w-full h-full object-contain"
-                        alt={`view ${idx + 1}`}
-                        onError={(e) => {
-                          e.currentTarget.src = PLACEHOLDER_IMG;
-                        }}
-                      />
-                    </button>
-                  ))}
+                {/* Main image */}
+                <div className="relative flex-1 flex items-center justify-center min-h-[440px] md:min-h-[540px] bg-gradient-to-br from-[#eef5e8] via-white to-[#f3f8ee] rounded-2xl px-4 py-8">
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={activeImg}
+                      initial={{ opacity: 0, scale: 0.88 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.04 }}
+                      transition={{ type: "spring", damping: 22, stiffness: 200 }}
+                      src={productImages[activeImg]}
+                      alt={product.name}
+                      className="w-full max-w-[380px] md:max-w-[460px] object-contain drop-shadow-[0_30px_50px_rgba(74,112,63,0.18)]"
+                      onError={(e) => {
+                        e.currentTarget.src = PLACEHOLDER_IMG;
+                      }}
+                    />
+                  </AnimatePresence>
+                  <span className="absolute bottom-4 right-4 text-[40px] md:text-[70px] font-black text-[#4a703f]/5 leading-none tracking-tighter uppercase select-none pointer-events-none">
+                    Gauyog
+                  </span>
                 </div>
-              )}
+              </div>
             </div>
           </motion.div>
 
@@ -276,7 +279,6 @@ export default function VedicDhoopMosaicPage() {
                     : "bg-[#744926] hover:bg-[#4a703f] text-white shadow-green-900/20"
                 }`}
               >
-                <ShoppingBag size={16} />
                 {inCart ? "Remove from Cart" : "Add to Cart"}
               </button>
               <button

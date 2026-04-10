@@ -167,7 +167,7 @@ export default function ProductListingPage() {
                     <img
                       src={cert.img}
                       alt={cert.name}
-                      className="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-110"
+                      className="max-w-full max-h-full object-contain transition-transform  duration-500 group-hover:scale-110"
                     />
                   </div>
                 </div>

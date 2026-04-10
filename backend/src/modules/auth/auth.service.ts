@@ -52,12 +52,17 @@ export class AuthService {
   }
 
   static async login(data: z.infer<typeof loginSchema>['body']): Promise<AuthResponse> {
+    const normalizedEmail = data.email.toLowerCase().trim();
     const user = await prisma.user.findUnique({
-      where: { email: data.email },
+      where: { email: normalizedEmail },
     });
 
-    if (!user || !user.password) {
+    if (!user) {
       throw new AppError('Invalid email or password', 401);
+    }
+
+    if (!user.password) {
+      throw new AppError('This account was created with Google. Please sign in with Google.', 401);
     }
 
     const isValidPassword = await bcrypt.compare(data.password, user.password);

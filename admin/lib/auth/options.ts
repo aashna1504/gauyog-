@@ -70,6 +70,7 @@ export const authOptions: NextAuthOptions = {
       session.user.role = token.role as string;
       session.accessToken = token.accessToken as string;
       session.refreshToken = token.refreshToken as string;
+      if (token.error) session.error = token.error as string;
       return session;
     },
   },

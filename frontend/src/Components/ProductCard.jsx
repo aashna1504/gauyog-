@@ -233,7 +233,7 @@ export default function ProductCard({
                   initial={{ scale: 0.6, opacity: 0, y: 20 }}
                   animate={{ scale: 1, opacity: 1, y: 0 }}
                   src={p.image}
-                  className="w-full max-w-[320px] drop-shadow-2xl z-10"
+                  className="w-full max-w-[320px] drop-shadow-2xl z-10 rounded-full"
                   alt={p.name}
                   onError={(e) => {
                     e.target.src = PLACEHOLDER_IMG;

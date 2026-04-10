@@ -291,7 +291,7 @@ export default function FloatingNexusDashboard() {
 
                 <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
                  
-                  <a
+                  {/* <a
                     href="tel:+917984997996"
                     onClick={(e) => {
                       e.stopPropagation(); 
@@ -306,7 +306,7 @@ export default function FloatingNexusDashboard() {
                     <span className="text-[11px] font-black uppercase tracking-widest">
                       Call Now
                     </span>
-                  </a>
+                  </a> */}
 
                   
                   <a
@@ -315,7 +315,7 @@ export default function FloatingNexusDashboard() {
                       e.stopPropagation();
                       window.location.href = "mailto:support@gauyog.com";
                     }}
-                    className="flex-1 lg:flex-none flex items-center justify-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 px-10 py-5 rounded-full hover:bg-white hover:text-[#4a703f] transition-all shadow-xl active:scale-95 group/email"
+                    className="flex-1 lg:flex-none flex items-center justify-center gap-3 bg-white/20 backdrop-blur-md border border-white/20 px-10 py-5 rounded-full hover:bg-white hover:text-[#4a703f] transition-all shadow-xl active:scale-95 group/email"
                   >
                     <Mail
                       size={20}
