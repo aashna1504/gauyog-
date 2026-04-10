@@ -50,7 +50,7 @@ export default function PrivacyPolicyPage() {
       >
         <div className="absolute inset-0 bg-gradient-to-br from-[#f8fbf6] via-white to-[#f4f9ef]" />
 
-        <div className="absolute top-[-80px] left-[-60px] w-[300px] h-[300px] bg-[#7bbd25]/20 rounded-full blur-[120px]" />
+        <div className="absolute top-[-80px] left-[-60px] w-[300px] h-[300px] bg-[#4a703f]/20 rounded-full blur-[120px]" />
         <div className="absolute bottom-[-100px] right-[-80px] w-[350px] h-[350px] bg-[#4a703f]/20 rounded-full blur-[140px]" />
 
         <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(#000_1px,transparent_1px),linear-gradient(90deg,#000_1px,transparent_1px)] bg-[size:40px_40px]" />
@@ -63,7 +63,7 @@ export default function PrivacyPolicyPage() {
                 className="text-5xl md:text-7xl font-extrabold text-gray-900 leading-tight"
               >
                 Privacy 
-                <span className="text-[#7bbd25] italic font-semibold">
+                <span className="text-[#4a703f] italic font-semibold">
                   Policy
                 </span>
               </motion.h1>
@@ -121,7 +121,7 @@ export default function PrivacyPolicyPage() {
             privacy-related enquiries, please contact us at{" "}
             <a
               href="mailto:john@gauyogkendr.com"
-              className="text-[#7bbd25] hover:underline"
+              className="text-[#4a703f] hover:underline"
             >
               john@gauyogkendr.com
             </a>

@@ -109,7 +109,7 @@ export default function ProductListingPage() {
             {/* Main Heading */}
             <h2 className="text-4xl md:text-6xl  font-bold text-[#2d3a29] tracking-tight">
               Everything from <br />
-              <span className="text-[#7bbd25] italic">Mother Earth</span>
+              <span className="text-[#4a703f] italic">Mother Earth</span>
             </h2>
 
             {/* Centered Description */}
@@ -126,7 +126,7 @@ export default function ProductListingPage() {
               {
                 name: "Organic Certified",
                 img: "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775715583/100-percent-natural-and-organic-product-badge-label-rubber-stamp-emblem-template-organic-ingredient-badge-logo-suitable-for-product-packaging-design-elements-with-leaf-png_cricy6.png",
-                color: "hover:border-[#7bbd25]",
+                color: "hover:border-[#4a703f]",
               },
               {
                 name: "ISO Standards",
@@ -187,12 +187,12 @@ export default function ProductListingPage() {
           <div className="relative flex-1 min-w-[140px] group">
             <Filter
               size={16}
-              className="absolute left-5 top-1/2 -translate-y-1/2 text-[#7bbd25]"
+              className="absolute left-5 top-1/2 -translate-y-1/2 text-[#4a703f]"
             />
             <select
               value={activeCategory}
               onChange={(e) => setActiveCategory(e.target.value)}
-              className="w-full appearance-none bg-gray-50 border-none pl-12 pr-10 py-4 rounded-full text-[10px] font-black uppercase tracking-widest text-gray-700 focus:ring-2 focus:ring-[#7bbd25]/20 cursor-pointer"
+              className="w-full appearance-none bg-gray-50 border-none pl-12 pr-10 py-4 rounded-full text-[10px] font-black uppercase tracking-widest text-gray-700 focus:ring-2 focus:ring-[#4a703f]/20 cursor-pointer"
             >
               {categories.map((c) => (
                 <option key={c} value={c}>
@@ -210,7 +210,7 @@ export default function ProductListingPage() {
             <select
               value={activeSize}
               onChange={(e) => setActiveSize(e.target.value)}
-              className="w-full appearance-none bg-gray-50 border-none px-6 py-4 rounded-full text-[10px] font-black uppercase tracking-widest text-gray-700 focus:ring-2 focus:ring-[#7bbd25]/20 cursor-pointer"
+              className="w-full appearance-none bg-gray-50 border-none px-6 py-4 rounded-full text-[10px] font-black uppercase tracking-widest text-gray-700 focus:ring-2 focus:ring-[#4a703f]/20 cursor-pointer"
             >
               {sizes.map((s) => (
                 <option key={s} value={s}>

@@ -31,7 +31,7 @@ const contactInfo = [
     label: "Take A Call",
     icon: PhoneCall,
     href: "tel:#",
-    color: "text-[#7bbd25]",
+    color: "text-[#4a703f]",
   },
 ];
 
@@ -39,21 +39,19 @@ export default function ModernContactStrip() {
   return (
     <div className="bg-[#fcfdfd ] pt-20 px-6 relative overflow-hidden ">
       <div className="max-w-7xl mx-auto">
-     
         <div className="mb-20">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-3 text-[#7bbd25] font-bold text-xs uppercase tracking-[0.4em] mb-4"
+            className="flex items-center gap-3 text-[#4a703f] font-bold text-xs uppercase tracking-[0.4em] mb-4"
           >
             <Globe size={16} /> Global Connectivity
           </motion.div>
           <h2 className="text-5xl md:text-7xl font-bold text-gray-900 tracking-tighter">
-            Let's <span className="text-[#7bbd25] italic">Connect.</span>
+            Let's <span className="text-[#4a703f] italic">Connect.</span>
           </h2>
         </div>
 
-        
         <div className="flex flex-col lg:flex-row border-t border-gray-100">
           {contactInfo.map((item, i) => (
             <motion.div
@@ -63,12 +61,10 @@ export default function ModernContactStrip() {
               transition={{ delay: i * 0.15 }}
               className="flex-1 py-12 lg:px-10 border-b lg:border-b-0 lg:border-r border-gray-100 last:border-r-0 group relative overflow-hidden"
             >
-            
               <div className="absolute inset-0 bg-gray-50 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out -z-10" />
 
               <div className="relative z-10 flex flex-col h-full justify-between gap-12">
                 <div className="space-y-6">
-                
                   <div className="flex items-center gap-4">
                     <div
                       className={`p-3 rounded-full bg-white shadow-sm border border-gray-50 ${item.color} group-hover:rotate-12 transition-transform duration-500`}
@@ -80,14 +76,10 @@ export default function ModernContactStrip() {
                     </span>
                   </div>
 
-                  
                   <p className="text-2xl md:text-3xl font-bold text-gray-800 leading-tight pr-4">
                     {item.detail}
                   </p>
                 </div>
-
-             
-                
               </div>
 
               <item.icon

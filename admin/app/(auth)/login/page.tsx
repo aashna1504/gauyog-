@@ -137,7 +137,7 @@ export default function AdminAuthPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#fdfcfb] p-4 relative overflow-hidden">
-      <div className="absolute top-[-10%] right-[-10%] w-80 h-80 bg-[#7bbd25]/5 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute top-[-10%] right-[-10%] w-80 h-80 bg-[#4a703f]/5 rounded-full blur-3xl animate-pulse" />
       <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-[#4a703f]/5 rounded-full blur-3xl" />
 
       <div className="w-full max-w-[440px] space-y-6 relative z-10">
@@ -202,7 +202,7 @@ export default function AdminAuthPage() {
             >
               {/* Email */}
               <div className="space-y-1 group">
-                <Label className="text-[10px] uppercase tracking-widest font-black text-slate-400 ml-4 group-focus-within:text-[#7bbd25] transition-colors">
+                <Label className="text-[10px] uppercase tracking-widest font-black text-slate-400 ml-4 group-focus-within:text-[#4a703f] transition-colors">
                   Admin Email
                 </Label>
                 <div className="relative">
@@ -210,7 +210,7 @@ export default function AdminAuthPage() {
                     type="email"
                     placeholder="name@gauyog.com"
                     {...register("email")}
-                    className="h-12 rounded-full border-slate-200 bg-slate-50/50 px-6 focus-visible:ring-[#7bbd25] transition-all"
+                    className="h-12 rounded-full border-slate-200 bg-slate-50/50 px-6 focus-visible:ring-[#4a703f] transition-all"
                   />
                   <Mail className="absolute right-5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-300" />
                 </div>
@@ -223,7 +223,7 @@ export default function AdminAuthPage() {
 
               {/* Password */}
               <div className="space-y-1 group">
-                <Label className="text-[10px] uppercase tracking-widest font-black text-slate-400 ml-4 group-focus-within:text-[#7bbd25] transition-colors">
+                <Label className="text-[10px] uppercase tracking-widest font-black text-slate-400 ml-4 group-focus-within:text-[#4a703f] transition-colors">
                   Security Key
                 </Label>
                 <div className="relative">
@@ -231,7 +231,7 @@ export default function AdminAuthPage() {
                     type={showPassword ? "text" : "password"}
                     placeholder="••••••••"
                     {...register("password")}
-                    className="h-12 rounded-full border-slate-200 bg-slate-50/50 px-6 focus-visible:ring-[#7bbd25] transition-all"
+                    className="h-12 rounded-full border-slate-200 bg-slate-50/50 px-6 focus-visible:ring-[#4a703f] transition-all"
                   />
                   <button
                     type="button"
@@ -255,7 +255,7 @@ export default function AdminAuthPage() {
               {/* Confirm Password — signup only */}
               {authMode === "signup" && (
                 <div className="space-y-1 group animate-in slide-in-from-top-2 duration-300">
-                  <Label className="text-[10px] uppercase tracking-widest font-black text-slate-400 ml-4 group-focus-within:text-[#7bbd25]">
+                  <Label className="text-[10px] uppercase tracking-widest font-black text-slate-400 ml-4 group-focus-within:text-[#4a703f]">
                     Verify Key
                   </Label>
                   <div className="relative">
@@ -263,7 +263,7 @@ export default function AdminAuthPage() {
                       type="password"
                       placeholder="••••••••"
                       {...register("confirmPassword")}
-                      className="h-12 rounded-full border-slate-200 bg-slate-50/50 px-6 focus-visible:ring-[#7bbd25] transition-all"
+                      className="h-12 rounded-full border-slate-200 bg-slate-50/50 px-6 focus-visible:ring-[#4a703f] transition-all"
                     />
                     <Lock className="absolute right-5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-300" />
                   </div>
@@ -277,7 +277,7 @@ export default function AdminAuthPage() {
 
               <Button
                 type="submit"
-                className="w-full h-12 bg-[#4a703f] hover:bg-[#7bbd25] text-white rounded-full font-black uppercase tracking-widest text-[11px] shadow-xl shadow-[#4a703f]/20 transition-all active:scale-[0.98] mt-2"
+                className="w-full h-12 bg-[#4a703f] hover:bg-[#4a703f] text-white rounded-full font-black uppercase tracking-widest text-[11px] shadow-xl shadow-[#4a703f]/20 transition-all active:scale-[0.98] mt-2"
                 disabled={isLoading}
               >
                 {isLoading ? (

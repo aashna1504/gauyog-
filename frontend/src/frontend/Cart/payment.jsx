@@ -349,7 +349,7 @@ export default function ModernPaymentPage() {
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               className="relative bg-white w-full max-w-sm rounded-[40px] p-10 text-center shadow-2xl overflow-hidden"
             >
-              <div className="absolute top-0 left-0 w-full h-2 bg-[#7bbd25]" />
+              <div className="absolute top-0 left-0 w-full h-2 bg-[#4a703f]" />
 
               <button
                 onClick={() => setShowSuccess(false)}
@@ -359,12 +359,12 @@ export default function ModernPaymentPage() {
               </button>
 
               <div className="flex flex-col items-center">
-                <div className="w-20 h-20 bg-[#7bbd25]/10 rounded-full flex items-center justify-center mb-6">
-                  <CheckCircle2 size={44} className="text-[#7bbd25]" />
+                <div className="w-20 h-20 bg-[#4a703f]/10 rounded-full flex items-center justify-center mb-6">
+                  <CheckCircle2 size={44} className="text-[#4a703f]" />
                 </div>
 
                 <h3 className="text-2xl font-[1000] text-slate-900 tracking-tighter uppercase italic">
-                  Order <span className="text-[#7bbd25]">Confirmed</span>
+                  Order <span className="text-[#4a703f]">Confirmed</span>
                 </h3>
 
                 {placedOrderId && (

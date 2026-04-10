@@ -129,7 +129,7 @@ export default function ModernCartPage() {
                   className="bg-white border border-slate-100 rounded-[25px] md:rounded-[35px] p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow"
                 >
                   <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-8">
-                    <div className="w-full sm:w-32 h-40 sm:h-32 bg-slate-50 rounded-[20px] md:rounded-[24px] flex items-center justify-center border border-slate-100 overflow-hidden group">
+                    <div className="w-full sm:w-32 h-40 sm:h-32 bg-[#f3f8ee] rounded-[20px] md:rounded-[24px] flex items-center justify-center overflow-hidden group">
                       <img
                         src={item.img}
                         alt={item.name}

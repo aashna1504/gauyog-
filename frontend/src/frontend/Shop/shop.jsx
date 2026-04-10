@@ -38,7 +38,7 @@ const statsBoxVariants = {
 export default function ModernShopBanner() {
   return (
     <div className="mt-16">
-      <motion.div
+      {/* <motion.div
         initial="hidden"
         animate="visible"
         variants={containerVariants}
@@ -48,7 +48,7 @@ export default function ModernShopBanner() {
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.5 }}
-          className="absolute top-0 right-0 w-[30%] h-full bg-[#7bbd25]/5 -skew-x-12 translate-x-10"
+          className="absolute top-0 right-0 w-[30%] h-full bg-[#4a703f]/5 -skew-x-12 translate-x-10"
         />
         <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-[#744926]/5 rounded-full blur-[80px]" />
 
@@ -58,7 +58,7 @@ export default function ModernShopBanner() {
               variants={itemVariants}
               className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white rounded-full shadow-sm border border-gray-100"
             >
-              <CheckCircle size={14} className="text-[#7bbd25]" />
+              <CheckCircle size={14} className="text-[#4a703f]" />
               <span className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-400">
                 Direct from our farm
               </span>
@@ -73,7 +73,7 @@ export default function ModernShopBanner() {
               }}
             >
               Our{" "}
-              <span className="text-[#7bbd25] italic font-medium">
+              <span className="text-[#4a703f] italic font-medium">
                 Products.
               </span>
             </motion.h1>
@@ -115,7 +115,7 @@ export default function ModernShopBanner() {
 
                 <div className="flex items-center justify-between bg-white p-4 rounded-full border border-gray-50 shadow-sm max-w-[240px]">
                   <div>
-                    <p className="text-[10px] font-black uppercase text-[#7bbd25] tracking-widest">
+                    <p className="text-[10px] font-black uppercase text-[#4a703f] tracking-widest">
                       Purity Level
                     </p>
                     <p className="text-sm font-bold text-gray-900">
@@ -132,13 +132,13 @@ export default function ModernShopBanner() {
                         repeat: Infinity,
                         ease: "linear",
                       }}
-                      className="absolute inset-0 border-4 border-t-[#7bbd25] border-r-transparent border-b-transparent border-l-transparent rounded-full"
+                      className="absolute inset-0 border-4 border-t-[#4a703f] border-r-transparent border-b-transparent border-l-transparent rounded-full"
                     />
 
                     <svg
                       viewBox="0 0 24 24"
                       fill="none"
-                      className="w-6 h-6 text-[#7bbd25]"
+                      className="w-6 h-6 text-[#4a703f]"
                       stroke="currentColor"
                       strokeWidth="4"
                       strokeLinecap="round"
@@ -164,11 +164,11 @@ export default function ModernShopBanner() {
             <motion.div
               animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }}
               transition={{ duration: 4, repeat: Infinity }}
-              className="absolute -inset-4 bg-[#7bbd25]/50 blur-3xl -z-10 rounded-full"
+              className="absolute -inset-4 bg-[#4a703f]/50 blur-3xl -z-10 rounded-full"
             />
           </motion.div>
         </div>
-      </motion.div>
+      </motion.div> */}
 
       <motion.div
         initial={{ opacity: 0 }}

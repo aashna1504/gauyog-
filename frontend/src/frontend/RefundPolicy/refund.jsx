@@ -72,7 +72,7 @@ export default function RefundPolicyPage() {
           className="absolute top-1/2 -right-1/4 -translate-y-1/2 w-[60%] h-[120%] opacity-20 blur-[120px] rounded-full pointer-events-none animate-pulse"
           style={{
             background:
-              "radial-gradient(circle at right, #7bbd25 0%, transparent 100%)",
+              "radial-gradient(circle at right, #4a703f 0%, transparent 100%)",
             zIndex: -20,
           }}
         />
@@ -86,7 +86,7 @@ export default function RefundPolicyPage() {
             >
               <RefreshCcw
                 size={14}
-                className="text-[#7bbd25] animate-spin-slow"
+                className="text-[#4a703f] animate-spin-slow"
               />
               <span className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-400">
                 Returns Protocol
@@ -102,7 +102,7 @@ export default function RefundPolicyPage() {
               }}
             >
               Refund{" "}
-              <span className="text-[#7bbd25] italic font-medium">Policy.</span>
+              <span className="text-[#4a703f] italic font-medium">Policy.</span>
             </motion.h1>
             <motion.p
               variants={itemVariants}
@@ -124,14 +124,14 @@ export default function RefundPolicyPage() {
               className="relative z-20 w-40 h-52 bg-white rounded-2xl border border-slate-200 shadow-xl flex flex-col p-5 space-y-3 overflow-hidden"
             >
               <div className="flex justify-between items-center relative z-10">
-                <FileText size={20} className="text-[#7bbd25]" />
+                <FileText size={20} className="text-[#4a703f]" />
                 <div className="w-8 h-1 bg-slate-100 rounded" />
               </div>
 
               <div className="space-y-2 pt-4 relative z-10">
                 <div className="h-2 w-full bg-slate-50 rounded" />
                 <div className="h-2 w-3/4 bg-slate-50 rounded" />
-                <div className="h-2 w-1/2 bg-[#7bbd25]/10 rounded" />
+                <div className="h-2 w-1/2 bg-[#4a703f]/10 rounded" />
               </div>
 
               <div className="mt-auto flex items-center gap-2 pt-4 border-t border-slate-50 relative z-10">
@@ -148,7 +148,7 @@ export default function RefundPolicyPage() {
               className="absolute inset-0 pointer-events-none"
             >
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-white p-3 rounded-full shadow-lg border border-slate-100">
-                <MousePointer2 size={16} className="text-[#7bbd25]" />
+                <MousePointer2 size={16} className="text-[#4a703f]" />
               </div>
             </motion.div>
           </motion.div>

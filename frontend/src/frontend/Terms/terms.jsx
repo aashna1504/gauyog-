@@ -62,7 +62,7 @@ export default function TermsConditionsPage() {
       >
         <div className="absolute inset-0 bg-gradient-to-br from-[#f8fbf6] via-white to-[#f4f9ef]" />
 
-        <div className="absolute top-[-80px] left-[-60px] w-[300px] h-[300px] bg-[#7bbd25]/20 rounded-full blur-[120px]" />
+        <div className="absolute top-[-80px] left-[-60px] w-[300px] h-[300px] bg-[#4a703f]/20 rounded-full blur-[120px]" />
         <div className="absolute bottom-[-100px] right-[-80px] w-[350px] h-[350px] bg-[#4a703f]/20 rounded-full blur-[140px]" />
 
         <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(#000_1px,transparent_1px),linear-gradient(90deg,#000_1px,transparent_1px)] bg-[size:40px_40px]" />
@@ -75,7 +75,7 @@ export default function TermsConditionsPage() {
                 className="text-5xl md:text-7xl font-extrabold text-gray-900 leading-tight"
               >
                 Terms &
-                <span className="text-[#7bbd25] italic font-semibold">
+                <span className="text-[#4a703f] italic font-semibold">
                   Conditions
                 </span>
               </motion.h1>

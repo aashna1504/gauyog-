@@ -17,7 +17,7 @@ const STATUS_COLORS = {
   PENDING:    "bg-yellow-100 text-yellow-600",
   CONFIRMED:  "bg-blue-100 text-blue-600",
   PROCESSING: "bg-purple-100 text-purple-600",
-  SHIPPED:    "bg-[#7bbd25]/10 text-[#7bbd25]",
+  SHIPPED:    "bg-[#4a703f]/10 text-[#4a703f]",
   DELIVERED:  "bg-slate-100 text-slate-500",
   CANCELLED:  "bg-red-100 text-red-500",
 };
@@ -161,7 +161,7 @@ export default function NexusOrderLedger() {
                 className="grid grid-cols-1 md:grid-cols-5 px-8 md:px-10 py-8 md:py-7 items-center transition-all group"
               >
                 <div className="mb-4 md:mb-0">
-                  <p className="text-[9px] font-black text-[#7bbd25] uppercase tracking-widest mb-1 md:hidden">Order ID</p>
+                  <p className="text-[9px] font-black text-[#4a703f] uppercase tracking-widest mb-1 md:hidden">Order ID</p>
                   <h4 className="text-sm font-black text-slate-900 uppercase">
                     #{order.id.slice(0, 8).toUpperCase()}
                   </h4>

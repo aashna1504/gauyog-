@@ -70,7 +70,7 @@ const commitments = [
   {
     title: "Zero Chemicals",
     desc: "Our manufacturing uses only natural composting and biological enrichment. No synthetic chemicals.",
-    color: "#7bbd25",
+    color: "#4a703f",
   },
   {
     title: "Community First",
@@ -117,7 +117,7 @@ export default function KineticContactBanner() {
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.5 }}
-          className="absolute top-0 right-0 w-[30%] h-full bg-[#7bbd25]/5 -skew-x-12 translate-x-10 -z-10"
+          className="absolute top-0 right-0 w-[30%] h-full bg-[#4a703f]/5 -skew-x-12 translate-x-10 -z-10"
         />
         <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-[#744926]/5 rounded-full blur-[80px] -z-10" />
 
@@ -127,7 +127,7 @@ export default function KineticContactBanner() {
               variants={itemVariants}
               className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white rounded-full shadow-sm border border-gray-100"
             >
-              <HandshakeIcon size={14} className="text-[#7bbd25]" />
+              <HandshakeIcon size={14} className="text-[#4a703f]" />
               <span className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-400">
                 Direct Touch
               </span>
@@ -142,7 +142,7 @@ export default function KineticContactBanner() {
               }}
             >
               Grow
-              <span className="text-[#7bbd25] italic font-medium">
+              <span className="text-[#4a703f] italic font-medium">
                 {" "}
                 Together.
               </span>
@@ -186,10 +186,10 @@ export default function KineticContactBanner() {
                 </div>
               </div>
 
-              <div className="absolute top-1/2 -left-12 -translate-y-1/2 flex items-center gap-3 bg-white/40 backdrop-blur-xl px-5 py-3 rounded-full shadow-lg border border-white/30 transform group-hover:bg-[#7bbd25] group-hover:text-white transition-all duration-500">
+              <div className="absolute top-1/2 -left-12 -translate-y-1/2 flex items-center gap-3 bg-white/40 backdrop-blur-xl px-5 py-3 rounded-full shadow-lg border border-white/30 transform group-hover:bg-[#4a703f] group-hover:text-white transition-all duration-500">
                 <Globe
                   size={24}
-                  className="text-[#7bbd25] group-hover:text-white"
+                  className="text-[#4a703f] group-hover:text-white"
                 />
                 <p className="text-sm font-bold text-gray-900 group-hover:text-white">
                   Active Support
@@ -203,7 +203,7 @@ export default function KineticContactBanner() {
             <motion.div
               animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }}
               transition={{ duration: 4, repeat: Infinity }}
-              className="absolute -inset-10 bg-[#7bbd25]/15 blur-3xl -z-10 rounded-full"
+              className="absolute -inset-10 bg-[#4a703f]/15 blur-3xl -z-10 rounded-full"
             />
           </motion.div>
         </div>
@@ -264,7 +264,7 @@ export default function KineticContactBanner() {
 
               <h2 className="text-5xl md:text-6xl  font-bold text-white leading-[1.1]">
                 Born from the{" "}
-                <span className="text-[#7bbd25] italic font-medium text-6xl">
+                <span className="text-[#4a703f] italic font-medium text-6xl">
                   Earth,
                 </span>{" "}
                 <br />
@@ -272,7 +272,7 @@ export default function KineticContactBanner() {
               </h2>
 
               <div className="space-y-2 text-slate-100 text-lg leading-relaxed">
-                <p className="font-semibold text-[#7bbd25]">
+                <p className="font-semibold text-[#4a703f]">
                   Gauyog Kendr brings together Indian agricultural heritage and
                   international business vision to create premium organic
                   products.
@@ -289,8 +289,8 @@ export default function KineticContactBanner() {
             {/* Feature Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6 border-t border-slate-100">
               <div className="flex gap-4">
-                <div className="w-10 h-10 rounded-full bg-[#7bbd25]/30 flex items-center justify-center shrink-0">
-                  <Leaf className="text-[#7bbd25]" size={18} />
+                <div className="w-10 h-10 rounded-full bg-[#4a703f]/30 flex items-center justify-center shrink-0">
+                  <Leaf className="text-[#4a703f]" size={18} />
                 </div>
                 <div>
                   <h4 className="font-bold text-white text-sm">
@@ -356,7 +356,7 @@ export default function KineticContactBanner() {
             </motion.span>
             <h2 className="text-5xl md:text-6xl font-bold leading-tight max-w-2xl">
               Sustainability Is Our{" "}
-              <span className="text-[#7bbd25] italic">Foundation</span>
+              <span className="text-[#4a703f] italic">Foundation</span>
             </h2>
             <p className="mt-6 text-slate-500 text-lg max-w-xl">
               Every product returns value to the earth through a circular
@@ -414,7 +414,7 @@ export default function KineticContactBanner() {
                     alt="Nature texture"
                   />
 
-                  <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#7bbd25]/20 blur-[80px] rounded-full" />
+                  <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#4a703f]/20 blur-[80px] rounded-full" />
                   <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-black/10 blur-[80px] rounded-full" />
                 </div>
 
@@ -481,7 +481,7 @@ export default function KineticContactBanner() {
                     (icon, idx) => (
                       <button
                         key={idx}
-                        className="w-9 h-9 flex items-center justify-center rounded-full text-white/40 hover:text-white hover:bg-[#7bbd25] transition-all duration-300"
+                        className="w-9 h-9 flex items-center justify-center rounded-full text-white/40 hover:text-white hover:bg-[#4a703f] transition-all duration-300"
                       >
                         {React.cloneElement(icon, { size: 14 })}
                       </button>
@@ -496,13 +496,13 @@ export default function KineticContactBanner() {
                   onSubmit={handleSubmit}
                 >
                   <div className="mb-10 space-y-3">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 text-[#7bbd25] text-[9px] font-black uppercase tracking-[0.2em]">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#7bbd25] animate-ping" />
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 text-[#4a703f] text-[9px] font-black uppercase tracking-[0.2em]">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#4a703f] animate-ping" />
                       Direct Channel
                     </div>
                     <h3 className="text-4xl font-black text-gray-900 tracking-tighter leading-none">
                       Get in{" "}
-                      <span className="text-[#7bbd25] italic font-medium">
+                      <span className="text-[#4a703f] italic font-medium">
                         Touch.
                       </span>
                     </h3>
@@ -510,7 +510,7 @@ export default function KineticContactBanner() {
 
                   <div className="space-y-5">
                     <div className="space-y-1.5 group">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 group-focus-within:text-[#7bbd25]">
+                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 group-focus-within:text-[#4a703f]">
                         Full Name
                       </label>
                       <div className="relative">
@@ -519,17 +519,17 @@ export default function KineticContactBanner() {
                           placeholder="John Doe"
                           value={form.name}
                           onChange={(e) => handleChange("name", e.target.value)}
-                          className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3.5 rounded-full outline-none focus:bg-white focus:border-[#7bbd25] focus:ring-4 focus:ring-[#7bbd25]/5 transition-all text-sm font-bold text-gray-900"
+                          className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3.5 rounded-full outline-none focus:bg-white focus:border-[#4a703f] focus:ring-4 focus:ring-[#4a703f]/5 transition-all text-sm font-bold text-gray-900"
                         />
                         <User
-                          className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-200 group-focus-within:text-[#7bbd25]"
+                          className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-200 group-focus-within:text-[#4a703f]"
                           size={18}
                         />
                       </div>
                     </div>
 
                     <div className="space-y-1.5 group">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 group-focus-within:text-[#7bbd25]">
+                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 group-focus-within:text-[#4a703f]">
                         Email Address
                       </label>
                       <div className="relative">
@@ -540,17 +540,17 @@ export default function KineticContactBanner() {
                           onChange={(e) =>
                             handleChange("email", e.target.value)
                           }
-                          className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3.5 rounded-full outline-none focus:bg-white focus:border-[#7bbd25] focus:ring-4 focus:ring-[#7bbd25]/5 transition-all text-sm font-bold text-gray-900"
+                          className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3.5 rounded-full outline-none focus:bg-white focus:border-[#4a703f] focus:ring-4 focus:ring-[#4a703f]/5 transition-all text-sm font-bold text-gray-900"
                         />
                         <Mail
-                          className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-200 group-focus-within:text-[#7bbd25]"
+                          className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-200 group-focus-within:text-[#4a703f]"
                           size={18}
                         />
                       </div>
                     </div>
 
                     <div className="space-y-1.5 group">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 group-focus-within:text-[#7bbd25]">
+                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 group-focus-within:text-[#4a703f]">
                         Your Message
                       </label>
                       <textarea
@@ -560,7 +560,7 @@ export default function KineticContactBanner() {
                         onChange={(e) =>
                           handleChange("message", e.target.value)
                         }
-                        className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3.5 rounded-full outline-none focus:bg-white focus:border-[#7bbd25] focus:ring-4 focus:ring-[#7bbd25]/5 transition-all text-sm font-bold text-gray-900 resize-none"
+                        className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3.5 rounded-full outline-none focus:bg-white focus:border-[#4a703f] focus:ring-4 focus:ring-[#4a703f]/5 transition-all text-sm font-bold text-gray-900 resize-none"
                       />
                     </div>
 

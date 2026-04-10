@@ -19,8 +19,10 @@ interface GoogleTokenInfo {
 
 export class AuthService {
   static async signup(data: z.infer<typeof signupSchema>['body']): Promise<AuthResponse> {
+    const normalizedEmail = data.email.toLowerCase().trim();
+
     const existingUser = await prisma.user.findUnique({
-      where: { email: data.email },
+      where: { email: normalizedEmail },
     });
 
     if (existingUser) {
@@ -31,7 +33,7 @@ export class AuthService {
 
     const user = await prisma.user.create({
       data: {
-        email: data.email,
+        email: normalizedEmail,
         password: hashedPassword,
         role: data.role || 'USER',
       },

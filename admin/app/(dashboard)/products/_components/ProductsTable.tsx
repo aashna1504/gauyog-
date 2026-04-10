@@ -100,12 +100,12 @@ export function ProductsTable() {
         const p = row.original;
         return (
           <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-lg overflow-hidden bg-muted flex-shrink-0 flex items-center justify-center">
+            <div className="h-10 w-10 rounded-lg overflow-hidden bg-[#f3f8ee] flex-shrink-0 flex items-center justify-center">
               {p.imageUrl ? (
                 <img
                   src={p.imageUrl}
                   alt={p.name}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-contain"
                 />
               ) : (
                 <Package className="h-5 w-5 text-muted-foreground" />

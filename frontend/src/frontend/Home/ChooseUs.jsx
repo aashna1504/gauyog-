@@ -41,7 +41,7 @@ export default function WhyChooseUs() {
 
   return (
     <div className="bg-[#fcfdfd ] py-24 px-6 relative overflow-hidden  text-gray-900">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#7bbd25]/5 rounded-full blur-[140px] -z-10" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#4a703f]/5 rounded-full blur-[140px] -z-10" />
 
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -69,11 +69,11 @@ export default function WhyChooseUs() {
 
           <div className="lg:pl-10 ">
             <header className="mb-14">
-              <div className="text-[#7bbd25] font-bold text-xs uppercase tracking-[0.4em] mb-4 flex items-center gap-3">
+              <div className="text-[#4a703f] font-bold text-xs uppercase tracking-[0.4em] mb-4 flex items-center gap-3">
                 <span className="w-10 h-[1px] bg-[#4a703f]" /> Why Gauyog Kendr
               </div>
               <h2 className="text-5xl md:text-6xl font-black leading-tight text-gray-900 tracking-tighter">
-                Pure By <span className="text-[#7bbd25]">Nature,</span> <br />
+                Pure By <span className="text-[#4a703f]">Nature,</span> <br />
                 Proven By <span className="text-[#744926]">Earth.</span>
               </h2>
             </header>
@@ -105,7 +105,7 @@ export default function WhyChooseUs() {
                           </h3>
                           <ArrowRight
                             size={18}
-                            className={`transition-all duration-500 ${isActive ? "opacity-100 translate-x-0 text-[#7bbd25]" : "opacity-0 -translate-x-4"}`}
+                            className={`transition-all duration-500 ${isActive ? "opacity-100 translate-x-0 text-[#4a703f]" : "opacity-0 -translate-x-4"}`}
                           />
                         </div>
 

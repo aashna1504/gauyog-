@@ -66,7 +66,7 @@ export default function ResetPasswordPage() {
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••"
+                  placeholder="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"
                   className="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded-full text-sm font-bold"
                 />
                 <Lock className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-300" size={16} />
@@ -80,7 +80,7 @@ export default function ResetPasswordPage() {
                   type="password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  placeholder="••••••••"
+                  placeholder="ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"
                   className="w-full bg-slate-50 border border-slate-200 px-4 py-3 rounded-full text-sm font-bold"
                 />
                 <Lock className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-300" size={16} />
@@ -90,7 +90,7 @@ export default function ResetPasswordPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-[#4a703f] hover:bg-[#7bbd25] disabled:opacity-60 text-white py-4 rounded-full font-black uppercase text-xs tracking-widest flex items-center justify-center gap-2"
+              className="w-full bg-[#4a703f] hover:bg-[#4a703f] disabled:opacity-60 text-white py-4 rounded-full font-black uppercase text-xs tracking-widest flex items-center justify-center gap-2"
             >
               {loading ? "Resetting..." : "Reset Password"}
               {!loading && <ArrowRight size={16} />}

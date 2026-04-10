@@ -154,7 +154,7 @@ export default function NexusAddressPage() {
           
             <div className="border-t border-slate-100 pt-8 space-y-6">
               <div className="flex items-center gap-2">
-                <Navigation size={14} className="text-[#7bbd25]" />
+                <Navigation size={14} className="text-[#4a703f]" />
                 <h3 className="text-[11px] font-black uppercase tracking-[0.3em] text-[#4a703f]">
                   Address Information
                 </h3>

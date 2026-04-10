@@ -123,7 +123,7 @@ export default function SettingsPage() {
             <CardContent className="relative pt-0">
               <div className="flex flex-col items-center -mt-8">
                 <Avatar className="h-20 w-20 border-4 border-background shadow-xl">
-                  <AvatarFallback className="text-xl bg-[#7bbd25] text-white font-bold">
+                  <AvatarFallback className="text-xl bg-[#4a703f] text-white font-bold">
                     {initials}
                   </AvatarFallback>
                 </Avatar>
@@ -136,7 +136,7 @@ export default function SettingsPage() {
                     variant="outline"
                     className={`mt-2 ${
                       isAdmin
-                        ? "bg-[#7bbd25]/10 text-[#4a703f] border-[#7bbd25]/20"
+                        ? "bg-[#4a703f]/10 text-[#4a703f] border-[#4a703f]/20"
                         : "bg-blue-50 text-blue-700 border-blue-200"
                     }`}
                   >
@@ -200,7 +200,7 @@ export default function SettingsPage() {
                     <Input
                       type="password"
                       placeholder="Enter current password"
-                      className="focus-visible:ring-[#7bbd25]"
+                      className="focus-visible:ring-[#4a703f]"
                       {...passwordForm.register("currentPassword")}
                     />
                     {passwordForm.formState.errors.currentPassword && (
@@ -216,7 +216,7 @@ export default function SettingsPage() {
                     <Input
                       type="password"
                       placeholder="Min. 6 characters"
-                      className="focus-visible:ring-[#7bbd25]"
+                      className="focus-visible:ring-[#4a703f]"
                       {...passwordForm.register("newPassword")}
                     />
                     {passwordForm.formState.errors.newPassword && (
@@ -232,7 +232,7 @@ export default function SettingsPage() {
                     <Input
                       type="password"
                       placeholder="Repeat new password"
-                      className="focus-visible:ring-[#7bbd25]"
+                      className="focus-visible:ring-[#4a703f]"
                       {...passwordForm.register("confirmPassword")}
                     />
                     {passwordForm.formState.errors.confirmPassword && (
@@ -246,7 +246,7 @@ export default function SettingsPage() {
                   <Button
                     type="submit"
                     disabled={isChangingPassword}
-                    className="bg-[#4a703f] hover:bg-[#7bbd25] transition-colors min-w-[150px]"
+                    className="bg-[#4a703f] hover:bg-[#4a703f] transition-colors min-w-[150px]"
                   >
                     {isChangingPassword ? (
                       <><Loader2 className="h-4 w-4 animate-spin mr-2" /> Updating...</>

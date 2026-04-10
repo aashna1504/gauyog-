@@ -165,8 +165,8 @@ export default function VedicDhoopMosaicPage() {
                         onClick={() => setActiveImg(idx)}
                         className={`flex-shrink-0 w-14 h-14 rounded-xl overflow-hidden border-2 p-1 transition-all duration-200 ${
                           activeImg === idx
-                            ? "border-[#7bbd25] shadow-md shadow-green-100 scale-105 bg-white"
-                            : "border-transparent bg-slate-50 opacity-50 hover:opacity-90 hover:border-slate-200"
+                            ? "border-[#4a703f] shadow-md shadow-green-100 scale-105 bg-[#f3f8ee]"
+                            : "border-transparent bg-[#f3f8ee] opacity-50 hover:opacity-90 hover:border-slate-200"
                         }`}
                       >
                         <img
@@ -183,7 +183,7 @@ export default function VedicDhoopMosaicPage() {
                 )}
 
                 {/* Main image */}
-                <div className="relative flex-1 flex items-center justify-center min-h-[440px] md:min-h-[540px] bg-gradient-to-br from-[#eef5e8] via-white to-[#f3f8ee] rounded-2xl px-4 py-8">
+                <div className="relative flex-1 flex items-center justify-center min-h-[440px] md:min-h-[540px] bg-[#f3f8ee] rounded-2xl px-4 py-8">
                   <AnimatePresence mode="wait">
                     <motion.img
                       key={activeImg}
@@ -193,7 +193,7 @@ export default function VedicDhoopMosaicPage() {
                       transition={{ type: "spring", damping: 22, stiffness: 200 }}
                       src={productImages[activeImg]}
                       alt={product.name}
-                      className="w-full max-w-[380px] md:max-w-[460px] object-contain drop-shadow-[0_30px_50px_rgba(74,112,63,0.18)]"
+                      className="w-full max-w-[380px] md:max-w-[460px] object-contain rounded-full"
                       onError={(e) => {
                         e.currentTarget.src = PLACEHOLDER_IMG;
                       }}
@@ -237,7 +237,7 @@ export default function VedicDhoopMosaicPage() {
                   </span>
                 )}
                 {discountPct && (
-                  <span className="text-xs font-black text-[#4a703f] bg-[#7bbd25]/15 px-2.5 py-1 rounded-full">
+                  <span className="text-xs font-black text-[#4a703f] bg-[#4a703f]/15 px-2.5 py-1 rounded-full">
                     {discountPct}% OFF
                   </span>
                 )}
@@ -308,8 +308,8 @@ export default function VedicDhoopMosaicPage() {
                 </div>
               </div>
               <div className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm flex items-center gap-4">
-                <div className="w-10 h-10 rounded-xl bg-[#7bbd25]/10 flex items-center justify-center flex-shrink-0">
-                  <Layers size={18} className="text-[#7bbd25]" />
+                <div className="w-10 h-10 rounded-xl bg-[#4a703f]/10 flex items-center justify-center flex-shrink-0">
+                  <Layers size={18} className="text-[#4a703f]" />
                 </div>
                 <div>
                   <p className="text-[9px] font-black uppercase tracking-widest text-slate-400 mb-0.5">

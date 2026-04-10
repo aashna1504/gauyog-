@@ -10,7 +10,7 @@
     --card-foreground: 154 28% 14%;
     --popover: 0 0% 100%;
     --popover-foreground: 154 28% 14%;
-    /* Primary: #7bbd25 */
+    /* Primary: #4a703f */
     --primary: 82 67% 44%;
     --primary-foreground: 0 0% 100%;
     --secondary: 82 30% 94%;
@@ -29,7 +29,7 @@
     /* Sidebar — dark green, matching frontend sidebar */
     --sidebar-background: 222 47% 11%;
     --sidebar-foreground: 215 20% 65%;
-    /* Sidebar primary: #7bbd25 */
+    /* Sidebar primary: #4a703f */
     --sidebar-primary: 82 67% 44%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 217 33% 17%;

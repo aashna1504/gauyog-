@@ -91,13 +91,13 @@ export default function NexusFavourites() {
                 <Heart size={18} fill="currentColor" />
               </button>
 
-              <div className="absolute top-[-20px] right-[-20px] w-24 h-24 bg-[#7bbd25]/5 rounded-full blur-3xl group-hover:bg-[#7bbd25]/10 transition-colors z-0" />
+              <div className="absolute top-[-20px] right-[-20px] w-24 h-24 bg-[#4a703f]/5 rounded-full blur-3xl group-hover:bg-[#4a703f]/10 transition-colors z-0" />
 
-              <div className="w-full aspect-square bg-slate-50 rounded-full overflow-hidden border border-slate-100 flex items-center justify-center p-4 relative z-0 mb-5">
+              <div className="w-full aspect-square bg-[#f3f8ee] rounded-full overflow-hidden border border-slate-100 flex items-center justify-center p-4 relative z-0 mb-5">
                 <img
                   src={item.img || PLACEHOLDER_IMG}
                   alt={item.name}
-                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 rounded-full"
                   onError={(e) => { e.target.src = PLACEHOLDER_IMG; }}
                 />
               </div>
@@ -105,7 +105,7 @@ export default function NexusFavourites() {
               <p className="text-xs font-black text-slate-700 uppercase tracking-tight text-center mb-1 line-clamp-2">
                 {item.name}
               </p>
-              <p className="text-sm font-black text-[#7bbd25] mb-4">
+              <p className="text-sm font-black text-[#4a703f] mb-4">
                 ₹{item.price?.toLocaleString("en-IN")}
               </p>
 

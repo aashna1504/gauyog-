@@ -13,16 +13,6 @@ import {
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-const CATEGORY_COLORS = {
-  Dairy: "from-blue-50 to-indigo-100",
-  Ghee: "from-orange-50 to-yellow-100",
-  Herbs: "from-green-50 to-emerald-100",
-  Grains: "from-amber-50 to-yellow-100",
-  Wellness: "from-purple-50 to-violet-100",
-  Garden: "from-emerald-50 to-teal-100",
-  Pantry: "from-amber-50 to-orange-100",
-};
-const FALLBACK_COLOR = "from-gray-50 to-slate-100";
 const PLACEHOLDER_IMG = "https://pngimg.com/d/milk_PNG12756.png";
 
 export default function ProductCard({
@@ -41,7 +31,6 @@ export default function ProductCard({
   const p = {
     ...product,
     image: product.imageUrl || product.image || PLACEHOLDER_IMG,
-    color: product.color || CATEGORY_COLORS[product.category] || FALLBACK_COLOR,
     size: product.weight || product.size || "",
     weightOptions: product.weightOptions || [],
     desc: product.description || product.desc || "",
@@ -66,9 +55,7 @@ export default function ProductCard({
         className="group"
       >
         <div className="bg-white rounded-[40px] p-4 border border-gray-100 flex flex-col h-full transition-all duration-500 hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.12)]">
-          <div
-            className={`relative h-64 w-full bg-gradient-to-br ${p.color} rounded-[32px] overflow-hidden flex items-center justify-center`}
-          >
+          <div className="relative h-64 w-full bg-[#f3f8ee] rounded-[32px] overflow-hidden flex items-center justify-center">
             <div className="absolute top-4 left-4 z-10">
               <span className="backdrop-blur-md bg-white/70 px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-widest text-gray-800 border border-white/40">
                 {p.tag}
@@ -85,7 +72,7 @@ export default function ProductCard({
 
             <img
               src={p.image}
-              className="h-44 object-contain transition-transform duration-700 group-hover:scale-110 drop-shadow-2xl"
+              className="h-44 object-contain transition-transform duration-700 group-hover:scale-110 rounded-full"
               alt={p.name}
               onError={(e) => {
                 e.target.src = PLACEHOLDER_IMG;
@@ -95,7 +82,7 @@ export default function ProductCard({
             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center gap-3 bg-black/5 backdrop-blur-[2px]">
               <button
                 onClick={() => setShowModal(true)}
-                className="w-12 h-12 bg-white rounded-full shadow-xl flex items-center justify-center text-gray-700 hover:bg-[#7bbd25] hover:text-white transition-all transform translate-y-4 group-hover:translate-y-0"
+                className="w-12 h-12 bg-white rounded-full shadow-xl flex items-center justify-center text-gray-700 hover:bg-[#4a703f] hover:text-white transition-all transform translate-y-4 group-hover:translate-y-0"
               >
                 <Eye size={20} />
               </button>
@@ -142,7 +129,7 @@ export default function ProductCard({
                 </p>
               </div>
               <div className="pl-2 text-right">
-                <p className="text-2xl font-black text-[#7bbd25] tracking-tighter">
+                <p className="text-2xl font-black text-[#4a703f] tracking-tighter">
                   ₹{p.price}
                 </p>
                 {p.discountPrice && (
@@ -226,14 +213,12 @@ export default function ProductCard({
                 </button>
               </div>
 
-              <div
-                className={`w-full md:w-5/12 bg-gradient-to-br ${p.color} flex items-center justify-center p-12 relative min-h-[300px]`}
-              >
+              <div className="w-full md:w-5/12 bg-[#f3f8ee] flex items-center justify-center p-12 relative min-h-[300px]">
                 <motion.img
                   initial={{ scale: 0.6, opacity: 0, y: 20 }}
                   animate={{ scale: 1, opacity: 1, y: 0 }}
                   src={p.image}
-                  className="w-full max-w-[320px] drop-shadow-2xl z-10 rounded-full"
+                  className="w-full max-w-[320px] z-10 rounded-full"
                   alt={p.name}
                   onError={(e) => {
                     e.target.src = PLACEHOLDER_IMG;
@@ -259,7 +244,7 @@ export default function ProductCard({
                 )}
 
                 <div className="flex items-center gap-4 mb-8">
-                  <p className="text-4xl font-black text-[#7bbd25] tracking-tighter">
+                  <p className="text-4xl font-black text-[#4a703f] tracking-tighter">
                     ₹{p.price}
                   </p>
                   {p.discountPrice && (
@@ -285,7 +270,7 @@ export default function ProductCard({
                     <select
                       value={selectedWeight || p.weightOptions[0]}
                       onChange={(e) => setSelectedWeight(e.target.value)}
-                      className="w-full rounded-full border border-gray-200 px-4 py-3 text-sm font-semibold text-gray-700 outline-none focus:border-[#7bbd25]"
+                      className="w-full rounded-full border border-gray-200 px-4 py-3 text-sm font-semibold text-gray-700 outline-none focus:border-[#4a703f]"
                     >
                       {p.weightOptions.map((option) => (
                         <option key={option} value={option}>

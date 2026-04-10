@@ -112,7 +112,7 @@ export default function FloatingNexusDashboard() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.5, ease: "easeOut" }}
-          className="absolute top-[-5%] right-[-5%] w-[450px] md:w-[600px] h-[450px] md:h-[600px] bg-[#7bbd25]/20 blur-[60px] rounded-full z-0"
+          className="absolute top-[-5%] right-[-5%] w-[450px] md:w-[600px] h-[450px] md:h-[600px] bg-[#4a703f]/20 blur-[60px] rounded-full z-0"
         />
       </div>
 
@@ -181,7 +181,7 @@ export default function FloatingNexusDashboard() {
          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
        
-            <div className="bg-white border border-slate-100 p-6 rounded-[32px] shadow-sm flex flex-col justify-between hover:border-[#7bbd25] transition-colors group">
+            <div className="bg-white border border-slate-100 p-6 rounded-[32px] shadow-sm flex flex-col justify-between hover:border-[#4a703f] transition-colors group">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center text-slate-300 group-hover:text-[#4a703f]">
                   <User size={24} />
@@ -197,7 +197,7 @@ export default function FloatingNexusDashboard() {
               </div>
               <button
                 onClick={() => navigate("/settings")}
-                className="w-full py-3 bg-slate-50 rounded-full text-[9px] font-black uppercase tracking-widest text-slate-800 hover:bg-[#7bbd25] hover:text-white transition-all"
+                className="w-full py-3 bg-slate-50 rounded-full text-[9px] font-black uppercase tracking-widest text-slate-800 hover:bg-[#4a703f] hover:text-white transition-all"
               >
                 Edit Profile
               </button>
@@ -209,7 +209,7 @@ export default function FloatingNexusDashboard() {
               onClick={() => navigate("/orders")}
             >
               <div className="flex items-center gap-3 mb-6">
-                <div className="p-2 bg-[#7bbd25]/10 rounded-full text-[#7bbd25]">
+                <div className="p-2 bg-[#4a703f]/10 rounded-full text-[#4a703f]">
                   <Package size={18} />
                 </div>
                 <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-900">
@@ -285,7 +285,7 @@ export default function FloatingNexusDashboard() {
                     </span>
                   </div>
                   <h3 className="text-3xl md:text-4xl font-black tracking-tighter leading-none uppercase">
-                    Need <span className="text-[#7bbd25]">Support?</span>
+                    Need <span className="text-[#e9aa43]">Support?</span>
                   </h3>
                 </div>
 
@@ -329,7 +329,7 @@ export default function FloatingNexusDashboard() {
               </div>
 
              
-              <div className="absolute top-[-20%] right-[-5%] w-80 h-80 bg-[#7bbd25]/20 blur-[100px] rounded-full group-hover:bg-[#e9aa43]/20 transition-all duration-1000 z-0" />
+              <div className="absolute top-[-20%] right-[-5%] w-80 h-80 bg-[#4a703f]/20 blur-[100px] rounded-full group-hover:bg-[#e9aa43]/20 transition-all duration-1000 z-0" />
               <div className="absolute bottom-[-20%] left-[-5%] w-60 h-60 bg-black/20 blur-[80px] rounded-full z-0" />
             </div>
           </div>

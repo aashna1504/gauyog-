@@ -30,7 +30,7 @@ const STATUS_COLORS = {
   PENDING:    "text-yellow-500",
   CONFIRMED:  "text-blue-500",
   PROCESSING: "text-purple-500",
-  SHIPPED:    "text-[#7bbd25]",
+  SHIPPED:    "text-[#4a703f]",
   DELIVERED:  "text-[#4a703f]",
   CANCELLED:  "text-red-500",
 };
@@ -96,7 +96,7 @@ export default function TrackOrderPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#f8fbf6] to-white" />
         <div
           className="absolute top-1/2 -right-1/4 -translate-y-1/2 w-[60%] h-[150%] opacity-20 blur-[120px] rounded-full pointer-events-none animate-pulse"
-          style={{ background: "radial-gradient(circle at right, #7bbd25 0%, transparent 70%)", zIndex: -20 }}
+          style={{ background: "radial-gradient(circle at right, #4a703f 0%, transparent 70%)", zIndex: -20 }}
         />
         <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
           <motion.div variants={itemVariants} className="flex items-center justify-center gap-3 mb-6">
@@ -110,7 +110,7 @@ export default function TrackOrderPage() {
             style={{ fontFamily: "'Baskerville Old Face', 'Libre Baskerville', serif" }}
           >
             Track <br />
-            <span className="text-[#7bbd25] italic font-medium">Your Order.</span>
+            <span className="text-[#4a703f] italic font-medium">Your Order.</span>
           </motion.h1>
           <motion.p
             variants={itemVariants}
@@ -133,13 +133,13 @@ export default function TrackOrderPage() {
                 Enter Order ID
               </label>
               <div className="relative group">
-                <div className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-[#7bbd25] transition-colors">
+                <div className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-[#4a703f] transition-colors">
                   <Search size={20} />
                 </div>
                 <input
                   type="text"
                   placeholder="Paste your order ID..."
-                  className="w-full bg-slate-50 border-none rounded-full py-6 pl-16 pr-6 text-lg font-bold text-slate-900 focus:ring-2 focus:ring-[#7bbd25] transition-all placeholder:text-slate-200"
+                  className="w-full bg-slate-50 border-none rounded-full py-6 pl-16 pr-6 text-lg font-bold text-slate-900 focus:ring-2 focus:ring-[#4a703f] transition-all placeholder:text-slate-200"
                   value={orderId}
                   onChange={(e) => setOrderId(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleSearch()}
@@ -158,10 +158,10 @@ export default function TrackOrderPage() {
 
             <div className="flex items-center justify-between pt-6 border-t border-slate-50">
               <div className="flex items-center gap-2">
-                <ShieldCheck size={14} className="text-[#7bbd25]" />
+                <ShieldCheck size={14} className="text-[#4a703f]" />
                 <span className="text-[9px] font-black uppercase text-slate-400 tracking-tighter">Verified Delivery</span>
               </div>
-              <Link to="/contact" className="text-[9px] font-black uppercase text-slate-400 tracking-tighter hover:text-[#7bbd25] transition-colors">
+              <Link to="/contact" className="text-[9px] font-black uppercase text-slate-400 tracking-tighter hover:text-[#4a703f] transition-colors">
                 Need Help?
               </Link>
             </div>
@@ -253,7 +253,7 @@ export default function TrackOrderPage() {
                         <img
                           src={item.product.imageUrl}
                           alt={item.name}
-                          className="w-12 h-12 object-contain rounded-xl bg-white p-1"
+                          className="w-12 h-12 object-contain rounded-xl bg-[#f3f8ee] p-1"
                           onError={(e) => { e.target.style.display = "none"; }}
                         />
                       )}
@@ -289,8 +289,8 @@ export default function TrackOrderPage() {
 function FeatureBlock({ icon: Icon, title, desc }) {
   return (
     <div className="text-center space-y-4 px-6 group">
-      <div className="w-16 h-16 bg-white border border-slate-100 rounded-3xl flex items-center justify-center mx-auto shadow-sm group-hover:bg-[#7bbd25] transition-all duration-500 group-hover:-translate-y-2">
-        <Icon size={24} className="text-[#7bbd25] group-hover:text-white transition-colors" />
+      <div className="w-16 h-16 bg-white border border-slate-100 rounded-3xl flex items-center justify-center mx-auto shadow-sm group-hover:bg-[#4a703f] transition-all duration-500 group-hover:-translate-y-2">
+        <Icon size={24} className="text-[#4a703f] group-hover:text-white transition-colors" />
       </div>
       <div className="space-y-2">
         <h4 className="text-sm font-black uppercase tracking-widest text-slate-900 italic">{title}</h4>

@@ -1,56 +1,66 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const slides = [
-  "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775474951/happy-smiling-indian-farmer-with-tractor-real-farming-life-rural-india_1257902-6315_uxkces.avif",
-  "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775474759/istockphoto-990897254-170667a_yi0zzr.jpg",
-  "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775474246/agri-app-photo-fn-1200x799_dq1qas.jpg",
+  "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775824327/a259ee99-be2f-4185-a897-50d150495adc_m3r3pw.jpg",
+  "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775824336/e5c3ceac-ebd9-4006-8bcb-e973defcf427_fxwehu.jpg",
+  "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775824333/cf6418f9-7420-488a-a669-f6a41b5c2625_awr8bc.jpg",
 ];
 
 export default function BannerSlider() {
   const [index, setIndex] = useState(0);
+  const [direction, setDirection] = useState(1); // 1 = left-to-right, -1 = right-to-left
   const [hovered, setHovered] = useState(false);
+  const indexRef = useRef(index);
+  indexRef.current = index;
 
   useEffect(() => {
     const interval = setInterval(() => {
-      nextSlide();
-    }, 5000); // Increased to 5s for better readability
+      setDirection(1);
+      setIndex((prev) => (prev + 1) % slides.length);
+    }, 5000);
     return () => clearInterval(interval);
-  }, [index]);
+  }, []);
 
   const nextSlide = () => {
+    setDirection(1);
     setIndex((prev) => (prev + 1) % slides.length);
   };
 
   const prevSlide = () => {
+    setDirection(-1);
     setIndex((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
+  const slideVariants = {
+    enter: (dir) => ({ x: dir > 0 ? "100%" : "-100%" }),
+    center: { x: 0 },
+    exit: (dir) => ({ x: dir > 0 ? "-100%" : "100%" }),
   };
 
   return (
     <div
-      className="relative w-full h-[50vh] md:h-[85vh] lg:h-[100vh] overflow-hidden bg-slate-900"
+      className="relative w-full h-[70vh] md:h-[85vh] lg:h-[110vh] overflow-hidden bg-slate-900 object-contain object-center"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-     
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="sync" custom={direction}>
         <motion.img
           key={index}
           src={slides[index]}
-          initial={{ opacity: 0, scale: 1.1 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.95 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-        
+          custom={direction}
+          variants={slideVariants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition={{ duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
       </AnimatePresence>
 
-    
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 pointer-events-none" />
 
-      
       <div className="hidden md:block">
         <AnimatePresence>
           {hovered && (

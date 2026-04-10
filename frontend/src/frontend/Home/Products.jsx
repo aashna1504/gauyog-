@@ -89,7 +89,7 @@ export default function ProductSection() {
 
               <h1 className="text-5xl md:text-6xl  font-bold text-black leading-[1.1]">
                 Our Gift from{" "}
-                <span className="text-[#7bbd25] italic">Gujarat, India</span> to
+                <span className="text-[#4a703f] italic">Gujarat, India</span> to
                 the World
               </h1>
 
@@ -114,7 +114,7 @@ export default function ProductSection() {
               </button>
               <button
                 onClick={() => (window.location.href = "/contact")}
-                className="border-2 border-slate-200 hover:border-[#7bbd25] hover:text-[#7bbd25] text-slate-600 px-8 py-4 rounded-full font-bold transition-all active:scale-95"
+                className="border-2 border-slate-200 hover:border-[#4a703f] hover:text-[#4a703f] text-slate-600 px-8 py-4 rounded-full font-bold transition-all active:scale-95"
               >
                 Connect With Us
               </button>
@@ -175,7 +175,7 @@ export default function ProductSection() {
                 alt="Mascot"
               />
               <div className="absolute bottom-4 right-10 z-20 bg-white/80 backdrop-blur-md p-4 rounded-full shadow-xl border border-white flex items-center gap-3 animate-bounce">
-                <div className="bg-[#7bbd25] p-2 rounded-full text-white shadow-lg shadow-green-200">
+                <div className="bg-[#4a703f] p-2 rounded-full text-white shadow-lg shadow-green-200">
                   <CheckCircleIcon size={20} />
                 </div>
                 <div>
@@ -188,16 +188,16 @@ export default function ProductSection() {
             </div>
 
             <div className="lg:pl-10 space-y-6 order-1 md:order-2 text-center md:text-left">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-green-50 text-[#7bbd25] text-xs font-bold uppercase tracking-widest border border-green-100">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-green-50 text-[#4a703f] text-xs font-bold uppercase tracking-widest border border-green-100">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#7bbd25]" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#4a703f]" />
                 </span>
                 New Arrival 2026
               </div>
               <h2 className="text-5xl lg:text-7xl font-bold text-gray-900 leading-[1.1]">
                 Your
-                <span className="text-[#7bbd25] italic">
+                <span className="text-[#4a703f] italic">
                   Trusted Natural Partner
                 </span>
               </h2>
@@ -221,7 +221,7 @@ export default function ProductSection() {
               <h2 className="text-5xl lg:text-7xl font-bold text-gray-900 leading-[1.1]">
                 Everything from Mother Earth
               </h2>
-              <div className="h-1.5 w-16 bg-[#7bbd25] rounded-full" />
+              <div className="h-1.5 w-16 bg-[#4a703f] rounded-full" />
             </div>
             <div className="flex gap-3">
               <button className="group border-2 border-gray-100 p-4 rounded-full hover:bg-black hover:border-black transition-all">
@@ -267,7 +267,7 @@ export default function ProductSection() {
         </div>
         <section className="relative bg-[#fdfcfb] py-32 px-6 overflow-hidden">
           {/* Soft Background Accents */}
-          <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#7bbd25]/5 rounded-full blur-[120px] -z-10" />
+          <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#4a703f]/5 rounded-full blur-[120px] -z-10" />
           <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-[#4a703f]/5 rounded-full blur-[100px] -z-10" />
 
           <div className="max-w-7xl mx-auto">
@@ -284,7 +284,7 @@ export default function ProductSection() {
 
                   <h2 className="text-5xl md:text-7xl  font-bold text-slate-950 leading-[1.05] tracking-tight">
                     Bridging{" "}
-                    <span className="text-[#7bbd25] italic font-medium">
+                    <span className="text-[#4a703f] italic font-medium">
                       Heritage
                     </span>{" "}
                     <br />
@@ -311,7 +311,7 @@ export default function ProductSection() {
                       title: "Horticulture & Hydroponics",
                       icon: <Sprout />,
                       desc: "Specialised coco peat substrates for commercial greenhouses.",
-                      color: "bg-[#7bbd25]/10 text-[#4a703f]",
+                      color: "bg-[#4a703f]/10 text-[#4a703f]",
                     },
                     {
                       title: "Farming Co-operatives",
@@ -386,7 +386,7 @@ export default function ProductSection() {
                     <div className="space-y-4">
                       <div className="w-12 h-1 bg-[#d4a044]" />
                       <div>
-                        <p className="font-black text-[10px] uppercase tracking-[0.3em] text-[#7bbd25]">
+                        <p className="font-black text-[10px] uppercase tracking-[0.3em] text-[#4a703f]">
                           International Distribution Partner
                         </p>
                         <p className="text-white/60 text-[10px] font-medium mt-1">

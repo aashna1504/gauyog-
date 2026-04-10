@@ -57,7 +57,7 @@ export function RecentProducts({ products }: { products: Product[] }) {
                     <img
                       src={product.imageUrl}
                       alt={product.name}
-                      className="h-8 w-8 rounded-md object-contain bg-muted/50 shrink-0"
+                      className="h-8 w-8 rounded-md object-contain bg-[#f3f8ee] shrink-0"
                     />
                   ) : (
                     <div className="h-8 w-8 rounded-md bg-primary/10 flex items-center justify-center shrink-0 text-xs font-bold text-primary">

@@ -62,11 +62,11 @@ export default function AllProducts() {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
           <div className="space-y-4">
-            <div className="flex items-center gap-2 text-[#7bbd25] font-bold text-xs uppercase tracking-widest">
+            <div className="flex items-center gap-2 text-[#4a703f] font-bold text-xs uppercase tracking-widest">
               Our Full Collection
             </div>
             <h2 className="text-5xl font-bold text-gray-900">
-              Browse <span className="text-[#7bbd25]">All Products</span>
+              Browse <span className="text-[#4a703f]">All Products</span>
             </h2>
           </div>
 

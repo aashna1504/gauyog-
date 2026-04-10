@@ -48,7 +48,7 @@ function about() {
       subtitle: "What we stand for",
       desc: "We stand for purity, authenticity, and sustainability in everything we do. Our values are rooted in trust, ethical practices, and respect for nature. We are committed to delivering quality while preserving traditional wisdom.",
       icon: <ShieldCheck className="text-white" size={20} />,
-      color: "bg-[#7bbd25]", // Acid Green
+      color: "bg-[#4a703f]", // Acid Green
       glowColor: "text-green-50/60",
     },
   ];
@@ -104,7 +104,7 @@ function about() {
       subtitle: "Natural Success",
       desc: "Helping farmers succeed with natural, effective methods.",
       icon: <Sprout strokeWidth={1.5} />,
-      color: "text-[#7bbd25]",
+      color: "text-[#4a703f]",
     },
   ];
   const galleryImages = [
@@ -171,9 +171,9 @@ function about() {
     }
   };
   return (
-    <div className="mt-10">
-      <section className="relative min-h-[90vh] flex items-center justify-center px-6 py-20 overflow-hidden bg-[#fcfdfd ]">
-        <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-[#7bbd25]/10 rounded-full blur-[120px] pointer-events-none" />
+    <div className="mt-20">
+      <section className="relative min-h-[90vh] flex items-center justify-center px-6 py-20 overflow-hidden bg-[#fcfdfd]">
+        <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-[#4a703f]/10 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-[#e9aa43]/10 rounded-full blur-[100px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -193,7 +193,7 @@ function about() {
               <h1 className="text-6xl md:text-8xl lg:text-8xl font-black text-slate-900 tracking-[-0.05em] leading-[0.85] mb-8">
                 Pure by Nature
                 <br />
-                <span className="text-[#7bbd25] italic"> Proven by Earth.</span>
+                <span className="text-[#4a703f] italic"> Proven by Earth.</span>
               </h1>
 
               <p className="text-lg md:text-xl text-slate-500 font-medium max-w-xl leading-relaxed mb-10 border-l-2 border-slate-200 pl-6">
@@ -215,7 +215,7 @@ function about() {
 
                 <button
                   onClick={() => (window.location.href = "/contact")}
-                  className="px-10 py-5 rounded-full font-black text-[11px] uppercase tracking-[0.2em] text-[#7bbd25] border-2 border-[#7bbd25]/30 hover:border-[#7bbd25] transition-all active:scale-95"
+                  className="px-10 py-5 rounded-full font-black text-[11px] uppercase tracking-[0.2em] text-[#4a703f] border-2 border-[#4a703f]/30 hover:border-[#4a703f] transition-all active:scale-95"
                 >
                   Contact Us
                 </button>
@@ -230,33 +230,23 @@ function about() {
               transition={{ duration: 1, delay: 0.2 }}
               className="relative z-10"
             >
-              <div className="aspect-[4/5] bg-slate-200 rounded-[60px] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] relative group">
+              <div className="aspect-[4/5] bg-slate-200 rounded-[60px] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] ">
                 <img
-                  src="https://res.cloudinary.com/dbpzzvcik/image/upload/v1775725181/istockphoto-806276128-612x612_q6xlv2.jpg"
+                  src="https://res.cloudinary.com/dbpzzvcik/image/upload/v1775824342/132978ec-ec4c-4c94-86e6-5d716252c48b_g9qfri.jpg"
                   alt="Vedic Dhoop Ritual"
-                  className="w-full h-full object-cover hover:grayscale-0 transition-all duration-1000 scale-110 group-hover:scale-100"
+                  className="w-full h-full object-cover "
                 />
 
-                <div className="absolute bottom-8 left-8 right-8 bg-white/10 backdrop-blur-xl border border-white/20 p-6 rounded-[30px] flex items-center justify-between">
-                  <div>
-                    <p className="text-white/60 text-[9px] font-black uppercase tracking-widest mb-1">
-                      Current Batch
-                    </p>
-                    <p className="text-white font-bold">Himlayan Cedar</p>
-                  </div>
-                  <div className="size-12 bg-[#e9aa43] rounded-full flex items-center justify-center text-white">
-                    <Trees size={20} />
-                  </div>
-                </div>
+              
               </div>
 
-              <div className="absolute -bottom-6 -right-6 -z-10 size-full border-2 border-[#7bbd25]/20 rounded-[60px]" />
+              <div className="absolute -bottom-6 -right-6 -z-10 size-full border-2 border-[#4a703f]/20 rounded-[60px]" />
             </motion.div>
           </div>
         </div>
       </section>
-      <div className="bg-[#fcfdfd ] min-h-screen text-slate-900 selection:bg-[#7bbd25]/30">
-        <div className="fixed top-0 right-0 w-[40%] h-[40%] bg-[#7bbd25]/5 rounded-full blur-[120px] -z-10" />
+      <div className="bg-[#fcfdfd ] min-h-screen text-slate-900 selection:bg-[#4a703f]/30">
+        <div className="fixed top-0 right-0 w-[40%] h-[40%] bg-[#4a703f]/5 rounded-full blur-[120px] -z-10" />
         <div className="bg-[#4a703f]">
           <main className="max-w-[1400px] mx-auto px-6 py-12 ">
             <motion.div
@@ -265,7 +255,7 @@ function about() {
               className="text-center mb-16"
             >
               <h2 className="text-6xl md:text-8xl font-black text-slate-100 tracking-tighter leading-[0.85]">
-                Built <span className="text-[#7bbd25]">on Truth.</span>
+                Built <span className="text-[#4a703f]">on Truth.</span>
               </h2>
             </motion.div>
 
@@ -302,7 +292,7 @@ function about() {
                         <span className="text-sm font-black uppercase tracking-[0.4em] text-slate-300 group-hover:text-[#4a703f] transition-colors">
                           0{index + 1}
                         </span>
-                        <h3 className="text-2xl font-black tracking-tight text-[#7bbd25]">
+                        <h3 className="text-2xl font-black tracking-tight text-[#4a703f]">
                           {card.title}
                         </h3>
                       </div>
@@ -336,7 +326,7 @@ function about() {
           <section className="max-w-7xl mx-auto py-20 px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left Image Placeholder */}
             <div className="lg:col-span-4">
-              <div className="aspect-[3/4] rounded-[32px] overflow-hidden bg-gradient-to-br from-[#7bbd25]/20 to-[#4a703f]/40 relative border border-slate-100 shadow-sm">
+              <div className="aspect-[3/4] rounded-[32px] overflow-hidden bg-gradient-to-br from-[#4a703f]/20 to-[#4a703f]/40 relative border border-slate-100 shadow-sm">
                 <div className="absolute inset-0 flex items-center justify-center p-8 text-center">
                   <p className="text-[#4a703f]  italic text-sm opacity-60">
                     John, Hitesh and Ram at our Gujarat facility
@@ -581,7 +571,7 @@ function about() {
                 </motion.div>
                 <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-slate-900 leading-[0.9]">
                   The Hands <br />{" "}
-                  <span className="text-[#7bbd25]">Behind the Bloom.</span>
+                  <span className="text-[#4a703f]">Behind the Bloom.</span>
                 </h2>
               </div>
               <p className="text-slate-500 font-medium max-w-xs text-lg leading-relaxed border-l-2 border-slate-100 pl-4">
@@ -666,7 +656,7 @@ function about() {
                 </motion.div>
                 <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-slate-100 leading-[0.9]">
                   From Our Hands <br />{" "}
-                  <span className="text-[#7bbd25]"> To Your Fields</span>
+                  <span className="text-[#4a703f]"> To Your Fields</span>
                 </h2>
               </div>
               <p className="text-slate-100 font-medium text-lg leading-relaxed border-l-2 border-slate-100 pl-4">
@@ -678,13 +668,13 @@ function about() {
             <div className="flex md:hidden items-center gap-4">
               <button
                 onClick={() => scroll("left")}
-                className="size-12 rounded-full border border-slate-200 flex items-center justify-center text-slate-900 active:bg-[#7bbd25] active:text-white transition-all"
+                className="size-12 rounded-full border border-slate-200 flex items-center justify-center text-slate-900 active:bg-[#4a703f] active:text-white transition-all"
               >
                 <ArrowRight className="rotate-180" size={20} />
               </button>
               <button
                 onClick={() => scroll("right")}
-                className="size-12 rounded-full bg-slate-900 flex items-center justify-center text-white active:bg-[#7bbd25] transition-all shadow-lg"
+                className="size-12 rounded-full bg-slate-900 flex items-center justify-center text-white active:bg-[#4a703f] transition-all shadow-lg"
               >
                 <ArrowRight size={20} />
               </button>
@@ -733,7 +723,7 @@ function about() {
           <div className="mt-8 flex md:hidden items-center justify-between">
             <div className="h-[1px] flex-1 bg-slate-100 relative">
               <motion.div
-                className="absolute top-0 left-0 h-full bg-[#7bbd25]"
+                className="absolute top-0 left-0 h-full bg-[#4a703f]"
                 style={{ width: "30%" }} // You could make this dynamic based on scroll position
               />
             </div>
@@ -774,14 +764,14 @@ function about() {
                     whileInView={{ opacity: 1, x: 0 }}
                     className="flex items-center gap-2 mb-4"
                   >
-                    <div className="size-1.5 rounded-full bg-[#7bbd25]" />
+                    <div className="size-1.5 rounded-full bg-[#4a703f]" />
                     <span className="text-[9px] font-black uppercase tracking-[0.3em] text-slate-400">
                       Reach Out
                     </span>
                   </motion.div>
                   <h2 className="text-5xl md:text-6xl font-black text-slate-900 tracking-tighter leading-[0.9]">
                     Let's
-                    <span className="text-[#7bbd25]"> Connect.</span>
+                    <span className="text-[#4a703f]"> Connect.</span>
                   </h2>
                 </div>
 
@@ -794,7 +784,7 @@ function about() {
                   ].map((icon, i) => (
                     <div
                       key={i}
-                      className="size-12 rounded-full border border-slate-100 flex items-center justify-center text-slate-400 hover:bg-[#7bbd25] hover:text-white transition-all duration-500 cursor-pointer"
+                      className="size-12 rounded-full border border-slate-100 flex items-center justify-center text-slate-400 hover:bg-[#4a703f] hover:text-white transition-all duration-500 cursor-pointer"
                     >
                       {icon}
                     </div>
@@ -805,7 +795,7 @@ function about() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-y-12 gap-x-8">
                 <div className="group">
                   <div className="flex items-center gap-3 mb-3">
-                    <MapPin size={16} className="text-[#7bbd25]" />
+                    <MapPin size={16} className="text-[#4a703f]" />
                     <span className="text-[10px] font-black uppercase tracking-widest text-slate-300 group-hover:text-[#4a703f] transition-colors">
                       Our Space
                     </span>
@@ -818,7 +808,7 @@ function about() {
 
                 <div className="group">
                   <div className="flex items-center gap-3 mb-3">
-                    <Mail size={16} className="text-[#7bbd25]" />
+                    <Mail size={16} className="text-[#4a703f]" />
                     <span className="text-[10px] font-black uppercase tracking-widest text-slate-300 group-hover:text-[#4a703f] transition-colors">
                       Direct Lines
                     </span>
@@ -834,7 +824,7 @@ function about() {
 
                 <div className="group">
                   <div className="flex items-center gap-3 mb-3">
-                    <Clock size={16} className="text-[#7bbd25]" />
+                    <Clock size={16} className="text-[#4a703f]" />
                     <span className="text-[10px] font-black uppercase tracking-widest text-slate-300 group-hover:text-[#4a703f] transition-colors">
                       Hours
                     </span>

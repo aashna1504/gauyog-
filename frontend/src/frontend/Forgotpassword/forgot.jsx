@@ -36,7 +36,7 @@ export default function ModernForgotPassword() {
   return (
     <div className="min-h-screen bg-[#fcfdfd] flex items-center justify-center p-6 relative overflow-hidden m-9 ">
     
-      <div className="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] bg-[#7bbd25]/10 blur-[120px] rounded-full animate-pulse" />
+      <div className="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] bg-[#4a703f]/10 blur-[120px] rounded-full animate-pulse" />
       <div className="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-[#4a703f]/5 blur-[120px] rounded-full" />
 
     
@@ -51,11 +51,11 @@ export default function ModernForgotPassword() {
             <motion.div
               initial={{ scale: 0.8 }}
               animate={{ scale: 1 }}
-              className={`inline-flex items-center justify-center w-16 h-16 rounded-full bg-white border border-slate-100 shadow-xl mb-6 group transition-colors ${isSent ? "border-[#7bbd25]/30" : "hover:border-[#7bbd25]"}`}
+              className={`inline-flex items-center justify-center w-16 h-16 rounded-full bg-white border border-slate-100 shadow-xl mb-6 group transition-colors ${isSent ? "border-[#4a703f]/30" : "hover:border-[#4a703f]"}`}
             >
               {isSent ? (
                 <ShieldCheck
-                  className="text-[#7bbd25]"
+                  className="text-[#4a703f]"
                   size={32}
                   strokeWidth={1.5}
                 />
@@ -84,7 +84,7 @@ export default function ModernForgotPassword() {
             <form className="space-y-4" onSubmit={handleResetRequest}>
               
               <div className="space-y-1.5 group">
-                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 group-focus-within:text-[#7bbd25] ml-1 transition-colors">
+                <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 group-focus-within:text-[#4a703f] ml-1 transition-colors">
                   Registered Email Address
                 </label>
                 <div className="relative">
@@ -108,7 +108,7 @@ export default function ModernForgotPassword() {
                 type="submit"
                 disabled={isLoading}
                 whileTap={{ scale: 0.98 }}
-                className="w-full mt-2 bg-[#4a703f] hover:bg-[#7bbd25] disabled:bg-slate-300 disabled:opacity-70 text-white py-5 rounded-full font-black uppercase tracking-[0.2em] text-[10px] shadow-xl shadow-slate-200 transition-all duration-500 flex items-center justify-center gap-3 group"
+                className="w-full mt-2 bg-[#4a703f] hover:bg-[#4a703f] disabled:bg-slate-300 disabled:opacity-70 text-white py-5 rounded-full font-black uppercase tracking-[0.2em] text-[10px] shadow-xl shadow-slate-200 transition-all duration-500 flex items-center justify-center gap-3 group"
               >
                 {isLoading ? "Validating Request..." : "Send Reset Link"}
                 {!isLoading && (
@@ -137,7 +137,7 @@ export default function ModernForgotPassword() {
             </p>
             <button
               onClick={(e) => handleResetRequest(e)}
-              className="text-[#7bbd25] font-black uppercase text-[10px] tracking-widest hover:text-[#4a703f] transition-colors"
+              className="text-[#4a703f] font-black uppercase text-[10px] tracking-widest hover:text-[#4a703f] transition-colors"
             >
               {isLoading ? "Retrying..." : "Resend Link"}
             </button>
@@ -157,7 +157,7 @@ export default function ModernForgotPassword() {
             Just remembered?
             <span
               onClick={() => navigate("/signin")}
-              className="text-[#7bbd25] text-xs font-black uppercase tracking-[0.1em] border-b border-transparent group-hover:border-[#7bbd25] transition-all"
+              className="text-[#4a703f] text-xs font-black uppercase tracking-[0.1em] border-b border-transparent group-hover:border-[#4a703f] transition-all"
             >
               Login to Account
             </span>

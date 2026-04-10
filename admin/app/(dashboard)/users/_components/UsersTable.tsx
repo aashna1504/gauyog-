@@ -61,7 +61,7 @@ function DeleteUserDialog({
 
 // ─── Edit Dialog ───────────────────────────────────────────────────────────
 
-type EditForm = { name: string; email: string; role: 'USER' | 'ADMIN' };
+type EditForm = { name: string; email: string; role: 'USER' | 'ADMIN' | 'SALES' };
 
 function EditUserDialog({
   user, open, onClose,
@@ -109,7 +109,7 @@ function EditUserDialog({
             <Label>Role</Label>
             <Select
               value={watch('role')}
-              onValueChange={(v) => setValue('role', v as 'USER' | 'ADMIN')}
+              onValueChange={(v) => setValue('role', v as 'USER' | 'ADMIN' | 'SALES')}
             >
               <SelectTrigger>
                 <SelectValue placeholder="Select role" />
@@ -117,6 +117,7 @@ function EditUserDialog({
               <SelectContent>
                 <SelectItem value="USER">USER</SelectItem>
                 <SelectItem value="ADMIN">ADMIN</SelectItem>
+                <SelectItem value="SALES">SALES</SelectItem>
               </SelectContent>
             </Select>
           </div>

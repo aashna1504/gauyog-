@@ -32,7 +32,7 @@ export default function Header() {
   const userMenuRef = useRef(null);
 
   const { isAuthenticated, logout, user } = useAuthStore();
-  const { cartCount, cartItems, fetchCart } = useCartStore();
+  const { cartCount, cartItems, fetchCart, removeItem } = useCartStore();
   const notify = useNotificationStore((s) => s.show);
 
   useEffect(() => {
@@ -77,7 +77,6 @@ export default function Header() {
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
     { name: "Shop", path: "/shop" },
-    { name: "Refund Policy", path: "/refund" },
     { name: "Contact Us", path: "/contact" },
   ];
 
@@ -115,8 +114,8 @@ export default function Header() {
                 <li key={link.path}>
                   <Link
                     to={link.path}
-                    className={`hover:text-[#7bbd25] transition-colors ${
-                      location.pathname === link.path ? "text-[#7bbd25]" : ""
+                    className={`hover:text-[#4a703f] transition-colors ${
+                      location.pathname === link.path ? "text-[#4a703f]" : ""
                     }`}
                   >
                     {link.name}
@@ -147,7 +146,7 @@ export default function Header() {
                     size={25}
                     className="text-blue-500 fill-blue-500 group-hover:text-blue-600 transition-colors"
                   />
-                  <span className="absolute -top-2 -right-2 bg-[#7bbd25] text-white text-[10px] font-black w-4 h-4 flex items-center justify-center rounded-full">
+                  <span className="absolute -top-2 -right-2 bg-[#4a703f] text-white text-[10px] font-black w-4 h-4 flex items-center justify-center rounded-full">
                     {cartCount}
                   </span>
                 </div>
@@ -181,7 +180,7 @@ export default function Header() {
                         className="absolute top-14 right-0 w-64 bg-white rounded-[28px] shadow-2xl shadow-black/10 border border-slate-100 overflow-hidden z-50"
                       >
                         
-                        <div className="bg-gradient-to-br from-[#4a703f] to-[#7bbd25] p-3">
+                        <div className="bg-gradient-to-br from-[#4a703f] to-[#4a703f] p-3">
                           <div className="flex items-center gap-3">
                             <div className="w-11 h-11 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center font-black text-lg text-white border border-white/30">
                               {userInitial}
@@ -263,7 +262,7 @@ export default function Header() {
                   size={22}
                   className="text-blue-500 fill-blue-500"
                 />
-                <span className="absolute -top-1 -right-1 bg-[#7bbd25] text-white text-[10px] font-black w-3.5 h-3.5 flex items-center justify-center rounded-full">
+                <span className="absolute -top-1 -right-1 bg-[#4a703f] text-white text-[10px] font-black w-3.5 h-3.5 flex items-center justify-center rounded-full">
                   {cartCount}
                 </span>
               </div>
@@ -307,7 +306,7 @@ export default function Header() {
                       to={link.path}
                       className={`flex items-center justify-between text-lg font-black uppercase tracking-tighter ${
                         location.pathname === link.path
-                          ? "text-[#7bbd25]"
+                          ? "text-[#4a703f]"
                           : "text-slate-900"
                       }`}
                     >
@@ -396,7 +395,7 @@ export default function Header() {
                     key={item.id}
                     className="flex gap-5 group p-2 hover:bg-[#e9aa43]/10 rounded-2xl transition-all border border-transparent"
                   >
-                    <div className="w-24 h-24 bg-[#e9aa43]/20 rounded-full overflow-hidden flex-shrink-0 border border-slate-100">
+                    <div className="w-24 h-24 bg-[#f3f8ee] rounded-full overflow-hidden flex-shrink-0 border border-slate-100">
                       <img
                         src={item.img}
                         alt={item.name}
@@ -418,10 +417,16 @@ export default function Header() {
                         </div>
                       </div>
                       <div className="flex gap-3 mt-2">
-                        <button className="flex-1 bg-[#4a703f] hover:bg-[#744926] text-white py-2 rounded-full text-xs font-black uppercase tracking-widest">
+                        <button
+                          onClick={() => { setCartOpen(false); navigate("/cart"); }}
+                          className="flex-1 bg-[#4a703f] hover:bg-[#744926] text-white py-2 rounded-full text-xs font-black uppercase tracking-widest"
+                        >
                           Buy Now
                         </button>
-                        <button className="p-2 text-slate-300 hover:text-red-500 transition-colors border border-slate-100 rounded-full">
+                        <button
+                          onClick={() => removeItem(item.id)}
+                          className="p-2 text-slate-300 hover:text-red-500 transition-colors border border-slate-100 rounded-full"
+                        >
                           <Trash2 size={16} />
                         </button>
                       </div>

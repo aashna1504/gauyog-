@@ -63,17 +63,17 @@ export default function TestimonialSlider() {
 
   return (
     <div className="bg-[#e5ecec] py-10 md:py-20 px-6 relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-64 h-64 md:w-96 md:h-96 bg-[#7bbd25] rounded-full blur-[80px] md:blur-[100px] -z-10" />
+      <div className="absolute top-0 right-0 w-64 h-64 md:w-96 md:h-96 bg-[#4a703f] rounded-full blur-[80px] md:blur-[100px] -z-10" />
 
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 md:gap-20 items-center">
         <div className="flex flex-col">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 text-[#7bbd25] text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-4 md:mb-6 w-fit">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 text-[#4a703f] text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-4 md:mb-6 w-fit">
             <SmileIcon size={12} /> 2,000+ Happy Voices
           </div>
 
           <h2 className="text-4xl md:text-7xl font-bold text-gray-900 leading-tight mb-4 md:mb-8">
             The{" "}
-            <span className="text-[#7bbd25] italic underline decoration-[#7bbd25] underline-offset-4 md:underline-offset-8">
+            <span className="text-[#4a703f] italic underline decoration-[#4a703f] underline-offset-4 md:underline-offset-8">
               Trust
             </span>{" "}
             <br />
@@ -87,7 +87,7 @@ export default function TestimonialSlider() {
                 animate={{
                   width: `${((index + 1) / testimonials.length) * 100}%`,
                 }}
-                className="absolute inset-0 bg-[#7bbd25]"
+                className="absolute inset-0 bg-[#4a703f]"
               />
             </div>
             <span className="text-xs md:text-sm font-black text-gray-400">
@@ -124,10 +124,10 @@ export default function TestimonialSlider() {
               >
                 <div className="space-y-4 md:space-y-6">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 md:w-12 md:h-12 bg-[#7bbd25] text-white rounded-full md:rounded-full flex items-center justify-center shadow-lg shadow-green-100">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-[#4a703f] text-white rounded-full md:rounded-full flex items-center justify-center shadow-lg shadow-green-100">
                       <Quote size={20} md={24} />
                     </div>
-                    <span className="text-[#7bbd25] font-black text-[10px] md:text-xs uppercase tracking-widest">
+                    <span className="text-[#4a703f] font-black text-[10px] md:text-xs uppercase tracking-widest">
                       {testimonials[index].tag}
                     </span>
                   </div>
@@ -143,7 +143,7 @@ export default function TestimonialSlider() {
                         <CheckCircle2
                           size={14}
                           md={16}
-                          className="text-[#7bbd25]"
+                          className="text-[#4a703f]"
                         />
                       </p>
                       <p className="text-[10px] md:text-sm font-bold text-gray-400 uppercase tracking-tighter">

@@ -11,8 +11,6 @@ import {
   EyeOff,
   ArrowRight,
   UserPlus,
-  Phone,
-  User,
 } from "lucide-react";
 import { GoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
@@ -71,7 +69,7 @@ export default function ModernSignUp() {
 
   return (
     <div className="min-h-screen bg-[#fcfdfd] flex items-center justify-center p-6 relative overflow-hidden m-9 lg:pt-32 pt-20">
-      <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-[#7bbd25]/10 blur-[120px] rounded-full animate-pulse" />
+      <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-[#4a703f]/10 blur-[120px] rounded-full animate-pulse" />
       <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-[#4a703f]/5 blur-[120px] rounded-full" />
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -111,41 +109,8 @@ export default function ModernSignUp() {
         </div>
 
         <form className="space-y-4" onSubmit={handleSignUp}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="space-y-1.5 group">
-              <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 group-focus-within:text-[#7bbd25] ml-1 transition-colors">
-                First Name
-              </label>
-              <div className="relative">
-                <input
-                  required
-                  type="text"
-                  placeholder="John"
-                  className="w-full bg-white border border-slate-200 px-5 py-3.5 rounded-full text-sm font-bold text-slate-900 outline-none focus:border-slate-950 focus:ring-[6px] focus:ring-slate-950/[0.03] transition-all"
-                />
-                <User
-                  className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-200 group-focus-within:text-slate-950 transition-colors"
-                  size={16}
-                />
-              </div>
-            </div>
-            <div className="space-y-1.5 group">
-              <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 group-focus-within:text-[#7bbd25] ml-1 transition-colors">
-                Last Name
-              </label>
-              <div className="relative">
-                <input
-                  required
-                  type="text"
-                  placeholder="Doe"
-                  className="w-full bg-white border border-slate-200 px-5 py-3.5 rounded-full text-sm font-bold text-slate-900 outline-none focus:border-slate-950 focus:ring-[6px] focus:ring-slate-950/[0.03] transition-all"
-                />
-              </div>
-            </div>
-          </div>
-
           <div className="space-y-1.5 group">
-            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 group-focus-within:text-[#7bbd25] ml-1 transition-colors">
+            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 group-focus-within:text-[#4a703f] ml-1 transition-colors">
               Email
             </label>
             <div className="relative">
@@ -164,27 +129,9 @@ export default function ModernSignUp() {
             </div>
           </div>
 
-          <div className="space-y-1.5 group">
-            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 group-focus-within:text-[#7bbd25] ml-1 transition-colors">
-              Mobile Number
-            </label>
-            <div className="relative">
-              <input
-                required
-                type="tel"
-                placeholder="+1 (555) 000-0000"
-                className="w-full bg-white border border-slate-200 px-5 py-3.5 rounded-full text-sm font-bold text-slate-900 outline-none focus:border-slate-950 focus:ring-[6px] focus:ring-slate-950/[0.03] transition-all"
-              />
-              <Phone
-                className="absolute right-5 top-1/2 -translate-y-1/2 text-slate-200 group-focus-within:text-slate-950 transition-colors"
-                size={17}
-              />
-            </div>
-          </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-1.5 group">
-              <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 group-focus-within:text-[#7bbd25] ml-1 transition-colors">
+              <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 group-focus-within:text-[#4a703f] ml-1 transition-colors">
                 Password
               </label>
               <div className="relative">
@@ -206,7 +153,7 @@ export default function ModernSignUp() {
               </div>
             </div>
             <div className="space-y-1.5 group">
-              <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 group-focus-within:text-[#7bbd25] ml-1 transition-colors">
+              <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 group-focus-within:text-[#4a703f] ml-1 transition-colors">
                 Confirm Password
               </label>
               <div className="relative">
@@ -252,7 +199,7 @@ export default function ModernSignUp() {
               className="text-[14px] font-medium text-slate-500 leading-relaxed cursor-pointer select-none"
             >
               By signing up I agree with{" "}
-              <span className="text-[#7bbd25] font-black cursor-pointer hover:underline">
+              <span className="text-[#4a703f] font-black cursor-pointer hover:underline">
                 terms and conditions
               </span>
             </label>
@@ -261,7 +208,7 @@ export default function ModernSignUp() {
           <motion.button
             disabled={isLoading}
             whileTap={{ scale: 0.98 }}
-            className="w-full mt-2 bg-[#4a703f] hover:bg-[#7bbd25] rounded-full text-white py-5 font-black uppercase tracking-[0.2em] text-[10px] shadow-xl shadow-slate-200/50 transition-all duration-500 flex items-center justify-center gap-3 group"
+            className="w-full mt-2 bg-[#4a703f] hover:bg-[#4a703f] rounded-full text-white py-5 font-black uppercase tracking-[0.2em] text-[10px] shadow-xl shadow-slate-200/50 transition-all duration-500 flex items-center justify-center gap-3 group"
           >
             {isLoading ? "Creating Account..." : "Sign Up"}
             {!isLoading && (
@@ -296,7 +243,7 @@ export default function ModernSignUp() {
             Already have an Account?{" "}
             <button
               onClick={() => navigate("/signin")}
-              className="text-[#7bbd25] font-black uppercase tracking-[0.1em] ml-1 hover:text-slate-950 transition-colors"
+              className="text-[#4a703f] font-black uppercase tracking-[0.1em] ml-1 hover:text-slate-950 transition-colors"
             >
               Login
             </button>
