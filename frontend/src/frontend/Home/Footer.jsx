@@ -17,9 +17,12 @@ const footerLinks = {
     { name: "About", href: "/about" },
     { name: "Shop", href: "/shop" },
     { name: "Track Order", href: "/trackorder" },
-    { name: "Refund Policy", href: "/refund" },
-    { name: "Terms and Conditions", href: "/terms" },
     { name: "Contact Us", href: "/contact" },
+  ],
+  legal: [
+    { name: "Terms & Conditions", href: "/terms" },
+    { name: "Privacy Policy", href: "/privacy" },
+    { name: "Refund Policy", href: "/refund" },
   ],
   socials: [
     { icon: Instagram, href: "#", color: "hover:text-pink-500" },
@@ -34,7 +37,7 @@ export default function ModernFooter() {
     <footer className="relative bg-[#fcfdfd] pt-8 md:pt-16 pb-8 md:pb-10 px-6 border-t border-gray-100 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-12 gap-10 md:gap-16 mb-8 md:mb-12">
-          <div className="lg:col-span-6 space-y-6 md:space-y-8">
+          <div className="lg:col-span-5 space-y-6 md:space-y-8">
             <div className="space-y-3 md:space-y-4">
               <div className="cursor-pointer">
                 <img
@@ -50,8 +53,8 @@ export default function ModernFooter() {
             </div>
 
             <div className="relative max-w-md group">
-              <div className="absolute inset-0 bg-[#7bbd25]/5 blur-xl rounded-full opacity-0 group-focus-within:opacity-100 transition-opacity" />
-              <div className="relative flex items-center bg-white border border-gray-200 rounded-full p-1 focus-within:border-[#7bbd25] transition-all shadow-sm">
+              <div className="absolute inset-0 bg-[#4a703f]/5 blur-xl rounded-full opacity-0 group-focus-within:opacity-100 transition-opacity" />
+              <div className="relative flex items-center bg-white border border-gray-200 rounded-full p-1 focus-within:border-[#4a703f] transition-all shadow-sm">
                 <div className="pl-3 md:pl-4 text-gray-400">
                   <Send size={16} />
                 </div>
@@ -67,7 +70,7 @@ export default function ModernFooter() {
             </div>
           </div>
 
-          <div className="lg:col-span-3 space-y-4 md:space-y-6">
+          <div className="lg:col-span-2 space-y-4 md:space-y-6">
             <h3 className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-400">
               Quick Menu
             </h3>
@@ -76,9 +79,28 @@ export default function ModernFooter() {
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className="text-gray-600 text-[14px] font-bold hover:text-[#7bbd25] transition-colors flex items-center gap-2 group"
+                    className="text-gray-600 text-[14px] font-bold hover:text-[#4a703f] transition-colors flex items-center gap-2 group"
                   >
-                    <span className="hidden md:block w-0 h-[2px] bg-[#7bbd25] transition-all group-hover:w-4" />
+                    <span className="hidden md:block w-0 h-[2px] bg-[#4a703f] transition-all group-hover:w-4" />
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="lg:col-span-2 space-y-4 md:space-y-6">
+            <h3 className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-400">
+              Legal
+            </h3>
+            <ul className="grid grid-cols-2 lg:grid-cols-1 gap-x-4 gap-y-2 md:gap-y-3">
+              {footerLinks.legal.map((link) => (
+                <li key={link.name}>
+                  <a
+                    href={link.href}
+                    className="text-gray-600 text-[14px] font-bold hover:text-[#4a703f] transition-colors flex items-center gap-2 group"
+                  >
+                    <span className="hidden md:block w-0 h-[2px] bg-[#4a703f] transition-all group-hover:w-4" />
                     {link.name}
                   </a>
                 </li>
@@ -105,8 +127,8 @@ export default function ModernFooter() {
               </div>
             </div>
 
-            <div className="p-3 md:p-4 bg-[#7bbd25]/5 rounded-2xl border border-[#7bbd25]/10 flex items-center gap-3 md:gap-4">
-              <div className="bg-white p-2 rounded-xl shadow-sm text-[#7bbd25]">
+            <div className="p-3 md:p-4 bg-[#4a703f]/5 rounded-2xl border border-[#4a703f]/10 flex items-center gap-3 md:gap-4">
+              <div className="bg-white p-2 rounded-xl shadow-sm text-[#4a703f]">
                 <ShieldCheck size={18} />
               </div>
               <div>
@@ -160,7 +182,7 @@ export default function ModernFooter() {
         </div>
       </div>
 
-      <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-[#7bbd25]/5 rounded-full blur-[100px] -z-10" />
+      <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-[#4a703f]/5 rounded-full blur-[100px] -z-10" />
     </footer>
   );
 }

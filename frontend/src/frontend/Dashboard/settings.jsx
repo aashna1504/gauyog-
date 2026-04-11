@@ -71,7 +71,7 @@ export default function NexusAddressPage() {
 
   return (
     <div className="w-full max-w-[1200px] mx-auto px-6 py-12 mt-24 text-slate-900">
-      {/* BREADCRUMB */}
+      
       <nav className="flex items-center gap-2 mb-8 px-2">
         <button
           onClick={() => (window.location.href = "/dashboard")}
@@ -89,7 +89,7 @@ export default function NexusAddressPage() {
         </span>
       </nav>
 
-      {/* HEADER */}
+    
       <header className="mb-12 border-l-4 border-[#4a703f] pl-6">
         <motion.h1
           initial={{ opacity: 0, x: -20 }}
@@ -104,7 +104,7 @@ export default function NexusAddressPage() {
       </header>
 
       <div className="bg-white border border-slate-100 rounded-[40px] shadow-2xl shadow-slate-200/40 overflow-hidden">
-        {/* TOP BAR */}
+       
         <div className="bg-[#4a703f] px-10 py-6">
           <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/80">
             Delivery Details
@@ -117,7 +117,7 @@ export default function NexusAddressPage() {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="p-8 md:p-10 space-y-8">
-            {/* NAME */}
+            
             <div className="grid md:grid-cols-2 gap-6">
               <Input
                 label="First Name"
@@ -133,7 +133,7 @@ export default function NexusAddressPage() {
               />
             </div>
 
-            {/* CONTACT */}
+            
             <div className="grid md:grid-cols-2 gap-6">
               <Input
                 label="Phone Number"
@@ -151,10 +151,10 @@ export default function NexusAddressPage() {
               />
             </div>
 
-            {/* ADDRESS SECTION */}
+          
             <div className="border-t border-slate-100 pt-8 space-y-6">
               <div className="flex items-center gap-2">
-                <Navigation size={14} className="text-[#7bbd25]" />
+                <Navigation size={14} className="text-[#4a703f]" />
                 <h3 className="text-[11px] font-black uppercase tracking-[0.3em] text-[#4a703f]">
                   Address Information
                 </h3>
@@ -176,14 +176,14 @@ export default function NexusAddressPage() {
               />
             </div>
 
-            {/* FEEDBACK */}
+            
             {error && (
               <p className="text-xs font-semibold text-red-500 text-center">
                 {error}
               </p>
             )}
 
-            {/* BUTTON */}
+            
             <button
               type="submit"
               disabled={saving}
@@ -205,7 +205,7 @@ export default function NexusAddressPage() {
   );
 }
 
-/* COMPONENTS */
+
 
 function Label({ children }) {
   return (

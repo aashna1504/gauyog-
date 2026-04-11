@@ -20,6 +20,15 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
   }
 };
 
+export const googleAuth = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const result = await AuthService.googleAuth(req.body.credential);
+    res.status(200).json(formatResponse(true, 'Google authentication successful', result));
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const logout = async (req: Request, res: Response, next: NextFunction) => {
   try {
     if (req.user) {
@@ -36,6 +45,47 @@ export const refresh = async (req: Request, res: Response, next: NextFunction) =
     const { refreshToken } = req.body;
     const result = await AuthService.refreshToken(refreshToken);
     res.status(200).json(formatResponse(true, 'Token refreshed successfully', result));
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const forgotPassword = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    await AuthService.forgotPassword(req.body.email);
+    res.status(200).json(
+      formatResponse(
+        true,
+        'If an account with this email exists, a reset link has been sent'
+      )
+    );
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const resetPassword = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    await AuthService.resetPassword(req.body.token, req.body.password);
+    res.status(200).json(formatResponse(true, 'Password reset successful'));
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getProfile = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const user = await AuthService.getProfile(req.user!.userId);
+    res.status(200).json(formatResponse(true, 'Profile retrieved', user));
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const updateProfile = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const user = await AuthService.updateProfile(req.user!.userId, req.body.name);
+    res.status(200).json(formatResponse(true, 'Profile updated', user));
   } catch (error) {
     next(error);
   }

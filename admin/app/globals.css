@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 154 28% 14%;
+    --card: 0 0% 100%;
+    --card-foreground: 154 28% 14%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 154 28% 14%;
+    /* Primary: #4a703f */
+    --primary: 82 67% 44%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 82 30% 94%;
+    --secondary-foreground: 108 28% 28%;
+    --muted: 82 20% 95%;
+    --muted-foreground: 108 15% 45%;
+    /* Accent: #744926 (brown) */
+    --accent: 28 51% 30%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 82 20% 88%;
+    --input: 82 20% 88%;
+    --ring: 82 67% 44%;
+    --radius: 0.5rem;
+    /* Sidebar — dark green, matching frontend sidebar */
+    --sidebar-background: 222 47% 11%;
+    --sidebar-foreground: 215 20% 65%;
+    /* Sidebar primary: #4a703f */
+    --sidebar-primary: 82 67% 44%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 217 33% 17%;
+    --sidebar-accent-foreground: 215 20% 85%;
+    --sidebar-border: 217 33% 17%;
+    --sidebar-ring: 82 67% 44%;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body {
+    @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+  }
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+  /* Smooth momentum scrolling on iOS */
+  .overflow-y-auto,
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+  }
+}

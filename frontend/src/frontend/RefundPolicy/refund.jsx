@@ -32,7 +32,7 @@ const itemVariants = {
   },
 };
 
-// --- REFINED POLICY ROW (USES FULL SPACE) ---
+
 const PolicyRow = ({ icon: Icon, title, children, index }) => (
   <motion.div
     initial={{ opacity: 0 }}
@@ -46,7 +46,6 @@ const PolicyRow = ({ icon: Icon, title, children, index }) => (
     </div>
     <div className="space-y-5">
       <div className="flex items-center gap-4 text-slate-400 group-hover:text-[#4a703f] transition-colors duration-300">
-        <Icon size={20} strokeWidth={2} />
         <h3 className="text-sm md:text-lg font-black text-slate-900 uppercase tracking-wider italic">
           {title}
         </h3>
@@ -61,7 +60,7 @@ const PolicyRow = ({ icon: Icon, title, children, index }) => (
 export default function RefundPolicyPage() {
   return (
     <div className="min-h-screen bg-[#fcfdfd] selection:bg-[#4a703f] selection:text-white">
-      {/* --- KINETIC BANNER WITH STRONGER BLUR EFFECT --- */}
+      
       <motion.div
         initial="hidden"
         animate="visible"
@@ -73,13 +72,13 @@ export default function RefundPolicyPage() {
           className="absolute top-1/2 -right-1/4 -translate-y-1/2 w-[60%] h-[120%] opacity-20 blur-[120px] rounded-full pointer-events-none animate-pulse"
           style={{
             background:
-              "radial-gradient(circle at right, #7bbd25 0%, transparent 100%)",
+              "radial-gradient(circle at right, #4a703f 0%, transparent 100%)",
             zIndex: -20,
           }}
         />
 
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 items-center gap-8 relative z-10  mt-20 lg:mt-14">
-          {/* LEFT: TEXT STACK */}
+         
           <div className="md:col-span-7 text-center md:text-left">
             <motion.div
               variants={itemVariants}
@@ -87,7 +86,7 @@ export default function RefundPolicyPage() {
             >
               <RefreshCcw
                 size={14}
-                className="text-[#7bbd25] animate-spin-slow"
+                className="text-[#4a703f] animate-spin-slow"
               />
               <span className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-400">
                 Returns Protocol
@@ -103,7 +102,7 @@ export default function RefundPolicyPage() {
               }}
             >
               Refund{" "}
-              <span className="text-[#7bbd25] italic font-medium">Policy.</span>
+              <span className="text-[#4a703f] italic font-medium">Policy.</span>
             </motion.h1>
             <motion.p
               variants={itemVariants}
@@ -113,26 +112,26 @@ export default function RefundPolicyPage() {
             </motion.p>
           </div>
 
-          {/* RIGHT: UPDATED CONTENT */}
+         
           <motion.div
             variants={itemVariants}
             className="md:col-span-5 relative h-48 md:h-64 flex items-center justify-center group z-10"
           >
-            {/* Main Interactive Card */}
+           
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               className="relative z-20 w-40 h-52 bg-white rounded-2xl border border-slate-200 shadow-xl flex flex-col p-5 space-y-3 overflow-hidden"
             >
               <div className="flex justify-between items-center relative z-10">
-                <FileText size={20} className="text-[#7bbd25]" />
+                <FileText size={20} className="text-[#4a703f]" />
                 <div className="w-8 h-1 bg-slate-100 rounded" />
               </div>
 
               <div className="space-y-2 pt-4 relative z-10">
                 <div className="h-2 w-full bg-slate-50 rounded" />
                 <div className="h-2 w-3/4 bg-slate-50 rounded" />
-                <div className="h-2 w-1/2 bg-[#7bbd25]/10 rounded" />
+                <div className="h-2 w-1/2 bg-[#4a703f]/10 rounded" />
               </div>
 
               <div className="mt-auto flex items-center gap-2 pt-4 border-t border-slate-50 relative z-10">
@@ -149,19 +148,19 @@ export default function RefundPolicyPage() {
               className="absolute inset-0 pointer-events-none"
             >
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-white p-3 rounded-full shadow-lg border border-slate-100">
-                <MousePointer2 size={16} className="text-[#7bbd25]" />
+                <MousePointer2 size={16} className="text-[#4a703f]" />
               </div>
             </motion.div>
           </motion.div>
         </div>
       </motion.div>
 
-      {/* --- FULL WIDTH POLICY DETAILS SECTION --- */}
+   
       <div className="max-w-7xl mx-auto px-6 py-20 md:py-24 selection:bg-[#4a703f] selection:text-white">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          {/* DETAILED CONTENT AREA (USES FULL SPACE) */}
+       
           <div className="lg:col-span-12 space-y-2">
-            <PolicyRow index={0} icon={Clock} title="Return Window">
+            <PolicyRow index={0} title="Return Window">
               <p>
                 We offer a strict <strong>7-day return policy</strong> for most
                 sanctuary items. Please ensure products are unused and in
@@ -172,7 +171,7 @@ export default function RefundPolicyPage() {
               </p>
             </PolicyRow>
 
-            <PolicyRow index={1} icon={AlertCircle} title="Exemptions">
+            <PolicyRow index={1} title="Exemptions">
               <p>
                 To maintain the highest bio-security standards within our
                 sanctuary, organic fertilizers, fresh manure-based products, and
@@ -184,7 +183,7 @@ export default function RefundPolicyPage() {
               </p>
             </PolicyRow>
 
-            <PolicyRow index={2} icon={Truck} title="Shipping Policy">
+            <PolicyRow index={2} title="Shipping Policy">
               <p>
                 You will be responsible for paying your own shipping costs for
                 returning your item. Return shipping costs are handled by the
@@ -197,7 +196,7 @@ export default function RefundPolicyPage() {
 
             <PolicyRow
               index={3}
-              icon={PackageCheck}
+             
               title="Inspection and Restocking"
             >
               <p>

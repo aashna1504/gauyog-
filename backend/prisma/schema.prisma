@@ -10,6 +10,7 @@ datasource db {
 enum Role {
   USER
   ADMIN
+  SALES
 }
 model User {
   id              String           @id @default(uuid())
@@ -21,6 +22,9 @@ model User {
   updatedAt       DateTime         @updatedAt
   cart            Cart?
   deliveryDetails DeliveryDetails?
+  wishlist        Wishlist[]
+  resetTokens     PasswordResetToken[]
+  orders          Order[]
 }
 
 model DeliveryDetails {
@@ -38,14 +42,33 @@ model DeliveryDetails {
 }
 
 model Product {
-  id          String     @id @default(uuid())
-  name        String
-  description String
-  price       Float
-  stock       Int
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  cartItems   CartItem[]
+  id             String     @id @default(uuid())
+  name           String
+  scientificName String?
+  description    String
+  ingredients    String?
+  price          Float
+  discountPrice  Float?
+  category       String     @default("Dairy")
+  inStock        Boolean    @default(true)
+  weight             String?
+  weightOptions      String[]   @default([])
+  imageUrl           String?
+  galleryImages      String[]   @default([])
+  benefits           String[]   @default([])
+  sku                String?
+  batchNo            String?
+  mfgDate            String?
+  bestBefore         String?
+  usageInstructions  String?
+  storageInstructions String?
+  safetyInstructions String?
+  stock              Int
+  createdAt          DateTime   @default(now())
+  updatedAt          DateTime   @updatedAt
+  cartItems      CartItem[]
+  wishlistItems  Wishlist[]
+  orderItems     OrderItem[]
 }
 
 model Cart {
@@ -54,6 +77,17 @@ model Cart {
   user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime   @default(now())
   items     CartItem[]
+}
+
+model Wishlist {
+  id        String   @id @default(uuid())
+  userId    String
+  productId String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, productId])
 }
 
 model CartItem {
@@ -65,4 +99,75 @@ model CartItem {
   product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 
   @@unique([cartId, productId])
+}
+
+model ContactMessage {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  phone     String?
+  role      String?
+  message   String
+  status    String   @default("NEW")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PasswordResetToken {
+  id        String   @id @default(uuid())
+  userId    String
+  tokenHash String   @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+enum PaymentMethod {
+  CARD
+  UPI
+  COD
+}
+
+model Order {
+  id            String        @id @default(uuid())
+  userId        String
+  user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  status        OrderStatus   @default(PENDING)
+  paymentMethod PaymentMethod @default(COD)
+  subtotal      Float
+  shipping      Float         @default(0)
+  tax           Float         @default(0)
+  total         Float
+  firstName     String?
+  lastName      String?
+  phone         String?
+  email         String?
+  address       String?
+  building      String?
+  items         OrderItem[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model OrderItem {
+  id        String  @id @default(uuid())
+  orderId   String
+  productId String
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id])
+  quantity  Int
+  price     Float
+  name      String
 }

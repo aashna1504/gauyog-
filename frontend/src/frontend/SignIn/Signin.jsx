@@ -1,18 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import api from "../../api/axios";
 import useAuthStore from "../../store/authStore";
 import useNotificationStore from "../../store/notificationStore";
 import toast from "react-hot-toast";
-import {
-  Mail,
-  Lock,
-  Eye,
-  EyeOff,
-  ArrowRight,
-  UserCircle2,
-  LogIn,
-} from "lucide-react";
+import { Mail, Eye, EyeOff, ArrowRight, LogIn } from "lucide-react";
 import { GoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 
@@ -29,10 +21,10 @@ export default function ModernSignIn() {
     e.preventDefault();
     setIsLoading(true);
     try {
-      const res = await api.post('/auth/login', { email, password });
+      const res = await api.post("/auth/login", { email, password });
       const u = res.data.data.user;
       setAuth(u, res.data.data.accessToken, res.data.data.refreshToken);
-      notify(`Welcome back, ${u.email.split("@")[0]}!`, "login");
+      notify(`Welcome back, ${u.name || u.email.split("@")[0]}!`, "login");
       navigate("/");
     } catch (error) {
       toast.error(error.response?.data?.message || "Login failed");
@@ -41,10 +33,28 @@ export default function ModernSignIn() {
     }
   };
 
+  const handleGoogleSuccess = async (response) => {
+    if (!response.credential) {
+      toast.error("Google authentication failed");
+      return;
+    }
+
+    try {
+      const res = await api.post("/auth/google", {
+        credential: response.credential,
+      });
+      const u = res.data.data.user;
+      setAuth(u, res.data.data.accessToken, res.data.data.refreshToken);
+      notify(`Welcome back, ${u.name || u.email.split("@")[0]}!`, "login");
+      navigate("/");
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Google login failed");
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-[#fcfdfd] flex items-center justify-center p-6 relative overflow-hidden m-9">
-      {/* BACKGROUND SPIRIT */}
-      <div className="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] bg-[#7bbd25]/10 blur-[120px] rounded-full animate-pulse" />
+    <div className="min-h-screen bg-[#fcfdfd] flex items-center justify-center p-6 relative overflow-hidden m-9 mt-16">
+      <div className="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] bg-[#4a703f]/10 blur-[120px] rounded-full animate-pulse" />
       <div className="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-[#4a703f]/5 blur-[120px] rounded-full" />
 
       <motion.div
@@ -54,13 +64,12 @@ export default function ModernSignIn() {
         className="relative w-full max-w-[420px] z-10"
       >
         <div className="mb-10 flex flex-col items-center">
-          {/* Row container for Icon + Heading */}
           <div className="flex items-center gap-4 mb-2">
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-              className="flex items-center justify-center w-12 h-12 rounded-full bg-white shadow-lg transition-colors border border-slate-50 group-hover:border-[#7bbd25]/30"
+              className="flex items-center justify-center w-12 h-12 rounded-full bg-white shadow-lg transition-colors border border-slate-50 group-hover:border-[#4a703f]/30"
             >
               <LogIn className="text-[#4a703f]" size={24} strokeWidth={2} />
             </motion.div>
@@ -75,7 +84,6 @@ export default function ModernSignIn() {
             </motion.h1>
           </div>
 
-          {/* Subheading stays centered below the row */}
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -87,17 +95,16 @@ export default function ModernSignIn() {
         </div>
 
         <form className="space-y-4" onSubmit={handleSignIn}>
-          {/* Email Input */}
           <div className="space-y-1.5 group">
-            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 group-focus-within:text-[#7bbd25] ml-1 transition-colors">
-              Email or Mobile Number
+            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 group-focus-within:text-[#4a703f] ml-1 transition-colors">
+              Email
             </label>
             <div className="relative">
               <input
                 required
-                type="text"
+                type="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value.trim())}
                 placeholder="name@example.com"
                 className="w-full bg-white border border-slate-200 px-5 py-4 rounded-full text-sm font-bold text-slate-900 outline-none focus:border-slate-950 focus:ring-[6px] focus:ring-slate-950/[0.03] transition-all"
               />
@@ -108,16 +115,15 @@ export default function ModernSignIn() {
             </div>
           </div>
 
-          {/* Password Input */}
           <div className="space-y-1.5 group">
             <div className="flex justify-between items-center px-1">
-              <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 group-focus-within:text-[#7bbd25] transition-colors">
+              <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 group-focus-within:text-[#4a703f] transition-colors">
                 Password
               </label>
               <button
                 onClick={() => navigate("/forgotpassword")}
                 type="button"
-                className="text-[10px] font-black text-[#7bbd25] hover:text-slate-950 uppercase tracking-widest transition-colors"
+                className="text-[10px] font-black text-[#4a703f] hover:text-slate-950 uppercase tracking-widest transition-colors"
               >
                 Forgot Password?
               </button>
@@ -158,7 +164,7 @@ export default function ModernSignIn() {
           <motion.button
             disabled={isLoading}
             whileTap={{ scale: 0.98 }}
-            className="w-full mt-2 bg-[#4a703f] hover:bg-[#7bbd25] text-white py-5 rounded-full font-black uppercase tracking-[0.2em] text-[10px] shadow-xl shadow-slate-200/50 transition-all duration-500 flex items-center justify-center gap-3 group"
+            className="w-full mt-2 bg-[#4a703f] hover:bg-[#4a703f] text-white py-5 rounded-full font-black uppercase tracking-[0.2em] text-[10px] shadow-xl shadow-slate-200/50 transition-all duration-500 flex items-center justify-center gap-3 group"
           >
             {isLoading ? "Authenticating..." : "Log In"}
             {!isLoading && (
@@ -177,12 +183,23 @@ export default function ModernSignIn() {
           </span>
         </div>
 
+        <div className="flex justify-center mb-8">
+          <GoogleLogin
+            onSuccess={handleGoogleSuccess}
+            onError={() => toast.error("Google login failed")}
+            shape="pill"
+            theme="outline"
+            size="large"
+            text="signin_with"
+          />
+        </div>
+
         <div className="text-center mt-0">
           <p className="text-[14px] font-bold text-slate-600">
             Don't have an Account?{" "}
             <button
               onClick={() => navigate("/signup")}
-              className="text-[#7bbd25] font-black uppercase ml-1 hover:text-slate-950 transition-colors"
+              className="text-[#4a703f] font-black uppercase ml-1 hover:text-slate-950 transition-colors"
             >
               Sign Up
             </button>

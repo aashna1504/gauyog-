@@ -1,172 +1,198 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { ChevronDown, Filter } from "lucide-react";
 import { AnimatePresence } from "framer-motion";
 import ProductCard from "../../Components/ProductCard";
-
-const allProducts = [
-  {
-    id: 1,
-    name: "Fresh Cow Milk",
-    price: 60,
-    tag: "Daily",
-    color: "from-blue-50 to-indigo-100",
-    category: "Dairy",
-    size: "1L",
-    rating: 4.8,
-    image: "https://pngimg.com/d/milk_PNG12756.png",
-    desc: "Sourced from high-quality grass-fed cows, our fresh milk is processed with zero additives to maintain its natural creamy texture and nutritional value.",
-  },
-  {
-    id: 2,
-    name: "A2 Desi Ghee",
-    price: 850,
-    tag: "Premium",
-    color: "from-orange-50 to-yellow-100",
-    category: "Ghee",
-    size: "500g",
-    rating: 5.0,
-    image: "https://pngimg.com/d/milk_PNG12756.png",
-    desc: "Traditional Bilona-method ghee made from A2 cow milk. Rich in vitamins, healthy fats, and a distinct aroma that elevates every meal.",
-  },
-  {
-    id: 3,
-    name: "Organic Butter",
-    price: 210,
-    tag: "Fresh",
-    color: "from-yellow-50 to-amber-100",
-    category: "Dairy",
-    size: "250g",
-    rating: 4.9,
-    image: "https://pngimg.com/d/milk_PNG12756.png",
-    desc: "Pure, unsalted organic butter churned the traditional way. Perfect for baking or spreading on warm, fresh bread.",
-  },
-  {
-    id: 4,
-    name: "Probiotic Curd",
-    price: 45,
-    tag: "Healthy",
-    color: "from-green-50 to-emerald-100",
-    category: "Dairy",
-    size: "500g",
-    rating: 4.7,
-    image: "https://pngimg.com/d/milk_PNG12756.png",
-    desc: "Thick, creamy curd set with natural cultures. A perfect probiotic boost for your gut health and immunity.",
-  },
-  {
-    id: 5,
-    name: "Natural Paneer",
-    price: 150,
-    tag: "Handmade",
-    color: "from-slate-50 to-gray-200",
-    category: "Dairy",
-    size: "250g",
-    rating: 4.6,
-    image: "https://pngimg.com/d/milk_PNG12756.png",
-    desc: "Soft, handmade cottage cheese with no preservatives. Highly versatile and packed with high-quality dairy protein.",
-  },
-  {
-    id: 6,
-    name: "Bio-Fertilizer",
-    price: 320,
-    tag: "Eco",
-    color: "from-emerald-50 to-teal-100",
-    category: "Garden",
-    size: "1kg",
-    rating: 4.5,
-    image: "https://pngimg.com/d/rice_PNG17.png",
-    desc: "Nutrient-rich organic fertilizer to help your home garden thrive naturally without harmful synthetic chemicals.",
-  },
-  {
-    id: 7,
-    name: "Organic Honey",
-    price: 450,
-    tag: "Pure",
-    color: "from-amber-50 to-orange-100",
-    category: "Pantry",
-    size: "250g",
-    rating: 4.9,
-    image: "https://pngimg.com/d/rice_PNG17.png",
-    desc: "Raw, unprocessed forest honey collected by local tribes. Retains all natural enzymes and healing properties.",
-  },
-  {
-    id: 8,
-    name: "Flavored Milk",
-    price: 35,
-    tag: "New",
-    color: "from-pink-50 to-rose-100",
-    category: "Dairy",
-    size: "250ml",
-    rating: 4.4,
-    image: "https://pngimg.com/d/milk_PNG12756.png",
-    desc: "Naturally flavored and lightly sweetened milk. A refreshing, healthy alternative to soda for kids and adults alike.",
-  },
-  {
-    id: 9,
-    name: "Fresh Curd",
-    price: 40,
-    tag: "Organic",
-    color: "from-cyan-50 to-blue-100",
-    category: "Dairy",
-    size: "500g",
-    rating: 4.7,
-    image: "https://pngimg.com/d/milk_PNG12756.png",
-    desc: "Classic organic curd with a smooth consistency. Essential for your daily Indian meal.",
-  },
-  {
-    id: 10,
-    name: "Gir Ghee",
-    price: 1200,
-    tag: "Ancient",
-    color: "from-yellow-100 to-orange-200",
-    category: "Ghee",
-    size: "1kg",
-    rating: 5.0,
-    image: "https://pngimg.com/d/milk_PNG12756.png",
-    desc: "Extracted from the milk of Gir cows, this ghee is considered liquid gold for its medicinal and nutritional properties.",
-  },
-];
+import api from "../../api/axios";
+import useCartStore from "../../store/cartStore";
+import useWishlistStore from "../../store/wishlistStore";
+import { useNavigate } from "react-router-dom";
 
 export default function ProductListingPage() {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState("All");
   const [activeSize, setActiveSize] = useState("All Sizes");
   const [sortBy, setSortBy] = useState("Relevant");
+  const navigate = useNavigate();
 
-  const categories = ["All", "Dairy", "Ghee", "Garden", "Pantry"];
-  const sizes = ["All Sizes", "250ml", "250g", "500g", "1kg", "1L"];
+  const categories = [
+    "All",
+    "Dairy",
+    "Ghee",
+    "Herbs",
+    "Grains",
+    "Wellness",
+    "Garden",
+    "Pantry",
+  ];
+  const sizes = useMemo(() => {
+    const allWeights = products.flatMap((p) => [
+      ...(p.weightOptions || []),
+      ...(p.weight ? [p.weight] : []),
+    ]);
+    return ["All Sizes", ...Array.from(new Set(allWeights))];
+  }, [products]);
+
+  const {
+    addItem: addToCart,
+    removeByProductId,
+    isInCart,
+    fetchCart,
+  } = useCartStore();
+  const { toggleWishlist, isInWishlist, fetchWishlist } = useWishlistStore();
+
+  useEffect(() => {
+    api
+      .get("/products?limit=100")
+      .then((res) => {
+        const data = res.data?.data;
+        setProducts(data?.products ?? []);
+      })
+      .catch(() => setProducts([]))
+      .finally(() => setLoading(false));
+    fetchCart();
+    fetchWishlist();
+  }, []);
 
   const filteredProducts = useMemo(() => {
-    let list = allProducts.filter(
+    let list = products.filter(
       (p) =>
         (activeCategory === "All" || p.category === activeCategory) &&
-        (activeSize === "All Sizes" || p.size === activeSize)
+        (activeSize === "All Sizes" ||
+          p.weight === activeSize ||
+          (p.weightOptions || []).includes(activeSize)),
     );
     if (sortBy === "PriceH") list = [...list].sort((a, b) => b.price - a.price);
     if (sortBy === "PriceL") list = [...list].sort((a, b) => a.price - b.price);
     return list;
-  }, [activeCategory, activeSize, sortBy]);
+  }, [products, activeCategory, activeSize, sortBy]);
+
+  const handleAddToCart = async (product) => {
+    const result = isInCart(product.id)
+      ? await removeByProductId(product.id)
+      : await addToCart(product);
+    if (!result?.success && result?.message) {
+      alert(result.message);
+    }
+  };
+
+  const handleBuyNow = async (product) => {
+    if (!isInCart(product.id)) {
+      const result = await addToCart(product);
+      if (!result?.success) {
+        if (result?.message) alert(result.message);
+        return;
+      }
+    }
+    navigate("/payment");
+  };
+
+  const handleToggleWishlist = async (product) => {
+    await toggleWishlist(product);
+  };
 
   return (
     <div className="bg-[#fcfdfd] min-h-screen pb-24 relative">
-      {/* HEADER */}
-      <div className="max-w-7xl mx-auto px-6 pt-20 pb-12 text-center">
-        <h1 className="text-5xl md:text-6xl font-black text-gray-900">
-          Harvest <span>Market</span>
-        </h1>
-      </div>
+      <section className="w-full bg-[#fdfcfb] py-24">
+        <div className="max-w-7xl mx-auto px-6">
+          {/* --- COMBINED HEADING SECTION --- */}
+          <div className="w-full max-w-4xl mx-auto text-center mb-20 space-y-5">
+            {/* Gold Subheading with centered line accents */}
+            <div className="flex items-center justify-center gap-3">
+              <div className="w-8 h-[1px] bg-[#e9aa43]/40" />
+              <span className="text-[10px] md:text-[11px] font-black uppercase tracking-[0.4em] text-[#e9aa43]">
+                Trust & Quality
+              </span>
+              <div className="w-8 h-[1px] bg-[#e9aa43]/40" />
+            </div>
 
-      {/* FILTER BAR */}
+            {/* Main Heading */}
+            <h2 className="text-4xl md:text-6xl  font-bold text-[#2d3a29] tracking-tight">
+              Everything from <br />
+              <span className="text-[#4a703f] italic">Mother Earth</span>
+            </h2>
+
+            {/* Centered Description */}
+            <p className="text-slate-500 text-base md:text-lg leading-relaxed max-w-2xl mx-auto font-medium">
+              Our commitment to excellence is backed by international standards
+              and natural processes, ensuring every product is pure by nature
+              and proven by earth.
+            </p>
+          </div>
+
+          {/* --- COLORED ICONS / CERTIFICATIONS GRID --- */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+            {[
+              {
+                name: "Organic Certified",
+                img: "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775715583/100-percent-natural-and-organic-product-badge-label-rubber-stamp-emblem-template-organic-ingredient-badge-logo-suitable-for-product-packaging-design-elements-with-leaf-png_cricy6.png",
+                color: "hover:border-[#4a703f]",
+              },
+              {
+                name: "ISO Standards",
+                img: "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775715667/pngtree-iso-9001-certified---quality-standard-seal-certificate-verified-standard-vector-png-image_22204284_z6qquk.png",
+                color: "hover:border-blue-400",
+              },
+              {
+                name: "Best Quality",
+                img: "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775716925/R_g3ngmr.png",
+                color: "hover:border-yellow-500",
+              },
+              {
+                name: "Lab Tested",
+                img: "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775716286/lab-tested-label-sign-round-stamp-band-ribbon-vector-33848228-removebg-preview_t8vpa3.png",
+                color: "hover:border-black",
+              },
+              {
+                name: "FSSAI Compliant",
+                img: "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775716580/Screenshot_2026-04-09_120539-removebg-preview_ocr40w.png",
+                color: "hover:border-orange-500",
+              },
+              {
+                name: "Export Quality",
+                img: "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775715916/pngtree-export-quality-label-sign-png-image_7690335_mulizh.png",
+                color: "hover:border-red-500",
+              },
+            ].map((cert, idx) => (
+              <div
+                key={idx}
+                className="group flex flex-col items-center space-y-4"
+              >
+                {/* Icon Circle - Increased to w-32 h-32 for better presence */}
+                <div
+                  className={`w-32 h-32 rounded-full bg-white border border-slate-100 shadow-sm flex items-center justify-center transition-all duration-500 transform group-hover:-translate-y-2 group-hover:shadow-xl ${cert.color} border-t-2 group-hover:border-opacity-100`}
+                >
+                  {/* Uniform Image Wrapper - This forces all images to be the same size */}
+                  <div className="w-20 h-20 flex items-center justify-center overflow-hidden">
+                    <img
+                      src={cert.img}
+                      alt={cert.name}
+                      className="max-w-full max-h-full object-contain transition-transform  duration-500 group-hover:scale-110"
+                    />
+                  </div>
+                </div>
+
+                {/* Label */}
+                <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 group-hover:text-[#2d3a29] transition-colors text-center leading-tight">
+                  {cert.name}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <div className="sticky top-4 z-40 max-w-7xl mx-auto px-6 mb-16">
         <div className="bg-white/90 backdrop-blur-xl p-3 rounded-[32px] shadow-2xl shadow-green-900/5 border border-white flex flex-wrap items-center gap-3">
-          {/* Category */}
           <div className="relative flex-1 min-w-[140px] group">
             <Filter
               size={16}
-              className="absolute left-5 top-1/2 -translate-y-1/2 text-[#7bbd25]"
+              className="absolute left-5 top-1/2 -translate-y-1/2 text-[#4a703f]"
             />
             <select
               value={activeCategory}
               onChange={(e) => setActiveCategory(e.target.value)}
-              className="w-full appearance-none bg-gray-50 border-none pl-12 pr-10 py-4 rounded-full text-[10px] font-black uppercase tracking-widest text-gray-700 focus:ring-2 focus:ring-[#7bbd25]/20 cursor-pointer"
+              className="w-full appearance-none bg-gray-50 border-none pl-12 pr-10 py-4 rounded-full text-[10px] font-black uppercase tracking-widest text-gray-700 focus:ring-2 focus:ring-[#4a703f]/20 cursor-pointer"
             >
               {categories.map((c) => (
                 <option key={c} value={c}>
@@ -180,12 +206,11 @@ export default function ProductListingPage() {
             />
           </div>
 
-          {/* Size */}
           <div className="relative flex-1 min-w-[140px]">
             <select
               value={activeSize}
               onChange={(e) => setActiveSize(e.target.value)}
-              className="w-full appearance-none bg-gray-50 border-none px-6 py-4 rounded-full text-[10px] font-black uppercase tracking-widest text-gray-700 focus:ring-2 focus:ring-[#7bbd25]/20 cursor-pointer"
+              className="w-full appearance-none bg-gray-50 border-none px-6 py-4 rounded-full text-[10px] font-black uppercase tracking-widest text-gray-700 focus:ring-2 focus:ring-[#4a703f]/20 cursor-pointer"
             >
               {sizes.map((s) => (
                 <option key={s} value={s}>
@@ -199,7 +224,6 @@ export default function ProductListingPage() {
             />
           </div>
 
-          {/* Sort */}
           <div className="relative flex-[1.5] min-w-[200px]">
             <select
               value={sortBy}
@@ -218,15 +242,36 @@ export default function ProductListingPage() {
         </div>
       </div>
 
-      {/* PRODUCT GRID */}
       <main className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          <AnimatePresence mode="popLayout">
-            {filteredProducts.map((p) => (
-              <ProductCard key={p.id} product={p} />
+        {loading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <div
+                key={i}
+                className="bg-white rounded-[40px] h-96 animate-pulse"
+              />
             ))}
-          </AnimatePresence>
-        </div>
+          </div>
+        ) : filteredProducts.length === 0 ? (
+          <p className="text-center text-gray-400 py-24 text-lg font-medium">
+            No products found.
+          </p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <AnimatePresence mode="popLayout">
+              {filteredProducts.map((p) => (
+                <ProductCard
+                  key={p.id}
+                  product={{ ...p, inCart: isInCart(p.id) }}
+                  onAddToCart={handleAddToCart}
+                  onBuyNow={handleBuyNow}
+                  onToggleWishlist={handleToggleWishlist}
+                  isInWishlist={isInWishlist(p.id)}
+                />
+              ))}
+            </AnimatePresence>
+          </div>
+        )}
       </main>
     </div>
   );

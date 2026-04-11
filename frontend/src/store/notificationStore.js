@@ -8,7 +8,7 @@ const useNotificationStore = create((set, get) => ({
     if (get()._timer) clearTimeout(get()._timer);
     const timer = setTimeout(
       () => set({ notification: null, _timer: null }),
-      3600
+      4000
     );
     set({ notification: { message, type }, _timer: timer });
   },

@@ -31,8 +31,7 @@ const itemVariants = {
   },
 };
 
-// --- MINIMALIST TYPOGRAPHIC SECTION ---
-const TermsSection = ({ title, children, index }) => (
+const TermsSection = ({ title, children }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -41,9 +40,6 @@ const TermsSection = ({ title, children, index }) => (
   >
     <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12">
       <div className="md:col-span-4">
-        <span className="text-[10px] font-black text-[#7bbd25] uppercase tracking-[0.3em] block mb-2">
-          Article {index + 1}
-        </span>
         <h3 className="text-2xl font-black text-slate-900 tracking-tighter italic uppercase">
           {title}
         </h3>
@@ -58,33 +54,28 @@ const TermsSection = ({ title, children, index }) => (
 export default function TermsConditionsPage() {
   return (
     <div className="min-h-screen bg-[#fcfdfd] selection:bg-[#4a703f] selection:text-white">
-      {/* --- MODERN PREMIUM HERO BANNER --- */}
       <motion.div
         initial="hidden"
         animate="visible"
         variants={containerVariants}
         className="relative w-full py-20 md:py-24 overflow-hidden"
       >
-        {/* BACKGROUND GRADIENT */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#f8fbf6] via-white to-[#f4f9ef]" />
 
-        {/* FLOATING BLUR ELEMENTS */}
-        <div className="absolute top-[-80px] left-[-60px] w-[300px] h-[300px] bg-[#7bbd25]/20 rounded-full blur-[120px]" />
+        <div className="absolute top-[-80px] left-[-60px] w-[300px] h-[300px] bg-[#4a703f]/20 rounded-full blur-[120px]" />
         <div className="absolute bottom-[-100px] right-[-80px] w-[350px] h-[350px] bg-[#4a703f]/20 rounded-full blur-[140px]" />
 
-        {/* GRID OVERLAY (modern subtle touch) */}
         <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(#000_1px,transparent_1px),linear-gradient(90deg,#000_1px,transparent_1px)] bg-[size:40px_40px]" />
 
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center mt-20">
-            {/* LEFT CONTENT */}
             <div>
               <motion.h1
                 variants={itemVariants}
                 className="text-5xl md:text-7xl font-extrabold text-gray-900 leading-tight"
               >
-                Terms & <br />
-                <span className="text-[#7bbd25] italic font-semibold">
+                Terms &
+                <span className="text-[#4a703f] italic font-semibold">
                   Conditions
                 </span>
               </motion.h1>
@@ -102,7 +93,6 @@ export default function TermsConditionsPage() {
         </div>
       </motion.div>
 
-      {/* --- SIMPLE TYPOGRAPHIC BODY --- */}
       <div className="max-w-7xl mx-auto px-6 py-10">
         <motion.div
           initial="hidden"
