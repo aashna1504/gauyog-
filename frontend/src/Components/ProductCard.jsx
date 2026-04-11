@@ -12,6 +12,7 @@ import {
   ShieldCheck,
   Loader2,
 } from "lucide-react";
+
 import { useNavigate } from "react-router-dom";
 import api from "../api/axios";
 
@@ -130,7 +131,10 @@ export default function ProductCard({
                     : "text-gray-700 hover:bg-red-500 hover:text-white"
                 }`}
               >
-                <Heart size={20} fill={isInWishlist ? "currentColor" : "none"} />
+                <Heart
+                  size={20}
+                  fill={isInWishlist ? "currentColor" : "none"}
+                />
               </button>
             </div>
           </div>
@@ -140,23 +144,35 @@ export default function ProductCard({
               <div className="flex-1">
                 <div className="flex gap-1 mb-2">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={10} className="fill-yellow-400 text-yellow-400" />
+                    <Star
+                      key={i}
+                      size={10}
+                      className="fill-yellow-400 text-yellow-400"
+                    />
                   ))}
                   {p.rating && (
-                    <span className="text-[10px] text-gray-400 font-bold ml-1">{p.rating}</span>
+                    <span className="text-[10px] text-gray-400 font-bold ml-1">
+                      {p.rating}
+                    </span>
                   )}
                 </div>
                 <h3 className="font-bold text-xl text-gray-800 line-clamp-1 group-hover:text-[#4a703f] transition-colors uppercase tracking-tight">
                   {p.name}
                 </h3>
                 <p className="text-[10px] text-gray-400 font-black uppercase tracking-widest mt-1">
-                  {[p.category, selectedWeight || p.size].filter(Boolean).join(" • ")}
+                  {[p.category, selectedWeight || p.size]
+                    .filter(Boolean)
+                    .join(" • ")}
                 </p>
               </div>
               <div className="pl-2 text-right">
-                <p className="text-2xl font-black text-[#4a703f] tracking-tighter">₹{p.price}</p>
+                <p className="text-2xl font-black text-[#4a703f] tracking-tighter">
+                  ₹{p.price}
+                </p>
                 {p.discountPrice && (
-                  <p className="text-xs text-gray-400 line-through">₹{p.discountPrice}</p>
+                  <p className="text-xs text-gray-400 line-through">
+                    ₹{p.discountPrice}
+                  </p>
                 )}
               </div>
             </div>
@@ -178,7 +194,11 @@ export default function ProductCard({
                     : "bg-gray-50 text-gray-500 hover:bg-[#e9aa43] hover:text-white"
                 }`}
               >
-                {inCart ? <ShoppingBag size={18} /> : <ShoppingCart size={18} />}
+                {inCart ? (
+                  <ShoppingBag size={18} />
+                ) : (
+                  <ShoppingCart size={18} />
+                )}
                 {inCart ? "Remove From Cart" : "Add To Cart"}
               </button>
             </div>
@@ -262,11 +282,13 @@ export default function ProductCard({
                   </span>
                 </div>
 
-                <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-1 tracking-tighter leading-tight">
+                <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-1 tracking-tighter leading-tight line-clamp-1">
                   {detail.name}
                 </h2>
                 {detail.scientificName && (
-                  <p className="text-sm text-gray-400 italic mb-4">{detail.scientificName}</p>
+                  <p className="text-sm text-gray-400 italic mb-4">
+                    {detail.scientificName}
+                  </p>
                 )}
 
                 {/* Price row */}
@@ -289,7 +311,7 @@ export default function ProductCard({
                   )}
                 </div>
 
-                {/* Weight selector */}
+                {/* Weight selector
                 {detail.weightOptions?.length > 0 && (
                   <div className="mb-5">
                     <p className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-500 mb-2">
@@ -311,11 +333,11 @@ export default function ProductCard({
                       ))}
                     </div>
                   </div>
-                )}
+                )} */}
 
                 {/* Description */}
                 {detail.desc && (
-                  <p className="text-gray-500 leading-relaxed mb-5 text-sm font-medium line-clamp-3">
+                  <p className="text-gray-500 leading-relaxed mb-5 text-sm font-medium line-clamp-1">
                     {detail.desc}
                   </p>
                 )}
@@ -334,7 +356,11 @@ export default function ProductCard({
                         : "bg-[#4a703f] text-white hover:bg-[#744926] shadow-green-900/20"
                     }`}
                   >
-                    {inCart ? <ShoppingBag size={20} /> : <ShoppingCart size={20} />}
+                    {inCart ? (
+                      <ShoppingBag size={20} />
+                    ) : (
+                      <ShoppingCart size={20} />
+                    )}
                     {inCart ? "Remove From Cart" : "Add To Cart"}
                   </button>
                   <button
@@ -355,7 +381,10 @@ export default function ProductCard({
                     </div>
                     <div className="grid grid-cols-2 gap-2">
                       {[...Array(4)].map((_, i) => (
-                        <div key={i} className="flex items-center gap-3 bg-white/80 rounded-xl px-3 py-2.5">
+                        <div
+                          key={i}
+                          className="flex items-center gap-3 bg-white/80 rounded-xl px-3 py-2.5"
+                        >
                           <div className="w-6 h-6 rounded-full bg-slate-200 animate-pulse flex-shrink-0" />
                           <div className="h-3 flex-1 bg-slate-100 rounded-full animate-pulse" />
                         </div>
@@ -370,45 +399,23 @@ export default function ProductCard({
                         Key Benefits
                       </p>
                     </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-1 gap-2">
                       {detail.benefits.map((item, i) => (
                         <div
                           key={i}
                           className="flex items-center gap-3 bg-white/80 rounded-xl px-3 py-2.5 border border-[#4a703f]/10"
                         >
                           <div className="w-6 h-6 rounded-full bg-[#4a703f] flex items-center justify-center flex-shrink-0 shadow-sm">
-                            <Check size={12} className="text-white" strokeWidth={3.5} />
+                            <Check
+                              size={12}
+                              className="text-white"
+                              strokeWidth={3.5}
+                            />
                           </div>
-                          <span className="text-sm font-bold text-slate-800">{item}</span>
+                          <span className="text-sm font-bold text-slate-800">
+                            {item}
+                          </span>
                         </div>
-                      ))}
-                    </div>
-                  </div>
-                ) : null}
-
-                {/* ── INGREDIENTS — real data fetched from backend ── */}
-                {modalLoading ? (
-                  <div className="rounded-2xl p-5 bg-white border border-slate-100">
-                    <div className="h-3 w-20 bg-slate-200 rounded-full animate-pulse mb-3" />
-                    <div className="flex flex-wrap gap-2">
-                      {[...Array(4)].map((_, i) => (
-                        <div key={i} className="h-7 w-20 bg-slate-100 rounded-full animate-pulse" />
-                      ))}
-                    </div>
-                  </div>
-                ) : detail.ingredients ? (
-                  <div className="rounded-2xl p-5 bg-white border border-slate-100">
-                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#4a703f] mb-3">
-                      Ingredients
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {detail.ingredients.split(",").map((ing, i) => (
-                        <span
-                          key={i}
-                          className="px-3 py-1.5 bg-green-50 text-[#4a703f] rounded-full text-xs font-bold border border-green-100"
-                        >
-                          {ing.trim()}
-                        </span>
                       ))}
                     </div>
                   </div>
@@ -418,7 +425,9 @@ export default function ProductCard({
                 {modalLoading && (
                   <div className="flex items-center gap-2 mt-4 text-[#4a703f]/60">
                     <Loader2 size={14} className="animate-spin" />
-                    <span className="text-xs font-semibold">Loading product details…</span>
+                    <span className="text-xs font-semibold">
+                      Loading product details…
+                    </span>
                   </div>
                 )}
               </div>

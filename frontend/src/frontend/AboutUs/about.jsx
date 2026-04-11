@@ -303,7 +303,7 @@ function about() {
                     className="relative pl-10 group"
                   >
                     {/* Node Dot */}
-                    <div className="absolute left-0 top-1 w-[22px] h-[22px] rounded-full border-2 border-white bg-white shadow-md flex items-center justify-center z-10 group-hover:border-[#4a703f] transition-all">
+                    <div className="absolute left-0 top-1 w-[22px] h-[22px] rounded-full border-2 bg-white shadow-md flex items-center justify-center z-10 border-[#4a703f] transition-all">
                       <div className="w-2 h-2 rounded-full bg-[#4a703f]" />
                     </div>
 

@@ -76,6 +76,14 @@ export interface Product {
   weightOptions: string[];
   imageUrl: string | null;
   galleryImages: string[];
+  benefits: string[];
+  sku: string | null;
+  batchNo: string | null;
+  mfgDate: string | null;
+  bestBefore: string | null;
+  usageInstructions: string | null;
+  storageInstructions: string | null;
+  safetyInstructions: string | null;
   stock: number;
   createdAt: string;
   updatedAt: string;
@@ -94,6 +102,14 @@ export interface CreateProductInput {
   weightOptions?: string[];
   imageUrl?: string;
   galleryImages?: string[];
+  benefits?: string[];
+  sku?: string;
+  batchNo?: string;
+  mfgDate?: string;
+  bestBefore?: string;
+  usageInstructions?: string;
+  storageInstructions?: string;
+  safetyInstructions?: string;
   stock: number;
 }
 

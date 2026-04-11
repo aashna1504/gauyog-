@@ -11,10 +11,7 @@ export class ProductService {
     const product = await prisma.product.findUnique({ where: { id } });
     if (!product) throw new AppError('Product not found', 404);
 
-    return prisma.product.update({
-      where: { id },
-      data,
-    });
+    return prisma.product.update({ where: { id }, data });
   }
 
   static async deleteProduct(id: string) {
@@ -27,13 +24,13 @@ export class ProductService {
   static async getProductById(id: string) {
     const product = await prisma.product.findUnique({ where: { id } });
     if (!product) throw new AppError('Product not found', 404);
-    
+
     return product;
   }
 
   static async getAllProducts(page: number = 1, limit: number = 10, search?: string) {
     const skip = (page - 1) * limit;
-    
+
     const whereClause: Prisma.ProductWhereInput = search
       ? {
           OR: [

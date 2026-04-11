@@ -51,14 +51,21 @@ model Product {
   discountPrice  Float?
   category       String     @default("Dairy")
   inStock        Boolean    @default(true)
-  weight         String?
-  weightOptions  String[]   @default([])
-  imageUrl       String?
-  galleryImages  String[]   @default([])
-  benefits       String[]   @default([])
-  stock          Int
-  createdAt      DateTime   @default(now())
-  updatedAt      DateTime   @updatedAt
+  weight             String?
+  weightOptions      String[]   @default([])
+  imageUrl           String?
+  galleryImages      String[]   @default([])
+  benefits           String[]   @default([])
+  sku                String?
+  batchNo            String?
+  mfgDate            String?
+  bestBefore         String?
+  usageInstructions  String?
+  storageInstructions String?
+  safetyInstructions String?
+  stock              Int
+  createdAt          DateTime   @default(now())
+  updatedAt          DateTime   @updatedAt
   cartItems      CartItem[]
   wishlistItems  Wishlist[]
   orderItems     OrderItem[]

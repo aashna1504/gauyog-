@@ -287,7 +287,7 @@ export default function KineticContactBanner() {
               </h2>
 
               <div className="space-y-2 text-slate-100 text-lg leading-relaxed">
-                <p className="font-semibold text-[#4a703f]">
+                <p className="font-semibold text-[#e9aa43]">
                   Gauyog Kendr brings together Indian agricultural heritage and
                   international business vision to create premium organic
                   products.

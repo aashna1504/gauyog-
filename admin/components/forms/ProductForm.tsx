@@ -45,6 +45,13 @@ const productSchema = z.object({
   description: z.string().min(10, "Description must be at least 10 characters"),
   ingredients: z.string().optional(),
   benefitsRaw: z.string().optional(),
+  sku: z.string().optional(),
+  batchNo: z.string().optional(),
+  mfgDate: z.string().optional(),
+  bestBefore: z.string().optional(),
+  usageInstructions: z.string().optional(),
+  storageInstructions: z.string().optional(),
+  safetyInstructions: z.string().optional(),
   price: z.coerce.number().positive("Price must be a positive number"),
   discountPrice: z.coerce
     .number()
@@ -99,6 +106,13 @@ export function ProductForm({
       description: "",
       ingredients: "",
       benefitsRaw: "",
+      sku: "",
+      batchNo: "",
+      mfgDate: "",
+      bestBefore: "",
+      usageInstructions: "",
+      storageInstructions: "",
+      safetyInstructions: "",
       price: 0,
       discountPrice: undefined,
       category: "Dairy",
@@ -288,13 +302,70 @@ export function ProductForm({
             )}
           </div>
 
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="ingredients">Ingredients</Label>
+              <Textarea
+                id="ingredients"
+                placeholder="e.g. 100% sun-dried Gir cow dung, no fillers..."
+                rows={2}
+                {...register("ingredients")}
+              />
+            </div>
+            <div className="grid grid-cols-1 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="sku">SKU</Label>
+                <Input
+                  id="sku"
+                  placeholder="e.g. VE-CDP-1KG"
+                  {...register("sku")}
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="batchNo">Batch No.</Label>
+                <Input id="batchNo" placeholder="e.g. See printed label" {...register("batchNo")} />
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="mfgDate">Mfg Date</Label>
+              <Input id="mfgDate" type="date" {...register("mfgDate")} />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="bestBefore">Best Before</Label>
+              <Input id="bestBefore" placeholder="e.g. 18 months from mfg" {...register("bestBefore")} />
+            </div>
+          </div>
+
           <div className="space-y-2">
-            <Label htmlFor="ingredients">Ingredients</Label>
+            <Label htmlFor="usageInstructions">How To Use</Label>
             <Textarea
-              id="ingredients"
-              placeholder="e.g. 100% Organic, No preservatives..."
-              rows={2}
-              {...register("ingredients")}
+              id="usageInstructions"
+              placeholder={"e.g. Mix 200–500g per square meter into garden beds before planting."}
+              rows={3}
+              {...register("usageInstructions")}
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="storageInstructions">Storage Instructions</Label>
+            <Textarea
+              id="storageInstructions"
+              placeholder={"e.g. Store in a cool, dry place in sealed packaging."}
+              rows={3}
+              {...register("storageInstructions")}
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="safetyInstructions">Safety & Cautions</Label>
+            <Textarea
+              id="safetyInstructions"
+              placeholder={"e.g. For agricultural use only. Use mask if applying in windy conditions."}
+              rows={3}
+              {...register("safetyInstructions")}
             />
           </div>
 

@@ -62,18 +62,18 @@ export default function TestimonialSlider() {
     setIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
 
   return (
-    <div className="bg-[#e5ecec] py-10 md:py-20 px-6 relative overflow-hidden">
+    <div className="bg-[#4a703f] py-10 md:py-20 px-6 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-64 h-64 md:w-96 md:h-96 bg-[#4a703f] rounded-full blur-[80px] md:blur-[100px] -z-10" />
 
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 md:gap-20 items-center">
         <div className="flex flex-col">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 text-[#4a703f] text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-4 md:mb-6 w-fit">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 text-[#e9aa43] text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-4 md:mb-6 w-fit">
             <SmileIcon size={12} /> 2,000+ Happy Voices
           </div>
 
-          <h2 className="text-4xl md:text-7xl font-bold text-gray-900 leading-tight mb-4 md:mb-8">
+          <h2 className="text-4xl md:text-7xl font-bold text-gray-200 leading-tight mb-4 md:mb-8">
             The{" "}
-            <span className="text-[#4a703f] italic underline decoration-[#4a703f] underline-offset-4 md:underline-offset-8">
+            <span className="text-[#e9aa43] italic underline decoration-[#e9aa43] underline-offset-4 md:underline-offset-8">
               Trust
             </span>{" "}
             <br />
@@ -132,13 +132,13 @@ export default function TestimonialSlider() {
                     </span>
                   </div>
 
-                  <h3 className="text-2xl md:text-4xl font-bold text-gray-800 leading-snug italic ">
+                  <h3 className="text-2xl md:text-4xl font-bold text-gray-100 leading-snug italic ">
                     "{testimonials[index].text}"
                   </h3>
 
                   <div className="pt-4 md:pt-8 border-t border-gray-100 flex items-center justify-between">
                     <div>
-                      <p className="text-lg md:text-xl font-black text-gray-900 flex items-center gap-2">
+                      <p className="text-lg md:text-xl font-black text-gray-300 flex items-center gap-2">
                         {testimonials[index].name}
                         <CheckCircle2
                           size={14}

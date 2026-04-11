@@ -335,6 +335,63 @@ export default function VedicDhoopMosaicPage() {
               </div>
             </div>
 
+            {/* Benefits + Ingredients side by side */}
+            {(product.benefits?.length > 0 || product.ingredients) && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                {/* Key Benefits */}
+                {product.benefits?.length > 0 && (
+                  <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm">
+                    <div className="flex items-center gap-3 mb-5">
+                      <div className="w-1 h-5 bg-[#4a703f] rounded-full" />
+                      <p className="text-xs font-black uppercase tracking-[0.3em] text-[#4a703f]">
+                        Key Benefits
+                      </p>
+                    </div>
+                    <div className="flex flex-col gap-2.5">
+                      {product.benefits.map((benefit, i) => (
+                        <div
+                          key={i}
+                          className="flex items-center gap-3 bg-[#f3f8ee] rounded-2xl px-4 py-3 border border-[#4a703f]/10"
+                        >
+                          <div className="w-7 h-7 rounded-full bg-[#4a703f] flex items-center justify-center flex-shrink-0 shadow-sm shadow-green-900/20">
+                            <Check size={13} className="text-white" strokeWidth={3.5} />
+                          </div>
+                          <span className="text-sm font-bold text-slate-800">
+                            {benefit}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Ingredients */}
+                {product.ingredients && (
+                  <div className="bg-[#fdf6ee] rounded-3xl p-6 border border-[#e9aa43]/30 shadow-sm">
+                    <div className="flex items-center gap-3 mb-5">
+                      <div className="w-1 h-5 bg-[#e9aa43] rounded-full" />
+                      <p className="text-xs font-black uppercase tracking-[0.3em] text-[#b45309]">
+                        Ingredients
+                      </p>
+                    </div>
+                    <div className="flex flex-col gap-2.5">
+                      {product.ingredients.split(",").map((ing, i) => (
+                        <div
+                          key={i}
+                          className="flex items-center gap-3 bg-white/70 rounded-2xl px-4 py-3 border border-[#e9aa43]/20"
+                        >
+                          <div className="w-2 h-2 rounded-full bg-[#e9aa43] flex-shrink-0" />
+                          <span className="text-sm font-bold text-slate-800">
+                            {ing.trim()}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
             {/* Description */}
             <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm">
               <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#4a703f] mb-3">
@@ -345,51 +402,89 @@ export default function VedicDhoopMosaicPage() {
               </p>
             </div>
 
-            {/* ── BENEFITS — prominent green card with solid tick circles ── */}
-            {product.benefits && product.benefits.length > 0 && (
-              <div className="rounded-3xl p-6 border border-[#4a703f]/20 bg-[#f0f7ee]">
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="w-1 h-5 bg-[#4a703f] rounded-full" />
-                  <p className="text-xs font-black uppercase tracking-[0.3em] text-[#4a703f]">
-                    Key Benefits
-                  </p>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {product.benefits.map((benefit, i) => (
-                    <div
-                      key={i}
-                      className="flex items-center gap-3 bg-white/80 rounded-2xl px-4 py-3 border border-[#4a703f]/10"
-                    >
-                      <div className="w-7 h-7 rounded-full bg-[#4a703f] flex items-center justify-center flex-shrink-0 shadow-sm shadow-green-900/20">
-                        <Check size={13} className="text-white" strokeWidth={3.5} />
+            {/* Product detail grid */}
+            <div className="grid gap-4 lg:grid-cols-2">
+              {(product.sku || product.batchNo || product.mfgDate || product.bestBefore || product.weightOptions?.length) && (
+                <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="w-1.5 h-8 rounded-full bg-[#4a703f]" />
+                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#4a703f]">
+                      Product Details
+                    </p>
+                  </div>
+                  <div className="space-y-3 text-sm text-slate-700">
+                    {product.sku && (
+                      <div className="flex justify-between gap-4">
+                        <span className="font-semibold text-slate-500">SKU</span>
+                        <span className="text-right">{product.sku}</span>
                       </div>
-                      <span className="text-sm font-bold text-slate-800">
-                        {benefit}
-                      </span>
-                    </div>
-                  ))}
+                    )}
+                    {product.batchNo && (
+                      <div className="flex justify-between gap-4">
+                        <span className="font-semibold text-slate-500">Batch No.</span>
+                        <span className="text-right">{product.batchNo}</span>
+                      </div>
+                    )}
+                    {product.mfgDate && (
+                      <div className="flex justify-between gap-4">
+                        <span className="font-semibold text-slate-500">Mfg Date</span>
+                        <span className="text-right">{product.mfgDate}</span>
+                      </div>
+                    )}
+                    {product.bestBefore && (
+                      <div className="flex justify-between gap-4">
+                        <span className="font-semibold text-slate-500">Best Before</span>
+                        <span className="text-right">{product.bestBefore}</span>
+                      </div>
+                    )}
+                    {product.weightOptions?.length > 0 && (
+                      <div className="flex justify-between gap-4">
+                        <span className="font-semibold text-slate-500">Also Available</span>
+                        <span className="text-right">
+                          {product.weightOptions.join(', ')}
+                        </span>
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
-            {/* Ingredients */}
-            {product.ingredients && (
-              <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm">
-                <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#4a703f] mb-3">
-                  Ingredients
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {product.ingredients.split(",").map((ing, i) => (
-                    <span
-                      key={i}
-                      className="px-3 py-1.5 bg-green-50 text-[#4a703f] rounded-full text-xs font-bold border border-green-100"
-                    >
-                      {ing.trim()}
-                    </span>
-                  ))}
+              {(product.usageInstructions || product.storageInstructions || product.safetyInstructions) && (
+                <div className="grid gap-4">
+                  {product.usageInstructions && (
+                    <div className="bg-[#eef8ef] rounded-3xl p-6 border border-[#4a703f]/15 shadow-sm">
+                      <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#4a703f] mb-3">
+                        How To Use
+                      </p>
+                      <p className="text-sm leading-relaxed text-slate-700">
+                        {product.usageInstructions}
+                      </p>
+                    </div>
+                  )}
+                  {product.storageInstructions && (
+                    <div className="bg-blue-50 rounded-3xl p-6 border border-blue-100 shadow-sm">
+                      <p className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-600 mb-3">
+                        Storage
+                      </p>
+                      <p className="text-sm leading-relaxed text-slate-700">
+                        {product.storageInstructions}
+                      </p>
+                    </div>
+                  )}
+                  {product.safetyInstructions && (
+                    <div className="bg-amber-50 rounded-3xl p-6 border border-amber-100 shadow-sm">
+                      <p className="text-[10px] font-black uppercase tracking-[0.3em] text-amber-700 mb-3">
+                        Safety & Cautions
+                      </p>
+                      <p className="text-sm leading-relaxed text-slate-700">
+                        {product.safetyInstructions}
+                      </p>
+                    </div>
+                  )}
                 </div>
-              </div>
-            )}
+              )}
+            </div>
+
           </motion.div>
 
         </div>
