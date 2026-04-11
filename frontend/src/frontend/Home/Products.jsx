@@ -76,7 +76,7 @@ export default function ProductSection() {
     { label: "100%", sub: "NATURAL & CHEMICAL-FREE" },
     { label: "8+", sub: "PRODUCT LINES TRUSTED BY GROWERS" },
     { label: "Female", sub: "WOMEN-LED FROM SOIL TO SHELF" },
-    { label: "World", sub: "COUNTRIES GROWING WITH US" },
+    { label: "Grown", sub: "COUNTRIES GROWING WITH US" },
   ];
   const tiers = [
     {
@@ -131,51 +131,85 @@ export default function ProductSection() {
   return (
     <div>
       <section className=" py-20 px-6 overflow-hidden">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch">
           {/* Left Content */}
-          <div className="space-y-8">
-            <div className="space-y-4">
-              {/* Logo Area */}
-              <div className="flex flex-col">
-                <h2 className="text-3xl  font-black text-[#4a703f] tracking-tight">
-                  Gauyog Kendr
-                </h2>
-                <span className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400">
-                  Sustainables
-                </span>
+          <div className="flex flex-col justify-between space-y-12">
+            {/* Main Text Block */}
+            <div className="space-y-8">
+              <div className="space-y-4">
+                {/* Logo Area */}
+                <div className="flex flex-col">
+                  <h2 className="text-3xl font-black text-[#4a703f] tracking-tight">
+                    Gauyog Kendr
+                  </h2>
+                  <span className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400">
+                    Sustainables
+                  </span>
+                </div>
+
+                <h1 className="text-5xl md:text-6xl font-bold text-black leading-[1.1]">
+                  Our Gift from{" "}
+                  <span className="text-[#4a703f] italic underline decoration-[#e9aa43]/30 underline-offset-8">
+                    Gujarat, India
+                  </span>{" "}
+                  to the World
+                </h1>
+
+                <p className="text-[#e9aa43] italic font-semibold text-lg flex items-center gap-3">
+                  <span className="w-6 h-[2px] bg-[#e9aa43]/20" />
+                  Pure by Nature. Proven by Earth.
+                </p>
               </div>
 
-              <h1 className="text-5xl md:text-6xl  font-bold text-black leading-[1.1]">
-                Our Gift from{" "}
-                <span className="text-[#4a703f] italic">Gujarat, India</span> to
-                the World
-              </h1>
-
-              <p className="text-[#d4a044]  italic font-semibold text-lg">
-                Pure by Nature. Proven by Earth.
+              <p className="text-slate-600 leading-relaxed text-lg max-w-xl">
+                From the heart of Gujarat to fields around the world — Gauyog
+                Kendr creates premium organic soil, fertiliser, and coconut
+                products that honour the earth, empower local women, and help
+                farmers grow naturally.
               </p>
             </div>
 
-            <p className="text-slate-600 leading-relaxed text-lg max-w-xl">
-              From the heart of Gujarat to fields around the world — Gauyog
-              Kendr creates premium organic soil, fertiliser, and coconut
-              products that honour the earth, empower local women, and help
-              farmers grow naturally.
-            </p>
+            {/* NEW: Heritage & Distribution Footer (To balance height) */}
+            <div className="  space-y-8 bg-[#4a703f] p-6 rounded-2xl">
+              <div className="flex flex-wrap gap-10">
+                <div className="space-y-2">
+                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">
+                    Origin
+                  </p>
+                  <p className="text-sm font-bold text-slate-200">
+                    Veraval, Gir Somnath
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">
+                    Operations
+                  </p>
+                  <p className="text-sm font-bold text-slate-200">
+                    Manufacturing & Export
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">
+                    Network
+                  </p>
+                  <p className="text-sm font-bold text-slate-200">
+                    5,000+ Farmers
+                  </p>
+                </div>
+              </div>
 
-            <div className="flex flex-wrap gap-4 pt-4">
-              <button
-                onClick={() => (window.location.href = "/shop")}
-                className="bg-[#744926] text-white px-10 py-5 rounded-full font-bold shadow-2xl hover:bg-[#4a703f] hover:scale-105 transition-all duration-300"
-              >
-                Explore Our Products
-              </button>
-              <button
-                onClick={() => (window.location.href = "/contact")}
-                className="border-2 border-slate-200 hover:border-[#4a703f] hover:text-[#4a703f] text-slate-600 px-8 py-4 rounded-full font-bold transition-all active:scale-95"
-              >
-                Connect With Us
-              </button>
+              {/* Modern Badge Strip */}
+              <div className="flex items-center gap-6 hover:opacity-100 transition-opacity">
+                <div className="px-3 py-1 border border-slate-100 rounded text-[9px] font-black uppercase tracking-widest text-slate-100">
+                  ISO 9001:2015
+                </div>
+                <div className="px-3 py-1 border border-slate-300 rounded text-[9px] font-black uppercase tracking-widest text-slate-100">
+                  Organic Certified
+                </div>
+                <div className="px-3 py-1 border border-slate-300 rounded text-[9px] font-black uppercase tracking-widest text-slate-100">
+                  Startup India
+                </div>
+              </div>
             </div>
           </div>
 
@@ -184,7 +218,7 @@ export default function ProductSection() {
             {/* Main Image Card */}
             <div className="relative rounded-[40px] overflow-hidden shadow-2xl group transition-transform duration-500 hover:scale-[1.02]">
               <img
-                src="https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302434/0fc480c8-6acf-4ff0-a587-cea5c58e069b_lii8qp.jpg" // Replace with actual image path
+                src="https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302434/0fc480c8-6acf-4ff0-a587-cea5c58e069b_lii8qp.jpg"
                 alt="Gauyog Team at Gujarat Expo"
                 className="w-full h-[450px] object-cover"
               />
@@ -203,7 +237,7 @@ export default function ProductSection() {
                   key={idx}
                   className="bg-white border border-slate-100 p-6 rounded-2xl flex flex-col justify-center items-center text-center space-y-2 shadow-sm hover:shadow-md transition-shadow"
                 >
-                  <span className="text-[#d4a044]  font-bold text-2xl lg:text-xl xl:text-2xl">
+                  <span className="text-[#e9aa43] font-bold text-2xl lg:text-xl xl:text-2xl">
                     {stat.label}
                   </span>
                   <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest leading-tight">
@@ -212,14 +246,10 @@ export default function ProductSection() {
                 </div>
               ))}
             </div>
-
-            <p className="text-[10px] text-slate-300 tracking-widest">
-              CIN : U28160GJ2024PTC154513
-            </p>
           </div>
         </div>
       </section>
-      <div className="bg-[#fcfdfd] pt-20 relative overflow-hidden">
+      <div className="bg-[#fcfdfd] relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-green-50 rounded-full blur-[120px] -z-10 opacity-60" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-50 rounded-full blur-[100px] -z-10 opacity-40" />
 
@@ -328,12 +358,12 @@ export default function ProductSection() {
             {/* Header Section */}
             <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
               <div className="space-y-4">
-                <span className="text-[10px] font-black uppercase tracking-[0.5em] text-[#d4a044]">
+                <span className="text-[10px] font-black uppercase tracking-[0.5em] text-[#e9aa43]">
                   Product Selection
                 </span>
                 <h2 className="text-5xl font-black text-slate-100 tracking-tighter">
                   Choose Your{" "}
-                  <span className="italic text-[#d4a044]">Intensity.</span>
+                  <span className="italic text-[#e9aa43]">Intensity.</span>
                 </h2>
               </div>
               <p className="max-w-xs text-slate-100 text-sm font-medium leading-relaxed border-l-2 border-slate-100 pl-6">
@@ -439,9 +469,9 @@ export default function ProductSection() {
               {/* --- LEFT SIDE: CONTENT & SEGMENTS --- */}
               <div className="lg:col-span-7 space-y-12">
                 <div className="space-y-6">
-                  <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#d4a044]/10 border border-[#d4a044]/20">
-                    <Globe size={14} className="text-[#d4a044]" />
-                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#d4a044]">
+                  <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#e9aa43]/10 border border-[#e9aa43]/20">
+                    <Globe size={14} className="text-[#e9aa43]" />
+                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#e9aa43]">
                       Global Reach & Impact
                     </span>
                   </div>
@@ -481,7 +511,7 @@ export default function ProductSection() {
                       title: "Farming Co-operatives",
                       icon: <Users2 />,
                       desc: "High-quality organic inputs for large-scale natural farming.",
-                      color: "bg-[#d4a044]/10 text-[#d4a044]",
+                      color: "bg-[#e9aa43]/10 text-[#e9aa43]",
                     },
                   ].map((item, i) => (
                     <div
@@ -548,7 +578,7 @@ export default function ProductSection() {
                     </p>
 
                     <div className="space-y-4">
-                      <div className="w-12 h-1 bg-[#d4a044]" />
+                      <div className="w-12 h-1 bg-[#e9aa43]" />
                       <div>
                         <p className="font-black text-[10px] uppercase tracking-[0.3em] text-[#4a703f]">
                           International Distribution Partner

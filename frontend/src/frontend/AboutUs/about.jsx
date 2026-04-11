@@ -15,6 +15,7 @@ import {
   Users2,
   Globe2,
   Sprout,
+  TrendingUp,
 } from "lucide-react";
 import { useRef } from "react";
 function about() {
@@ -90,7 +91,7 @@ function about() {
       subtitle: "Rural Livelihoods",
       desc: "Our workforce is majority women from local villages.",
       icon: <Users2 strokeWidth={1.5} />,
-      color: "text-[#d4a044]",
+      color: "text-[#e9aa43]",
     },
     {
       title: "International Expertise",
@@ -159,6 +160,32 @@ function about() {
       size: "md:col-span-1 md:row-span-1",
     },
   ];
+  const features = [
+    {
+      title: "Soil Vitality",
+      desc: "Restoring health with essential microbes.",
+      icon: <Sprout size={18} />,
+      color: "#7bbd25",
+    },
+    {
+      title: "Pure Growth",
+      desc: "100% chemical-free agricultural solutions.",
+      icon: <ShieldCheck size={18} />,
+      color: "#4a703f",
+    },
+    {
+      title: "Higher Yield",
+      desc: "Optimized root strength & productivity.",
+      icon: <TrendingUp size={18} />,
+      color: "#e9aa43",
+    },
+    {
+      title: "Vedic Roots",
+      desc: "Sustainable traditions for the future.",
+      icon: <Leaf size={18} />,
+      color: "#4a703f",
+    },
+  ];
   const scrollRef = useRef(null);
 
   const scroll = (direction) => {
@@ -172,75 +199,159 @@ function about() {
   };
   return (
     <div className="mt-20">
-      <section className="relative min-h-[90vh] flex items-center justify-center px-6 py-20 overflow-hidden bg-[#fcfdfd]">
-        <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-[#4a703f]/10 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-[#e9aa43]/10 rounded-full blur-[100px] pointer-events-none" />
+      <section className="relative min-h-[85vh] flex items-center justify-center px-6 py-12 overflow-hidden bg-[#fcfdfd]">
+        {/* --- LAYER 1: ABSTRACT BACKGROUND DNA --- */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          {/* Geometric Rings */}
+          <div className="absolute top-[-10%] left-[-5%] w-[500px] h-[500px] rounded-full border border-[#4a703f]/10" />
+          <div className="absolute top-[-12%] left-[-7%] w-[600px] h-[600px] rounded-full border border-[#4a703f]/5" />
 
-        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-7 z-10">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="h-[2px] w-8 bg-[#4a703f]" />
-                <span className="text-[10px] font-black uppercase tracking-[0.5em] text-[#4a703f]">
-                  Modern Vedic Alchemists
-                </span>
+          {/* Subtle Grid Pattern */}
+          <div
+            className="absolute inset-0 opacity-[0.03] grayscale"
+            style={{
+              backgroundImage: "radial-gradient(#4a703f 1px, transparent 1px)",
+              backgroundSize: "40px 40px",
+            }}
+          />
+        </div>
+
+        <div className="max-w-7xl mx-auto w-full z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 lg:gap-16 items-center">
+            {/* --- LEFT: COMPACT NARRATIVE --- */}
+            <div className="lg:col-span-7">
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="h-[1px] w-10 bg-[#4a703f]" />
+                  <span className="text-[9px] font-black uppercase tracking-[0.4em] text-[#4a703f]">
+                    POWERED BY NATURE
+                  </span>
+                </div>
+
+                <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-slate-900 tracking-[-0.04em] leading-[0.9] mb-8">
+                  Pure by Nature <br />
+                  <span className="text-[#4a703f] italic underline decoration-[#e9aa43]/20 underline-offset-4">
+                    Proven by Earth.
+                  </span>
+                </h1>
+
+                <div className="flex flex-wrap items-center gap-8">
+                  <p className="text-base text-slate-500 font-medium max-w-sm leading-relaxed border-l-2 border-slate-200 pl-6">
+                    Transforming ancient wisdom into biological solutions for
+                    restoring soil health and farmer prosperity.
+                  </p>
+
+                  <div className="flex items-center gap-4">
+                    <button
+                      onClick={() => (window.location.href = "/shop")}
+                      className="group bg-[#4a703f] text-white p-5 rounded-full hover:bg-[#7bbd25] transition-all shadow-xl shadow-[#4a703f]/20"
+                    >
+                      <ArrowUpRight
+                        size={24}
+                        className="group-hover:rotate-45 transition-transform"
+                      />
+                    </button>
+                    <span
+                      onClick={() => (window.location.href = "/shop")}
+                      className="text-[10px] font-black uppercase tracking-widest text-slate-900"
+                    >
+                      Explore <br />
+                      Products
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* --- RIGHT: THE 4 PILLARS (Replaces Single Image) --- */}
+            <div className="lg:col-span-5 relative py-8">
+              <div className="space-y-10 relative">
+                {/* Vertical Connecting Line */}
+                <div className="absolute left-[11px] top-2 bottom-2 w-[1px] bg-gradient-to-b from-[#4a703f]/50 via-slate-200 to-transparent" />
+
+                {[
+                  {
+                    n: "01",
+                    t: "Respect the Soil",
+                    d: "Healthy soil is the foundation of all life. Our products restore biology naturally.",
+                  },
+                  {
+                    n: "02",
+                    t: "Honour Tradition",
+                    d: "Centuries of Indian wisdom — Gir cow dung and time-tested methods.",
+                  },
+                  {
+                    n: "03",
+                    t: "Help Farmers Thrive",
+                    d: "Making organic inputs affordable to switch from chemical to natural.",
+                  },
+                  {
+                    n: "04",
+                    t: "Protect the Planet",
+                    d: "A circular economy transforming agricultural waste into healing inputs.",
+                  },
+                ].map((item, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.2 * i }}
+                    className="relative pl-10 group"
+                  >
+                    {/* Node Dot */}
+                    <div className="absolute left-0 top-1 w-[22px] h-[22px] rounded-full border-2 border-white bg-white shadow-md flex items-center justify-center z-10 group-hover:border-[#4a703f] transition-all">
+                      <div className="w-2 h-2 rounded-full bg-[#4a703f]" />
+                    </div>
+
+                    <div className="flex flex-col">
+                      <div className="flex items-center gap-3">
+                        <span className="text-[10px] font-black text-[#e9aa43] tracking-tighter">
+                          {item.n}
+                        </span>
+                        <h4 className="text-sm font-black uppercase tracking-widest text-slate-900 group-hover:text-[#4a703f] transition-colors">
+                          {item.t}
+                        </h4>
+                      </div>
+                      <p className="text-[12px] text-slate-500 font-medium leading-relaxed mt-1 max-w-xs">
+                        {item.d}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
-
-              <h1 className="text-6xl md:text-8xl lg:text-8xl font-black text-slate-900 tracking-[-0.05em] leading-[0.85] mb-8">
-                Pure by Nature
-                <br />
-                <span className="text-[#4a703f] italic"> Proven by Earth.</span>
-              </h1>
-
-              <p className="text-lg md:text-xl text-slate-500 font-medium max-w-xl leading-relaxed mb-10 border-l-2 border-slate-200 pl-6">
-                We bring together tradition and sustainability to create a
-                healthier, more conscious way of living.
-              </p>
-
-              <div className="flex flex-wrap items-center gap-5">
-                <button
-                  onClick={() => (window.location.href = "/shop")}
-                  className="group bg-[#744926] hover:bg-[#4a703f] text-white px-10 py-5 rounded-full font-black text-[11px] uppercase tracking-[0.2em] transition-all flex items-center gap-3 shadow-2xl active:scale-95"
-                >
-                  Explore Services
-                  <ArrowUpRight
-                    size={18}
-                    className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
-                  />
-                </button>
-
-                <button
-                  onClick={() => (window.location.href = "/contact")}
-                  className="px-10 py-5 rounded-full font-black text-[11px] uppercase tracking-[0.2em] text-[#4a703f] border-2 border-[#4a703f]/30 hover:border-[#4a703f] transition-all active:scale-95"
-                >
-                  Contact Us
-                </button>
-              </div>
-            </motion.div>
+            </div>
           </div>
 
-          <div className="lg:col-span-5 relative">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.2 }}
-              className="relative z-10"
-            >
-              <div className="aspect-[4/5] bg-slate-200 rounded-[60px] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] ">
-                <img
-                  src="https://res.cloudinary.com/dbpzzvcik/image/upload/v1775824342/132978ec-ec4c-4c94-86e6-5d716252c48b_g9qfri.jpg"
-                  alt="Vedic Dhoop Ritual"
-                  className="w-full h-full object-cover "
-                />
+          {/* --- BOTTOM: COMPACT FEATURE GRID --- */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="mt-1 pt-10 border-t border-slate-100 grid grid-cols-2 lg:grid-cols-4 gap-8"
+          >
+            {features.map((item, idx) => (
+              <div key={idx} className="group cursor-default">
+                <div className="flex items-center gap-3 mb-2">
+                  <div
+                    style={{ color: item.color }}
+                    className="opacity-80 group-hover:scale-110 transition-transform"
+                  >
+                    {item.icon}
+                  </div>
+                  <h4 className="text-[11px] font-black uppercase tracking-widest text-slate-900">
+                    {item.title}
+                  </h4>
+                </div>
+                <p className="text-[12px] text-slate-500 font-medium leading-relaxed group-hover:text-slate-900 transition-colors">
+                  {item.desc}
+                </p>
               </div>
-
-              <div className="absolute -bottom-6 -right-6 -z-10 size-full border-2 border-[#4a703f]/20 rounded-[60px]" />
-            </motion.div>
-          </div>
+            ))}
+          </motion.div>
         </div>
       </section>
       <div className="bg-[#fcfdfd ] min-h-screen text-slate-900 selection:bg-[#4a703f]/30">
@@ -340,7 +451,7 @@ function about() {
             {/* Right Text Content */}
             <div className="lg:col-span-8 space-y-8">
               <div className="space-y-4">
-                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#d4a044]">
+                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#e9aa43]">
                   Our Partnership
                 </span>
                 <h2 className="text-4xl md:text-5xl  font-bold text-[#2d3a29] leading-tight">
@@ -425,7 +536,7 @@ function about() {
               <div className="relative">
                 {/* Subtle Background Glows that connect the columns */}
                 <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-[#4a703f]/5 rounded-full blur-[100px] -z-10" />
-                <div className="absolute top-1/4 right-0 w-[300px] h-[300px] bg-[#d4a044]/5 rounded-full blur-[80px] -z-10" />
+                <div className="absolute top-1/4 right-0 w-[300px] h-[300px] bg-[#e9aa43]/5 rounded-full blur-[80px] -z-10" />
 
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-x-12 gap-y-16 items-start relative">
                   {advantageData.map((item, index) => (
@@ -476,7 +587,7 @@ function about() {
             <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div className="space-y-8">
                 <div className="space-y-4">
-                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#d4a044]">
+                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#e9aa43]">
                     Community & Women
                   </span>
                   <h2 className="text-4xl md:text-5xl  font-bold leading-tight">
@@ -753,7 +864,7 @@ function Director({ name, role, initial }) {
 function Stat({ value, label }) {
   return (
     <div className="space-y-1">
-      <div className="text-2xl font-bold text-[#d4a044]">{value}</div>
+      <div className="text-2xl font-bold text-[#e9aa43]">{value}</div>
       <div className="text-[9px] font-black tracking-widest text-white/60 leading-tight uppercase">
         {label}
       </div>

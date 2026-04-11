@@ -99,11 +99,11 @@ export default function ProductListingPage() {
           <div className="w-full max-w-4xl mx-auto text-center mb-20 space-y-5">
             {/* Gold Subheading with centered line accents */}
             <div className="flex items-center justify-center gap-3">
-              <div className="w-8 h-[1px] bg-[#d4a044]/40" />
-              <span className="text-[10px] md:text-[11px] font-black uppercase tracking-[0.4em] text-[#d4a044]">
+              <div className="w-8 h-[1px] bg-[#e9aa43]/40" />
+              <span className="text-[10px] md:text-[11px] font-black uppercase tracking-[0.4em] text-[#e9aa43]">
                 Trust & Quality
               </span>
-              <div className="w-8 h-[1px] bg-[#d4a044]/40" />
+              <div className="w-8 h-[1px] bg-[#e9aa43]/40" />
             </div>
 
             {/* Main Heading */}

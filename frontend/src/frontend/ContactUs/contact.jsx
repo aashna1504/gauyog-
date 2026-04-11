@@ -74,7 +74,7 @@ const commitments = [
   {
     title: "Community First",
     desc: "We employ local women and invest in Gujarat's rural economy to lift families and preserve traditional heritage.",
-    color: "#d4a044",
+    color: "#e9aa43",
   },
 ];
 export default function KineticContactBanner() {
@@ -237,7 +237,7 @@ export default function KineticContactBanner() {
                 />
               </div>
               {/* Established Badge */}
-              <div className="bg-[#d4a044] rounded-3xl p-6 text-center shadow-lg shadow-[#d4a044]/20">
+              <div className="bg-[#e9aa43] rounded-3xl p-6 text-center shadow-lg shadow-[#e9aa43]/20">
                 <span className="block text-3xl  font-black text-[#2d3a29]">
                   2021
                 </span>
@@ -271,10 +271,10 @@ export default function KineticContactBanner() {
           <div className="lg:col-span-6 space-y-10">
             <div className="space-y-6">
               <div className="inline-block">
-                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#d4a044]">
+                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#e9aa43]">
                   Our Story
                 </span>
-                <div className="h-[1px] w-12 bg-[#d4a044] mt-1" />
+                <div className="h-[1px] w-12 bg-[#e9aa43] mt-1" />
               </div>
 
               <h2 className="text-5xl md:text-6xl  font-bold text-white leading-[1.1]">
@@ -304,8 +304,8 @@ export default function KineticContactBanner() {
             {/* Feature Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6 border-t border-slate-100">
               <div className="flex gap-4">
-                <div className="w-10 h-10 rounded-full bg-[#d4a044]/30 flex items-center justify-center shrink-0">
-                  <Leaf className="text-[#d4a044]" size={18} />
+                <div className="w-10 h-10 rounded-full bg-[#e9aa43]/30 flex items-center justify-center shrink-0">
+                  <Leaf className="text-[#e9aa43]" size={18} />
                 </div>
                 <div>
                   <h4 className="font-bold text-white text-sm">
@@ -318,8 +318,8 @@ export default function KineticContactBanner() {
               </div>
 
               <div className="flex gap-4">
-                <div className="w-10 h-10 rounded-full bg-[#d4a044]/30 flex items-center justify-center shrink-0">
-                  <Users className="text-[#d4a044]" size={18} />
+                <div className="w-10 h-10 rounded-full bg-[#e9aa43]/30 flex items-center justify-center shrink-0">
+                  <Users className="text-[#e9aa43]" size={18} />
                 </div>
                 <div>
                   <h4 className="font-bold text-white text-sm">Women First</h4>
@@ -365,7 +365,7 @@ export default function KineticContactBanner() {
             <motion.span
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="text-[10px] font-black uppercase tracking-[0.4em] text-[#d4a044] mb-4 block"
+              className="text-[10px] font-black uppercase tracking-[0.4em] text-[#e9aa43] mb-4 block"
             >
               Our Commitment
             </motion.span>
