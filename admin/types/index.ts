@@ -5,6 +5,7 @@ export type Role = 'USER' | 'ADMIN' | 'SALES';
 export interface AuthUser {
   id: string;
   email: string;
+  name: string | null;
   role: Role;
 }
 
@@ -137,6 +138,7 @@ export interface ContactMessage {
   name: string;
   email: string;
   phone: string | null;
+  role: string | null;
   message: string;
   status: string;
   createdAt: string;

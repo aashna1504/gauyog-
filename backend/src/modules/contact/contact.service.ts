@@ -2,12 +2,13 @@ import { Prisma } from '@prisma/client';
 import { prisma } from '../../config/db';
 
 export class ContactService {
-  static async create(data: { name: string; email: string; phone?: string; message: string }) {
+  static async create(data: { name: string; email: string; phone?: string; role?: string; message: string }) {
     return prisma.contactMessage.create({
       data: {
         name: data.name,
         email: data.email,
         phone: data.phone,
+        role: data.role,
         message: data.message,
       },
     });

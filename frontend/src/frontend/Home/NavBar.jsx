@@ -8,9 +8,6 @@ import {
   Trash2,
   ChevronRight,
   LogOut,
-  LayoutDashboard,
-  Settings,
-  UserCircle2,
   Heart,
   PersonStanding,
 } from "lucide-react";
@@ -54,7 +51,7 @@ export default function Header() {
     logout();
     setShowUserMenu(false);
     notify(
-      `See you soon, ${user?.email?.split("@")[0] || "friend"}!`,
+      `See you soon, ${user?.name || user?.email?.split("@")[0] || "friend"}!`,
       "logout",
     );
     navigate("/");
@@ -80,8 +77,8 @@ export default function Header() {
     { name: "Contact Us", path: "/contact" },
   ];
 
-  const userInitial = user?.email?.[0]?.toUpperCase() || "U";
-  const userName = user?.email?.split("@")[0] || "User";
+  const userInitial = user?.name?.[0]?.toUpperCase() || user?.email?.[0]?.toUpperCase() || "U";
+  const userName = user?.name || user?.email?.split("@")[0] || "User";
 
   return (
     <>

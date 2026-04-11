@@ -59,6 +59,7 @@ export default function EditProductPage() {
             weightOptions: product.weightOptions ?? [],
             imageUrl: product.imageUrl ?? '',
             galleryImagesRaw: product.galleryImages?.join(', ') ?? '',
+            benefitsRaw: product.benefits?.join('\n') ?? '',
             stock: product.stock,
           }}
           onSubmit={handleSubmit}

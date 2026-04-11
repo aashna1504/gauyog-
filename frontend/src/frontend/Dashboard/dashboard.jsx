@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import useAuthStore from "../../store/authStore";
 import useCartStore from "../../store/cartStore";
@@ -8,7 +8,6 @@ import {
   Package,
   LogOut,
   LayoutDashboard,
-  Phone,
   Mail,
   Clock,
   UserCircle2,
@@ -188,7 +187,7 @@ export default function FloatingNexusDashboard() {
                 </div>
                 <div>
                   <h3 className="text-base font-black text-slate-900 leading-tight">
-                    {user?.email?.split("@")[0] || "Guest User"}
+                    {user?.name || user?.email?.split("@")[0] || "Guest User"}
                   </h3>
                   <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest truncate max-w-[140px]">
                     {user?.email || "No email"}

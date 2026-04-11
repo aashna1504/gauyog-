@@ -7,6 +7,8 @@ import {
   googleAuth,
   forgotPassword,
   resetPassword,
+  getProfile,
+  updateProfile,
 } from './auth.controller';
 import { validateRequest } from '../../middleware/validate.middleware';
 import { authenticate } from '../../middleware/auth.middleware';
@@ -28,5 +30,7 @@ router.post('/forgot-password', validateRequest(forgotPasswordSchema), forgotPas
 router.post('/reset-password', validateRequest(resetPasswordSchema), resetPassword);
 router.post('/logout', authenticate, logout);
 router.post('/refresh', validateRequest(refreshSchema), refresh);
+router.get('/me', authenticate, getProfile);
+router.patch('/profile', authenticate, updateProfile);
 
 export default router;

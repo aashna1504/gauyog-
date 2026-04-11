@@ -35,6 +35,16 @@ export function ContactsTable() {
       ),
     },
     {
+      accessorKey: 'role',
+      header: 'Role',
+      cell: ({ row }) =>
+        row.original.role ? (
+          <Badge variant="outline">{row.original.role}</Badge>
+        ) : (
+          <span className="text-xs text-muted-foreground">—</span>
+        ),
+    },
+    {
       accessorKey: 'message',
       header: 'Message',
       cell: ({ row }) => (

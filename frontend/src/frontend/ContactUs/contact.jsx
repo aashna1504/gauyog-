@@ -14,7 +14,6 @@ import {
   Phone,
   MapPin,
   Send,
-  ArrowRight,
   Instagram,
   Twitter,
   Facebook,
@@ -79,7 +78,15 @@ const commitments = [
   },
 ];
 export default function KineticContactBanner() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({
+    name: "",
+    company: "",
+    email: "",
+    country: "",
+    role: "",
+    interest: "",
+    message: "",
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (key, value) => {
@@ -96,10 +103,18 @@ export default function KineticContactBanner() {
     setIsSubmitting(true);
     try {
       await api.post("/contact", form);
-      toast.success("Message sent successfully");
-      setForm({ name: "", email: "", message: "" });
+      toast.success("Enquiry sent successfully! We'll be in touch shortly.");
+      setForm({
+        name: "",
+        company: "",
+        email: "",
+        country: "",
+        role: "",
+        interest: "",
+        message: "",
+      });
     } catch (error) {
-      toast.error(error.response?.data?.message || "Failed to send message");
+      toast.error(error.response?.data?.message || "Failed to send enquiry");
     } finally {
       setIsSubmitting(false);
     }
@@ -128,7 +143,7 @@ export default function KineticContactBanner() {
               className="inline-flex items-center gap-2 mb-6 px-4 py-2 bg-white rounded-full shadow-sm border border-gray-100"
             >
               <HandshakeIcon size={14} className="text-[#4a703f]" />
-              <span className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-400">
+              <span className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-600">
                 Direct Touch
               </span>
             </motion.div>
@@ -289,8 +304,8 @@ export default function KineticContactBanner() {
             {/* Feature Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6 border-t border-slate-100">
               <div className="flex gap-4">
-                <div className="w-10 h-10 rounded-full bg-[#4a703f]/30 flex items-center justify-center shrink-0">
-                  <Leaf className="text-[#4a703f]" size={18} />
+                <div className="w-10 h-10 rounded-full bg-[#d4a044]/30 flex items-center justify-center shrink-0">
+                  <Leaf className="text-[#d4a044]" size={18} />
                 </div>
                 <div>
                   <h4 className="font-bold text-white text-sm">
@@ -490,77 +505,181 @@ export default function KineticContactBanner() {
                 </div>
               </div>
 
-              <div className="w-full lg:w-[60%] bg-[#fdfefd] p-10 md:p-16 flex flex-col justify-center relative">
+              <div className="w-full lg:w-[60%] bg-[#fdfefd] p-10 md:p-16 flex flex-col justify-center relative overflow-y-auto">
                 <form
-                  className="max-w-md w-full mx-auto"
+                  className="max-w-lg w-full mx-auto"
                   onSubmit={handleSubmit}
                 >
-                  <div className="mb-10 space-y-3">
+                  <div className="mb-8 space-y-3">
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 text-[#4a703f] text-[9px] font-black uppercase tracking-[0.2em]">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#4a703f] animate-ping" />
                       Direct Channel
                     </div>
                     <h3 className="text-4xl font-black text-gray-900 tracking-tighter leading-none">
-                      Get in{" "}
+                      Let's
                       <span className="text-[#4a703f] italic font-medium">
-                        Touch.
+                        Grow Together
                       </span>
                     </h3>
+                    <p className="text-lg text-gray-700 font-medium">
+                      Whether you're a distributor, retailer, co-operative, or
+                      farmer looking to go organic — we'd love to hear from you.
+                      Together, we can nurture the earth and grow something
+                      extraordinary.
+                    </p>
                   </div>
 
-                  <div className="space-y-5">
-                    <div className="space-y-1.5 group">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 group-focus-within:text-[#4a703f]">
-                        Full Name
-                      </label>
-                      <div className="relative">
+                  <div className="space-y-4">
+                    {/* Row 1: Full Name + Company */}
+                    <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
+                      <div className="space-y-1.5 group">
+                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">
+                          Full Name <span className="text-red-600">*</span>
+                        </label>
+                        <div className="relative">
+                          <input
+                            type="text"
+                            placeholder="Your name"
+                            value={form.name}
+                            onChange={(e) =>
+                              handleChange("name", e.target.value)
+                            }
+                            className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3 rounded-full outline-none focus:bg-white focus:border-[#4a703f] focus:ring-4 focus:ring-[#4a703f]/5 transition-all text-sm font-semibold text-gray-900"
+                          />
+                          <User
+                            className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-200 group-focus-within:text-[#4a703f]"
+                            size={16}
+                          />
+                        </div>
+                      </div>
+
+                      {/* <div className="space-y-1.5 group">
+                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">
+                          Company
+                        </label>
                         <input
                           type="text"
-                          placeholder="John Doe"
-                          value={form.name}
-                          onChange={(e) => handleChange("name", e.target.value)}
-                          className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3.5 rounded-full outline-none focus:bg-white focus:border-[#4a703f] focus:ring-4 focus:ring-[#4a703f]/5 transition-all text-sm font-bold text-gray-900"
+                          placeholder="Company name"
+                          value={form.company}
+                          onChange={(e) => handleChange("company", e.target.value)}
+                          className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3 rounded-full outline-none focus:bg-white focus:border-[#4a703f] focus:ring-4 focus:ring-[#4a703f]/5 transition-all text-sm font-semibold text-gray-900"
                         />
-                        <User
-                          className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-200 group-focus-within:text-[#4a703f]"
-                          size={18}
-                        />
-                      </div>
+                      </div> */}
                     </div>
 
+                    {/* Row 2: Email + Country */}
+                    <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
+                      <div className="space-y-1.5 group">
+                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">
+                          Email <span className="text-red-600">*</span>
+                        </label>
+                        <div className="relative">
+                          <input
+                            type="email"
+                            placeholder="you@company.com"
+                            value={form.email}
+                            onChange={(e) =>
+                              handleChange("email", e.target.value)
+                            }
+                            className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3 rounded-full outline-none focus:bg-white focus:border-[#4a703f] focus:ring-4 focus:ring-[#4a703f]/5 transition-all text-sm font-semibold text-gray-900"
+                          />
+                          <Mail
+                            className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-200 group-focus-within:text-[#4a703f]"
+                            size={16}
+                          />
+                        </div>
+                      </div>
+
+                      {/* <div className="space-y-1.5 group">
+                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">
+                          Country
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="Your country"
+                          value={form.country}
+                          onChange={(e) => handleChange("country", e.target.value)}
+                          className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3 rounded-full outline-none focus:bg-white focus:border-[#4a703f] focus:ring-4 focus:ring-[#4a703f]/5 transition-all text-sm font-semibold text-gray-900"
+                        />
+                      </div> */}
+                    </div>
+
+                    {/* I Am A */}
                     <div className="space-y-1.5 group">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 group-focus-within:text-[#4a703f]">
-                        Email Address
+                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">
+                        I Am A
                       </label>
                       <div className="relative">
-                        <input
-                          type="email"
-                          placeholder="john@example.com"
-                          value={form.email}
+                        <select
+                          value={form.role}
                           onChange={(e) =>
-                            handleChange("email", e.target.value)
+                            handleChange("role", e.target.value)
                           }
-                          className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3.5 rounded-full outline-none focus:bg-white focus:border-[#4a703f] focus:ring-4 focus:ring-[#4a703f]/5 transition-all text-sm font-bold text-gray-900"
-                        />
-                        <Mail
-                          className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-200 group-focus-within:text-[#4a703f]"
-                          size={18}
+                          className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3 rounded-full outline-none focus:bg-white focus:border-[#4a703f] focus:ring-4 focus:ring-[#4a703f]/5 transition-all text-sm font-semibold text-gray-900 appearance-none cursor-pointer"
+                        >
+                          <option value="">Select your role...</option>
+                          <option value="Farmer">Farmer</option>
+                          <option value="Retailer">Retailer</option>
+                          <option value="Consumer">Consumer</option>
+                          <option value="Distributor">Distributor</option>
+                          <option value="Exporter">Exporter</option>
+                        </select>
+                        <ChevronRight
+                          className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-300 rotate-90 pointer-events-none"
+                          size={16}
                         />
                       </div>
                     </div>
 
+                    {/* I'm Interested In */}
                     <div className="space-y-1.5 group">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 group-focus-within:text-[#4a703f]">
-                        Your Message
+                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">
+                        I'm Interested In
+                      </label>
+                      <div className="relative">
+                        <select
+                          value={form.interest}
+                          onChange={(e) =>
+                            handleChange("interest", e.target.value)
+                          }
+                          className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3 rounded-full outline-none focus:bg-white focus:border-[#4a703f] focus:ring-4 focus:ring-[#4a703f]/5 transition-all text-sm font-semibold text-gray-900 appearance-none cursor-pointer"
+                        >
+                          <option value="">Select a product category...</option>
+                          <option value="Organic Soil & Fertilisers">
+                            Organic Soil &amp; Fertilisers
+                          </option>
+                          <option value="Coco Peat & Coir Products">
+                            Coco Peat &amp; Coir Products
+                          </option>
+                          <option value="Natural Farming Inputs">
+                            Natural Farming Inputs
+                          </option>
+                          <option value="Distribution Partnership">
+                            Distribution Partnership
+                          </option>
+                          <option value="Custom Blends">Custom Blends</option>
+                          <option value="Other">Other</option>
+                        </select>
+                        <ChevronRight
+                          className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-300 rotate-90 pointer-events-none"
+                          size={16}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Message */}
+                    <div className="space-y-1.5 group">
+                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">
+                        Message <span className="text-red-600">*</span>
                       </label>
                       <textarea
-                        rows="3"
-                        placeholder="How can we help?"
+                        rows="4"
+                        placeholder="Tell us about your requirements..."
                         value={form.message}
                         onChange={(e) =>
                           handleChange("message", e.target.value)
                         }
-                        className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3.5 rounded-full outline-none focus:bg-white focus:border-[#4a703f] focus:ring-4 focus:ring-[#4a703f]/5 transition-all text-sm font-bold text-gray-900 resize-none"
+                        className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3.5 rounded-3xl outline-none focus:bg-white focus:border-[#4a703f] focus:ring-4 focus:ring-[#4a703f]/5 transition-all text-sm font-semibold text-gray-900 resize-none"
                       />
                     </div>
 
@@ -569,11 +688,11 @@ export default function KineticContactBanner() {
                       disabled={isSubmitting}
                       whileHover={{ y: -2 }}
                       whileTap={{ scale: 0.98 }}
-                      className="w-full mt-4 bg-[#4a703f] hover:bg-[#744926] disabled:opacity-60 text-white py-4 rounded-full flex items-center justify-center gap-3 font-black uppercase tracking-[0.2em] text-[10px] transition-all duration-500 shadow-lg shadow-gray-200 group"
+                      className="w-full mt-2 bg-[#4a703f] hover:bg-[#3a5a30] disabled:opacity-60 text-white py-4 rounded-full flex items-center justify-center gap-3 font-black uppercase tracking-[0.2em] text-[10px] transition-all duration-500 shadow-lg shadow-[#4a703f]/20 group"
                     >
-                      {isSubmitting ? "Sending..." : "Send Message"}
-                      <ArrowRight
-                        size={16}
+                      {isSubmitting ? "Sending Enquiry..." : "Send Enquiry"}
+                      <Send
+                        size={14}
                         className="group-hover:translate-x-1 transition-transform"
                       />
                     </motion.button>

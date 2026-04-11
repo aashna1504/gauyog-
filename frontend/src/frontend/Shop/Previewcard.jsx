@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { ShoppingBag, Heart, Package, Layers, ShoppingCart } from "lucide-react";
+import { Heart, Package, Layers, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../../api/axios";
@@ -109,112 +109,27 @@ export default function VedicDhoopMosaicPage() {
   return (
     <div className="pt-40 pb-16 px-4 md:px-8 bg-[#f8f9f5] min-h-screen">
       <div className="max-w-[1400px] mx-auto">
-        <div className="grid lg:grid-cols-2 gap-6 items-start">
-          {/* ── LEFT: Image Panel ── */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            className="lg:sticky lg:top-28"
-          >
-            <div className="bg-white rounded-3xl overflow-hidden shadow-xl shadow-[#4a703f]/10 border border-[#4a703f]/10">
-              {/* Top bar inside image card */}
-              <div className="flex items-center justify-between px-5 pt-5">
-                <span
-                  className={`px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm ${
-                    product.inStock
-                      ? "bg-[#4a703f] text-white"
-                      : "bg-red-500 text-white"
-                  }`}
-                >
-                  {product.inStock ? "In Stock" : "Out of Stock"}
-                </span>
+        {/*
+          LAYOUT STRATEGY
+          ─────────────────────────────────────────────────────
+          Mobile  (< lg)  : flex-col, CSS order controls stack:
+                              1. Info card  (order-1)
+                              2. Image      (order-2)
+                              3. Rest       (order-3)
+          Desktop (>= lg) : CSS grid 2-col, explicit placement:
+                              col-1 row-1 row-span-2 → Image (sticky)
+                              col-2 row-1            → Info card
+                              col-2 row-2            → Rest of details
+        */}
+        <div className="flex flex-col gap-6 lg:grid lg:grid-cols-2 lg:gap-6 lg:items-start">
 
-                {/* Heart / Wishlist button */}
-                <button
-                  onClick={handleToggleWishlist}
-                  className={`p-3 rounded-full shadow-md transition-all duration-300 group ${
-                    wishlisted
-                      ? "bg-red-500 shadow-red-200 hover:bg-red-600"
-                      : "bg-slate-50 hover:bg-red-50 shadow-slate-200"
-                  }`}
-                  title={
-                    wishlisted ? "Remove from wishlist" : "Add to wishlist"
-                  }
-                >
-                  <Heart
-                    size={22}
-                    fill={wishlisted ? "white" : "none"}
-                    className={`transition-all duration-300 group-hover:scale-110 ${
-                      wishlisted
-                        ? "text-white"
-                        : "text-slate-400 group-hover:text-red-400"
-                    }`}
-                  />
-                </button>
-              </div>
-
-              {/* Image area: thumbnails on left + main image on right */}
-              <div className="flex gap-3 p-4">
-                {/* Left thumbnail column */}
-                {productImages.length > 1 && (
-                  <div className="flex flex-col gap-2 overflow-y-auto max-h-[500px] md:max-h-[580px] pr-1 scrollbar-thin">
-                    {productImages.map((img, idx) => (
-                      <button
-                        key={`${img}-${idx}`}
-                        onClick={() => setActiveImg(idx)}
-                        className={`flex-shrink-0 w-14 h-14 rounded-xl overflow-hidden border-2 p-1 transition-all duration-200 ${
-                          activeImg === idx
-                            ? "border-[#4a703f] shadow-md shadow-green-100 scale-105 bg-[#f3f8ee]"
-                            : "border-transparent bg-[#f3f8ee] opacity-50 hover:opacity-90 hover:border-slate-200"
-                        }`}
-                      >
-                        <img
-                          src={img}
-                          className="w-full h-full object-contain"
-                          alt={`view ${idx + 1}`}
-                          onError={(e) => {
-                            e.currentTarget.src = PLACEHOLDER_IMG;
-                          }}
-                        />
-                      </button>
-                    ))}
-                  </div>
-                )}
-
-                {/* Main image */}
-                <div className="relative flex-1 flex items-center justify-center min-h-[440px] md:min-h-[540px] bg-[#f3f8ee] rounded-2xl px-4 py-8">
-                  <AnimatePresence mode="wait">
-                    <motion.img
-                      key={activeImg}
-                      initial={{ opacity: 0, scale: 0.88 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 1.04 }}
-                      transition={{ type: "spring", damping: 22, stiffness: 200 }}
-                      src={productImages[activeImg]}
-                      alt={product.name}
-                      className="w-full max-w-[380px] md:max-w-[460px] object-contain rounded-full"
-                      onError={(e) => {
-                        e.currentTarget.src = PLACEHOLDER_IMG;
-                      }}
-                    />
-                  </AnimatePresence>
-                  <span className="absolute bottom-4 right-4 text-[40px] md:text-[70px] font-black text-[#4a703f]/5 leading-none tracking-tighter uppercase select-none pointer-events-none">
-                    Gauyog
-                  </span>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* ── RIGHT: Product Info ── */}
+          {/* ── INFO CARD: mobile top (order-1), desktop col-2 row-1 ── */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="flex flex-col gap-5"
+            transition={{ duration: 0.45 }}
+            className="order-1 lg:order-none lg:col-start-2 lg:row-start-1"
           >
-            {/* Category + Name + Scientific name + Price */}
             <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm">
               <span className="inline-block px-4 py-1.5 bg-[#4a703f]/10 text-[#4a703f] rounded-full text-[10px] font-black uppercase tracking-[0.3em] mb-3">
                 {product.category}
@@ -243,7 +158,105 @@ export default function VedicDhoopMosaicPage() {
                 )}
               </div>
             </div>
+          </motion.div>
 
+          {/* ── IMAGE PANEL: mobile middle (order-2), desktop col-1 row-1 sticky ── */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="order-2 lg:order-none lg:col-start-1 lg:row-start-1 lg:row-span-2 lg:sticky lg:top-28"
+          >
+            <div className="bg-white rounded-3xl overflow-hidden shadow-xl shadow-[#4a703f]/10 border border-[#4a703f]/10">
+              {/* Top bar */}
+              <div className="flex items-center justify-between px-5 pt-5">
+                <span
+                  className={`px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm ${
+                    product.inStock
+                      ? "bg-[#4a703f] text-white"
+                      : "bg-red-500 text-white"
+                  }`}
+                >
+                  {product.inStock ? "In Stock" : "Out of Stock"}
+                </span>
+                <button
+                  onClick={handleToggleWishlist}
+                  className={`p-3 rounded-full shadow-md transition-all duration-300 group ${
+                    wishlisted
+                      ? "bg-red-500 shadow-red-200 hover:bg-red-600"
+                      : "bg-slate-50 hover:bg-red-50 shadow-slate-200"
+                  }`}
+                  title={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
+                >
+                  <Heart
+                    size={22}
+                    fill={wishlisted ? "white" : "none"}
+                    className={`transition-all duration-300 group-hover:scale-110 ${
+                      wishlisted
+                        ? "text-white"
+                        : "text-slate-400 group-hover:text-red-400"
+                    }`}
+                  />
+                </button>
+              </div>
+
+              {/* Thumbnails + Main image */}
+              <div className="flex gap-3 p-4">
+                {productImages.length > 1 && (
+                  <div className="flex flex-col gap-2 overflow-y-auto max-h-[500px] md:max-h-[580px] pr-1 scrollbar-thin">
+                    {productImages.map((img, idx) => (
+                      <button
+                        key={`${img}-${idx}`}
+                        onClick={() => setActiveImg(idx)}
+                        className={`flex-shrink-0 w-14 h-14 rounded-xl overflow-hidden border-2 p-1 transition-all duration-200 ${
+                          activeImg === idx
+                            ? "border-[#4a703f] shadow-md shadow-green-100 scale-105 bg-[#f3f8ee]"
+                            : "border-transparent bg-[#f3f8ee] opacity-50 hover:opacity-90 hover:border-slate-200"
+                        }`}
+                      >
+                        <img
+                          src={img}
+                          className="w-full h-full object-contain"
+                          alt={`view ${idx + 1}`}
+                          onError={(e) => {
+                            e.currentTarget.src = PLACEHOLDER_IMG;
+                          }}
+                        />
+                      </button>
+                    ))}
+                  </div>
+                )}
+                <div className="relative flex-1 flex items-center justify-center min-h-[440px] md:min-h-[540px] bg-[#f3f8ee] rounded-2xl px-4 py-8">
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={activeImg}
+                      initial={{ opacity: 0, scale: 0.88 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.04 }}
+                      transition={{ type: "spring", damping: 22, stiffness: 200 }}
+                      src={productImages[activeImg]}
+                      alt={product.name}
+                      className="w-full max-w-[380px] md:max-w-[460px] object-contain rounded-full"
+                      onError={(e) => {
+                        e.currentTarget.src = PLACEHOLDER_IMG;
+                      }}
+                    />
+                  </AnimatePresence>
+                  <span className="absolute bottom-4 right-4 text-[40px] md:text-[70px] font-black text-[#4a703f]/5 leading-none tracking-tighter uppercase select-none pointer-events-none">
+                    Gauyog
+                  </span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* ── REST OF DETAILS: mobile bottom (order-3), desktop col-2 row-2 ── */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="order-3 lg:order-none lg:col-start-2 lg:row-start-2 flex flex-col gap-5"
+          >
             {/* Weight pills */}
             {!!product.weightOptions?.length && (
               <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm">
@@ -292,7 +305,7 @@ export default function VedicDhoopMosaicPage() {
               </button>
             </div>
 
-            {/* Pack + Stock cards */}
+            {/* Pack + Stock */}
             <div className="grid grid-cols-2 gap-3">
               <div className="bg-white rounded-2xl p-5 border border-slate-100 shadow-sm flex items-center gap-4">
                 <div className="w-10 h-10 rounded-xl bg-[#4a703f]/10 flex items-center justify-center flex-shrink-0">
@@ -332,6 +345,33 @@ export default function VedicDhoopMosaicPage() {
               </p>
             </div>
 
+            {/* ── BENEFITS — prominent green card with solid tick circles ── */}
+            {product.benefits && product.benefits.length > 0 && (
+              <div className="rounded-3xl p-6 border border-[#4a703f]/20 bg-[#f0f7ee]">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-1 h-5 bg-[#4a703f] rounded-full" />
+                  <p className="text-xs font-black uppercase tracking-[0.3em] text-[#4a703f]">
+                    Key Benefits
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {product.benefits.map((benefit, i) => (
+                    <div
+                      key={i}
+                      className="flex items-center gap-3 bg-white/80 rounded-2xl px-4 py-3 border border-[#4a703f]/10"
+                    >
+                      <div className="w-7 h-7 rounded-full bg-[#4a703f] flex items-center justify-center flex-shrink-0 shadow-sm shadow-green-900/20">
+                        <Check size={13} className="text-white" strokeWidth={3.5} />
+                      </div>
+                      <span className="text-sm font-bold text-slate-800">
+                        {benefit}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* Ingredients */}
             {product.ingredients && (
               <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm">
@@ -351,6 +391,7 @@ export default function VedicDhoopMosaicPage() {
               </div>
             )}
           </motion.div>
+
         </div>
       </div>
     </div>

@@ -24,6 +24,7 @@ export const authOptions: NextAuthOptions = {
           return {
             id: result.user.id,
             email: result.user.email,
+            name: result.user.name ?? null,
             role: result.user.role,
             accessToken: result.accessToken,
             refreshToken: result.refreshToken,
@@ -39,8 +40,9 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        const u = user as unknown as { id: string; role: string; accessToken: string; refreshToken: string };
+        const u = user as unknown as { id: string; name: string | null; role: string; accessToken: string; refreshToken: string };
         token.id = u.id;
+        token.name = u.name ?? null;
         token.role = u.role;
         token.accessToken = u.accessToken;
         token.refreshToken = u.refreshToken;
@@ -67,6 +69,7 @@ export const authOptions: NextAuthOptions = {
     },
     async session({ session, token }) {
       session.user.id = token.id as string;
+      session.user.name = (token.name as string | null) ?? null;
       session.user.role = token.role as string;
       session.accessToken = token.accessToken as string;
       session.refreshToken = token.refreshToken as string;

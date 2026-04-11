@@ -17,6 +17,7 @@ export const submitContact = async (req: Request, res: Response, next: NextFunct
           <p><strong>Name:</strong> ${contact.name}</p>
           <p><strong>Email:</strong> ${contact.email}</p>
           <p><strong>Phone:</strong> ${contact.phone || '-'}</p>
+          <p><strong>Role:</strong> ${contact.role || '-'}</p>
           <p><strong>Message:</strong><br/>${contact.message}</p>
         `,
       });

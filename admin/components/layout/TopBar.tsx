@@ -25,7 +25,8 @@ export function TopBar() {
     router.push('/login');
   };
 
-  const initials = getInitials(session?.user?.email?.split('@')[0]);
+  const displayName = session?.user?.name || session?.user?.email?.split('@')[0] || 'User';
+  const initials = getInitials(displayName);
 
   return (
     <header className="flex h-14 shrink-0 items-center justify-between border-b bg-background/95 px-3 sm:px-4 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -54,7 +55,7 @@ export function TopBar() {
               </Avatar>
               <div className="hidden sm:flex flex-col items-start">
                 <span className="text-xs font-semibold leading-none">
-                  {session?.user?.email?.split('@')[0]}
+                  {displayName}
                 </span>
                 <Badge
                   variant="secondary"
@@ -72,7 +73,7 @@ export function TopBar() {
           <DropdownMenuContent align="end" className="w-48">
             <DropdownMenuLabel className="font-normal">
               <div className="flex flex-col space-y-1">
-                <p className="text-sm font-medium">{session?.user?.email?.split('@')[0]}</p>
+                <p className="text-sm font-medium">{displayName}</p>
                 <p className="text-xs text-muted-foreground truncate">{session?.user?.email}</p>
               </div>
             </DropdownMenuLabel>

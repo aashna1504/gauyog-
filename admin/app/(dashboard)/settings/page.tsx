@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import {
   Loader2, ShieldCheck, Mail, User, KeyRound,
-  UserPlus, ShoppingBag,
+  UserPlus, ShoppingBag, Pencil,
 } from "lucide-react";
 import { toast } from "sonner";
 import { DashboardShell } from "@/components/layout/DashboardShell";
@@ -22,6 +22,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { getInitials } from "@/lib/utils";
 import { createStaffUserRequest } from "@/lib/api/auth";
+import apiClient from "@/lib/api/axios";
 import axios from "axios";
 
 // ── Password change schema ───────────────────────────────────────────────────
@@ -52,6 +53,12 @@ const salesMemberSchema = z
 
 type SalesMemberFormValues = z.infer<typeof salesMemberSchema>;
 
+// ── Update name schema ───────────────────────────────────────────────────────
+const nameSchema = z.object({
+  name: z.string().min(1, "Name is required").max(100),
+});
+type NameFormValues = z.infer<typeof nameSchema>;
+
 function extractErrorMessage(err: unknown, fallback: string): string {
   if (axios.isAxiosError(err)) {
     return err.response?.data?.message ?? err.message ?? fallback;
@@ -61,14 +68,20 @@ function extractErrorMessage(err: unknown, fallback: string): string {
 }
 
 export default function SettingsPage() {
-  const { data: session } = useSession();
+  const { data: session, update: updateSession } = useSession();
   const isAdmin = session?.user?.role === "ADMIN";
   const [isChangingPassword, setIsChangingPassword] = useState(false);
   const [isCreatingSales, setIsCreatingSales] = useState(false);
+  const [isUpdatingName, setIsUpdatingName] = useState(false);
 
-  const name = session?.user?.email?.split("@")[0] ?? "User";
-  const initials = getInitials(name);
+  const displayName = session?.user?.name || session?.user?.email?.split("@")[0] || "User";
+  const initials = getInitials(displayName);
   const roleName = isAdmin ? "Admin" : "Sales";
+
+  const nameForm = useForm<NameFormValues>({
+    resolver: zodResolver(nameSchema),
+    defaultValues: { name: session?.user?.name || "" },
+  });
 
   const passwordForm = useForm<PasswordFormValues>({
     resolver: zodResolver(passwordSchema),
@@ -77,6 +90,19 @@ export default function SettingsPage() {
   const salesForm = useForm<SalesMemberFormValues>({
     resolver: zodResolver(salesMemberSchema),
   });
+
+  const onNameSubmit = async (values: NameFormValues) => {
+    setIsUpdatingName(true);
+    try {
+      await apiClient.patch("/auth/profile", { name: values.name });
+      await updateSession({ name: values.name });
+      toast.success("Display name updated");
+    } catch (err) {
+      toast.error(extractErrorMessage(err, "Failed to update name."));
+    } finally {
+      setIsUpdatingName(false);
+    }
+  };
 
   const onPasswordSubmit = async (_values: PasswordFormValues) => {
     setIsChangingPassword(true);
@@ -128,7 +154,7 @@ export default function SettingsPage() {
                   </AvatarFallback>
                 </Avatar>
                 <div className="text-center mt-4 space-y-1">
-                  <h4 className="text-xl font-bold capitalize">{name}</h4>
+                  <h4 className="text-xl font-bold capitalize">{displayName}</h4>
                   <p className="text-sm text-muted-foreground flex items-center justify-center gap-1">
                     <Mail size={14} /> {session?.user?.email}
                   </p>
@@ -175,6 +201,52 @@ export default function SettingsPage() {
 
         {/* ── Right Column ─────────────────────────────────────────────── */}
         <div className="lg:col-span-8 space-y-6">
+
+          {/* Update Name */}
+          <Card className="shadow-md border-muted/20">
+            <CardHeader className="border-b bg-muted/5">
+              <CardTitle className="text-base flex items-center gap-2">
+                <Pencil size={18} className="text-[#4a703f]" />
+                Display Name
+              </CardTitle>
+              <CardDescription>
+                Update the name shown across the dashboard.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="pt-6">
+              <form
+                onSubmit={nameForm.handleSubmit(onNameSubmit)}
+                className="flex items-end gap-4"
+              >
+                <div className="flex-1 space-y-2">
+                  <Label className="text-xs uppercase tracking-widest font-bold text-muted-foreground">
+                    Full Name
+                  </Label>
+                  <Input
+                    placeholder="e.g. Aashna Sagar"
+                    className="focus-visible:ring-[#4a703f]"
+                    {...nameForm.register("name")}
+                  />
+                  {nameForm.formState.errors.name && (
+                    <p className="text-xs text-destructive font-medium">
+                      {nameForm.formState.errors.name.message}
+                    </p>
+                  )}
+                </div>
+                <Button
+                  type="submit"
+                  disabled={isUpdatingName}
+                  className="bg-[#4a703f] hover:bg-[#4a703f] min-w-[120px]"
+                >
+                  {isUpdatingName ? (
+                    <><Loader2 className="h-4 w-4 animate-spin mr-2" /> Saving...</>
+                  ) : (
+                    "Save Name"
+                  )}
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
 
           {/* Security / Password */}
           <Card className="shadow-md border-muted/20">

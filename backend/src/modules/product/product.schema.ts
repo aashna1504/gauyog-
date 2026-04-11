@@ -14,6 +14,7 @@ export const createProductSchema = z.object({
     weightOptions: z.array(z.string()).optional(),
     imageUrl: z.string().optional(),
     galleryImages: z.array(z.string()).optional(),
+    benefits: z.array(z.string()).optional(),
     stock: z.number().int().nonnegative('Stock cannot be negative'),
   }),
 });
@@ -32,6 +33,7 @@ export const updateProductSchema = z.object({
     weightOptions: z.array(z.string()).optional(),
     imageUrl: z.string().optional(),
     galleryImages: z.array(z.string()).optional(),
+    benefits: z.array(z.string()).optional(),
     stock: z.number().int().nonnegative().optional(),
   }),
   params: z.object({

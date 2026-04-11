@@ -72,3 +72,21 @@ export const resetPassword = async (req: Request, res: Response, next: NextFunct
     next(error);
   }
 };
+
+export const getProfile = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const user = await AuthService.getProfile(req.user!.userId);
+    res.status(200).json(formatResponse(true, 'Profile retrieved', user));
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const updateProfile = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const user = await AuthService.updateProfile(req.user!.userId, req.body.name);
+    res.status(200).json(formatResponse(true, 'Profile updated', user));
+  } catch (error) {
+    next(error);
+  }
+};

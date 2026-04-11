@@ -55,6 +55,7 @@ model Product {
   weightOptions  String[]   @default([])
   imageUrl       String?
   galleryImages  String[]   @default([])
+  benefits       String[]   @default([])
   stock          Int
   createdAt      DateTime   @default(now())
   updatedAt      DateTime   @updatedAt
@@ -98,6 +99,7 @@ model ContactMessage {
   name      String
   email     String
   phone     String?
+  role      String?
   message   String
   status    String   @default("NEW")
   createdAt DateTime @default(now())

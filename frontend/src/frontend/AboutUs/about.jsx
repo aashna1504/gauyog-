@@ -236,8 +236,6 @@ function about() {
                   alt="Vedic Dhoop Ritual"
                   className="w-full h-full object-cover "
                 />
-
-              
               </div>
 
               <div className="absolute -bottom-6 -right-6 -z-10 size-full border-2 border-[#4a703f]/20 rounded-[60px]" />
@@ -656,7 +654,7 @@ function about() {
                 </motion.div>
                 <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-slate-100 leading-[0.9]">
                   From Our Hands <br />{" "}
-                  <span className="text-[#4a703f]"> To Your Fields</span>
+                  <span className="text-[#e9aa43]"> To Your Fields</span>
                 </h2>
               </div>
               <p className="text-slate-100 font-medium text-lg leading-relaxed border-l-2 border-slate-100 pl-4">
@@ -730,112 +728,6 @@ function about() {
             <span className="ml-6 text-[10px] font-black uppercase text-slate-400">
               Manual Scroll Enabled
             </span>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 px-6 md:px-12 bg-[#fcfdfd ] overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row items-stretch gap-0 bg-white rounded-[40px] md:rounded-[60px] border border-slate-100 shadow-sm overflow-hidden">
-            <div className="lg:w-5/12 relative min-h-[400px] lg:min-h-full overflow-hidden group bg-slate-50 border-r border-slate-100 flex items-center justify-center">
-              <img
-                src="https://res.cloudinary.com/dbpzzvcik/image/upload/v1775037259/cow_v6ymwb.png"
-                alt="Gauyog Kendr Sanctuary"
-                className="w-full h-auto max-h-[90%] object-contain object-center transform transition-transform duration-1000 group-hover:scale-110 p-4"
-              />
-
-              <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-slate-900/60 to-transparent z-[5]" />
-
-              <div className="absolute bottom-10 left-10 z-[10] drop-shadow-lg">
-                <span className="text-[10px] font-black uppercase tracking-[0.5em] text-white/90">
-                  The Sanctuary
-                </span>
-                <h3 className="text-4xl font-black text-white tracking-tighter italic">
-                  Gauyog Kendr.
-                </h3>
-              </div>
-            </div>
-
-            <div className="lg:w-7/12 p-8 md:p-16 lg:p-20 flex flex-col justify-between space-y-16">
-              <div className="flex flex-col md:flex-row md:items-start justify-between gap-8">
-                <div className="max-w-xs">
-                  <motion.div
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    className="flex items-center gap-2 mb-4"
-                  >
-                    <div className="size-1.5 rounded-full bg-[#4a703f]" />
-                    <span className="text-[9px] font-black uppercase tracking-[0.3em] text-slate-400">
-                      Reach Out
-                    </span>
-                  </motion.div>
-                  <h2 className="text-5xl md:text-6xl font-black text-slate-900 tracking-tighter leading-[0.9]">
-                    Let's
-                    <span className="text-[#4a703f]"> Connect.</span>
-                  </h2>
-                </div>
-
-                <div className="flex gap-3">
-                  {[
-                    <Instagram size={18} />,
-                    <Linkedin size={18} />,
-                    <Facebook size={18} />,
-                    <Youtube size={18} />,
-                  ].map((icon, i) => (
-                    <div
-                      key={i}
-                      className="size-12 rounded-full border border-slate-100 flex items-center justify-center text-slate-400 hover:bg-[#4a703f] hover:text-white transition-all duration-500 cursor-pointer"
-                    >
-                      {icon}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-y-12 gap-x-8">
-                <div className="group">
-                  <div className="flex items-center gap-3 mb-3">
-                    <MapPin size={16} className="text-[#4a703f]" />
-                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-300 group-hover:text-[#4a703f] transition-colors">
-                      Our Space
-                    </span>
-                  </div>
-                  <p className="text-lg font-bold text-slate-900 leading-snug">
-                    01, IN Village Badalpara Taluka Veraval, Gir Somnath,
-                    Prabhas Patan Junagadh, Gujarat, India-362268
-                  </p>
-                </div>
-
-                <div className="group">
-                  <div className="flex items-center gap-3 mb-3">
-                    <Mail size={16} className="text-[#4a703f]" />
-                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-300 group-hover:text-[#4a703f] transition-colors">
-                      Direct Lines
-                    </span>
-                  </div>
-                  <p className="text-lg font-bold text-slate-900">
-                    +91 79849 97996 <br />
-                    +91 93282 91724
-                  </p>
-                  <p className="text-lg font-bold text-slate-500 hover:text-slate-900 transition-colors">
-                    john@gauyogkendr.com
-                  </p>
-                </div>
-
-                <div className="group">
-                  <div className="flex items-center gap-3 mb-3">
-                    <Clock size={16} className="text-[#4a703f]" />
-                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-300 group-hover:text-[#4a703f] transition-colors">
-                      Hours
-                    </span>
-                  </div>
-                  <p className="text-lg font-bold text-slate-900">Mon — Sat</p>
-                  <p className="text-slate-500 font-medium italic text-sm">
-                    9:00 AM to 7:00 PM
-                  </p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>

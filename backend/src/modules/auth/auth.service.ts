@@ -35,6 +35,7 @@ export class AuthService {
       data: {
         email: normalizedEmail,
         password: hashedPassword,
+        name: data.name?.trim() || null,
         role: data.role || 'USER',
       },
     });
@@ -47,7 +48,7 @@ export class AuthService {
     const refreshToken = generateRefreshToken({ userId: user.id, role: user.role });
 
     return {
-      user: { id: user.id, email: user.email, role: user.role },
+      user: { id: user.id, email: user.email, name: user.name, role: user.role },
       accessToken,
       refreshToken,
     };
@@ -76,7 +77,7 @@ export class AuthService {
     const refreshToken = generateRefreshToken({ userId: user.id, role: user.role });
 
     return {
-      user: { id: user.id, email: user.email, role: user.role },
+      user: { id: user.id, email: user.email, name: user.name, role: user.role },
       accessToken,
       refreshToken,
     };
@@ -124,7 +125,7 @@ export class AuthService {
     const refreshToken = generateRefreshToken({ userId: user.id, role: user.role });
 
     return {
-      user: { id: user.id, email: user.email, role: user.role },
+      user: { id: user.id, email: user.email, name: user.name, role: user.role },
       accessToken,
       refreshToken,
     };
@@ -195,7 +196,25 @@ export class AuthService {
     ]);
   }
 
-  static async logout(userId: string): Promise<void> {
+  static async getProfile(userId: string) {
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: { id: true, email: true, name: true, role: true },
+    });
+    if (!user) throw new AppError('User not found', 404);
+    return user;
+  }
+
+  static async updateProfile(userId: string, name: string) {
+    const user = await prisma.user.update({
+      where: { id: userId },
+      data: { name: name?.trim() || null },
+      select: { id: true, email: true, name: true, role: true },
+    });
+    return user;
+  }
+
+  static async logout(_userId: string): Promise<void> {
     // await redisClient.del(`refresh_token:${userId}`);
   }
 

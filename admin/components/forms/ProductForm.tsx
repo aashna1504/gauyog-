@@ -44,6 +44,7 @@ const productSchema = z.object({
   scientificName: z.string().optional(),
   description: z.string().min(10, "Description must be at least 10 characters"),
   ingredients: z.string().optional(),
+  benefitsRaw: z.string().optional(),
   price: z.coerce.number().positive("Price must be a positive number"),
   discountPrice: z.coerce
     .number()
@@ -62,8 +63,12 @@ const productSchema = z.object({
 
 export type ProductFormValues = z.infer<typeof productSchema>;
 
-export type ProductFormOutput = Omit<ProductFormValues, "galleryImagesRaw"> & {
+export type ProductFormOutput = Omit<
+  ProductFormValues,
+  "galleryImagesRaw" | "benefitsRaw"
+> & {
   galleryImages: string[];
+  benefits: string[];
 };
 
 interface ProductFormProps {
@@ -93,6 +98,7 @@ export function ProductForm({
       scientificName: "",
       description: "",
       ingredients: "",
+      benefitsRaw: "",
       price: 0,
       discountPrice: undefined,
       category: "Dairy",
@@ -113,14 +119,20 @@ export function ProductForm({
   );
 
   const handleFormSubmit = (values: ProductFormValues) => {
-    const { galleryImagesRaw, ...rest } = values;
+    const { galleryImagesRaw, benefitsRaw, ...rest } = values;
     const galleryImages = galleryImagesRaw
       ? galleryImagesRaw
           .split(",")
           .map((s) => s.trim())
           .filter(Boolean)
       : [];
-    return onSubmit({ ...rest, galleryImages });
+    const benefits = benefitsRaw
+      ? benefitsRaw
+          .split("\n")
+          .map((s) => s.trim())
+          .filter(Boolean)
+      : [];
+    return onSubmit({ ...rest, galleryImages, benefits });
   };
 
   return (
@@ -284,6 +296,19 @@ export function ProductForm({
               rows={2}
               {...register("ingredients")}
             />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="benefitsRaw">Benefits</Label>
+            <Textarea
+              id="benefitsRaw"
+              placeholder={"e.g.\nBoosts immunity\nRich in Omega-3\nNo artificial additives"}
+              rows={4}
+              {...register("benefitsRaw")}
+            />
+            <p className="text-xs text-muted-foreground">
+              One benefit per line. Each will appear with a tick mark on the product page.
+            </p>
           </div>
         </CardContent>
       </Card>

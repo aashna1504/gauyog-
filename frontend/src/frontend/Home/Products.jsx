@@ -14,6 +14,14 @@ import {
   Sparkles,
   Award,
 } from "lucide-react";
+import { motion } from "framer-motion";
+import {
+  ShieldCheck,
+  Zap,
+  Crown,
+  CheckCircle2,
+  ArrowUpRight,
+} from "lucide-react";
 export default function ProductSection() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -69,6 +77,56 @@ export default function ProductSection() {
     { label: "8+", sub: "PRODUCT LINES TRUSTED BY GROWERS" },
     { label: "Female", sub: "WOMEN-LED FROM SOIL TO SHELF" },
     { label: "World", sub: "COUNTRIES GROWING WITH US" },
+  ];
+  const tiers = [
+    {
+      level: "Essential",
+      name: "Cow Dung Powder",
+      tagline: "The Foundation Builder",
+      description:
+        "Pure Gir cow dung, dried and powdered. For shoppers who want to start with organic basics.",
+      color: "#a05a2c", // Earthy Sienna
+      icon: <ShieldCheck size={24} />,
+      points: [
+        "Made from pure Gir cow dung, naturally dried and finely powdered",
+        "Improves soil structure and enriches it with essential nutrients",
+        "An ideal base for organic gardening and sustainable soil health",
+      ],
+      claim: "Feed Your Soil — Not Just Your Crop",
+      badge: "Level 01",
+    },
+    {
+      level: "Classic",
+      name: "Ghanjivamrut",
+      tagline: "The Microbial Powerhouse",
+      description:
+        "Fermented bio-fertiliser with live microbial cultures for active soil biology.",
+      color: "#4a703f", // Forest Green
+      icon: <Zap size={24} />,
+      points: [
+        "Enriched with beneficial microbes that naturally improve soil health",
+        "Enhances nutrient absorption and boosts plant growth effectively",
+        "Revives soil vitality for stronger roots and better yield",
+      ],
+      claim: "Activate Your Soil with Millions of Microbes",
+      badge: "Level 02",
+    },
+    {
+      level: "Premium",
+      name: "Seaweed + Ghanjivamrut",
+      tagline: "The Complete Growth System",
+      description:
+        "Dual-action formula combining ocean minerals with microbial power for maximum yield.",
+      color: "#e5ad06", // Deep Teal
+      icon: <Crown size={24} />,
+      points: [
+        "Enhances soil fertility and microbial activity through Ghanjeevamrut.",
+        "Boosts plant growth with natural nutrients and growth hormones from seaweed.",
+        "Improves root strength, yield, and overall plant health in a natural way.",
+      ],
+      claim: "Maximum Growth — Maximum Quality",
+      badge: "Level 03",
+    },
   ];
   return (
     <div>
@@ -161,7 +219,7 @@ export default function ProductSection() {
           </div>
         </div>
       </section>
-      <div className="bg-[#fcfdfd] pt-20 px-6 relative overflow-hidden">
+      <div className="bg-[#fcfdfd] pt-20 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-green-50 rounded-full blur-[120px] -z-10 opacity-60" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-50 rounded-full blur-[100px] -z-10 opacity-40" />
 
@@ -264,6 +322,112 @@ export default function ProductSection() {
               </AnimatePresence>
             </div>
           )}
+        </div>
+        <div className=" bg-[#4a703f] ">
+          <div className="max-w-7xl mx-auto py-24 px-6">
+            {/* Header Section */}
+            <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+              <div className="space-y-4">
+                <span className="text-[10px] font-black uppercase tracking-[0.5em] text-[#d4a044]">
+                  Product Selection
+                </span>
+                <h2 className="text-5xl font-black text-slate-100 tracking-tighter">
+                  Choose Your{" "}
+                  <span className="italic text-[#d4a044]">Intensity.</span>
+                </h2>
+              </div>
+              <p className="max-w-xs text-slate-100 text-sm font-medium leading-relaxed border-l-2 border-slate-100 pl-6">
+                A three-tier progression system designed to take your garden
+                from basic health to professional-grade yield.
+              </p>
+            </div>
+
+            {/* The Premium Box Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {tiers.map((tier, idx) => (
+                <motion.div
+                  key={idx}
+                  whileHover={{ y: -10 }}
+                  className="relative group h-full bg-white rounded-[40px] border border-slate-100 p-2 shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden"
+                >
+                  {/* Inner Styled Container */}
+                  <div className="bg-slate-50/50 h-full rounded-[34px] p-8 flex flex-col justify-between">
+                    {/* Top Section */}
+                    <div>
+                      <div className="flex justify-between items-center mb-10">
+                        <div
+                          className="w-14 h-14 rounded-2xl flex items-center justify-center text-white shadow-lg"
+                          style={{ backgroundColor: tier.color }}
+                        >
+                          {tier.icon}
+                        </div>
+                        <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest">
+                          {tier.badge}
+                        </span>
+                      </div>
+
+                      <h4
+                        className="text-[10px] font-black uppercase tracking-[0.3em] mb-2"
+                        style={{ color: tier.color }}
+                      >
+                        {tier.level}
+                      </h4>
+                      <h3 className="text-2xl font-black text-slate-900 leading-tight mb-2">
+                        {tier.name}
+                      </h3>
+                      <p className="text-xs font-bold italic text-slate-400 mb-6">
+                        {tier.tagline}
+                      </p>
+
+                      <p className="text-sm text-slate-500 font-medium leading-relaxed mb-8">
+                        {tier.description}
+                      </p>
+
+                      <ul className="space-y-4 mb-10">
+                        {tier.points.map((point, i) => (
+                          <li
+                            key={i}
+                            className="flex items-center gap-3 text-sm font-semibold text-slate-700"
+                          >
+                            <CheckCircle2
+                              size={16}
+                              style={{ color: tier.color }}
+                            />
+                            {point}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Bottom Section */}
+                    <div className="pt-4 border-t border-slate-200/60 mt-auto">
+                      <div className="mb-6">
+                        <p className="text-[9px] font-black uppercase tracking-widest text-slate-400 mb-2">
+                          Primary Goal
+                        </p>
+                        <p className="text-sm font-black italic text-slate-800 leading-tight">
+                          "{tier.claim}"
+                        </p>
+                      </div>
+
+                      <button
+                        className="w-full py-4 rounded-2xl flex items-center justify-center gap-3 font-black text-[10px] uppercase tracking-widest transition-all text-white shadow-md hover:brightness-110 active:scale-95"
+                        style={{ backgroundColor: tier.color }}
+                      >
+                        Browse Products <ArrowUpRight size={14} />
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Subtle Color Glow in Background of Card */}
+                  <div
+                    className="absolute -bottom-20 -right-20 w-40 h-40 rounded-full blur-[80px] opacity-20 -z-10"
+                    style={{ backgroundColor: tier.color }}
+                  />
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
         <section className="relative bg-[#fdfcfb] py-32 px-6 overflow-hidden">
           {/* Soft Background Accents */}

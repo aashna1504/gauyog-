@@ -1,18 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import api from "../../api/axios";
 import useAuthStore from "../../store/authStore";
 import useNotificationStore from "../../store/notificationStore";
 import toast from "react-hot-toast";
-import {
-  Mail,
-  Lock,
-  Eye,
-  EyeOff,
-  ArrowRight,
-  UserCircle2,
-  LogIn,
-} from "lucide-react";
+import { Mail, Eye, EyeOff, ArrowRight, LogIn } from "lucide-react";
 import { GoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 
@@ -32,7 +24,7 @@ export default function ModernSignIn() {
       const res = await api.post("/auth/login", { email, password });
       const u = res.data.data.user;
       setAuth(u, res.data.data.accessToken, res.data.data.refreshToken);
-      notify(`Welcome back, ${u.email.split("@")[0]}!`, "login");
+      notify(`Welcome back, ${u.name || u.email.split("@")[0]}!`, "login");
       navigate("/");
     } catch (error) {
       toast.error(error.response?.data?.message || "Login failed");
@@ -53,7 +45,7 @@ export default function ModernSignIn() {
       });
       const u = res.data.data.user;
       setAuth(u, res.data.data.accessToken, res.data.data.refreshToken);
-      notify(`Welcome back, ${u.email.split("@")[0]}!`, "login");
+      notify(`Welcome back, ${u.name || u.email.split("@")[0]}!`, "login");
       navigate("/");
     } catch (error) {
       toast.error(error.response?.data?.message || "Google login failed");

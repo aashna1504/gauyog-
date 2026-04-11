@@ -39,7 +39,7 @@ export default function ModernContactStrip() {
   return (
     <div className="bg-[#fcfdfd ] pt-20 px-6 relative overflow-hidden ">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-20">
+        <div className="mb-10">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
