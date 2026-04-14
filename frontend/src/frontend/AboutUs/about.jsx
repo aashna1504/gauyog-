@@ -364,7 +364,7 @@ function about() {
               className="text-center mb-16"
             >
               <h2 className="text-6xl md:text-8xl font-black text-slate-100 tracking-tighter leading-[0.85]">
-                Built <span className="text-[#4a703f]">on Truth.</span>
+                Built <span className="text-[#e9aa43]">on Truth.</span>
               </h2>
             </motion.div>
 

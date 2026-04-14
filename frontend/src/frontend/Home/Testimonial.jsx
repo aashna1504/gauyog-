@@ -12,7 +12,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const testimonials = [
   {
     id: "01",
-    name: "Sarah Jenkins",
+    name: "Sarah ",
     role: "Nutritionist",
     text: "The purity of the A2 Ghee is unmatched. I've recommended it to all my clients looking for authentic dairy.",
     tag: "Health & Wellness",
@@ -20,37 +20,37 @@ const testimonials = [
   {
     id: "02",
     name: "Arjun Mehta",
-    role: "Professional Chef",
-    text: "This reminds me of my childhood summers. Creamy, fresh, and delivered within hours of milking.",
-    tag: "Culinary Expert",
+    role: "Farmer ",
+    text: "I’ve been using these organic fertilisers for my farm, and the results are amazing. Soil health and crop quality have improved significantly.",
+    tag: "Farmer Approved",
   },
   {
     id: "03",
-    name: "Elena Rodriguez",
-    role: "Eco-Activist",
-    text: "Knowing my milk comes from happy cows and eco-friendly packaging makes every single sip feel better.",
-    tag: "Sustainability",
+    name: "Priya Sharma",
+    role: "Home Gardener",
+    text: "Truly impressed with the quality of products. Everything feels natural and chemical-free, just like traditional methods",
+    tag: "Homegrown Happiness",
   },
   {
     id: "04",
-    name: "David Chen",
-    role: "Parent",
-    text: "Finally, a brand I trust for my kids. No preservatives, no hormones—just pure, honest goodness.",
-    tag: "Family Choice",
+    name: "Amit Patel",
+    role: "Retailer",
+    text: "The coconut-based products are excellent. You can actually feel the difference in quality compared to market alternatives",
+    tag: "Retailer's Choice",
   },
   {
     id: "05",
-    name: "Priya Sharma",
-    role: "Yoga Instructor",
-    text: "The organic buttermilk is my post-practice ritual. It's incredibly hydrating and feels light on the stomach.",
-    tag: "Daily Routine",
+    name: "Sandeep Singh",
+    role: "Organic Farmer",
+    text: "I trust these products for my organic farming practices. Consistent quality and great results every time.",
+    tag: " Organic  Essential",
   },
   {
     id: "06",
-    name: "Marcus Thorne",
-    role: "Fitness Athlete",
-    text: "High protein, zero junk. This is the only dairy brand that fits into my strict training macro-nutrients.",
-    tag: "Performance",
+    name: "Neha Gupta",
+    role: "Plant Enthusiast",
+    text: "From soil mix to fertilisers, everything is top-notch. It’s great to see such authentic Indian products made sustainably.",
+    tag: "Plant Lover's Pick",
   },
 ];
 
@@ -98,13 +98,13 @@ export default function TestimonialSlider() {
           <div className="hidden lg:flex gap-4">
             <button
               onClick={prevSlide}
-              className="w-14 h-14 rounded-full border-2 border-gray-100 flex items-center justify-center hover:bg-black hover:text-white transition-all shadow-xl shadow-transparent hover:shadow-gray-200"
+              className="w-14 h-14 rounded-full border-2 border-gray-400  text-gray-400 flex items-center justify-center hover:bg-white hover:text-black transition-all shadow-xl shadow-transparent hover:shadow-gray-500"
             >
               <ArrowUp size={24} />
             </button>
             <button
               onClick={nextSlide}
-              className="w-14 h-14 rounded-full border-2 border-gray-100 flex items-center justify-center hover:bg-black hover:text-white transition-all shadow-xl shadow-transparent hover:shadow-gray-200"
+              className="w-14 h-14 rounded-full border-2 border-gray-400 text-gray-400 flex items-center justify-center hover:bg-white hover:text-black transition-all shadow-xl shadow-transparent hover:shadow-gray-500"
             >
               <ArrowDown size={24} />
             </button>

@@ -405,13 +405,7 @@ export default function ProductCard({
                           key={i}
                           className="flex items-center gap-3 bg-white/80 rounded-xl px-3 py-2.5 border border-[#4a703f]/10"
                         >
-                          <div className="w-6 h-6 rounded-full bg-[#4a703f] flex items-center justify-center flex-shrink-0 shadow-sm">
-                            <Check
-                              size={12}
-                              className="text-white"
-                              strokeWidth={3.5}
-                            />
-                          </div>
+                        
                           <span className="text-sm font-bold text-slate-800">
                             {item}
                           </span>

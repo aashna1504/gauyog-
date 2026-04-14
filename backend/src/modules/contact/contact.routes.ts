@@ -7,6 +7,6 @@ import { authenticate, authorize } from '../../middleware/auth.middleware';
 const router = Router();
 
 router.post('/', validateRequest(submitContactSchema), submitContact);
-router.get('/', authenticate, authorize('ADMIN'), getContacts);
+router.get('/', authenticate, authorize('ADMIN', 'SALES'), getContacts);
 
 export default router;

@@ -71,25 +71,31 @@ export default function ModernShippingPage() {
   const navigate = useNavigate();
   const { cartItems, fetchCart } = useCartStore();
 
-  const subtotal = cartItems.reduce((acc, item) => acc + item.rawPrice * item.qty, 0);
+  const subtotal = cartItems.reduce(
+    (acc, item) => acc + item.rawPrice * item.qty,
+    0,
+  );
 
   useEffect(() => {
     fetchCart();
     // Load saved delivery details
-    api.get("/delivery").then((res) => {
-      const d = res.data?.data;
-      if (d) {
-        setSavedAddress(d);
-        setForm({
-          firstName: d.firstName || "",
-          lastName: d.lastName || "",
-          phone: d.phone || "",
-          email: d.email || "",
-          address: d.address || "",
-          building: d.building || "",
-        });
-      }
-    }).catch(() => {});
+    api
+      .get("/delivery")
+      .then((res) => {
+        const d = res.data?.data;
+        if (d) {
+          setSavedAddress(d);
+          setForm({
+            firstName: d.firstName || "",
+            lastName: d.lastName || "",
+            phone: d.phone || "",
+            email: d.email || "",
+            address: d.address || "",
+            building: d.building || "",
+          });
+        }
+      })
+      .catch(() => {});
   }, [fetchCart]);
 
   const handleSaveAddress = async (e) => {
@@ -108,9 +114,19 @@ export default function ModernShippingPage() {
   };
 
   const steps = [
-    { id: 1, label: "Basket", icon: <ShoppingBasket size={18} />, status: "active" },
+    {
+      id: 1,
+      label: "Basket",
+      icon: <ShoppingBasket size={18} />,
+      status: "active",
+    },
     { id: 2, label: "Shipping", icon: <Truck size={18} />, status: "active" },
-    { id: 3, label: "Payment", icon: <CreditCard size={18} />, status: "upcoming" },
+    {
+      id: 3,
+      label: "Payment",
+      icon: <CreditCard size={18} />,
+      status: "upcoming",
+    },
   ];
 
   return (
@@ -119,7 +135,10 @@ export default function ModernShippingPage() {
         <div className="flex justify-between items-center mb-10 md:mb-12 max-w-3xl mx-auto relative px-2">
           <div className="absolute top-[22px] md:top-6 left-0 w-full h-[1px] md:h-[2px] bg-slate-100 -z-10" />
           {steps.map((step) => (
-            <div key={step.id} className="flex flex-col items-center gap-2 md:gap-3 bg-[#fcfdfd] px-2 md:px-4">
+            <div
+              key={step.id}
+              className="flex flex-col items-center gap-2 md:gap-3 bg-[#fcfdfd] px-2 md:px-4"
+            >
               <div
                 className={`w-9 h-9 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all shadow-sm ${
                   step.status === "active"
@@ -150,7 +169,10 @@ export default function ModernShippingPage() {
                 onClick={() => setIsModalOpen(true)}
                 className="flex items-center justify-center gap-2 bg-white border border-slate-200 hover:border-[#4a703f] px-4 py-3 md:py-2.5 rounded-2xl transition-all shadow-sm group w-full sm:w-auto"
               >
-                <Plus size={16} className="text-[#4a703f] group-hover:rotate-90 transition-transform" />
+                <Plus
+                  size={16}
+                  className="text-[#4a703f] group-hover:rotate-90 transition-transform"
+                />
                 <span className="text-[10px] font-black uppercase tracking-widest text-slate-600">
                   {savedAddress ? "Edit Address" : "Add New Address"}
                 </span>
@@ -169,17 +191,23 @@ export default function ModernShippingPage() {
                     <Truck size={18} />
                   </div>
                   <div>
-                    <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Deliver To</p>
+                    <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">
+                      Deliver To
+                    </p>
                     <h4 className="text-sm font-black text-slate-900">
                       {savedAddress.firstName} {savedAddress.lastName}
                     </h4>
                   </div>
                 </div>
                 <p className="text-xs text-slate-500 font-medium ml-1">
-                  {[savedAddress.building, savedAddress.address].filter(Boolean).join(", ")}
+                  {[savedAddress.building, savedAddress.address]
+                    .filter(Boolean)
+                    .join(", ")}
                 </p>
                 {savedAddress.phone && (
-                  <p className="text-xs text-slate-400 mt-1 ml-1">{savedAddress.phone}</p>
+                  <p className="text-xs text-slate-400 mt-1 ml-1">
+                    {savedAddress.phone}
+                  </p>
                 )}
               </motion.div>
             )}
@@ -196,13 +224,21 @@ export default function ModernShippingPage() {
                       <Truck size={20} />
                     </div>
                     <div>
-                      <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Shipping Option</p>
-                      <h4 className="text-sm font-black text-slate-900">Standard Free</h4>
+                      <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">
+                        Shipping Option
+                      </p>
+                      <h4 className="text-sm font-black text-slate-900">
+                        Standard Free
+                      </h4>
                     </div>
                   </div>
                   <div className="flex justify-between items-center pt-4 border-t border-[#4a703f]/10 text-slate-900">
-                    <span className="text-[9px] font-bold text-slate-500 uppercase">Est. Delivery</span>
-                    <span className="text-[11px] font-black italic">5–7 Business Days</span>
+                    <span className="text-[9px] font-bold text-slate-500 uppercase">
+                      Est. Delivery
+                    </span>
+                    <span className="text-[11px] font-black italic">
+                      5–7 Business Days
+                    </span>
                   </div>
                 </div>
 
@@ -241,17 +277,30 @@ export default function ModernShippingPage() {
               animate={{ opacity: 1, y: 0 }}
               className="bg-[#4a703f] rounded-[30px] md:rounded-[40px] p-6 md:p-8 text-white shadow-2xl lg:sticky lg:top-32"
             >
-              <h3 className="text-lg md:text-xl font-black uppercase italic mb-6 md:mb-8">Order Summary</h3>
+              <h3 className="text-lg md:text-xl font-black uppercase italic mb-6 md:mb-8">
+                Order Summary
+              </h3>
               <div className="space-y-4 mb-8 md:mb-10">
-                <SummaryRow label="Items Subtotal" value={`₹${subtotal.toLocaleString("en-IN")}`} />
-                <SummaryRow label="Shipping" value="FREE" color="text-[#e9aa43]" />
+                <SummaryRow
+                  label="Items Subtotal"
+                  value={`₹${subtotal.toLocaleString("en-IN")}`}
+                />
+                <SummaryRow
+                  label="Shipping"
+                  value="FREE"
+                  color="text-[#e9aa43]"
+                />
                 <div className="pt-4 border-t border-white/10 flex items-center gap-2 text-white/40 italic text-[8px] md:text-[9px] uppercase">
                   <ShieldCheck size={14} /> Secure Your Shipping
                 </div>
               </div>
               <div className="mb-8 md:mb-10">
-                <p className="text-[10px] md:text-[11px] font-black text-[#e9aa43] uppercase tracking-widest mb-1">Total Payable</p>
-                <h4 className="text-3xl md:text-4xl font-black">₹{subtotal.toLocaleString("en-IN")}</h4>
+                <p className="text-[10px] md:text-[11px] font-black text-[#e9aa43] uppercase tracking-widest mb-1">
+                  Total Payable
+                </p>
+                <h4 className="text-3xl md:text-4xl font-black">
+                  ₹{subtotal.toLocaleString("en-IN")}
+                </h4>
               </div>
               <button
                 onClick={() => {
@@ -266,7 +315,10 @@ export default function ModernShippingPage() {
                 className="group w-full bg-white hover:bg-[#e9aa43] hover:text-white text-black py-4 md:py-5 rounded-full flex items-center justify-center gap-3 transition-all font-black uppercase text-[10px] md:text-xs disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Confirm & Pay{" "}
-                <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
+                <ArrowRight
+                  size={18}
+                  className="group-hover:translate-x-2 transition-transform"
+                />
               </button>
             </motion.div>
           </div>
@@ -298,7 +350,8 @@ export default function ModernShippingPage() {
               </button>
               <div className="mb-6 md:mb-8">
                 <h3 className="text-xl md:text-2xl font-[1000] text-slate-900 uppercase italic tracking-tighter">
-                  {savedAddress ? "Edit" : "Add New"} <span className="text-[#4a703f]">Address</span>
+                  {savedAddress ? "Edit" : "Add New"}{" "}
+                  <span className="text-[#4a703f]">Address</span>
                 </h3>
                 <p className="text-[9px] md:text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mt-1">
                   Enter your delivery details
@@ -307,63 +360,88 @@ export default function ModernShippingPage() {
               <form className="space-y-4" onSubmit={handleSaveAddress}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">First Name</label>
+                    <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">
+                      First Name
+                    </label>
                     <input
                       type="text"
                       placeholder="Arjun"
                       value={form.firstName}
-                      onChange={(e) => setForm({ ...form, firstName: e.target.value })}
+                      onChange={(e) =>
+                        setForm({ ...form, firstName: e.target.value })
+                      }
                       className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 md:py-3.5 text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-[#4a703f]/20 focus:border-[#4a703f] transition-all"
                     />
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">Last Name</label>
+                    <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">
+                      Last Name
+                    </label>
                     <input
                       type="text"
                       placeholder="Patel"
                       value={form.lastName}
-                      onChange={(e) => setForm({ ...form, lastName: e.target.value })}
+                      onChange={(e) =>
+                        setForm({ ...form, lastName: e.target.value })
+                      }
                       className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 md:py-3.5 text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-[#4a703f]/20 focus:border-[#4a703f] transition-all"
                     />
                   </div>
                 </div>
                 <div className="space-y-1.5">
-                  <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">Phone Number</label>
+                  <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">
+                    Phone Number
+                  </label>
                   <input
                     type="text"
                     placeholder="+91 00000 00000"
                     value={form.phone}
-                    onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                    onChange={(e) =>
+                      setForm({ ...form, phone: e.target.value })
+                    }
                     className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 md:py-3.5 text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-[#4a703f]/20 focus:border-[#4a703f] transition-all"
                   />
                 </div>
                 <div className="space-y-1.5">
-                  <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">Email</label>
+                  <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">
+                    Email
+                  </label>
                   <input
                     type="email"
                     placeholder="you@example.com"
                     value={form.email}
-                    onChange={(e) => setForm({ ...form, email: e.target.value })}
+                    onChange={(e) =>
+                      setForm({ ...form, email: e.target.value })
+                    }
                     className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 md:py-3.5 text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-[#4a703f]/20 focus:border-[#4a703f] transition-all"
                   />
                 </div>
                 <div className="space-y-1.5">
-                  <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">Building / Flat</label>
+                  <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">
+                    Building / Flat
+                  </label>
                   <input
                     type="text"
                     placeholder="Flat 4B, Shanti Apartments"
                     value={form.building}
-                    onChange={(e) => setForm({ ...form, building: e.target.value })}
+                    onChange={(e) =>
+                      setForm({ ...form, building: e.target.value })
+                    }
                     className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 md:py-3.5 text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-[#4a703f]/20 focus:border-[#4a703f] transition-all"
                   />
                 </div>
                 <div className="space-y-1.5">
-                  <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">Street Address</label>
+                  <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">
+                    {" "}
+                    Address
+                  </label>
                   <input
                     type="text"
                     placeholder="123 Sanctuary Lane, Gujarat 380001"
                     value={form.address}
-                    onChange={(e) => setForm({ ...form, address: e.target.value })}
+                    onChange={(e) =>
+                      setForm({ ...form, address: e.target.value })
+                    }
                     className="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 md:py-3.5 text-xs md:text-sm focus:outline-none focus:ring-2 focus:ring-[#4a703f]/20 focus:border-[#4a703f] transition-all"
                   />
                 </div>

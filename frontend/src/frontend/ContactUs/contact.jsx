@@ -82,6 +82,7 @@ export default function KineticContactBanner() {
     name: "",
     company: "",
     email: "",
+    phone: "",
     country: "",
     role: "",
     interest: "",
@@ -108,6 +109,7 @@ export default function KineticContactBanner() {
         name: "",
         company: "",
         email: "",
+        phone: "",
         country: "",
         role: "",
         interest: "",
@@ -567,8 +569,8 @@ export default function KineticContactBanner() {
                       </div> */}
                     </div>
 
-                    {/* Row 2: Email + Country */}
-                    <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
+                    {/* Row 2: Email + Phone */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-1.5 group">
                         <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">
                           Email <span className="text-red-600">*</span>
@@ -590,18 +592,26 @@ export default function KineticContactBanner() {
                         </div>
                       </div>
 
-                      {/* <div className="space-y-1.5 group">
+                      <div className="space-y-1.5 group">
                         <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">
-                          Country
+                          Phone
                         </label>
-                        <input
-                          type="text"
-                          placeholder="Your country"
-                          value={form.country}
-                          onChange={(e) => handleChange("country", e.target.value)}
-                          className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3 rounded-full outline-none focus:bg-white focus:border-[#4a703f] focus:ring-4 focus:ring-[#4a703f]/5 transition-all text-sm font-semibold text-gray-900"
-                        />
-                      </div> */}
+                        <div className="relative">
+                          <input
+                            type="tel"
+                            placeholder="+91 98765 43210"
+                            value={form.phone}
+                            onChange={(e) =>
+                              handleChange("phone", e.target.value)
+                            }
+                            className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3 rounded-full outline-none focus:bg-white focus:border-[#4a703f] focus:ring-4 focus:ring-[#4a703f]/5 transition-all text-sm font-semibold text-gray-900"
+                          />
+                          <Phone
+                            className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-200 group-focus-within:text-[#4a703f]"
+                            size={16}
+                          />
+                        </div>
+                      </div>
                     </div>
 
                     {/* I Am A */}
@@ -612,9 +622,7 @@ export default function KineticContactBanner() {
                       <div className="relative">
                         <select
                           value={form.role}
-                          onChange={(e) =>
-                            handleChange("role", e.target.value)
-                          }
+                          onChange={(e) => handleChange("role", e.target.value)}
                           className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3 rounded-full outline-none focus:bg-white focus:border-[#4a703f] focus:ring-4 focus:ring-[#4a703f]/5 transition-all text-sm font-semibold text-gray-900 appearance-none cursor-pointer"
                         >
                           <option value="">Select your role...</option>

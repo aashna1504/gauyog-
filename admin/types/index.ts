@@ -155,6 +155,7 @@ export interface ContactMessage {
   email: string;
   phone: string | null;
   role: string | null;
+  interest: string | null;
   message: string;
   status: string;
   createdAt: string;

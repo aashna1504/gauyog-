@@ -107,6 +107,7 @@ model ContactMessage {
   email     String
   phone     String?
   role      String?
+  interest  String?
   message   String
   status    String   @default("NEW")
   createdAt DateTime @default(now())

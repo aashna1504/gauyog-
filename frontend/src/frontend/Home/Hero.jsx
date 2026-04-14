@@ -68,7 +68,7 @@ export default function GlobalModernHero() {
             <div className="flex flex-wrap gap-4">
               <button
                 onClick={() => (window.location.href = "/shop")}
-                className="group px-10 py-5 bg-[#4a703f] text-white rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-[#744926] transition-all shadow-xl shadow-black/20 flex items-center gap-3"
+                className="group px-10 py-5 bg-[#4a703f] text-white rounded-full font-black text-[10px] uppercase tracking-widest hover:bg-[#e9aa43] transition-all shadow-xl shadow-black/20 flex items-center gap-3"
               >
                 Shop Products
                 <ArrowRight
