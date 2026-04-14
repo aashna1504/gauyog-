@@ -180,10 +180,10 @@ export default function FloatingNexusDashboard() {
          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
        
-            <div className="bg-white border border-slate-100 p-6 rounded-[32px] shadow-sm flex flex-col justify-between hover:border-[#4a703f] transition-colors group">
+            <div className="bg-white border border-slate-100 p-6 rounded-[32px] shadow-sm flex flex-col justify-between hover:border-[#744926]/30 transition-colors group">
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center text-slate-300 group-hover:text-[#4a703f]">
-                  <User size={24} />
+                <div className="p-2 bg-[#744926]/10 rounded-full text-[#744926] flex items-center justify-center group-hover:text-[#744926]">
+                  <UserCircle2 size={18} />
                 </div>
                 <div>
                   <h3 className="text-base font-black text-slate-900 leading-tight">
@@ -196,7 +196,7 @@ export default function FloatingNexusDashboard() {
               </div>
               <button
                 onClick={() => navigate("/settings")}
-                className="w-full py-3 bg-slate-50 rounded-full text-[9px] font-black uppercase tracking-widest text-slate-800 hover:bg-[#4a703f] hover:text-white transition-all"
+                className="w-full py-3  rounded-full text-[9px] font-black uppercase tracking-widest text-slate-200 bg-[#744926] hover:text-white transition-all"
               >
                 Edit Profile
               </button>
@@ -204,24 +204,24 @@ export default function FloatingNexusDashboard() {
 
             
             <div
-              className="bg-white border border-slate-100 p-6 rounded-[32px] shadow-sm flex flex-col justify-between hover:border-[#4a703f] transition-all cursor-pointer group"
+              className="bg-white border border-slate-100 p-6 rounded-[32px] shadow-sm flex flex-col justify-between hover:border-[#e9aa43]/50 transition-all cursor-pointer group"
               onClick={() => navigate("/orders")}
             >
               <div className="flex items-center gap-3 mb-6">
-                <div className="p-2 bg-[#4a703f]/10 rounded-full text-[#4a703f]">
+                <div className="p-2 bg-[#e9aa43]/10 rounded-full text-[#e9aa43]">
                   <Package size={18} />
                 </div>
                 <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-900">
                   Track Orders
                 </h3>
               </div>
-              <div className="flex items-center gap-2 mb-4 text-[#4a703f]">
+              <div className="flex items-center gap-2 mb-4 text-[#e9aa43]">
                 <Clock size={14} className="animate-pulse" />
                 <p className="text-[10px] font-black uppercase tracking-tight">
                   Active Shipments
                 </p>
               </div>
-              <button className="w-full py-3 bg-slate-50 rounded-full text-[9px] font-black uppercase tracking-widest text-slate-800 hover:bg-[#4a703f] hover:text-white transition-all">
+              <button className="w-full py-3 rounded-full text-[9px] font-black uppercase tracking-widest text-slate-100 bg-[#e9aa43] hover:text-white transition-all">
                 Order History
               </button>
             </div>
@@ -267,7 +267,7 @@ export default function FloatingNexusDashboard() {
                 )}
               </div>
 
-              <button className="w-full py-3 bg-slate-50 rounded-full text-[9px] font-black uppercase tracking-widest text-slate-800 hover:bg-blue-500 hover:text-white transition-all">
+              <button className="w-full py-3 rounded-full text-[9px] font-black uppercase tracking-widest text-slate-100 bg-blue-500 hover:text-white transition-all">
                 Proceed to Checkout
               </button>
             </div>

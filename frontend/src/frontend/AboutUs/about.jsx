@@ -49,7 +49,7 @@ function about() {
       subtitle: "What we stand for",
       desc: "We stand for purity, authenticity, and sustainability in everything we do. Our values are rooted in trust, ethical practices, and respect for nature. We are committed to delivering quality while preserving traditional wisdom.",
       icon: <ShieldCheck className="text-white" size={20} />,
-      color: "bg-[#4a703f]", // Acid Green
+      color: "bg-blue-600", // Acid Green
       glowColor: "text-green-50/60",
     },
   ];
@@ -234,13 +234,13 @@ function about() {
 
                 <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-slate-900 tracking-[-0.04em] leading-[0.9] mb-8">
                   Pure by Nature <br />
-                  <span className="text-[#4a703f] italic underline decoration-[#e9aa43]/20 underline-offset-4">
+                  <span className="text-[#e9aa43] italic underline decoration-[#e9aa43]/80 underline-offset-4">
                     Proven by Earth.
                   </span>
                 </h1>
 
                 <div className="flex flex-wrap items-center gap-8">
-                  <p className="text-base text-slate-500 font-medium max-w-sm leading-relaxed border-l-2 border-slate-200 pl-6">
+                  <p className="text-base text-slate-500 font-medium max-w-sm leading-relaxed border-l-2 border-[#e9aa43] pl-6">
                     Transforming ancient wisdom into biological solutions for
                     restoring soil health and farmer prosperity.
                   </p>

@@ -306,8 +306,8 @@ export default function KineticContactBanner() {
             {/* Feature Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6 border-t border-slate-100">
               <div className="flex gap-4">
-                <div className="w-10 h-10 rounded-full bg-[#e9aa43]/30 flex items-center justify-center shrink-0">
-                  <Leaf className="text-[#e9aa43]" size={18} />
+                <div className="w-10 h-10 rounded-full bg-green-600/30 flex items-center justify-center shrink-0">
+                  <Leaf className="text-green-600" size={18} />
                 </div>
                 <div>
                   <h4 className="font-bold text-white text-sm">
@@ -344,7 +344,7 @@ export default function KineticContactBanner() {
               </div>
 
               <div className="flex gap-4">
-                <div className="w-10 h-10 rounded-full bg-red-800/30 flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-full bg-red-700/30 flex items-center justify-center shrink-0">
                   <Heart className="text-red-900" size={18} />
                 </div>
                 <div>
