@@ -115,7 +115,7 @@ export default function VedicDhoopMosaicPage() {
       : null;
 
   return (
-    <div className="pt-40 pb-16 px-4 md:px-8 bg-[#f8f9f5] min-h-screen">
+    <div className="lg:pt-40 pt-32 pb-16 px-4 md:px-8 bg-[#f8f9f5] min-h-screen">
       <div className="max-w-[1400px] mx-auto">
         {/*
           LAYOUT STRATEGY
@@ -369,6 +369,7 @@ export default function VedicDhoopMosaicPage() {
                           key={i}
                           className="flex items-center gap-3 bg-[#f3f8ee] rounded-2xl px-4 py-3 border border-[#4a703f]/10"
                         >
+                          <Check size={13} className="text-[#4a703f] flex-shrink-0" />
                           <span className="text-sm font-bold text-slate-800">
                             {benefit}
                           </span>
@@ -380,7 +381,7 @@ export default function VedicDhoopMosaicPage() {
 
                 {/* Ingredients */}
                 {product.ingredients && (
-                  <div className="bg-[#fdf6ee] rounded-3xl p-6 border border-[#e9aa43]/30 shadow-sm">
+                  <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm">
                     <div className="flex items-center gap-3 mb-5">
                       <div className="w-1 h-5 bg-[#e9aa43] rounded-full" />
                       <p className="text-xs font-black uppercase tracking-[0.3em] text-[#b45309]">
@@ -388,16 +389,21 @@ export default function VedicDhoopMosaicPage() {
                       </p>
                     </div>
                     <div className="flex flex-col gap-2.5">
-                      {product.ingredients.split(",").map((ing, i) => (
-                        <div
-                          key={i}
-                          className="flex items-center gap-3 bg-white/70 rounded-2xl px-4 py-3 border border-[#e9aa43]/20"
-                        >
-                          <span className="text-sm font-bold text-slate-800">
-                            {ing.trim()}
-                          </span>
-                        </div>
-                      ))}
+                      {product.ingredients
+                        .split(/[\n,;|]+/)
+                        .map((s) => s.trim())
+                        .filter(Boolean)
+                        .map((ing, i) => (
+                          <div
+                            key={i}
+                            className="flex items-center gap-3 bg-[#fdf6ee] rounded-2xl px-4 py-3 border border-[#e9aa43]/20"
+                          >
+                            <Check size={13} className="text-[#e9aa43] flex-shrink-0" />
+                            <span className="text-sm font-bold text-slate-800">
+                              {ing}
+                            </span>
+                          </div>
+                        ))}
                     </div>
                   </div>
                 )}

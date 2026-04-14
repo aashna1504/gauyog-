@@ -253,7 +253,7 @@ export default function ProductSection() {
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-green-50 rounded-full blur-[120px] -z-10 opacity-60" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-50 rounded-full blur-[100px] -z-10 opacity-40" />
 
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto px-4">
           <div className="grid md:grid-cols-2 items-center gap-12 mb-24">
             <div className="relative group flex justify-center order-2 md:order-1">
               <div className="absolute w-[320px] h-[320px] md:w-[450px] md:h-[450px] bg-gradient-to-tr from-green-100/40 to-emerald-50/20 rounded-full animate-pulse shadow-inner" />
