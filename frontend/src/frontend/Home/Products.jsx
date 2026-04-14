@@ -312,7 +312,6 @@ export default function ProductSection() {
                   Mother Earth
                 </span>
               </h2>
-              <div className="h-1.5 w-16 bg-[#4a703f] rounded-full" />
             </div>
             <div className="flex gap-3">
               <button className="group border-2 border-gray-100 p-4 rounded-full hover:bg-black hover:border-black transition-all">
@@ -366,7 +365,7 @@ export default function ProductSection() {
                 </span>
                 <h2 className="text-5xl font-bold text-slate-100 leading-[1.1]">
                   Choose Your{" "}
-                  <span className="text-[#e9aa43] italic underline decoration-white/20 underline-offset-8">
+                  <span className="text-[#e9aa43] italic underline decoration-[#e9aa43] underline-offset-8">
                     Intensity.
                   </span>
                 </h2>
@@ -579,12 +578,12 @@ export default function ProductSection() {
                       ].map((stat, i) => (
                         <div
                           key={i}
-                          className="bg-white/60 backdrop-blur-md border border-white p-10 rounded-[2.5rem] flex flex-col items-center text-center space-y-2 shadow-sm"
+                          className="bg-white/20 backdrop-blur-md p-5 rounded-[2.5rem] flex flex-col items-center text-center space-y-2 shadow-sm"
                         >
-                          <span className="text-4xl  font-black text-slate-950">
+                          <span className="text-4xl  font-black text-slate-50">
                             {stat.val}
                           </span>
-                          <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">
+                          <span className="text-[10px] font-black uppercase tracking-widest text-slate-200">
                             {stat.lab}
                           </span>
                         </div>

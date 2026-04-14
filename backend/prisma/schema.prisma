@@ -54,6 +54,7 @@ model Product {
   weight             String?
   weightOptions      String[]   @default([])
   imageUrl           String?
+  image5kg           String?
   galleryImages      String[]   @default([])
   benefits           String[]   @default([])
   sku                String?

@@ -75,6 +75,7 @@ export interface Product {
   weight: string | null;
   weightOptions: string[];
   imageUrl: string | null;
+  image5kg: string | null;
   galleryImages: string[];
   benefits: string[];
   sku: string | null;
@@ -101,6 +102,7 @@ export interface CreateProductInput {
   weight?: string;
   weightOptions?: string[];
   imageUrl?: string;
+  image5kg?: string;
   galleryImages?: string[];
   benefits?: string[];
   sku?: string;

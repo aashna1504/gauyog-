@@ -12,6 +12,11 @@ export default function VedicDhoopMosaicPage() {
   const [product, setProduct] = useState(null);
   const [activeImg, setActiveImg] = useState(0);
   const [selectedWeight, setSelectedWeight] = useState("");
+
+  const handleWeightSelect = (option) => {
+    setSelectedWeight(option);
+    setActiveImg(0); // reset thumbnail when weight changes
+  };
   const [loading, setLoading] = useState(true);
 
   const { id } = useParams();
@@ -44,11 +49,14 @@ export default function VedicDhoopMosaicPage() {
 
   const productImages = useMemo(() => {
     if (!product) return [PLACEHOLDER_IMG];
-    const all = [product.imageUrl, ...(product.galleryImages || [])].filter(
-      Boolean,
-    );
+    // When 5kg is selected AND a dedicated 5kg image exists, lead with it
+    const mainImage =
+      selectedWeight === "5kg" && product.image5kg
+        ? product.image5kg
+        : product.imageUrl;
+    const all = [mainImage, ...(product.galleryImages || [])].filter(Boolean);
     return all.length ? all : [PLACEHOLDER_IMG];
-  }, [product]);
+  }, [product, selectedWeight]);
 
   const handleAddToCart = async () => {
     if (!product) return;
@@ -272,7 +280,7 @@ export default function VedicDhoopMosaicPage() {
                   {product.weightOptions.map((option) => (
                     <button
                       key={option}
-                      onClick={() => setSelectedWeight(option)}
+                      onClick={() => handleWeightSelect(option)}
                       className={`px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all duration-200 border-2 ${
                         currentWeight === option
                           ? "bg-[#4a703f] text-white border-[#4a703f] shadow-lg shadow-green-900/20"
@@ -280,6 +288,9 @@ export default function VedicDhoopMosaicPage() {
                       }`}
                     >
                       {option}
+                      {option === "5kg" && product.image5kg && (
+                        <span className="ml-1 text-[8px] opacity-60 ">●</span>
+                      )}
                     </button>
                   ))}
                 </div>
@@ -382,7 +393,6 @@ export default function VedicDhoopMosaicPage() {
                           key={i}
                           className="flex items-center gap-3 bg-white/70 rounded-2xl px-4 py-3 border border-[#e9aa43]/20"
                         >
-                          <div className="w-2 h-2 rounded-full bg-[#e9aa43] flex-shrink-0" />
                           <span className="text-sm font-bold text-slate-800">
                             {ing.trim()}
                           </span>

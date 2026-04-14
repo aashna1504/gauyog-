@@ -49,11 +49,18 @@ export default function ProductCard({
         ...p,
         ...modalProduct,
         image: modalProduct.imageUrl || p.image,
+        image5kg: modalProduct.image5kg || null,
         desc: modalProduct.description || p.desc,
         tag: modalProduct.category || p.tag,
         weightOptions: modalProduct.weightOptions || p.weightOptions,
       }
     : p;
+
+  // Resolve the image to show based on selected weight
+  const activeModalImage =
+    selectedWeight === "5kg" && detail.image5kg
+      ? detail.image5kg
+      : detail.image;
 
   const handleOpenModal = async () => {
     setShowModal(true);
@@ -256,9 +263,10 @@ export default function ProductCard({
               {/* Left: Image */}
               <div className="w-full md:w-5/12 bg-[#f3f8ee] flex items-center justify-center p-12 relative min-h-[300px] flex-shrink-0">
                 <motion.img
+                  key={activeModalImage}
                   initial={{ scale: 0.6, opacity: 0, y: 20 }}
                   animate={{ scale: 1, opacity: 1, y: 0 }}
-                  src={detail.image}
+                  src={activeModalImage}
                   className="w-full max-w-[320px] z-10 rounded-full"
                   alt={detail.name}
                   onError={(e) => {
@@ -311,7 +319,6 @@ export default function ProductCard({
                   )}
                 </div>
 
-                {/* Weight selector
                 {detail.weightOptions?.length > 0 && (
                   <div className="mb-5">
                     <p className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-500 mb-2">
@@ -333,7 +340,7 @@ export default function ProductCard({
                       ))}
                     </div>
                   </div>
-                )} */}
+                )}
 
                 {/* Description */}
                 {detail.desc && (

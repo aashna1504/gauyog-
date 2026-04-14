@@ -22,7 +22,7 @@ export default function NewProductPage() {
       title="Add Product"
       description="Create a new product in your catalog"
     >
-      <div className="max-w-2xl">
+      <div className="max-w-6xl">
         <ProductForm
           onSubmit={handleSubmit}
           isLoading={isPending}

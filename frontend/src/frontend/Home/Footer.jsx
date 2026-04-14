@@ -52,7 +52,7 @@ export default function ModernFooter() {
               </div>
             </div>
 
-            <div className="relative max-w-md group">
+            {/* <div className="relative max-w-md group">
               <div className="absolute inset-0 bg-[#4a703f]/5 blur-xl rounded-full opacity-0 group-focus-within:opacity-100 transition-opacity" />
               <div className="relative flex items-center bg-white border border-gray-200 rounded-full p-1 focus-within:border-[#4a703f] transition-all shadow-sm">
                 <div className="pl-3 md:pl-4 text-gray-400">
@@ -67,7 +67,7 @@ export default function ModernFooter() {
                   Join <ArrowRight size={14} className="hidden sm:block" />
                 </button>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className="lg:col-span-2 space-y-4 md:space-y-6">

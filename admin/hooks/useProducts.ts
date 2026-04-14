@@ -42,7 +42,12 @@ export function useCreateProduct() {
       qc.invalidateQueries({ queryKey: statsKeys.all });
       toast.success('Product created successfully');
     },
-    onError: (err: Error) => toast.error(err.message || 'Failed to create product'),
+    onError: (err: Error) => {
+      const msg = (err as any)?.code === 'ERR_NETWORK' || err.message === 'Network Error'
+        ? 'Cannot reach the server. Make sure the backend is running on port 5000.'
+        : err.message || 'Failed to create product';
+      toast.error(msg);
+    },
   });
 }
 
@@ -56,7 +61,12 @@ export function useUpdateProduct(id: string) {
       qc.invalidateQueries({ queryKey: statsKeys.all });
       toast.success('Product updated successfully');
     },
-    onError: (err: Error) => toast.error(err.message || 'Failed to update product'),
+    onError: (err: Error) => {
+      const msg = (err as any)?.code === 'ERR_NETWORK' || err.message === 'Network Error'
+        ? 'Cannot reach the server. Make sure the backend is running on port 5000.'
+        : err.message || 'Failed to update product';
+      toast.error(msg);
+    },
   });
 }
 

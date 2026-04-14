@@ -3,45 +3,70 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
-import { ColumnDef } from '@tanstack/react-table';
-import { MoreHorizontal, Pencil, Trash2, ArrowUpDown, Package } from 'lucide-react';
+import { MoreHorizontal, Pencil, Trash2, Package } from 'lucide-react';
+
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Switch } from '@/components/ui/switch';
 import { Skeleton } from '@/components/ui/skeleton';
+
 import {
-  DropdownMenu, DropdownMenuContent, DropdownMenuItem,
-  DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+
 import {
-  Dialog, DialogContent, DialogDescription, DialogFooter,
-  DialogHeader, DialogTitle,
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
 } from '@/components/ui/dialog';
-import { DataTable } from '@/components/tables/DataTable';
-import { useProducts, useDeleteProduct, useUpdateProduct } from '@/hooks/useProducts';
+
+import {
+  useProducts,
+  useDeleteProduct,
+  useUpdateProduct,
+} from '@/hooks/useProducts';
+
 import { formatCurrency } from '@/lib/utils';
 import type { Product } from '@/types';
 
+
+// ─── CATEGORY COLORS ─────────────────────────
+
 const CATEGORY_COLORS: Record<string, string> = {
-  Dairy:    'bg-blue-100 text-blue-800',
-  Ghee:     'bg-amber-100 text-amber-800',
-  Herbs:    'bg-green-100 text-green-800',
-  Grains:   'bg-yellow-100 text-yellow-800',
+  Dairy: 'bg-blue-100 text-blue-800',
+  Ghee: 'bg-amber-100 text-amber-800',
+  Herbs: 'bg-green-100 text-green-800',
+  Grains: 'bg-yellow-100 text-yellow-800',
   Wellness: 'bg-purple-100 text-purple-800',
-  Garden:   'bg-teal-100 text-teal-800',
-  Pantry:   'bg-orange-100 text-orange-800',
+  Garden: 'bg-teal-100 text-teal-800',
+  Pantry: 'bg-orange-100 text-orange-800',
 };
+
+
+// ─── STOCK TOGGLE ─────────────────────────
 
 function StockToggle({ product }: { product: Product }) {
   const { mutate: updateProduct, isPending } = useUpdateProduct(product.id);
+
   return (
     <Switch
       checked={product.inStock}
       disabled={isPending}
-      onCheckedChange={(checked) => updateProduct({ inStock: checked })}
+      onCheckedChange={(checked) =>
+        updateProduct({ inStock: checked })
+      }
     />
   );
 }
+
+
+// ─── DELETE DIALOG ─────────────────────────
 
 function DeleteDialog({
   product,
@@ -65,12 +90,20 @@ function DeleteDialog({
         <DialogHeader>
           <DialogTitle>Delete Product</DialogTitle>
           <DialogDescription>
-            Are you sure you want to delete <strong>{product?.name}</strong>? This cannot be undone.
+            Delete <strong>{product?.name}</strong>? This cannot be undone.
           </DialogDescription>
         </DialogHeader>
+
         <DialogFooter>
-          <Button variant="outline" onClick={onClose} disabled={isPending}>Cancel</Button>
-          <Button variant="destructive" onClick={handleDelete} disabled={isPending}>
+          <Button variant="outline" onClick={onClose}>
+            Cancel
+          </Button>
+
+          <Button
+            variant="destructive"
+            onClick={handleDelete}
+            disabled={isPending}
+          >
             {isPending ? 'Deleting...' : 'Delete'}
           </Button>
         </DialogFooter>
@@ -79,148 +112,136 @@ function DeleteDialog({
   );
 }
 
+
+// ─── MAIN COMPONENT ─────────────────────────
+
 export function ProductsTable() {
   const { data: products, isLoading } = useProducts();
   const { data: session } = useSession();
+
   const isAdmin = session?.user?.role === 'ADMIN';
   const [deleteTarget, setDeleteTarget] = useState<Product | null>(null);
 
-  const columns: ColumnDef<Product>[] = [
-    {
-      accessorKey: 'name',
-      header: ({ column }) => (
-        <button
-          className="flex items-center gap-1 font-semibold hover:text-foreground"
-          onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-        >
-          Product <ArrowUpDown className="h-3 w-3" />
-        </button>
-      ),
-      cell: ({ row }) => {
-        const p = row.original;
-        return (
-          <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-lg overflow-hidden bg-[#f3f8ee] flex-shrink-0 flex items-center justify-center">
-              {p.imageUrl ? (
-                <img
-                  src={p.imageUrl}
-                  alt={p.name}
-                  className="h-full w-full object-contain"
-                />
-              ) : (
-                <Package className="h-5 w-5 text-muted-foreground" />
-              )}
-            </div>
-            <div>
-              <p className="font-medium leading-tight">{p.name}</p>
-              {p.scientificName && (
-                <p className="text-xs text-muted-foreground">{p.scientificName}</p>
-              )}
-            </div>
-          </div>
-        );
-      },
-    },
-    {
-      accessorKey: 'category',
-      header: 'Category',
-      cell: ({ row }) => {
-        const cat = row.original.category;
-        const colorClass = CATEGORY_COLORS[cat] ?? 'bg-gray-100 text-gray-800';
-        return (
-          <span className={`inline-flex items-center rounded-md px-2.5 py-0.5 text-xs font-semibold ${colorClass}`}>
-            {cat}
-          </span>
-        );
-      },
-    },
-    {
-      accessorKey: 'price',
-      header: 'Price',
-      cell: ({ row }) => {
-        const p = row.original;
-        return (
-          <div>
-            <span className="font-semibold">{formatCurrency(p.price)}</span>
-            {p.discountPrice && (
-              <span className="ml-2 text-xs text-muted-foreground line-through">
-                {formatCurrency(p.discountPrice)}
-              </span>
-            )}
-          </div>
-        );
-      },
-    },
-    {
-      accessorKey: 'stock',
-      header: 'Stock',
-      cell: ({ row }) => {
-        const stock = row.original.stock;
-        return (
-          <Badge variant={stock <= 5 ? 'destructive' : 'secondary'} className="text-xs">
-            {stock}
-          </Badge>
-        );
-      },
-    },
-    ...(isAdmin
-      ? ([
-          {
-            accessorKey: 'inStock',
-            header: 'Toggle Stock',
-            cell: ({ row }: { row: { original: Product } }) => <StockToggle product={row.original} />,
-          },
-          {
-            id: 'actions',
-            cell: ({ row }: { row: { original: Product } }) => {
-              const product = row.original;
-              return (
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="icon" className="h-8 w-8">
-                      <MoreHorizontal className="h-4 w-4" />
-                      <span className="sr-only">Actions</span>
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem asChild>
-                      <Link href={`/products/${product.id}/edit`}>
-                        <Pencil className="h-4 w-4" /> Edit
-                      </Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem
-                      className="text-destructive focus:text-destructive"
-                      onClick={() => setDeleteTarget(product)}
-                    >
-                      <Trash2 className="h-4 w-4" /> Delete
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              );
-            },
-          },
-        ] as ColumnDef<Product>[])
-      : []),
-  ];
-
   if (isLoading) {
     return (
-      <div className="space-y-3">
-        {Array.from({ length: 8 }).map((_, i) => <Skeleton key={i} className="h-12 w-full" />)}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+        {Array.from({ length: 8 }).map((_, i) => (
+          <Skeleton key={i} className="h-24 w-full rounded-lg" />
+        ))}
       </div>
     );
   }
 
   return (
     <>
-      <DataTable
-        columns={columns}
-        data={products ?? []}
-        searchKey="name"
-        searchPlaceholder="Search products..."
-      />
+      {/* Responsive Card Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+        {(products ?? []).map((p) => {
+          const colorClass =
+            CATEGORY_COLORS[p.category] ?? 'bg-gray-100 text-gray-800';
+
+          return (
+            <div
+              key={p.id}
+              className="border rounded-lg p-3 bg-white shadow-sm hover:shadow-md hover:scale-[1.02] transition"
+            >
+              {/* Top */}
+              <div className="flex items-start justify-between gap-2">
+                <div className="flex items-center gap-2 min-w-0">
+                  <div className="h-9 w-9 rounded-md overflow-hidden bg-[#f3f8ee] flex items-center justify-center flex-shrink-0">
+                    {p.imageUrl ? (
+                      <img
+                        src={p.imageUrl}
+                        alt={p.name}
+                        className="h-full w-full object-contain"
+                      />
+                    ) : (
+                      <Package className="h-4 w-4 text-muted-foreground" />
+                    )}
+                  </div>
+
+                  <div className="min-w-0">
+                    <p className="text-sm font-medium truncate">
+                      {p.name}
+                    </p>
+
+                    {p.scientificName && (
+                      <p className="text-[10px] text-muted-foreground truncate">
+                        {p.scientificName}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                {isAdmin && (
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button size="icon" variant="ghost" className="h-7 w-7">
+                        <MoreHorizontal className="h-4 w-4" />
+                      </Button>
+                    </DropdownMenuTrigger>
+
+                    <DropdownMenuContent align="end">
+                      <DropdownMenuItem asChild>
+                        <Link href={`/products/${p.id}/edit`}>
+                          <Pencil className="h-4 w-4 mr-2" /> Edit
+                        </Link>
+                      </DropdownMenuItem>
+
+                      <DropdownMenuItem
+                        className="text-destructive"
+                        onClick={() => setDeleteTarget(p)}
+                      >
+                        <Trash2 className="h-4 w-4 mr-2" /> Delete
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                )}
+              </div>
+
+              {/* Category */}
+              <div className="mt-2">
+                <span
+                  className={`inline-flex text-[10px] px-2 py-0.5 rounded ${colorClass}`}
+                >
+                  {p.category}
+                </span>
+              </div>
+
+              {/* Price */}
+              <div className="mt-2 text-sm">
+                <span className="font-semibold">
+                  {formatCurrency(p.price)}
+                </span>
+
+                {p.discountPrice && (
+                  <span className="ml-1 text-[10px] line-through text-muted-foreground">
+                    {formatCurrency(p.discountPrice)}
+                  </span>
+                )}
+              </div>
+
+              {/* Bottom */}
+              <div className="mt-2 flex items-center justify-between">
+                <Badge
+                  variant={p.stock <= 5 ? 'destructive' : 'secondary'}
+                  className="text-[10px]"
+                >
+                  {p.stock}
+                </Badge>
+
+                {isAdmin && (
+                  <div className="scale-75 origin-right">
+                    <StockToggle product={p} />
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Delete Dialog */}
       {isAdmin && (
         <DeleteDialog
           product={deleteTarget}
