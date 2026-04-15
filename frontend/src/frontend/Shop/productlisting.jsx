@@ -25,12 +25,17 @@ export default function ProductListingPage() {
     "Garden",
     "Pantry",
   ];
+  const ALLOWED_WEIGHTS = ["1kg", "3kg", "5kg"];
+
   const sizes = useMemo(() => {
     const allWeights = products.flatMap((p) => [
       ...(p.weightOptions || []),
       ...(p.weight ? [p.weight] : []),
     ]);
-    return ["All Sizes", ...Array.from(new Set(allWeights))];
+    const filtered = Array.from(new Set(allWeights)).filter((w) =>
+      ALLOWED_WEIGHTS.includes(w)
+    );
+    return ["All Sizes", ...filtered];
   }, [products]);
 
   const {

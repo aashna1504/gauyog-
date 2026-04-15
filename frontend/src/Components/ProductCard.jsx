@@ -8,7 +8,6 @@ import {
   Star,
   CreditCard,
   X,
-  Check,
   ShieldCheck,
   Loader2,
 } from "lucide-react";
@@ -319,13 +318,13 @@ export default function ProductCard({
                   )}
                 </div>
 
-                {detail.weightOptions?.length > 0 && (
+                {detail.weightOptions?.filter((w) => ["1kg", "3kg", "5kg"].includes(w)).length > 0 && (
                   <div className="mb-5">
                     <p className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-500 mb-2">
                       Select Weight
                     </p>
                     <div className="flex flex-wrap gap-2">
-                      {detail.weightOptions.map((option) => (
+                      {detail.weightOptions.filter((w) => ["1kg", "3kg", "5kg"].includes(w)).map((option) => (
                         <button
                           key={option}
                           onClick={() => setSelectedWeight(option)}

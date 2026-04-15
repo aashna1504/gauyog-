@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Heart, Package, Layers, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate, useParams } from "react-router-dom";
@@ -271,13 +271,13 @@ export default function VedicDhoopMosaicPage() {
             className="order-3 lg:order-none lg:col-start-2 lg:row-start-2 flex flex-col gap-5"
           >
             {/* Weight pills */}
-            {!!product.weightOptions?.length && (
+            {!!product.weightOptions?.filter((w) => ["1kg", "3kg", "5kg"].includes(w)).length && (
               <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm">
                 <p className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-500 mb-3">
                   Select Weight
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {product.weightOptions.map((option) => (
+                  {product.weightOptions.filter((w) => ["1kg", "3kg", "5kg"].includes(w)).map((option) => (
                     <button
                       key={option}
                       onClick={() => handleWeightSelect(option)}
@@ -467,13 +467,13 @@ export default function VedicDhoopMosaicPage() {
                         <span className="text-right">{product.bestBefore}</span>
                       </div>
                     )}
-                    {product.weightOptions?.length > 0 && (
+                    {product.weightOptions?.filter((w) => ["1kg", "3kg", "5kg"].includes(w)).length > 0 && (
                       <div className="flex justify-between gap-4">
                         <span className="font-semibold text-slate-500">
                           Also Available
                         </span>
                         <span className="text-right">
-                          {product.weightOptions.join(", ")}
+                          {product.weightOptions.filter((w) => ["1kg", "3kg", "5kg"].includes(w)).join(", ")}
                         </span>
                       </div>
                     )}

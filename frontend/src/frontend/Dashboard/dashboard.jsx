@@ -190,9 +190,6 @@ export default function FloatingNexusDashboard() {
             </h1>
           </header>
 
-          <div className="w-full h-1 bg-slate-100 rounded-full overflow-hidden mb-8">
-            <div className="w-1/3 h-full bg-[#4a703f]" />
-          </div>
 
          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
