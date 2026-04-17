@@ -25,7 +25,7 @@ export default function ModernSignIn() {
       const u = res.data.data.user;
       setAuth(u, res.data.data.accessToken, res.data.data.refreshToken);
       notify(`Welcome back, ${u.name || u.email.split("@")[0]}!`, "login");
-      navigate("/");
+      navigate(u.role === "ADMIN" ? "/admin" : "/");
     } catch (error) {
       toast.error(error.response?.data?.message || "Login failed");
     } finally {
@@ -46,7 +46,7 @@ export default function ModernSignIn() {
       const u = res.data.data.user;
       setAuth(u, res.data.data.accessToken, res.data.data.refreshToken);
       notify(`Welcome back, ${u.name || u.email.split("@")[0]}!`, "login");
-      navigate("/");
+      navigate(u.role === "ADMIN" ? "/admin" : "/");
     } catch (error) {
       toast.error(error.response?.data?.message || "Google login failed");
     }

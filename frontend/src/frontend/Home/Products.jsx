@@ -88,32 +88,32 @@ export default function ProductSection() {
       color: "#a05a2c", // Earthy Sienna
       icon: <ShieldCheck size={24} />,
       points: [
-        "Made from pure Gir cow dung, naturally dried and finely powdered",
-        "Improves soil structure and enriches it with essential nutrients",
-        "An ideal base for organic gardening and sustainable soil health",
+        "Made from pure Gir cow dung, naturally dried and finely powdered.",
+        "Improves soil structure and enriches it with essential nutrients.",
+        "An ideal base for organic gardening and sustainable soil health.",
       ],
       claim: "Feed Your Soil — Not Just Your Crop",
       badge: "Level 01",
     },
     {
       level: "Classic",
-      name: "Ghanjivamrut",
+      name: "Cow Dung Slurry",
       tagline: "The Microbial Powerhouse",
       description:
         "Fermented bio-fertiliser with live microbial cultures for active soil biology.",
       color: "#4a703f", // Forest Green
       icon: <Zap size={24} />,
       points: [
-        "Enriched with beneficial microbes that naturally improve soil health",
-        "Enhances nutrient absorption and boosts plant growth effectively",
-        "Revives soil vitality for stronger roots and better yield",
+        "Enriched with beneficial microbes that naturally improve soil health.",
+        "Enhances nutrient absorption and boosts plant growth effectively.",
+        "Revives soil vitality for stronger roots and better yield.",
       ],
       claim: "Activate Your Soil with Millions of Microbes",
       badge: "Level 02",
     },
     {
       level: "Premium",
-      name: "Seaweed + Ghanjivamrut",
+      name: "Ghanjivamrut",
       tagline: "The Complete Growth System",
       description:
         "Dual-action formula combining ocean minerals with microbial power for maximum yield.",
@@ -121,7 +121,7 @@ export default function ProductSection() {
       icon: <Crown size={24} />,
       points: [
         "Enhances soil fertility and microbial activity through Ghanjeevamrut.",
-        "Boosts plant growth with natural nutrients and growth hormones from seaweed.",
+        "Boosts plant growth with natural nutrients and growth hormones.",
         "Improves root strength, yield, and overall plant health in a natural way.",
       ],
       claim: "Maximum Growth — Maximum Quality",

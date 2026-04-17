@@ -13,13 +13,16 @@ import {
 import { getInitials } from '@/lib/utils';
 import { toast } from 'sonner';
 import { useUIStore } from '@/store/uiStore';
+import { useAdminAuthStore } from '@/store/authStore';
 
 export function TopBar() {
   const { data: session } = useSession();
   const router = useRouter();
   const { toggleMobileSidebar } = useUIStore();
+  const clearToken = useAdminAuthStore((s) => s.clearToken);
 
   const handleSignOut = async () => {
+    clearToken();
     await signOut({ redirect: false });
     toast.success('Signed out successfully');
     router.push('/login');

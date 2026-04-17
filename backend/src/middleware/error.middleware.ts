@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { ZodError } from 'zod';
+import { Prisma } from '@prisma/client';
 import { AppError } from '../utils/helpers';
 import { logger } from '../utils/logger';
 
@@ -30,7 +31,20 @@ export const errorHandler = (
     });
   }
 
-  // Handle Prisma / JWT Errors appropriately if needed
+  // Prisma known request errors (FK violations, unique constraint, etc.)
+  if (err instanceof Prisma.PrismaClientKnownRequestError) {
+    if (err.code === 'P2003') {
+      return res.status(400).json({ success: false, message: 'Cannot complete operation: record is referenced by other data.' });
+    }
+    if (err.code === 'P2025') {
+      return res.status(404).json({ success: false, message: 'Record not found.' });
+    }
+    if (err.code === 'P2002') {
+      return res.status(409).json({ success: false, message: 'A record with this value already exists.' });
+    }
+    return res.status(400).json({ success: false, message: err.message });
+  }
+
   if (err.name === 'TokenExpiredError') {
     return res.status(401).json({ success: false, message: 'Token expired' });
   }

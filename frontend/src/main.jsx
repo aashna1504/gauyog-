@@ -27,6 +27,8 @@ import PrivacyPolicy from "./frontend/PrivacyPolicy/privacy.jsx";
 import TrackOrder from "./frontend/Trackorder/trackorder.jsx";
 import Payment from "./frontend/Cart/payment.jsx";
 import ProtectedRoute from "./Components/ProtectedRoute.jsx";
+import AdminRoute from "./Components/AdminRoute.jsx";
+import AdminDashboard from "./frontend/Admin/AdminDashboard.jsx";
 
 const router = createBrowserRouter([
   {
@@ -202,6 +204,16 @@ const router = createBrowserRouter([
           <Suspense fallback={<div> Loading ... </div>}>
             <Payment />
           </Suspense>
+        ),
+      },
+      {
+        path: "/admin",
+        element: (
+          <AdminRoute>
+            <Suspense fallback={<div> Loading ... </div>}>
+              <AdminDashboard />
+            </Suspense>
+          </AdminRoute>
         ),
       },
     ],

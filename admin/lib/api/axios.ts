@@ -1,5 +1,6 @@
 import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import { getSession, signOut } from 'next-auth/react';
+import { useAdminAuthStore } from '@/store/authStore';
 
 const apiClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -7,12 +8,18 @@ const apiClient = axios.create({
   timeout: 15000,
 });
 
-// Attach JWT from NextAuth session on every request (client side)
+// Attach JWT on every request.
+// Primary: Zustand store (persisted in localStorage, always in sync).
+// Fallback: NextAuth getSession() in case the store is empty.
 apiClient.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
   if (typeof window !== 'undefined') {
-    const session = await getSession();
-    if (session?.accessToken) {
-      config.headers.Authorization = `Bearer ${session.accessToken}`;
+    let token = useAdminAuthStore.getState().accessToken;
+    if (!token) {
+      const session = await getSession();
+      token = session?.accessToken ?? null;
+    }
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
     }
   }
   return config;

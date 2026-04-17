@@ -79,9 +79,9 @@ export default function ModernFooter() {
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className="text-gray-600 text-[14px] font-bold hover:text-[#4a703f] transition-colors flex items-center gap-2 group"
+                    className="text-gray-600 text-[14px] font-bold hover:text-[#e9aa43] transition-colors flex items-center gap-2 group"
                   >
-                    <span className="hidden md:block w-0 h-[2px] bg-[#4a703f] transition-all group-hover:w-4" />
+                    <span className="hidden md:block w-0 h-[2px] bg-[#e9aa43] transition-all group-hover:w-4" />
                     {link.name}
                   </a>
                 </li>
@@ -98,9 +98,9 @@ export default function ModernFooter() {
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className="text-gray-600 text-[14px] font-bold hover:text-[#4a703f] transition-colors flex items-center gap-2 group"
+                    className="text-gray-600 text-[14px] font-bold hover:text-[#e9aa43] transition-colors flex items-center gap-2 group"
                   >
-                    <span className="hidden md:block w-0 h-[2px] bg-[#4a703f] transition-all group-hover:w-4" />
+                    <span className="hidden md:block w-0 h-[2px] bg-[#e9aa43] transition-all group-hover:w-4" />
                     {link.name}
                   </a>
                 </li>

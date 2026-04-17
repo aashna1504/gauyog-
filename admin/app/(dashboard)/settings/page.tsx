@@ -191,7 +191,7 @@ export default function SettingsPage() {
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Organization</span>
                   <span className="font-medium text-[#4a703f]">
-                    Gauyog Kendra
+                    Gauyog Kendr
                   </span>
                 </div>
               </div>
