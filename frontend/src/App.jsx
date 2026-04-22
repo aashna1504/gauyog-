@@ -13,7 +13,7 @@ function App() {
 
   return (
     <>
-      <Hero />
+      {/* <Hero /> */}
       <ProductSection />
       <WhyChooseUs />
       <AllProducts />

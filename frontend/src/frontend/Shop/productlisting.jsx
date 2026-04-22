@@ -126,13 +126,9 @@ export default function ProductListingPage() {
           </div>
 
           {/* --- COLORED ICONS / CERTIFICATIONS GRID --- */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
             {[
-              {
-                name: "Organic Certified",
-                img: "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775715583/100-percent-natural-and-organic-product-badge-label-rubber-stamp-emblem-template-organic-ingredient-badge-logo-suitable-for-product-packaging-design-elements-with-leaf-png_cricy6.png",
-                color: "hover:border-[#4a703f]",
-              },
+             
               {
                 name: "ISO Standards",
                 img: "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775715667/pngtree-iso-9001-certified---quality-standard-seal-certificate-verified-standard-vector-png-image_22204284_z6qquk.png",
@@ -144,19 +140,24 @@ export default function ProductListingPage() {
                 color: "hover:border-yellow-500",
               },
               {
+                name: "Natural",
+                img: "https://res.cloudinary.com/dbpzzvcik/image/upload/v1776424916/100-percent-natural-and-organic-product-badge-label-rubber-stamp-emblem-template-organic-ingredient-badge-logo-suitable-for-product-packaging-design-elements-with-leaf-png_cricy6_1_fbrhsd.png",
+                color: "hover:border-green-700",
+              },
+              {
+                name: "recyclable",
+                img: "https://res.cloudinary.com/dbpzzvcik/image/upload/v1776424787/pngwing.com_47_e4y7od.png",
+                color: "hover:border-green-800",
+              },
+              {
+                name: "Gpcb",
+                img: "https://res.cloudinary.com/dbpzzvcik/image/upload/v1776424987/gpcb-image_jqfxee.png",
+                color: "hover:border-blue-500",
+              },
+              {
                 name: "Lab Tested",
                 img: "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775716286/lab-tested-label-sign-round-stamp-band-ribbon-vector-33848228-removebg-preview_t8vpa3.png",
                 color: "hover:border-black",
-              },
-              {
-                name: "FSSAI Compliant",
-                img: "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775716580/Screenshot_2026-04-09_120539-removebg-preview_ocr40w.png",
-                color: "hover:border-orange-500",
-              },
-              {
-                name: "Export Quality",
-                img: "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775715916/pngtree-export-quality-label-sign-png-image_7690335_mulizh.png",
-                color: "hover:border-red-500",
               },
             ].map((cert, idx) => (
               <div
