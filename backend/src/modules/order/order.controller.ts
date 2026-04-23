@@ -52,7 +52,16 @@ export class OrderController {
     }
   }
 
-  static async getStats(req: Request, res: Response, next: NextFunction) {
+  static async updateTrackingId(req: Request, res: Response, next: NextFunction) {
+    try {
+      const order = await OrderService.updateTrackingId(req.params.id, req.body.trackingId ?? '');
+      res.status(200).json({ status: 'success', data: order });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async getStats(_req: Request, res: Response, next: NextFunction) {
     try {
       const stats = await OrderService.getStats();
       res.status(200).json({ status: 'success', data: stats });

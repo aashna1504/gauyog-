@@ -47,14 +47,25 @@ export default function VedicDhoopMosaicPage() {
     fetchCart();
   }, [id, fetchWishlist, fetchCart]);
 
+  // Resolve variant image and price for the currently selected weight
+  const getVariantImage = (weight) => {
+    if (weight === "1kg" && product?.image1kg) return product.image1kg;
+    if (weight === "3kg" && product?.image3kg) return product.image3kg;
+    if (weight === "5kg" && product?.image5kg) return product.image5kg;
+    return product?.imageUrl ?? null;
+  };
+
+  const getVariantPrice = (weight) => {
+    if (weight === "1kg" && product?.price1kg) return product.price1kg;
+    if (weight === "3kg" && product?.price3kg) return product.price3kg;
+    if (weight === "5kg" && product?.price5kg) return product.price5kg;
+    return product?.price ?? 0;
+  };
+
   const productImages = useMemo(() => {
     if (!product) return [PLACEHOLDER_IMG];
-    // When 5kg is selected AND a dedicated 5kg image exists, lead with it
-    const mainImage =
-      selectedWeight === "5kg" && product.image5kg
-        ? product.image5kg
-        : product.imageUrl;
-    const all = [mainImage, ...(product.galleryImages || [])].filter(Boolean);
+    const variantImg = getVariantImage(selectedWeight);
+    const all = [variantImg, ...(product.galleryImages || [])].filter(Boolean);
     return all.length ? all : [PLACEHOLDER_IMG];
   }, [product, selectedWeight]);
 
@@ -106,13 +117,6 @@ export default function VedicDhoopMosaicPage() {
   const currentWeight = selectedWeight || product.weight || "";
   const inCart = isInCart(product.id);
   const wishlisted = isInWishlist(product.id);
-  const discountPct =
-    product.discountPrice && product.discountPrice > product.price
-      ? Math.round(
-          ((product.discountPrice - product.price) / product.discountPrice) *
-            100,
-        )
-      : null;
 
   return (
     <div className="lg:pt-40 pt-32 pb-16 px-4 md:px-8 bg-[#f8f9f5] min-h-screen">
@@ -151,16 +155,11 @@ export default function VedicDhoopMosaicPage() {
               )}
               <div className="flex items-baseline gap-3 mt-4 pt-4 border-t border-slate-100">
                 <span className="text-4xl font-black text-slate-900 tracking-tight">
-                  ₹{product.price}
+                  ₹{getVariantPrice(currentWeight)}
                 </span>
-                {product.discountPrice && (
-                  <span className="text-lg text-slate-300 line-through font-semibold">
-                    ₹{product.discountPrice}
-                  </span>
-                )}
-                {discountPct && (
-                  <span className="text-xs font-black text-[#4a703f] bg-[#4a703f]/15 px-2.5 py-1 rounded-full">
-                    {discountPct}% OFF
+                {currentWeight && (
+                  <span className="text-xs font-black text-slate-400 uppercase tracking-widest">
+                    {currentWeight}
                   </span>
                 )}
               </div>
@@ -277,22 +276,25 @@ export default function VedicDhoopMosaicPage() {
                   Select Weight
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {product.weightOptions.filter((w) => ["1kg", "3kg", "5kg"].includes(w)).map((option) => (
-                    <button
-                      key={option}
-                      onClick={() => handleWeightSelect(option)}
-                      className={`px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all duration-200 border-2 ${
-                        currentWeight === option
-                          ? "bg-[#4a703f] text-white border-[#4a703f] shadow-lg shadow-green-900/20"
-                          : "bg-white text-slate-500 border-slate-200 hover:border-[#4a703f] hover:text-[#4a703f]"
-                      }`}
-                    >
-                      {option}
-                      {option === "5kg" && product.image5kg && (
-                        <span className="ml-1 text-[8px] opacity-60 ">●</span>
-                      )}
-                    </button>
-                  ))}
+                  {product.weightOptions.filter((w) => ["1kg", "3kg", "5kg"].includes(w)).map((option) => {
+                    const hasVariant = getVariantImage(option) !== product.imageUrl || getVariantPrice(option) !== product.price;
+                    return (
+                      <button
+                        key={option}
+                        onClick={() => handleWeightSelect(option)}
+                        className={`px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all duration-200 border-2 flex items-center gap-1.5 ${
+                          currentWeight === option
+                            ? "bg-[#4a703f] text-white border-[#4a703f] shadow-lg shadow-green-900/20"
+                            : "bg-white text-slate-500 border-slate-200 hover:border-[#4a703f] hover:text-[#4a703f]"
+                        }`}
+                      >
+                        {option}
+                        {hasVariant && (
+                          <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${currentWeight === option ? "bg-white/60" : "bg-[#4a703f]/40"}`} />
+                        )}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             )}

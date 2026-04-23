@@ -54,7 +54,12 @@ model Product {
   weight             String?
   weightOptions      String[]   @default([])
   imageUrl           String?
+  image1kg           String?
+  price1kg           Float?
+  image3kg           String?
+  price3kg           Float?
   image5kg           String?
+  price5kg           Float?
   galleryImages      String[]   @default([])
   benefits           String[]   @default([])
   sku                String?
@@ -107,8 +112,13 @@ model ContactMessage {
   name      String
   email     String
   phone     String?
+  village   String?
+  district  String?
   role      String?
+  roles     String[] @default([])
   interest  String?
+  interests String[] @default([])
+  products  String[] @default([])
   message   String
   status    String   @default("NEW")
   createdAt DateTime @default(now())
@@ -148,6 +158,7 @@ model Order {
   user          User          @relation(fields: [userId], references: [id], onDelete: Cascade)
   status        OrderStatus   @default(PENDING)
   paymentMethod PaymentMethod @default(COD)
+  trackingId    String?
   subtotal      Float
   shipping      Float         @default(0)
   tax           Float         @default(0)

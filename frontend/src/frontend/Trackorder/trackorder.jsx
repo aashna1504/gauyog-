@@ -11,6 +11,8 @@ import {
   CheckCircle2,
   Clock,
   XCircle,
+  Copy,
+  Check,
 } from "lucide-react";
 import api from "../../api/axios";
 
@@ -48,6 +50,25 @@ function formatDate(iso) {
   return new Date(iso).toLocaleDateString("en-IN", {
     day: "2-digit", month: "short", year: "numeric",
   });
+}
+
+function CopyButton({ text }) {
+  const [copied, setCopied] = useState(false);
+  const handleCopy = () => {
+    navigator.clipboard.writeText(text).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
+  return (
+    <button
+      onClick={handleCopy}
+      className="p-1.5 rounded-full hover:bg-slate-100 transition-colors text-slate-400 hover:text-[#4a703f]"
+      title="Copy to clipboard"
+    >
+      {copied ? <Check size={13} className="text-[#4a703f]" /> : <Copy size={13} />}
+    </button>
+  );
 }
 
 export default function TrackOrderPage() {
@@ -193,15 +214,40 @@ export default function TrackOrderPage() {
               className="max-w-2xl mx-auto mt-8 bg-white rounded-[40px] p-8 md:p-10 shadow-2xl shadow-slate-200/50 border border-slate-100"
             >
               {/* Header */}
-              <div className="flex items-start justify-between mb-8">
+              <div className="flex items-start justify-between mb-6">
                 <div>
                   <p className="text-[9px] font-black uppercase tracking-widest text-slate-400 mb-1">Order</p>
-                  <h3 className="text-xl font-black text-slate-900">#{order.id.slice(0, 8).toUpperCase()}</h3>
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-xl font-black text-slate-900">#{order.id.slice(0, 8).toUpperCase()}</h3>
+                    <CopyButton text={order.id} />
+                  </div>
                   <p className="text-xs text-slate-400 mt-1">{formatDate(order.createdAt)}</p>
                 </div>
                 <span className={`text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full bg-slate-50 ${STATUS_COLORS[order.status]}`}>
                   {STATUS_LABEL[order.status]}
                 </span>
+              </div>
+
+              {/* Tracking ID */}
+              <div className={`flex items-center gap-4 rounded-[20px] px-5 py-4 mb-8 ${order.trackingId ? "bg-[#4a703f]/5 border border-[#4a703f]/15" : "bg-slate-50 border border-slate-100"}`}>
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${order.trackingId ? "bg-[#4a703f] text-white" : "bg-slate-200 text-slate-400"}`}>
+                  <Truck size={18} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-[9px] font-black uppercase tracking-widest text-slate-400 mb-0.5">Courier Tracking ID</p>
+                  {order.trackingId ? (
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-black font-mono text-slate-900 tracking-wider">{order.trackingId}</span>
+                      <CopyButton text={order.trackingId} />
+                    </div>
+                  ) : (
+                    <p className="text-xs font-bold text-slate-400 italic">
+                      {order.status === "SHIPPED" || order.status === "DELIVERED"
+                        ? "Tracking ID not available"
+                        : "Will be assigned once your order is shipped"}
+                    </p>
+                  )}
+                </div>
               </div>
 
               {/* Progress Tracker */}
@@ -247,11 +293,18 @@ export default function TrackOrderPage() {
               <div>
                 <p className="text-[9px] font-black uppercase tracking-widest text-slate-400 mb-4">Items Ordered</p>
                 <div className="space-y-3">
-                  {order.items?.map((item) => (
+                  {order.items?.map((item) => {
+                    const prod = item.product;
+                    const w = prod?.weight;
+                    const itemImg = (w === "1kg" && prod?.image1kg) ? prod.image1kg
+                      : (w === "3kg" && prod?.image3kg) ? prod.image3kg
+                      : (w === "5kg" && prod?.image5kg) ? prod.image5kg
+                      : prod?.imageUrl;
+                    return (
                     <div key={item.id} className="flex items-center gap-4 bg-slate-50 rounded-[16px] p-3">
-                      {item.product?.imageUrl && (
+                      {itemImg && (
                         <img
-                          src={item.product.imageUrl}
+                          src={itemImg}
                           alt={item.name}
                           className="w-12 h-12 object-contain rounded-xl bg-[#f3f8ee] p-1"
                           onError={(e) => { e.target.style.display = "none"; }}
@@ -263,7 +316,8 @@ export default function TrackOrderPage() {
                       </div>
                       <p className="text-sm font-black text-slate-800">₹{(item.price * item.quantity).toLocaleString("en-IN")}</p>
                     </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
 

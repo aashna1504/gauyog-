@@ -15,16 +15,7 @@ export default function ProductListingPage() {
   const [sortBy, setSortBy] = useState("Relevant");
   const navigate = useNavigate();
 
-  const categories = [
-    "All",
-    "Dairy",
-    "Ghee",
-    "Herbs",
-    "Grains",
-    "Wellness",
-    "Garden",
-    "Pantry",
-  ];
+  const categories = ["All", "Fertilizer", "Coco"];
   const ALLOWED_WEIGHTS = ["1kg", "3kg", "5kg"];
 
   const sizes = useMemo(() => {

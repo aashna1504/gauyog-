@@ -11,6 +11,9 @@ export const config = {
   adminEmailTo: process.env.ADMIN_EMAIL_TO,
   resendApiKey: process.env.RESEND_API_KEY,
   resendFromEmail: process.env.RESEND_FROM_EMAIL,
+  cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME || 'dbpzzvcik',
+  cloudinaryApiKey: process.env.CLOUDINARY_API_KEY,
+  cloudinaryApiSecret: process.env.CLOUDINARY_API_SECRET,
   jwt: {
     accessSecret: process.env.JWT_ACCESS_SECRET || 'secret',
     refreshSecret: process.env.JWT_REFRESH_SECRET || 'refresh_secret',

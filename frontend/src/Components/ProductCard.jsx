@@ -55,11 +55,22 @@ export default function ProductCard({
       }
     : p;
 
-  // Resolve the image to show based on selected weight
-  const activeModalImage =
-    selectedWeight === "5kg" && detail.image5kg
-      ? detail.image5kg
-      : detail.image;
+  // Resolve image and price based on selected weight
+  const getVariantImage = (weight) => {
+    if (weight === "1kg" && detail.image1kg) return detail.image1kg;
+    if (weight === "3kg" && detail.image3kg) return detail.image3kg;
+    if (weight === "5kg" && detail.image5kg) return detail.image5kg;
+    return detail.image;
+  };
+  const getVariantPrice = (weight) => {
+    if (weight === "1kg" && detail.price1kg) return detail.price1kg;
+    if (weight === "3kg" && detail.price3kg) return detail.price3kg;
+    if (weight === "5kg" && detail.price5kg) return detail.price5kg;
+    return detail.price;
+  };
+
+  const activeModalImage = getVariantImage(selectedWeight);
+  const activePrice = getVariantPrice(selectedWeight);
 
   const handleOpenModal = async () => {
     setShowModal(true);
@@ -114,7 +125,7 @@ export default function ProductCard({
             )}
 
             <img
-              src={p.image}
+              src={getVariantImage(selectedWeight)}
               className="h-44 object-contain transition-transform duration-700 group-hover:scale-110 rounded-full"
               alt={p.name}
               onError={(e) => {
@@ -148,7 +159,7 @@ export default function ProductCard({
           <div className="mt-6 flex flex-col flex-grow px-2">
             <div className="flex justify-between items-start mb-4">
               <div className="flex-1">
-                <div className="flex gap-1 mb-2">
+                {/* <div className="flex gap-1 mb-2">
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
@@ -161,7 +172,7 @@ export default function ProductCard({
                       {p.rating}
                     </span>
                   )}
-                </div>
+                </div> */}
                 <h3 className="font-bold text-xl text-gray-800 line-clamp-1 group-hover:text-[#4a703f] transition-colors uppercase tracking-tight">
                   {p.name}
                 </h3>
@@ -173,15 +184,29 @@ export default function ProductCard({
               </div>
               <div className="pl-2 text-right">
                 <p className="text-2xl font-black text-[#4a703f] tracking-tighter">
-                  ₹{p.price}
+                  ₹{getVariantPrice(selectedWeight)}
                 </p>
-                {p.discountPrice && (
-                  <p className="text-xs text-gray-400 line-through">
-                    ₹{p.discountPrice}
-                  </p>
-                )}
               </div>
             </div>
+
+            {/* Weight selector on card */}
+            {p.weightOptions?.filter((w) => ["1kg", "3kg", "5kg"].includes(w)).length > 1 && (
+              <div className="flex gap-1.5 mb-3 flex-wrap">
+                {p.weightOptions.filter((w) => ["1kg", "3kg", "5kg"].includes(w)).map((w) => (
+                  <button
+                    key={w}
+                    onClick={(e) => { e.stopPropagation(); setSelectedWeight(w); }}
+                    className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider border transition-all ${
+                      selectedWeight === w
+                        ? "bg-[#e9aa43] text-white border-[#e9aa43]"
+                        : "bg-white text-slate-500  hover:border-[#e9aa43]"
+                    }`}
+                  >
+                    {w}
+                  </button>
+                ))}
+              </div>
+            )}
 
             <div className="space-y-2 mt-auto">
               <button
@@ -301,13 +326,8 @@ export default function ProductCard({
                 {/* Price row */}
                 <div className="flex items-center gap-4 mb-6 pb-5 border-b border-gray-100">
                   <p className="text-4xl font-black text-[#4a703f] tracking-tighter">
-                    ₹{detail.price}
+                    ₹{activePrice}
                   </p>
-                  {detail.discountPrice && (
-                    <p className="text-xl text-gray-300 line-through font-semibold">
-                      ₹{detail.discountPrice}
-                    </p>
-                  )}
                   {(selectedWeight || detail.size) && (
                     <>
                       <div className="h-8 w-[2px] bg-gray-100" />

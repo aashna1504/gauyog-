@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   ChevronRight,
   MessageCircle,
@@ -77,15 +77,96 @@ const commitments = [
     color: "#e9aa43",
   },
 ];
+function MultiSelect({ placeholder, options, selected, onChange, accentColor = "#4a703f" }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const handleClick = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
+
+  const toggle = (val) => {
+    onChange(selected.includes(val) ? selected.filter((v) => v !== val) : [...selected, val]);
+  };
+
+  const displayText = selected.length
+    ? selected.length === 1 ? selected[0] : `${selected[0]} +${selected.length - 1} more`
+    : placeholder;
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        className={`w-full bg-gray-50/50 border px-5 py-3 rounded-full text-left text-sm font-semibold flex items-center justify-between transition-all outline-none ${
+          open ? "bg-white border-[#4a703f] ring-4 ring-[#4a703f]/5" : "border-gray-100 hover:border-gray-200"
+        } ${selected.length ? "text-gray-900" : "text-gray-400"}`}
+      >
+        <span className="truncate pr-2">{displayText}</span>
+        <ChevronRight
+          size={15}
+          className={`shrink-0 transition-transform duration-200 text-gray-300 ${open ? "-rotate-90" : "rotate-90"}`}
+        />
+      </button>
+
+      {open && (
+        <div className="absolute z-50 top-[calc(100%+6px)] left-0 w-full bg-white border border-gray-100 rounded-2xl shadow-2xl shadow-black/8 overflow-hidden">
+          {options.map((opt) => {
+            const checked = selected.includes(opt);
+            return (
+              <label
+                key={opt}
+                className={`flex items-center gap-3 px-5 py-2.5 cursor-pointer transition-colors text-sm font-semibold ${
+                  checked ? "bg-[#4a703f]/5 text-[#4a703f]" : "text-gray-700 hover:bg-gray-50"
+                }`}
+              >
+                <span
+                  className={`w-4 h-4 rounded flex items-center justify-center border-2 shrink-0 transition-all ${
+                    checked ? "bg-[#4a703f] border-[#4a703f]" : "border-gray-300"
+                  }`}
+                >
+                  {checked && (
+                    <svg viewBox="0 0 10 8" className="w-2.5 h-2" fill="none" stroke="white" strokeWidth="2">
+                      <path d="M1 4l3 3 5-6" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  )}
+                </span>
+                {opt}
+                <input type="checkbox" checked={checked} onChange={() => toggle(opt)} className="sr-only" />
+              </label>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function KineticContactBanner() {
+  const ROLES = ["Farmer", "Nursery Owner", "Terrace Gardener", "Distributor / Dealer", "Government / NGO", "Other"];
+  const INTERESTS = ["Organic Fertilizers", "Cow-Based Products", "Coco Peat / Coco Fiber", "Bulk Purchase", "Distribution / Dealership", "Training / Awareness Programs"];
+  const PRODUCTS = ["Kanjiv Amrut", "Active Soil", "Amrut Mati", "Cow Dung Powder", "Cow Dung Slurry"];
+  const INDIAN_STATES = [
+    "Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattisgarh","Goa","Gujarat",
+    "Haryana","Himachal Pradesh","Jharkhand","Karnataka","Kerala","Madhya Pradesh",
+    "Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland","Odisha","Punjab",
+    "Rajasthan","Sikkim","Tamil Nadu","Telangana","Tripura","Uttar Pradesh",
+    "Uttarakhand","West Bengal","Delhi","Jammu & Kashmir","Ladakh","Puducherry",
+  ];
+
   const [form, setForm] = useState({
     name: "",
-    company: "",
-    email: "",
     phone: "",
-    country: "",
-    role: "",
-    interest: "",
+    email: "",
+    village: "",
+    district: "",
+    state: "",
+    roles: [],
+    otherRole: "",
+    interests: [],
+    products: [],
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -96,25 +177,31 @@ export default function KineticContactBanner() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!form.name || !form.email || !form.message) {
-      toast.error("Please fill all required fields");
+    if (!form.name || !form.phone || !form.email || !form.message) {
+      toast.error("Please fill all required fields (Name, Mobile, Email, Message)");
       return;
     }
 
+    const roles = form.roles.map((r) =>
+      r === "Other" && form.otherRole.trim() ? `Other: ${form.otherRole.trim()}` : r
+    );
+
     setIsSubmitting(true);
     try {
-      await api.post("/contact", form);
-      toast.success("Enquiry sent successfully! We'll be in touch shortly.");
-      setForm({
-        name: "",
-        company: "",
-        email: "",
-        phone: "",
-        country: "",
-        role: "",
-        interest: "",
-        message: "",
+      await api.post("/contact", {
+        name: form.name,
+        phone: form.phone,
+        email: form.email,
+        village: form.village,
+        district: form.district,
+        state: form.state,
+        roles,
+        interests: form.interests,
+        products: form.products,
+        message: form.message,
       });
+      toast.success("Enquiry sent successfully! We'll be in touch shortly.");
+      setForm({ name: "", phone: "", email: "", village: "", district: "", state: "", roles: [], otherRole: "", interests: [], products: [], message: "" });
     } catch (error) {
       toast.error(error.response?.data?.message || "Failed to send enquiry");
     } finally {
@@ -531,178 +618,146 @@ export default function KineticContactBanner() {
                     </p>
                   </div>
 
-                  <div className="space-y-4">
-                    {/* Row 1: Full Name + Company */}
-                    <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
-                      <div className="space-y-1.5 group">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">
-                          Full Name <span className="text-red-600">*</span>
-                        </label>
-                        <div className="relative">
-                          <input
-                            type="text"
-                            placeholder="Your name"
-                            value={form.name}
-                            onChange={(e) =>
-                              handleChange("name", e.target.value)
-                            }
-                            className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3 rounded-full outline-none focus:bg-white focus:border-[#4a703f] focus:ring-4 focus:ring-[#4a703f]/5 transition-all text-sm font-semibold text-gray-900"
-                          />
-                          <User
-                            className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-200 group-focus-within:text-[#4a703f]"
-                            size={16}
-                          />
+                  <div className="space-y-6">
+
+                    {/* ── Section 1: Basic Details ── */}
+                    <div>
+                      <p className="text-[9px] font-black uppercase tracking-[0.3em] text-[#4a703f] mb-3 flex items-center gap-2">
+                        <span className="w-4 h-[1px] bg-[#4a703f]" /> Basic Details
+                      </p>
+                      <div className="space-y-3">
+                        <div className="space-y-1.5 group">
+                          <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">
+                            Full Name <span className="text-red-500">*</span>
+                          </label>
+                          <div className="relative">
+                            <input type="text" placeholder="Your full name" value={form.name}
+                              onChange={(e) => handleChange("name", e.target.value)}
+                              className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3 rounded-full outline-none focus:bg-white focus:border-[#4a703f] focus:ring-4 focus:ring-[#4a703f]/5 transition-all text-sm font-semibold text-gray-900" />
+                            <User className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-200 group-focus-within:text-[#4a703f]" size={16} />
+                          </div>
                         </div>
-                      </div>
 
-                      {/* <div className="space-y-1.5 group">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">
-                          Company
-                        </label>
-                        <input
-                          type="text"
-                          placeholder="Company name"
-                          value={form.company}
-                          onChange={(e) => handleChange("company", e.target.value)}
-                          className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3 rounded-full outline-none focus:bg-white focus:border-[#4a703f] focus:ring-4 focus:ring-[#4a703f]/5 transition-all text-sm font-semibold text-gray-900"
-                        />
-                      </div> */}
-                    </div>
-
-                    {/* Row 2: Email + Phone */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div className="space-y-1.5 group">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">
-                          Email <span className="text-red-600">*</span>
-                        </label>
-                        <div className="relative">
-                          <input
-                            type="email"
-                            placeholder="you@company.com"
-                            value={form.email}
-                            onChange={(e) =>
-                              handleChange("email", e.target.value)
-                            }
-                            className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3 rounded-full outline-none focus:bg-white focus:border-[#4a703f] focus:ring-4 focus:ring-[#4a703f]/5 transition-all text-sm font-semibold text-gray-900"
-                          />
-                          <Mail
-                            className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-200 group-focus-within:text-[#4a703f]"
-                            size={16}
-                          />
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          <div className="space-y-1.5 group">
+                            <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">
+                              Mobile Number <span className="text-red-500">*</span>
+                            </label>
+                            <div className="relative">
+                              <input type="tel" placeholder="+91 98765 43210" value={form.phone}
+                                onChange={(e) => handleChange("phone", e.target.value)}
+                                className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3 rounded-full outline-none focus:bg-white focus:border-[#4a703f] focus:ring-4 focus:ring-[#4a703f]/5 transition-all text-sm font-semibold text-gray-900" />
+                              <Phone className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-200 group-focus-within:text-[#4a703f]" size={16} />
+                            </div>
+                          </div>
+                          <div className="space-y-1.5 group">
+                            <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">
+                              Email Address <span className="text-red-500">*</span>
+                            </label>
+                            <div className="relative">
+                              <input type="email" placeholder="you@example.com" value={form.email}
+                                onChange={(e) => handleChange("email", e.target.value)}
+                                className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3 rounded-full outline-none focus:bg-white focus:border-[#4a703f] focus:ring-4 focus:ring-[#4a703f]/5 transition-all text-sm font-semibold text-gray-900" />
+                              <Mail className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-200 group-focus-within:text-[#4a703f]" size={16} />
+                            </div>
+                          </div>
                         </div>
-                      </div>
 
-                      <div className="space-y-1.5 group">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">
-                          Phone
-                        </label>
-                        <div className="relative">
-                          <input
-                            type="tel"
-                            placeholder="+91 98765 43210"
-                            value={form.phone}
-                            onChange={(e) =>
-                              handleChange("phone", e.target.value)
-                            }
-                            className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3 rounded-full outline-none focus:bg-white focus:border-[#4a703f] focus:ring-4 focus:ring-[#4a703f]/5 transition-all text-sm font-semibold text-gray-900"
-                          />
-                          <Phone
-                            className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-200 group-focus-within:text-[#4a703f]"
-                            size={16}
-                          />
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          <div className="space-y-1.5 group">
+                            <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">Village / City</label>
+                            <input type="text" placeholder="e.g. Veraval" value={form.village}
+                              onChange={(e) => handleChange("village", e.target.value)}
+                              className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3 rounded-full outline-none focus:bg-white focus:border-[#4a703f] focus:ring-4 focus:ring-[#4a703f]/5 transition-all text-sm font-semibold text-gray-900" />
+                          </div>
+                          <div className="space-y-1.5 group">
+                            <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">District</label>
+                            <input type="text" placeholder="e.g. Gir Somnath" value={form.district}
+                              onChange={(e) => handleChange("district", e.target.value)}
+                              className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3 rounded-full outline-none focus:bg-white focus:border-[#4a703f] focus:ring-4 focus:ring-[#4a703f]/5 transition-all text-sm font-semibold text-gray-900" />
+                          </div>
+                        </div>
+
+                        <div className="space-y-1.5 group">
+                          <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">State</label>
+                          <div className="relative">
+                            <select
+                              value={form.state}
+                              onChange={(e) => handleChange("state", e.target.value)}
+                              className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3 rounded-full outline-none focus:bg-white focus:border-[#4a703f] focus:ring-4 focus:ring-[#4a703f]/5 transition-all text-sm font-semibold text-gray-900 appearance-none cursor-pointer"
+                            >
+                              <option value="">Select your state…</option>
+                              {INDIAN_STATES.map((s) => (
+                                <option key={s} value={s}>{s}</option>
+                              ))}
+                            </select>
+                            <ChevronRight className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-300 rotate-90 pointer-events-none group-focus-within:text-[#4a703f]" size={16} />
+                          </div>
                         </div>
                       </div>
                     </div>
 
-                    {/* I Am A */}
+                    {/* ── Section 2: You Are A ── */}
                     <div className="space-y-1.5 group">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">
-                        I Am A
+                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-600">
+                        You Are A…
                       </label>
-                      <div className="relative">
-                        <select
-                          value={form.role}
-                          onChange={(e) => handleChange("role", e.target.value)}
-                          className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3 rounded-full outline-none focus:bg-white focus:border-[#4a703f] focus:ring-4 focus:ring-[#4a703f]/5 transition-all text-sm font-semibold text-gray-900 appearance-none cursor-pointer"
-                        >
-                          <option value="">Select your role...</option>
-                          <option value="Farmer">Farmer</option>
-                          <option value="Retailer">Retailer</option>
-                          <option value="Consumer">Consumer</option>
-                          <option value="Distributor">Distributor</option>
-                          <option value="Exporter">Exporter</option>
-                        </select>
-                        <ChevronRight
-                          className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-300 rotate-90 pointer-events-none"
-                          size={16}
-                        />
-                      </div>
+                      <MultiSelect
+                        placeholder="Select your role(s)…"
+                        options={ROLES}
+                        selected={form.roles}
+                        onChange={(val) => handleChange("roles", val)}
+                      />
+                      {form.roles.includes("Other") && (
+                        <input type="text" placeholder="Please specify…" value={form.otherRole}
+                          onChange={(e) => handleChange("otherRole", e.target.value)}
+                          className="w-full bg-gray-50/50 border border-gray-100 px-5 py-2.5 rounded-full outline-none focus:bg-white focus:border-[#4a703f] focus:ring-4 focus:ring-[#4a703f]/5 transition-all text-sm font-semibold text-gray-900" />
+                      )}
                     </div>
 
-                    {/* I'm Interested In */}
+                    {/* ── Section 3: Area of Interest ── */}
                     <div className="space-y-1.5 group">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">
-                        I'm Interested In
+                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-600">
+                        Area of Interest
                       </label>
-                      <div className="relative">
-                        <select
-                          value={form.interest}
-                          onChange={(e) =>
-                            handleChange("interest", e.target.value)
-                          }
-                          className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3 rounded-full outline-none focus:bg-white focus:border-[#4a703f] focus:ring-4 focus:ring-[#4a703f]/5 transition-all text-sm font-semibold text-gray-900 appearance-none cursor-pointer"
-                        >
-                          <option value="">Select a product category...</option>
-                          <option value="Organic Soil & Fertilisers">
-                            Organic Soil &amp; Fertilisers
-                          </option>
-                          <option value="Coco Peat & Coir Products">
-                            Coco Peat &amp; Coir Products
-                          </option>
-                          <option value="Natural Farming Inputs">
-                            Natural Farming Inputs
-                          </option>
-                          <option value="Distribution Partnership">
-                            Distribution Partnership
-                          </option>
-                          <option value="Custom Blends">Custom Blends</option>
-                          <option value="Other">Other</option>
-                        </select>
-                        <ChevronRight
-                          className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-300 rotate-90 pointer-events-none"
-                          size={16}
-                        />
-                      </div>
-                    </div>
-
-                    {/* Message */}
-                    <div className="space-y-1.5 group">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">
-                        Message <span className="text-red-600">*</span>
-                      </label>
-                      <textarea
-                        rows="4"
-                        placeholder="Tell us about your requirements..."
-                        value={form.message}
-                        onChange={(e) =>
-                          handleChange("message", e.target.value)
-                        }
-                        className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3.5 rounded-3xl outline-none focus:bg-white focus:border-[#4a703f] focus:ring-4 focus:ring-[#4a703f]/5 transition-all text-sm font-semibold text-gray-900 resize-none"
+                      <MultiSelect
+                        placeholder="Select area(s) of interest…"
+                        options={INTERESTS}
+                        selected={form.interests}
+                        onChange={(val) => handleChange("interests", val)}
                       />
                     </div>
 
-                    <motion.button
-                      type="submit"
-                      disabled={isSubmitting}
-                      whileHover={{ y: -2 }}
-                      whileTap={{ scale: 0.98 }}
+                    {/* ── Section 4: Product Interest ── */}
+                    <div className="space-y-1.5 group">
+                      <label className="text-[10px] font-black uppercase tracking-widest text-gray-600">
+                        Product Interest
+                      </label>
+                      <MultiSelect
+                        placeholder="Select product(s)…"
+                        options={PRODUCTS}
+                        selected={form.products}
+                        onChange={(val) => handleChange("products", val)}
+                      />
+                    </div>
+
+                    {/* ── Section 5: Message ── */}
+                    <div>
+                      <p className="text-[9px] font-black uppercase tracking-[0.3em] text-[#4a703f] mb-3 flex items-center gap-2">
+                        <span className="w-4 h-[1px] bg-[#4a703f]" /> Message / Requirement <span className="text-red-500 normal-case font-black">*</span>
+                      </p>
+                      <textarea rows="4" placeholder="Tell us about your requirements, quantities, or any specific questions…"
+                        value={form.message}
+                        onChange={(e) => handleChange("message", e.target.value)}
+                        className="w-full bg-gray-50/50 border border-gray-100 px-5 py-3.5 rounded-3xl outline-none focus:bg-white focus:border-[#4a703f] focus:ring-4 focus:ring-[#4a703f]/5 transition-all text-sm font-semibold text-gray-900 resize-none" />
+                    </div>
+
+                    <motion.button type="submit" disabled={isSubmitting}
+                      whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}
                       className="w-full mt-2 bg-[#4a703f] hover:bg-[#3a5a30] disabled:opacity-60 text-white py-4 rounded-full flex items-center justify-center gap-3 font-black uppercase tracking-[0.2em] text-[10px] transition-all duration-500 shadow-lg shadow-[#4a703f]/20 group"
                     >
                       {isSubmitting ? "Sending Enquiry..." : "Send Enquiry"}
-                      <Send
-                        size={14}
-                        className="group-hover:translate-x-1 transition-transform"
-                      />
+                      <Send size={14} className="group-hover:translate-x-1 transition-transform" />
                     </motion.button>
                   </div>
                 </form>

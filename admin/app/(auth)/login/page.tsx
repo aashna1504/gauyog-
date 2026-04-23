@@ -98,12 +98,17 @@ function AdminAuthForm() {
         // ── Store token immediately so API calls work regardless of NextAuth state ──
         useAdminAuthStore.getState().setAccessToken(loginData.accessToken);
 
-        // ── Step 3: create the NextAuth session ──
+        // ── Step 3: create the NextAuth session (pass pre-fetched tokens to avoid a second backend call) ──
         let result;
         try {
           result = await signIn("credentials", {
             email: values.email,
             password: values.password,
+            accessToken: loginData.accessToken,
+            refreshToken: loginData.refreshToken,
+            userId: loginData.user.id,
+            userName: loginData.user.name ?? "",
+            userRole: loginData.user.role,
             redirect: false,
             callbackUrl: "/dashboard",
           });

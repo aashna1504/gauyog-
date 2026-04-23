@@ -12,7 +12,7 @@ export default function AllProducts() {
   const [filter, setFilter] = useState("All");
   const navigate = useNavigate();
 
-  const categories = ["All", "Dairy", "Ghee", "Herbs", "Grains", "Wellness", "Garden", "Pantry"];
+  const categories = ["All", "Fertilizer", "Coco"];
 
   const { addItem: addToCart, removeByProductId, isInCart, fetchCart } = useCartStore();
   const { toggleWishlist, isInWishlist, fetchWishlist } = useWishlistStore();

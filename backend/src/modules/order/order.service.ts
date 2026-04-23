@@ -135,6 +135,17 @@ export class OrderService {
     });
   }
 
+  // Admin: set or update tracking ID for an order
+  static async updateTrackingId(orderId: string, trackingId: string) {
+    const order = await prisma.order.findUnique({ where: { id: orderId } });
+    if (!order) throw new AppError('Order not found', 404);
+
+    return prisma.order.update({
+      where: { id: orderId },
+      data: { trackingId: trackingId.trim() || null },
+    });
+  }
+
   // Admin: get stats + stock levels + monthly revenue + recent products
   static async getStats() {
     const [productCount, userCount, orderCount, products, recentProducts, orders] = await Promise.all([

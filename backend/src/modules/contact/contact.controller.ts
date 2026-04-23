@@ -2,37 +2,22 @@ import { Request, Response, NextFunction } from 'express';
 import { formatResponse } from '../../utils/helpers';
 import { ContactService } from './contact.service';
 import { emailService } from '../../services/email.service';
-import { config } from '../../config/env';
 
 export const submitContact = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const contact = await ContactService.create(req.body);
 
-    if (config.adminEmailTo) {
-      await emailService.sendMail({
-        to: config.adminEmailTo,
-        subject: `New contact form submission from ${contact.name}`,
-        html: `
-          <h2>New Contact Message</h2>
-          <p><strong>Name:</strong> ${contact.name}</p>
-          <p><strong>Email:</strong> ${contact.email}</p>
-          <p><strong>Phone:</strong> ${contact.phone || '-'}</p>
-          <p><strong>Role:</strong> ${contact.role || '-'}</p>
-          <p><strong>Interest:</strong> ${(contact as any).interest || '-'}</p>
-          <p><strong>Message:</strong><br/>${contact.message}</p>
-        `,
-      });
-    }
-
-    await emailService.sendMail({
+    // Auto-reply to the enquirer
+    emailService.sendMail({
       to: contact.email,
-      subject: 'We received your message - Gauyog',
+      subject: 'We received your enquiry – Gauyog Kendr',
       html: `
         <p>Hi ${contact.name},</p>
-        <p>Thanks for contacting Gauyog. Our team will reach out shortly.</p>
-        <p><strong>Your message:</strong> ${contact.message}</p>
+        <p>Thank you for reaching out to <strong>Gauyog Kendr</strong>. We've received your enquiry and our team will get back to you within 2 business hours.</p>
+        <p style="color:#6b7280;font-size:13px;">${contact.message}</p>
+        <p>Warm regards,<br/>Team Gauyog Kendr</p>
       `,
-    });
+    }).catch(() => {/* non-fatal */});
 
     res.status(201).json(formatResponse(true, 'Message submitted successfully', contact));
   } catch (error) {

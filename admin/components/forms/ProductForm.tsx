@@ -17,15 +17,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { ImageUpload, GalleryUpload } from "@/components/forms/ImageUpload";
 
 const CATEGORIES = [
-  "Dairy",
-  "Ghee",
-  "Herbs",
-  "Grains",
-  "Wellness",
-  "Garden",
-  "Pantry",
+  "Fertilizer",
+  "Coco",
 ];
 
 const WEIGHT_OPTIONS = ["1kg", "3kg", "5kg"];
@@ -54,8 +50,14 @@ const productSchema = z.object({
   inStock: z.boolean(),
   weight: z.string().optional(),
   weightOptions: z.array(z.string()).default([]),
+  // Per-weight variant images and prices
   imageUrl: z.string().optional(),
+  image1kg: z.string().optional(),
+  price1kg: z.coerce.number().positive().optional().or(z.literal(0)).transform((v) => v || undefined),
+  image3kg: z.string().optional(),
+  price3kg: z.coerce.number().positive().optional().or(z.literal(0)).transform((v) => v || undefined),
   image5kg: z.string().optional(),
+  price5kg: z.coerce.number().positive().optional().or(z.literal(0)).transform((v) => v || undefined),
   galleryImagesRaw: z.string().optional(),
   stock: z.coerce.number().int().min(0, "Stock cannot be negative"),
 });
@@ -68,7 +70,6 @@ export type ProductFormOutput = Omit<
 > & {
   galleryImages: string[];
   benefits: string[];
-  image5kg?: string;
 };
 
 interface ProductFormProps {
@@ -108,12 +109,17 @@ export function ProductForm({
       safetyInstructions: "",
       price: 0,
       discountPrice: undefined,
-      category: "Dairy",
+      category: "Fertilizer",
       inStock: true,
       weight: "",
       weightOptions: [],
       imageUrl: "",
+      image1kg: "",
+      price1kg: undefined,
+      image3kg: "",
+      price3kg: undefined,
       image5kg: "",
+      price5kg: undefined,
       galleryImagesRaw: "",
       stock: 0,
       ...defaultValues,
@@ -140,9 +146,7 @@ export function ProductForm({
           .map((s) => s.trim())
           .filter(Boolean)
       : [];
-    // Only send image5kg when 5kg is actually an available weight option
-    const image5kg = rest.weightOptions?.includes("5kg") ? rest.image5kg : undefined;
-    return onSubmit({ ...rest, galleryImages, benefits, image5kg });
+    return onSubmit({ ...rest, galleryImages, benefits });
   };
 
   return (
@@ -452,47 +456,84 @@ export function ProductForm({
         </CardContent>
       </Card>
 
-      {/* Images */}
+      {/* Weight Variants */}
       <Card>
         <CardHeader>
-          <CardTitle className="text-base">Images</CardTitle>
+          <CardTitle className="text-base">Weight Variants</CardTitle>
+          <p className="text-xs text-muted-foreground">Set a separate price and image for each weight. Selecting a weight on the storefront will show the matching price and image.</p>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="imageUrl">Main Image URL (1kg &amp; 3kg)</Label>
-            <Input
-              id="imageUrl"
-              placeholder="https://... (Cloudinary / S3 link)"
-              {...register("imageUrl")}
-            />
-            <p className="text-xs text-muted-foreground">
-              This image is shown when the customer selects 1kg or 3kg.
-            </p>
-          </div>
-          {selectedWeightOptions.includes("5kg") && (
-            <div className="space-y-2 rounded-xl border border-amber-200 bg-amber-50/50 p-4">
-              <Label htmlFor="image5kg">5kg Variant Image URL</Label>
-              <Input
-                id="image5kg"
-                placeholder="https://... (Cloudinary / S3 link for the 5kg pack)"
-                {...register("image5kg")}
-              />
-              <p className="text-xs text-muted-foreground">
-                Shown automatically when the customer selects the 5kg option. Leave blank to use the main image.
-              </p>
+        <CardContent className="space-y-6">
+          {/* 1kg */}
+          <div className="rounded-xl border border-border p-4 space-y-3">
+            <p className="text-sm font-bold uppercase tracking-widest text-[#4a703f]">1 kg</p>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label>Price (₹)</Label>
+                <Input type="number" step="0.01" min="0" placeholder="e.g. 350" {...register("price1kg")} />
+                <p className="text-[11px] text-muted-foreground">Leave blank to use base price.</p>
+              </div>
+              <div className="space-y-2 col-span-2">
+                <Label>Image</Label>
+                <Controller
+                  name="image1kg"
+                  control={control}
+                  render={({ field }) => (
+                    <ImageUpload value={field.value ?? ""} onChange={field.onChange} />
+                  )}
+                />
+              </div>
             </div>
-          )}
+          </div>
+
+          {/* 3kg */}
+          <div className="rounded-xl border border-border p-4 space-y-3">
+            <p className="text-sm font-bold uppercase tracking-widest text-[#4a703f]">3 kg</p>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label>Price (₹)</Label>
+                <Input type="number" step="0.01" min="0" placeholder="e.g. 950" {...register("price3kg")} />
+                <p className="text-[11px] text-muted-foreground">Leave blank to use base price.</p>
+              </div>
+              <div className="space-y-2 col-span-2">
+                <Label>Image</Label>
+                <Controller
+                  name="image3kg"
+                  control={control}
+                  render={({ field }) => (
+                    <ImageUpload value={field.value ?? ""} onChange={field.onChange} />
+                  )}
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* 5kg */}
+          <div className="rounded-xl border border-amber-200 bg-amber-50/40 p-4 space-y-3">
+            <p className="text-sm font-bold uppercase tracking-widest text-amber-700">5 kg</p>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label>Price (₹)</Label>
+                <Input type="number" step="0.01" min="0" placeholder="e.g. 1500" {...register("price5kg")} />
+                <p className="text-[11px] text-muted-foreground">Leave blank to use base price.</p>
+              </div>
+              <div className="space-y-2 col-span-2">
+                <Label>Image</Label>
+                <Controller
+                  name="image5kg"
+                  control={control}
+                  render={({ field }) => (
+                    <ImageUpload value={field.value ?? ""} onChange={field.onChange} />
+                  )}
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Gallery */}
           <div className="space-y-2">
-            <Label htmlFor="galleryImagesRaw">Gallery Image URLs</Label>
-            <Textarea
-              id="galleryImagesRaw"
-              placeholder="Comma-separated URLs for the photo slider..."
-              rows={3}
-              {...register("galleryImagesRaw")}
-            />
-            <p className="text-xs text-muted-foreground">
-              Separate multiple URLs with a comma.
-            </p>
+            <Label>Gallery Images</Label>
+            <p className="text-xs text-muted-foreground">Additional images shown in the product slider.</p>
+            <GalleryUpload control={control} />
           </div>
         </CardContent>
       </Card>

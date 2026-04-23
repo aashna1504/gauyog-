@@ -6,13 +6,14 @@ export const submitContactSchema = z.object({
   body: z.object({
     name: z.string().min(2, 'Name is required'),
     email: z.string().email('Valid email is required'),
-    phone: emptyToUndefined,
-    role: z.preprocess(
-      (v) => (v === '' ? undefined : v),
-      z.enum(['Farmer', 'Retailer', 'Consumer', 'Distributor', 'Exporter']).optional(),
-    ),
-    interest: emptyToUndefined,
-    message: z.string().min(10, 'Message must be at least 10 characters'),
+    phone: z.string().min(1, 'Mobile number is required'),
+    village: emptyToUndefined,
+    district: emptyToUndefined,
+    state: emptyToUndefined,
+    roles: z.array(z.string()).default([]),
+    interests: z.array(z.string()).default([]),
+    products: z.array(z.string()).default([]),
+    message: z.string().min(1, 'Message is required'),
   }),
 });
 

@@ -9,18 +9,35 @@ export const authOptions: NextAuthOptions = {
       credentials: {
         email: { label: 'Email', type: 'email' },
         password: { label: 'Password', type: 'password' },
+        // Pre-fetched tokens passed from the login page to avoid a second backend call
+        accessToken: { label: 'Access Token', type: 'text' },
+        refreshToken: { label: 'Refresh Token', type: 'text' },
+        userId: { label: 'User ID', type: 'text' },
+        userName: { label: 'User Name', type: 'text' },
+        userRole: { label: 'User Role', type: 'text' },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) return null;
+        if (!credentials) return null;
 
+        // Fast path: tokens already validated by the login page
+        if (credentials.accessToken && credentials.refreshToken && credentials.userId && credentials.userRole) {
+          return {
+            id: credentials.userId,
+            email: credentials.email,
+            name: credentials.userName || null,
+            role: credentials.userRole,
+            accessToken: credentials.accessToken,
+            refreshToken: credentials.refreshToken,
+          };
+        }
+
+        // Fallback: fetch from backend (used if called without pre-fetched tokens)
+        if (!credentials.email || !credentials.password) return null;
         try {
           const result = await loginRequest(credentials.email, credentials.password);
-
-          // Only allow ADMIN and SALES users
           if (result.user.role !== 'ADMIN' && result.user.role !== 'SALES') {
             throw new Error('Access denied. Staff portal only.');
           }
-
           return {
             id: result.user.id,
             email: result.user.email,
