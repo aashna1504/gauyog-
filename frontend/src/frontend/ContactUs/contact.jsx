@@ -147,7 +147,7 @@ function MultiSelect({ placeholder, options, selected, onChange, accentColor = "
 export default function KineticContactBanner() {
   const ROLES = ["Farmer", "Nursery Owner", "Terrace Gardener", "Distributor / Dealer", "Government / NGO", "Other"];
   const INTERESTS = ["Organic Fertilizers", "Cow-Based Products", "Coco Peat / Coco Fiber", "Bulk Purchase", "Distribution / Dealership", "Training / Awareness Programs"];
-  const PRODUCTS = ["Kanjiv Amrut", "Active Soil", "Amrut Mati", "Cow Dung Powder", "Cow Dung Slurry"];
+  const PRODUCTS = ["Ganjiv Amrut", "Active Soil", "Amrut Mati", "Cow Dung Powder", "Cow Dung Slurry"];
   const INDIAN_STATES = [
     "Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattisgarh","Goa","Gujarat",
     "Haryana","Himachal Pradesh","Jharkhand","Karnataka","Kerala","Madhya Pradesh",
@@ -368,7 +368,7 @@ export default function KineticContactBanner() {
 
               <h2 className="text-5xl md:text-6xl  font-bold text-white leading-[1.1]">
                 Born from the{" "}
-                <span className="text-[#4a703f] italic font-medium text-6xl">
+                <span className="text-white italic font-medium text-6xl">
                   Earth,
                 </span>{" "}
                 <br />

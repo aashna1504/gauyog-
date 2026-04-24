@@ -6,7 +6,6 @@ import api from "../../api/axios";
 import useCartStore from "../../store/cartStore";
 import useWishlistStore from "../../store/wishlistStore";
 
-const PLACEHOLDER_IMG = "https://pngimg.com/d/milk_PNG12756.png";
 
 export default function VedicDhoopMosaicPage() {
   const [product, setProduct] = useState(null);
@@ -63,10 +62,9 @@ export default function VedicDhoopMosaicPage() {
   };
 
   const productImages = useMemo(() => {
-    if (!product) return [PLACEHOLDER_IMG];
+    if (!product) return [];
     const variantImg = getVariantImage(selectedWeight);
-    const all = [variantImg, ...(product.galleryImages || [])].filter(Boolean);
-    return all.length ? all : [PLACEHOLDER_IMG];
+    return [variantImg, ...(product.galleryImages || [])].filter(Boolean);
   }, [product, selectedWeight]);
 
   const handleAddToCart = async () => {
@@ -226,9 +224,7 @@ export default function VedicDhoopMosaicPage() {
                           src={img}
                           className="w-full h-full object-contain"
                           alt={`view ${idx + 1}`}
-                          onError={(e) => {
-                            e.currentTarget.src = PLACEHOLDER_IMG;
-                          }}
+                          onError={(e) => { e.currentTarget.style.display = "none"; }}
                         />
                       </button>
                     ))}
@@ -236,23 +232,23 @@ export default function VedicDhoopMosaicPage() {
                 )}
                 <div className="relative flex-1 flex items-center justify-center min-h-[440px] md:min-h-[540px] bg-[#f3f8ee] rounded-2xl px-4 py-8">
                   <AnimatePresence mode="wait">
-                    <motion.img
-                      key={activeImg}
-                      initial={{ opacity: 0, scale: 0.88 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 1.04 }}
-                      transition={{
-                        type: "spring",
-                        damping: 22,
-                        stiffness: 200,
-                      }}
-                      src={productImages[activeImg]}
-                      alt={product.name}
-                      className="w-full max-w-[380px] md:max-w-[460px] object-contain rounded-full"
-                      onError={(e) => {
-                        e.currentTarget.src = PLACEHOLDER_IMG;
-                      }}
-                    />
+                    {productImages[activeImg] ? (
+                      <motion.img
+                        key={activeImg}
+                        initial={{ opacity: 0, scale: 0.88 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 1.04 }}
+                        transition={{ type: "spring", damping: 22, stiffness: 200 }}
+                        src={productImages[activeImg]}
+                        alt={product.name}
+                        className="w-full max-w-[380px] md:max-w-[460px] object-contain rounded-full"
+                        onError={(e) => { e.currentTarget.style.display = "none"; }}
+                      />
+                    ) : (
+                      <div className="w-64 h-64 rounded-full bg-[#d8e8d4] flex items-center justify-center">
+                        <span className="text-7xl font-black text-[#4a703f]/25 uppercase">{product.name?.[0] ?? "?"}</span>
+                      </div>
+                    )}
                   </AnimatePresence>
                   <span className="absolute bottom-4 right-4 text-[40px] md:text-[70px] font-black text-[#4a703f]/5 leading-none tracking-tighter uppercase select-none pointer-events-none">
                     Gauyog

@@ -15,8 +15,6 @@ import {
 import { useNavigate } from "react-router-dom";
 import api from "../api/axios";
 
-const PLACEHOLDER_IMG = "https://pngimg.com/d/milk_PNG12756.png";
-
 export default function ProductCard({
   product,
   onAddToCart,
@@ -35,7 +33,7 @@ export default function ProductCard({
   // Base product shape from listing props
   const p = {
     ...product,
-    image: product.imageUrl || product.image || PLACEHOLDER_IMG,
+    image: product.imageUrl || product.image || null,
     size: product.weight || product.size || "",
     weightOptions: product.weightOptions || [],
     desc: product.description || product.desc || "",
@@ -47,7 +45,7 @@ export default function ProductCard({
     ? {
         ...p,
         ...modalProduct,
-        image: modalProduct.imageUrl || p.image,
+        image: modalProduct.imageUrl || p.image || null,
         image5kg: modalProduct.image5kg || null,
         desc: modalProduct.description || p.desc,
         tag: modalProduct.category || p.tag,
@@ -124,14 +122,18 @@ export default function ProductCard({
               </div>
             )}
 
-            <img
-              src={getVariantImage(selectedWeight)}
-              className="h-44 object-contain transition-transform duration-700 group-hover:scale-110 rounded-full"
-              alt={p.name}
-              onError={(e) => {
-                e.target.src = PLACEHOLDER_IMG;
-              }}
-            />
+            {getVariantImage(selectedWeight) ? (
+              <img
+                src={getVariantImage(selectedWeight)}
+                className="h-44 object-contain transition-transform duration-700 group-hover:scale-110 rounded-full"
+                alt={p.name}
+                onError={(e) => { e.target.style.display = "none"; }}
+              />
+            ) : (
+              <div className="h-44 w-44 rounded-full bg-[#e8f0e6] flex items-center justify-center">
+                <span className="text-4xl font-black text-[#4a703f]/30 uppercase">{p.name?.[0] ?? "?"}</span>
+              </div>
+            )}
 
             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center gap-3 bg-black/5 backdrop-blur-[2px]">
               <button
@@ -286,17 +288,21 @@ export default function ProductCard({
 
               {/* Left: Image */}
               <div className="w-full md:w-5/12 bg-[#f3f8ee] flex items-center justify-center p-12 relative min-h-[300px] flex-shrink-0">
-                <motion.img
-                  key={activeModalImage}
-                  initial={{ scale: 0.6, opacity: 0, y: 20 }}
-                  animate={{ scale: 1, opacity: 1, y: 0 }}
-                  src={activeModalImage}
-                  className="w-full max-w-[320px] z-10 rounded-full"
-                  alt={detail.name}
-                  onError={(e) => {
-                    e.target.src = PLACEHOLDER_IMG;
-                  }}
-                />
+                {activeModalImage ? (
+                  <motion.img
+                    key={activeModalImage}
+                    initial={{ scale: 0.6, opacity: 0, y: 20 }}
+                    animate={{ scale: 1, opacity: 1, y: 0 }}
+                    src={activeModalImage}
+                    className="w-full max-w-[320px] z-10 rounded-full"
+                    alt={detail.name}
+                    onError={(e) => { e.target.style.display = "none"; }}
+                  />
+                ) : (
+                  <div className="w-48 h-48 rounded-full bg-[#e8f0e6] flex items-center justify-center z-10">
+                    <span className="text-6xl font-black text-[#4a703f]/30 uppercase">{detail.name?.[0] ?? "?"}</span>
+                  </div>
+                )}
                 <span className="absolute bottom-10 left-1/2 -translate-x-1/2 text-black/5 font-black text-8xl uppercase pointer-events-none select-none">
                   {detail.category || detail.tag}
                 </span>

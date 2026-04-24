@@ -130,12 +130,16 @@ export default function ModernCartPage() {
                 >
                   <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-8">
                     <div className="w-full sm:w-32 h-40 sm:h-32 bg-[#f3f8ee] rounded-[20px] md:rounded-[24px] flex items-center justify-center overflow-hidden group">
-                      <img
-                        src={item.img}
-                        alt={item.name}
-                        className="w-3/4 sm:w-full h-auto sm:h-full object-contain group-hover:scale-110 transition-transform duration-500"
-                        onError={(e) => { e.target.src = "https://pngimg.com/d/milk_PNG12756.png"; }}
-                      />
+                      {item.img ? (
+                        <img
+                          src={item.img}
+                          alt={item.name}
+                          className="w-3/4 sm:w-full h-auto sm:h-full object-contain group-hover:scale-110 transition-transform duration-500"
+                          onError={(e) => { e.target.style.display = "none"; }}
+                        />
+                      ) : (
+                        <span className="text-3xl font-black text-[#4a703f]/25 uppercase">{item.name?.[0] ?? "?"}</span>
+                      )}
                     </div>
 
                     <div className="flex-1 text-center sm:text-left w-full">

@@ -70,9 +70,7 @@ export default function ModernSignUp() {
   };
 
   return (
-    <div className="min-h-screen bg-[#fcfdfd] flex items-center justify-center p-6 relative overflow-hidden m-9 lg:pt-32 pt-20">
-      <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-[#4a703f]/10 blur-[120px] rounded-full animate-pulse" />
-      <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-[#4a703f]/5 blur-[120px] rounded-full" />
+    <div className="min-h-screen flex items-center justify-center p-6 relative overflow-hidden m-9 lg:pt-32 pt-20">
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}

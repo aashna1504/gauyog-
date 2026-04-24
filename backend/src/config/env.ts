@@ -11,6 +11,12 @@ export const config = {
   adminEmailTo: process.env.ADMIN_EMAIL_TO,
   resendApiKey: process.env.RESEND_API_KEY,
   resendFromEmail: process.env.RESEND_FROM_EMAIL,
+  gmailUser: process.env.GMAIL_USER,
+  // Treat placeholder value as unset so we don't attempt auth with a fake password
+  gmailAppPassword: (() => {
+    const p = process.env.GMAIL_APP_PASSWORD;
+    return p && p !== 'your_16_char_app_password_here' && !p.startsWith('your_') ? p : undefined;
+  })(),
   cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME || 'dbpzzvcik',
   cloudinaryApiKey: process.env.CLOUDINARY_API_KEY,
   cloudinaryApiSecret: process.env.CLOUDINARY_API_SECRET,

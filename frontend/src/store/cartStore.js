@@ -3,14 +3,12 @@ import api from '../api/axios';
 import useAuthStore from './authStore';
 import useNotificationStore from './notificationStore';
 
-const PLACEHOLDER_IMG = 'https://pngimg.com/d/milk_PNG12756.png';
-
 const getProductImage = (product) => {
   const w = product?.weight;
   if (w === '1kg' && product?.image1kg) return product.image1kg;
   if (w === '3kg' && product?.image3kg) return product.image3kg;
   if (w === '5kg' && product?.image5kg) return product.image5kg;
-  return product?.imageUrl || PLACEHOLDER_IMG;
+  return product?.imageUrl || null;
 };
 
 const useCartStore = create((set, get) => ({

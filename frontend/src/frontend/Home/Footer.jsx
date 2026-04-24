@@ -163,7 +163,7 @@ export default function ModernFooter() {
                 alt: "Visa",
               },
               {
-                src: "https://i.pinimg.com/736x/89/62/16/8962166d80f798c966192e2831c05560.jpg",
+                src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/200px-Mastercard-logo.svg.png",
                 alt: "Mastercard",
               },
             ].map((img, i) => (
