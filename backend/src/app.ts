@@ -1,3 +1,4 @@
+import path from 'path';
 import express, { Express, Request, Response } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
@@ -13,6 +14,7 @@ import deliveryRoutes from './modules/delivery/delivery.routes';
 import userRoutes from './modules/user/user.routes';
 import contactRoutes from './modules/contact/contact.routes';
 import orderRoutes from './modules/order/order.routes';
+import uploadRoutes from './modules/upload/upload.routes';
 
 const app: Express = express();
 
@@ -40,6 +42,7 @@ app.use(
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
 
 // Health Check
 app.get('/health', (_req: Request, res: Response) => {
@@ -55,6 +58,7 @@ app.use('/api/delivery', deliveryRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api/upload', uploadRoutes);
 
 // Global Error Handler
 app.use(errorHandler);

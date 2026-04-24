@@ -9,6 +9,7 @@ import { z } from 'zod';
 import { signupSchema, loginSchema } from './auth.schema';
 import { AuthResponse } from './auth.types';
 import { emailService } from '../../services/email.service';
+import { logger } from '../../utils/logger';
 
 interface GoogleTokenInfo {
   email?: string;
@@ -131,11 +132,11 @@ export class AuthService {
     };
   }
 
-  static async forgotPassword(email: string): Promise<void> {
+  static async forgotPassword(email: string): Promise<{ devResetLink?: string; emailDelivered?: boolean }> {
     const normalizedEmail = email.toLowerCase().trim();
     const user = await prisma.user.findUnique({ where: { email: normalizedEmail } });
 
-    if (!user) return;
+    if (!user) return {};
 
     await prisma.passwordResetToken.deleteMany({
       where: {
@@ -157,18 +158,124 @@ export class AuthService {
     });
 
     const resetLink = `${config.appBaseUrl}/reset-password?token=${rawToken}`;
+    const displayName = user.name ? user.name.split(' ')[0] : 'there';
 
-    await emailService.sendMail({
-      to: user.email,
-      subject: 'Reset your Gauyog password',
-      html: `
-        <p>Hello,</p>
-        <p>We received a request to reset your password.</p>
-        <p><a href="${resetLink}">Click here to reset your password</a></p>
-        <p>This link will expire in 30 minutes.</p>
-      `,
-      text: `Reset your password: ${resetLink}`,
-    });
+    const html = `<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"/></head>
+<body style="margin:0;padding:0;background:#f1f5f9;font-family:Helvetica,Arial,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#f1f5f9;padding:40px 16px;">
+<tr><td align="center">
+<table width="560" cellpadding="0" cellspacing="0"
+       style="background:#ffffff;border-radius:20px;overflow:hidden;
+              box-shadow:0 4px 32px rgba(0,0,0,.08);">
+
+  <!-- Header -->
+  <tr>
+    <td style="background:#4a703f;padding:36px 40px;text-align:center;">
+      <p style="margin:0 0 4px;font-size:10px;font-weight:800;text-transform:uppercase;
+        letter-spacing:.2em;color:rgba(255,255,255,.5);">GAUYOG KENDR</p>
+      <h1 style="margin:0 0 8px;font-size:26px;font-weight:900;color:#ffffff;letter-spacing:-.02em;">
+        🔒 Reset Your Password
+      </h1>
+      <p style="margin:0;font-size:13px;color:rgba(255,255,255,.7);">
+        This link expires in <strong style="color:#e9aa43;">30 minutes</strong>
+      </p>
+    </td>
+  </tr>
+
+  <!-- Body -->
+  <tr>
+    <td style="padding:36px 40px;">
+      <p style="margin:0 0 20px;font-size:15px;color:#374151;line-height:1.7;">
+        Hi <strong>${displayName}</strong>,
+      </p>
+      <p style="margin:0 0 28px;font-size:14px;color:#6b7280;line-height:1.75;">
+        We received a request to reset the password for your Gauyog Kendr account
+        (<strong style="color:#111827;">${user.email}</strong>).
+        Click the button below to create a new password.
+      </p>
+
+      <!-- CTA Button -->
+      <table cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+          <td align="center" style="padding:8px 0 32px;">
+            <a href="${resetLink}"
+               style="display:inline-block;background:#4a703f;color:#ffffff;
+                      font-size:13px;font-weight:800;text-transform:uppercase;
+                      letter-spacing:.1em;text-decoration:none;
+                      padding:16px 40px;border-radius:999px;">
+              Reset My Password →
+            </a>
+          </td>
+        </tr>
+      </table>
+
+      <!-- Fallback link -->
+      <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:16px 20px;">
+        <p style="margin:0 0 6px;font-size:11px;font-weight:700;text-transform:uppercase;
+          letter-spacing:.08em;color:#9ca3af;">
+          Button not working? Copy this link:
+        </p>
+        <p style="margin:0;font-size:12px;color:#4a703f;word-break:break-all;font-weight:600;">
+          ${resetLink}
+        </p>
+      </div>
+
+      <!-- Security note -->
+      <p style="margin:24px 0 0;font-size:12px;color:#9ca3af;line-height:1.7;">
+        If you didn't request a password reset, you can safely ignore this email.
+        Your password will not change unless you click the button above.
+      </p>
+    </td>
+  </tr>
+
+  <!-- Footer -->
+  <tr>
+    <td style="background:#f9fafb;border-top:1px solid #e5e7eb;padding:18px 40px;text-align:center;">
+      <p style="margin:0;font-size:11px;color:#9ca3af;">
+        Gauyog Kendr · Village Badalpara, Veraval, Gir Somnath, Gujarat 362268
+      </p>
+    </td>
+  </tr>
+
+</table>
+</td></tr>
+</table>
+</body>
+</html>`;
+
+    let emailDelivered = false;
+    try {
+      const result = await emailService.sendMail({
+        to: user.email,
+        subject: 'Reset your Gauyog Kendr password',
+        html,
+        text: [
+          `Hi ${displayName},`,
+          '',
+          'Reset your Gauyog Kendr password using the link below.',
+          'This link expires in 30 minutes.',
+          '',
+          resetLink,
+          '',
+          'If you did not request this, ignore this email.',
+        ].join('\n'),
+      });
+      emailDelivered = !result.skipped;
+    } catch (err: any) {
+      // Never throw — token is already saved. Log clearly so dev knows what to fix.
+      logger.error(`[ForgotPassword] Email failed for ${user.email}: ${err?.message}`);
+      if (config.nodeEnv === 'development') {
+        logger.warn('[ForgotPassword] To send real emails, add GMAIL_APP_PASSWORD to .env');
+        logger.warn(`[ForgotPassword] Dev reset link: ${resetLink}`);
+      }
+    }
+
+    // Development only: return the reset link in the API response so the full
+    // flow can be tested without a working email provider.
+    const isDev = config.nodeEnv === 'development';
+    return isDev ? { devResetLink: resetLink, emailDelivered } : {};
   }
 
   static async resetPassword(token: string, newPassword: string): Promise<void> {

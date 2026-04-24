@@ -8,7 +8,7 @@ export default function OrdersPage() {
       <div>
         <h1 className="text-2xl font-bold tracking-tight">Orders</h1>
         <p className="text-muted-foreground text-sm mt-1">
-          View and manage all customer orders.
+          All orders placed by customers through the storefront. Update statuses to keep customers informed.
         </p>
       </div>
       <OrdersTable />

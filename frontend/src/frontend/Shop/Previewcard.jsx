@@ -6,7 +6,6 @@ import api from "../../api/axios";
 import useCartStore from "../../store/cartStore";
 import useWishlistStore from "../../store/wishlistStore";
 
-const PLACEHOLDER_IMG = "https://pngimg.com/d/milk_PNG12756.png";
 
 export default function VedicDhoopMosaicPage() {
   const [product, setProduct] = useState(null);
@@ -47,15 +46,25 @@ export default function VedicDhoopMosaicPage() {
     fetchCart();
   }, [id, fetchWishlist, fetchCart]);
 
+  // Resolve variant image and price for the currently selected weight
+  const getVariantImage = (weight) => {
+    if (weight === "1kg" && product?.image1kg) return product.image1kg;
+    if (weight === "3kg" && product?.image3kg) return product.image3kg;
+    if (weight === "5kg" && product?.image5kg) return product.image5kg;
+    return product?.imageUrl ?? null;
+  };
+
+  const getVariantPrice = (weight) => {
+    if (weight === "1kg" && product?.price1kg) return product.price1kg;
+    if (weight === "3kg" && product?.price3kg) return product.price3kg;
+    if (weight === "5kg" && product?.price5kg) return product.price5kg;
+    return product?.price ?? 0;
+  };
+
   const productImages = useMemo(() => {
-    if (!product) return [PLACEHOLDER_IMG];
-    // When 5kg is selected AND a dedicated 5kg image exists, lead with it
-    const mainImage =
-      selectedWeight === "5kg" && product.image5kg
-        ? product.image5kg
-        : product.imageUrl;
-    const all = [mainImage, ...(product.galleryImages || [])].filter(Boolean);
-    return all.length ? all : [PLACEHOLDER_IMG];
+    if (!product) return [];
+    const variantImg = getVariantImage(selectedWeight);
+    return [variantImg, ...(product.galleryImages || [])].filter(Boolean);
   }, [product, selectedWeight]);
 
   const handleAddToCart = async () => {
@@ -106,13 +115,6 @@ export default function VedicDhoopMosaicPage() {
   const currentWeight = selectedWeight || product.weight || "";
   const inCart = isInCart(product.id);
   const wishlisted = isInWishlist(product.id);
-  const discountPct =
-    product.discountPrice && product.discountPrice > product.price
-      ? Math.round(
-          ((product.discountPrice - product.price) / product.discountPrice) *
-            100,
-        )
-      : null;
 
   return (
     <div className="lg:pt-40 pt-32 pb-16 px-4 md:px-8 bg-[#f8f9f5] min-h-screen">
@@ -151,16 +153,11 @@ export default function VedicDhoopMosaicPage() {
               )}
               <div className="flex items-baseline gap-3 mt-4 pt-4 border-t border-slate-100">
                 <span className="text-4xl font-black text-slate-900 tracking-tight">
-                  ₹{product.price}
+                  ₹{getVariantPrice(currentWeight)}
                 </span>
-                {product.discountPrice && (
-                  <span className="text-lg text-slate-300 line-through font-semibold">
-                    ₹{product.discountPrice}
-                  </span>
-                )}
-                {discountPct && (
-                  <span className="text-xs font-black text-[#4a703f] bg-[#4a703f]/15 px-2.5 py-1 rounded-full">
-                    {discountPct}% OFF
+                {currentWeight && (
+                  <span className="text-xs font-black text-slate-400 uppercase tracking-widest">
+                    {currentWeight}
                   </span>
                 )}
               </div>
@@ -227,9 +224,7 @@ export default function VedicDhoopMosaicPage() {
                           src={img}
                           className="w-full h-full object-contain"
                           alt={`view ${idx + 1}`}
-                          onError={(e) => {
-                            e.currentTarget.src = PLACEHOLDER_IMG;
-                          }}
+                          onError={(e) => { e.currentTarget.style.display = "none"; }}
                         />
                       </button>
                     ))}
@@ -237,23 +232,23 @@ export default function VedicDhoopMosaicPage() {
                 )}
                 <div className="relative flex-1 flex items-center justify-center min-h-[440px] md:min-h-[540px] bg-[#f3f8ee] rounded-2xl px-4 py-8">
                   <AnimatePresence mode="wait">
-                    <motion.img
-                      key={activeImg}
-                      initial={{ opacity: 0, scale: 0.88 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 1.04 }}
-                      transition={{
-                        type: "spring",
-                        damping: 22,
-                        stiffness: 200,
-                      }}
-                      src={productImages[activeImg]}
-                      alt={product.name}
-                      className="w-full max-w-[380px] md:max-w-[460px] object-contain rounded-full"
-                      onError={(e) => {
-                        e.currentTarget.src = PLACEHOLDER_IMG;
-                      }}
-                    />
+                    {productImages[activeImg] ? (
+                      <motion.img
+                        key={activeImg}
+                        initial={{ opacity: 0, scale: 0.88 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 1.04 }}
+                        transition={{ type: "spring", damping: 22, stiffness: 200 }}
+                        src={productImages[activeImg]}
+                        alt={product.name}
+                        className="w-full max-w-[380px] md:max-w-[460px] object-contain rounded-full"
+                        onError={(e) => { e.currentTarget.style.display = "none"; }}
+                      />
+                    ) : (
+                      <div className="w-64 h-64 rounded-full bg-[#d8e8d4] flex items-center justify-center">
+                        <span className="text-7xl font-black text-[#4a703f]/25 uppercase">{product.name?.[0] ?? "?"}</span>
+                      </div>
+                    )}
                   </AnimatePresence>
                   <span className="absolute bottom-4 right-4 text-[40px] md:text-[70px] font-black text-[#4a703f]/5 leading-none tracking-tighter uppercase select-none pointer-events-none">
                     Gauyog
@@ -277,22 +272,25 @@ export default function VedicDhoopMosaicPage() {
                   Select Weight
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {product.weightOptions.filter((w) => ["1kg", "3kg", "5kg"].includes(w)).map((option) => (
-                    <button
-                      key={option}
-                      onClick={() => handleWeightSelect(option)}
-                      className={`px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all duration-200 border-2 ${
-                        currentWeight === option
-                          ? "bg-[#4a703f] text-white border-[#4a703f] shadow-lg shadow-green-900/20"
-                          : "bg-white text-slate-500 border-slate-200 hover:border-[#4a703f] hover:text-[#4a703f]"
-                      }`}
-                    >
-                      {option}
-                      {option === "5kg" && product.image5kg && (
-                        <span className="ml-1 text-[8px] opacity-60 ">●</span>
-                      )}
-                    </button>
-                  ))}
+                  {product.weightOptions.filter((w) => ["1kg", "3kg", "5kg"].includes(w)).map((option) => {
+                    const hasVariant = getVariantImage(option) !== product.imageUrl || getVariantPrice(option) !== product.price;
+                    return (
+                      <button
+                        key={option}
+                        onClick={() => handleWeightSelect(option)}
+                        className={`px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all duration-200 border-2 flex items-center gap-1.5 ${
+                          currentWeight === option
+                            ? "bg-[#4a703f] text-white border-[#4a703f] shadow-lg shadow-green-900/20"
+                            : "bg-white text-slate-500 border-slate-200 hover:border-[#4a703f] hover:text-[#4a703f]"
+                        }`}
+                      >
+                        {option}
+                        {hasVariant && (
+                          <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${currentWeight === option ? "bg-white/60" : "bg-[#4a703f]/40"}`} />
+                        )}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
             )}

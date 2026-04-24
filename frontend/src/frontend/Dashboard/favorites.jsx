@@ -11,7 +11,6 @@ import { useNavigate } from "react-router-dom";
 import useWishlistStore from "../../store/wishlistStore";
 import useCartStore from "../../store/cartStore";
 
-const PLACEHOLDER_IMG = "https://pngimg.com/d/milk_PNG12756.png";
 
 export default function NexusFavourites() {
   const navigate = useNavigate();
@@ -94,12 +93,16 @@ export default function NexusFavourites() {
               <div className="absolute top-[-20px] right-[-20px] w-24 h-24 bg-[#4a703f]/5 rounded-full blur-3xl group-hover:bg-[#4a703f]/10 transition-colors z-0" />
 
               <div className="w-full aspect-square bg-[#f3f8ee] rounded-full overflow-hidden border border-slate-100 flex items-center justify-center p-4 relative z-0 mb-5">
-                <img
-                  src={item.img || PLACEHOLDER_IMG}
-                  alt={item.name}
-                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 rounded-full"
-                  onError={(e) => { e.target.src = PLACEHOLDER_IMG; }}
-                />
+                {item.img ? (
+                  <img
+                    src={item.img}
+                    alt={item.name}
+                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 rounded-full"
+                    onError={(e) => { e.target.style.display = "none"; }}
+                  />
+                ) : (
+                  <span className="text-4xl font-black text-[#4a703f]/25 uppercase">{item.name?.[0] ?? "?"}</span>
+                )}
               </div>
 
               <p className="text-xs font-black text-slate-700 uppercase tracking-tight text-center mb-1 line-clamp-2">

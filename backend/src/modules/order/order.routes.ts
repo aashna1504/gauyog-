@@ -12,6 +12,7 @@ router.get('/my/:id', authenticate, OrderController.getOrderById);
 // Admin routes
 router.get('/', authenticate, authorize('ADMIN'), OrderController.getAllOrders);
 router.patch('/:id/status', authenticate, authorize('ADMIN'), OrderController.updateOrderStatus);
+router.patch('/:id/tracking', authenticate, authorize('ADMIN'), OrderController.updateTrackingId);
 router.get('/stats', authenticate, authorize('ADMIN'), OrderController.getStats);
 
 export default router;

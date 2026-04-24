@@ -52,11 +52,18 @@ export const refresh = async (req: Request, res: Response, next: NextFunction) =
 
 export const forgotPassword = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    await AuthService.forgotPassword(req.body.email);
+    const result = await AuthService.forgotPassword(req.body.email);
+    const isDev = process.env.NODE_ENV === 'development';
+
+    // In production we always return the same message (prevents email enumeration)
+    // In dev we include the reset link directly so the full flow can be tested
     res.status(200).json(
       formatResponse(
         true,
-        'If an account with this email exists, a reset link has been sent'
+        result?.emailDelivered
+          ? 'Reset link sent! Check your email inbox.'
+          : 'If an account with this email exists, a reset link has been sent.',
+        isDev ? { devResetLink: result?.devResetLink ?? null, emailDelivered: result?.emailDelivered ?? false } : null
       )
     );
   } catch (error) {

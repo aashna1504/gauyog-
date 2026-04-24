@@ -130,7 +130,7 @@ export default function ProductSection() {
   ];
   return (
     <div>
-      <section className=" py-20 px-6 overflow-hidden mt-32">
+      <section className=" py-20 px-6 overflow-hidden lg:mt-32 mt-10">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch">
           {/* Left Content */}
           <div className="flex flex-col justify-between space-y-12">

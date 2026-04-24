@@ -54,8 +54,6 @@ export default function ModernSignIn() {
 
   return (
     <div className="min-h-screen bg-[#fcfdfd] flex items-center justify-center p-6 relative overflow-hidden m-9 mt-16">
-      <div className="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] bg-[#4a703f]/10 blur-[120px] rounded-full animate-pulse" />
-      <div className="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-[#4a703f]/5 blur-[120px] rounded-full" />
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -120,13 +118,13 @@ export default function ModernSignIn() {
               <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 group-focus-within:text-[#4a703f] transition-colors">
                 Password
               </label>
-              <button
+              {/* <button
                 onClick={() => navigate("/forgotpassword")}
                 type="button"
                 className="text-[10px] font-black text-[#4a703f] hover:text-slate-950 uppercase tracking-widest transition-colors"
               >
                 Forgot Password?
-              </button>
+              </button> */}
             </div>
             <div className="relative">
               <input

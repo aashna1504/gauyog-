@@ -1,7 +1,7 @@
 'use client';
 
-import Link from 'next/link';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { MoreHorizontal, Pencil, Trash2, Package } from 'lucide-react';
 
@@ -36,16 +36,21 @@ import { formatCurrency } from '@/lib/utils';
 import type { Product } from '@/types';
 
 
+// ─── HELPERS ──────────────────────────────────
+
+function getProductImage(p: Product): string | null {
+  if (p.weight === '1kg' && p.image1kg) return p.image1kg;
+  if (p.weight === '3kg' && p.image3kg) return p.image3kg;
+  if (p.weight === '5kg' && p.image5kg) return p.image5kg;
+  return p.imageUrl;
+}
+
+
 // ─── CATEGORY COLORS ─────────────────────────
 
 const CATEGORY_COLORS: Record<string, string> = {
-  Dairy: 'bg-blue-100 text-blue-800',
-  Ghee: 'bg-amber-100 text-amber-800',
-  Herbs: 'bg-green-100 text-green-800',
-  Grains: 'bg-yellow-100 text-yellow-800',
-  Wellness: 'bg-purple-100 text-purple-800',
-  Garden: 'bg-teal-100 text-teal-800',
-  Pantry: 'bg-orange-100 text-orange-800',
+  Fertilizer: 'bg-lime-100 text-lime-800',
+  Coco: 'bg-amber-100 text-amber-900',
 };
 
 
@@ -118,6 +123,7 @@ function DeleteDialog({
 export function ProductsTable() {
   const { data: products, isLoading } = useProducts();
   const { data: session } = useSession();
+  const router = useRouter();
 
   const isAdmin = session?.user?.role === 'ADMIN';
   const [deleteTarget, setDeleteTarget] = useState<Product | null>(null);
@@ -149,9 +155,9 @@ export function ProductsTable() {
               <div className="flex items-start justify-between gap-2">
                 <div className="flex items-center gap-2 min-w-0">
                   <div className="h-9 w-9 rounded-md overflow-hidden bg-[#f3f8ee] flex items-center justify-center flex-shrink-0">
-                    {p.imageUrl ? (
+                    {getProductImage(p) ? (
                       <img
-                        src={p.imageUrl}
+                        src={getProductImage(p)!}
                         alt={p.name}
                         className="h-full w-full object-contain"
                       />
@@ -182,10 +188,8 @@ export function ProductsTable() {
                     </DropdownMenuTrigger>
 
                     <DropdownMenuContent align="end">
-                      <DropdownMenuItem asChild>
-                        <Link href={`/products/${p.id}/edit`}>
-                          <Pencil className="h-4 w-4 mr-2" /> Edit
-                        </Link>
+                      <DropdownMenuItem onSelect={() => router.push(`/products/${p.id}/edit`)}>
+                        <Pencil className="h-4 w-4 mr-2" /> Edit
                       </DropdownMenuItem>
 
                       <DropdownMenuItem
@@ -214,11 +218,6 @@ export function ProductsTable() {
                   {formatCurrency(p.price)}
                 </span>
 
-                {p.discountPrice && (
-                  <span className="ml-1 text-[10px] line-through text-muted-foreground">
-                    {formatCurrency(p.discountPrice)}
-                  </span>
-                )}
               </div>
 
               {/* Bottom */}

@@ -31,15 +31,35 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 
 const CustomXAxisTick = ({ x, y, payload }: any) => {
   const name: string = payload.value ?? '';
-  const short = name.length > 10 ? name.slice(0, 10) + '…' : name;
+  const words = name.split(' ');
+  // split into max two lines of ~12 chars each
+  const lines: string[] = [];
+  let current = '';
+  for (const word of words) {
+    if ((current + ' ' + word).trim().length > 12 && current) {
+      lines.push(current.trim());
+      current = word;
+    } else {
+      current = (current + ' ' + word).trim();
+    }
+  }
+  if (current) lines.push(current);
+
   return (
-    <text x={x} y={y + 10} textAnchor="middle" fontSize={10} fill="currentColor" className="fill-muted-foreground">
-      {short}
+    <text x={x} textAnchor="middle" fontSize={10} fill="#6b7280">
+      {lines.map((line, i) => (
+        <tspan key={i} x={x} y={y + 14 + i * 13}>
+          {line}
+        </tspan>
+      ))}
     </text>
   );
 };
 
 export function StockChart({ data }: { data: StockEntry[] }) {
+  // enough bottom margin for up to 2 label lines
+  const bottomMargin = 52;
+
   return (
     <Card>
       <CardHeader>
@@ -54,10 +74,15 @@ export function StockChart({ data }: { data: StockEntry[] }) {
         {data.length === 0 ? (
           <p className="text-sm text-muted-foreground text-center py-16">No products found.</p>
         ) : (
-          <ResponsiveContainer width="100%" height={240}>
-            <BarChart data={data} margin={{ top: 5, right: 10, left: 0, bottom: 30 }}>
+          <ResponsiveContainer width="100%" height={280}>
+            <BarChart data={data} margin={{ top: 5, right: 10, left: 0, bottom: bottomMargin }}>
               <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
-              <XAxis dataKey="name" tick={<CustomXAxisTick />} interval={0} />
+              <XAxis
+                dataKey="name"
+                tick={<CustomXAxisTick />}
+                interval={0}
+                tickLine={false}
+              />
               <YAxis tick={{ fontSize: 11 }} allowDecimals={false} />
               <Tooltip content={<CustomTooltip />} />
               <Bar dataKey="stock" radius={[4, 4, 0, 0]} name="Units">

@@ -128,8 +128,8 @@ export default function NexusOrderLedger() {
       </div>
 
       <div className="bg-white border border-slate-100 rounded-[40px] shadow-2xl shadow-slate-200/40 overflow-hidden">
-        <div className="hidden md:grid grid-cols-5 bg-[#4a703f] px-10 py-6">
-          {["Order ID", "Date", "Total", "Status", "Action"].map((label) => (
+        <div className="hidden md:grid grid-cols-6 bg-[#4a703f] px-10 py-6">
+          {["Order ID", "Tracking ID", "Date", "Total", "Status", "Action"].map((label) => (
             <span key={label} className="text-[10px] font-black uppercase tracking-[0.3em] text-white/40">
               {label}
             </span>
@@ -158,8 +158,9 @@ export default function NexusOrderLedger() {
               <motion.div
                 key={order.id}
                 whileHover={{ backgroundColor: "rgba(248, 250, 252, 0.5)" }}
-                className="grid grid-cols-1 md:grid-cols-5 px-8 md:px-10 py-8 md:py-7 items-center transition-all group"
+                className="grid grid-cols-1 md:grid-cols-6 px-8 md:px-10 py-8 md:py-7 items-center transition-all group"
               >
+                {/* Order ID */}
                 <div className="mb-4 md:mb-0">
                   <p className="text-[9px] font-black text-[#4a703f] uppercase tracking-widest mb-1 md:hidden">Order ID</p>
                   <h4 className="text-sm font-black text-slate-900 uppercase">
@@ -167,11 +168,25 @@ export default function NexusOrderLedger() {
                   </h4>
                 </div>
 
+                {/* Tracking ID */}
+                <div className="flex justify-between md:block mb-3 md:mb-0">
+                  <span className="md:hidden text-[10px] font-bold text-slate-300 uppercase">Tracking ID</span>
+                  {order.trackingId ? (
+                    <span className="text-xs font-mono font-bold text-[#4a703f] bg-[#4a703f]/5 px-2 py-1 rounded-lg border border-[#4a703f]/10">
+                      {order.trackingId}
+                    </span>
+                  ) : (
+                    <span className="text-[10px] font-bold text-slate-300 uppercase tracking-widest italic">—</span>
+                  )}
+                </div>
+
+                {/* Date */}
                 <div className="flex justify-between md:block mb-3 md:mb-0">
                   <span className="md:hidden text-[10px] font-bold text-slate-300 uppercase">Date</span>
                   <span className="text-xs font-bold text-slate-500">{formatDate(order.createdAt)}</span>
                 </div>
 
+                {/* Total */}
                 <div className="flex justify-between md:block mb-3 md:mb-0">
                   <span className="md:hidden text-[10px] font-bold text-slate-300 uppercase">Total</span>
                   <span className="text-sm font-black text-slate-800">
@@ -179,6 +194,7 @@ export default function NexusOrderLedger() {
                   </span>
                 </div>
 
+                {/* Status */}
                 <div className="flex justify-between md:block mb-6 md:mb-0">
                   <span className="md:hidden text-[10px] font-bold text-slate-300 uppercase">Status</span>
                   <span
@@ -191,6 +207,7 @@ export default function NexusOrderLedger() {
                   </span>
                 </div>
 
+                {/* Action */}
                 <div className="flex md:block justify-center pt-6 md:pt-0 border-t md:border-none border-slate-50">
                   <button
                     onClick={() => navigate(`/trackorder?id=${order.id}`)}
