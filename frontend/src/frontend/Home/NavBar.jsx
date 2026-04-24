@@ -111,8 +111,8 @@ export default function Header() {
                 <li key={link.path}>
                   <Link
                     to={link.path}
-                    className={`hover:text-[#4a703f] transition-colors ${
-                      location.pathname === link.path ? "text-[#4a703f]" : ""
+                    className={`hover:text-[#e9aa43] transition-colors ${
+                      location.pathname === link.path ? "text-[#e9aa43] underline" : ""
                     }`}
                   >
                     {link.name}

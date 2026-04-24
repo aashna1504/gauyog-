@@ -76,7 +76,7 @@ export default function ProductSection() {
     { label: "100%", sub: "NATURAL & CHEMICAL-FREE" },
     { label: "8+", sub: "PRODUCT LINES TRUSTED BY GROWERS" },
     { label: "Female", sub: "WOMEN-LED FROM SOIL TO SHELF" },
-    { label: "Grown", sub: "COUNTRIES GROWING WITH US" },
+    { label: "Growth", sub: "COUNTRIES GROWING WITH US" },
   ];
   const tiers = [
     {
@@ -88,32 +88,32 @@ export default function ProductSection() {
       color: "#a05a2c", // Earthy Sienna
       icon: <ShieldCheck size={24} />,
       points: [
-        "Made from pure Gir cow dung, naturally dried and finely powdered",
-        "Improves soil structure and enriches it with essential nutrients",
-        "An ideal base for organic gardening and sustainable soil health",
+        "Made from pure Gir cow dung, naturally dried and finely powdered.",
+        "Improves soil structure and enriches it with essential nutrients.",
+        "An ideal base for organic gardening and sustainable soil health.",
       ],
       claim: "Feed Your Soil — Not Just Your Crop",
       badge: "Level 01",
     },
     {
       level: "Classic",
-      name: "Ghanjivamrut",
+      name: "Cow Dung Slurry",
       tagline: "The Microbial Powerhouse",
       description:
         "Fermented bio-fertiliser with live microbial cultures for active soil biology.",
       color: "#4a703f", // Forest Green
       icon: <Zap size={24} />,
       points: [
-        "Enriched with beneficial microbes that naturally improve soil health",
-        "Enhances nutrient absorption and boosts plant growth effectively",
-        "Revives soil vitality for stronger roots and better yield",
+        "Enriched with beneficial microbes that naturally improve soil health.",
+        "Enhances nutrient absorption and boosts plant growth effectively.",
+        "Revives soil vitality for stronger roots and better yield.",
       ],
       claim: "Activate Your Soil with Millions of Microbes",
       badge: "Level 02",
     },
     {
       level: "Premium",
-      name: "Seaweed + Ghanjivamrut",
+      name: "Ghanjivamrut",
       tagline: "The Complete Growth System",
       description:
         "Dual-action formula combining ocean minerals with microbial power for maximum yield.",
@@ -121,7 +121,7 @@ export default function ProductSection() {
       icon: <Crown size={24} />,
       points: [
         "Enhances soil fertility and microbial activity through Ghanjeevamrut.",
-        "Boosts plant growth with natural nutrients and growth hormones from seaweed.",
+        "Boosts plant growth with natural nutrients and growth hormones.",
         "Improves root strength, yield, and overall plant health in a natural way.",
       ],
       claim: "Maximum Growth — Maximum Quality",
@@ -130,7 +130,7 @@ export default function ProductSection() {
   ];
   return (
     <div>
-      <section className=" py-20 px-6 overflow-hidden">
+      <section className=" py-20 px-6 overflow-hidden mt-32">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch">
           {/* Left Content */}
           <div className="flex flex-col justify-between space-y-12">
@@ -253,7 +253,7 @@ export default function ProductSection() {
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-green-50 rounded-full blur-[120px] -z-10 opacity-60" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-50 rounded-full blur-[100px] -z-10 opacity-40" />
 
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto px-4">
           <div className="grid md:grid-cols-2 items-center gap-12 mb-24">
             <div className="relative group flex justify-center order-2 md:order-1">
               <div className="absolute w-[320px] h-[320px] md:w-[450px] md:h-[450px] bg-gradient-to-tr from-green-100/40 to-emerald-50/20 rounded-full animate-pulse shadow-inner" />
@@ -284,8 +284,8 @@ export default function ProductSection() {
                 New Arrival 2026
               </div>
               <h2 className="text-5xl lg:text-7xl font-bold text-gray-900 leading-[1.1]">
-                Your
-                <span className="text-[#4a703f] italic">
+                Your{" "}
+                <span className="text-[#4a703f] italic underline decoration-[#e9aa43]/30 underline-offset-8">
                   Trusted Natural Partner
                 </span>
               </h2>
@@ -307,9 +307,11 @@ export default function ProductSection() {
           <div className="flex justify-between items-end mb-10">
             <div className="space-y-2">
               <h2 className="text-5xl lg:text-7xl font-bold text-gray-900 leading-[1.1]">
-                Everything from Mother Earth
+                Everything from{" "}
+                <span className="text-[#4a703f] italic underline decoration-[#e9aa43]/30 underline-offset-8">
+                  Mother Earth
+                </span>
               </h2>
-              <div className="h-1.5 w-16 bg-[#4a703f] rounded-full" />
             </div>
             <div className="flex gap-3">
               <button className="group border-2 border-gray-100 p-4 rounded-full hover:bg-black hover:border-black transition-all">
@@ -361,9 +363,11 @@ export default function ProductSection() {
                 <span className="text-[10px] font-black uppercase tracking-[0.5em] text-[#e9aa43]">
                   Product Selection
                 </span>
-                <h2 className="text-5xl font-black text-slate-100 tracking-tighter">
+                <h2 className="text-5xl font-bold text-slate-100 leading-[1.1]">
                   Choose Your{" "}
-                  <span className="italic text-[#e9aa43]">Intensity.</span>
+                  <span className="text-[#e9aa43] italic underline decoration-[#e9aa43] underline-offset-8">
+                    Intensity.
+                  </span>
                 </h2>
               </div>
               <p className="max-w-xs text-slate-100 text-sm font-medium leading-relaxed border-l-2 border-slate-100 pl-6">
@@ -441,6 +445,7 @@ export default function ProductSection() {
                       </div>
 
                       <button
+                        onClick={() => (window.location.href = "/shop")}
                         className="w-full py-4 rounded-2xl flex items-center justify-center gap-3 font-black text-[10px] uppercase tracking-widest transition-all text-white shadow-md hover:brightness-110 active:scale-95"
                         style={{ backgroundColor: tier.color }}
                       >
@@ -476,9 +481,9 @@ export default function ProductSection() {
                     </span>
                   </div>
 
-                  <h2 className="text-5xl md:text-7xl  font-bold text-slate-950 leading-[1.05] tracking-tight">
+                  <h2 className="text-5xl md:text-7xl font-bold text-slate-950 leading-[1.1]">
                     Bridging{" "}
-                    <span className="text-[#4a703f] italic font-medium">
+                    <span className="text-[#4a703f] italic underline decoration-[#e9aa43]/30 underline-offset-8">
                       Heritage
                     </span>{" "}
                     <br />
@@ -538,55 +543,88 @@ export default function ProductSection() {
 
               {/* --- RIGHT SIDE: STATS & QUOTE --- */}
               <div className="lg:col-span-5 flex flex-col gap-6">
-                {/* Glass Stat Grid */}
-                <div className="grid grid-cols-2 gap-4">
-                  {[
-                    { val: "5+", lab: "Years", icon: <Clock size={20} /> },
-                    {
-                      val: "100%",
-                      lab: "Organic",
-                      icon: <Award size={20} />,
-                    },
-                  ].map((stat, i) => (
-                    <div
-                      key={i}
-                      className="bg-white/60 backdrop-blur-md border border-white p-10 rounded-[2.5rem] flex flex-col items-center text-center space-y-2 shadow-sm"
-                    >
-                      <div className="text-[#4a703f]/40 mb-2">{stat.icon}</div>
-                      <span className="text-4xl  font-black text-slate-950">
-                        {stat.val}
-                      </span>
-                      <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">
-                        {stat.lab}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-
                 {/* High-Impact Testimonial */}
-                <div className="flex-1 relative overflow-hidden bg-[#4a703f] rounded-[3rem] p-12 text-white shadow-2xl shadow-[#4a703f]/30">
-                  {/* Decorative Quote Mark */}
-                  <div className="absolute -top-6 -right-6 text-white/10 italic  text-[12rem] pointer-events-none">
-                    "
+                <div className="flex-1 relative overflow-hidden bg-[#4a703f] rounded-[3rem] p-10 md:p-12 text-white shadow-2xl shadow-[#4a703f]/30 min-h-[600px] flex flex-col justify-center">
+                  {/* Decorative Background Element */}
+                  <div className="absolute -top-10 -right-10 text-white/5 font-black text-[15rem] pointer-events-none select-none">
+                    G
                   </div>
 
-                  <div className="relative z-10 h-full flex flex-col justify-between space-y-12">
-                    <p className="text-2xl md:text-3xl  italic leading-snug">
-                      "Gauyog Kendr blends genuine organic quality with
-                      world-class service. You feel the community in every
-                      shipment."
-                    </p>
-
+                  <div className="relative z-10 h-full flex flex-col justify-between space-y-8">
+                    {/* Header Section */}
                     <div className="space-y-4">
-                      <div className="w-12 h-1 bg-[#e9aa43]" />
-                      <div>
-                        <p className="font-black text-[10px] uppercase tracking-[0.3em] text-[#4a703f]">
-                          International Distribution Partner
-                        </p>
-                        <p className="text-white/60 text-[10px] font-medium mt-1">
-                          Strategic Supply Chain Division
-                        </p>
+                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/10 text-[9px] font-black uppercase tracking-[0.3em]">
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#e9aa43]" />
+                        Our Philosophy
                       </div>
+                      <h2 className="text-3xl md:text-5xl font-black leading-[0.95] tracking-tighter">
+                        Returning to <br />
+                        <span className="text-[#e9aa43]">Mother Earth</span>
+                      </h2>
+                      <p className="text-white/80 text-sm md:text-base font-medium leading-relaxed max-w-md italic">
+                        "The answer to healthier food and a better planet lies
+                        in going back to nature — not away from it."
+                      </p>
+                    </div>
+                    {/* Glass Stat Grid */}
+                    <div className="grid grid-cols-2 gap-4">
+                      {[
+                        { val: "5+", lab: "Years", icon: <Clock size={20} /> },
+                        {
+                          val: "100%",
+                          lab: "Organic",
+                          icon: <Award size={20} />,
+                        },
+                      ].map((stat, i) => (
+                        <div
+                          key={i}
+                          className="bg-white/20 backdrop-blur-md p-5 rounded-[2.5rem] flex flex-col items-center text-center space-y-2 shadow-sm"
+                        >
+                          <span className="text-4xl  font-black text-slate-50">
+                            {stat.val}
+                          </span>
+                          <span className="text-[10px] font-black uppercase tracking-widest text-slate-200">
+                            {stat.lab}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                    {/* Content List - Modern Grid Layout */}
+                    <div className="grid gap-4">
+                      {[
+                        {
+                          label: "Indigenous Origin",
+                          desc: "Cow dung from Gir cows & husk from our own palm plantations.",
+                          icon: "01",
+                        },
+                        {
+                          label: "Community First",
+                          desc: "Fresh botanicals hand-sorted by local women artisans.",
+                          icon: "02",
+                        },
+                        {
+                          label: "The Clean Promise",
+                          desc: "No chemicals, no synthetics, and absolutely no shortcuts.",
+                          icon: "03",
+                        },
+                      ].map((item, idx) => (
+                        <div
+                          key={idx}
+                          className="group flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors"
+                        >
+                          <span className="text-[#e9aa43] font-black text-xs mt-1 opacity-50 group-hover:opacity-100 transition-opacity">
+                            {item.icon}
+                          </span>
+                          <div>
+                            <p className="font-black text-[10px] uppercase tracking-[0.2em] text-white">
+                              {item.label}
+                            </p>
+                            <p className="text-white/60 text-[11px] font-medium leading-tight mt-1">
+                              {item.desc}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>

@@ -52,7 +52,7 @@ export default function ModernFooter() {
               </div>
             </div>
 
-            <div className="relative max-w-md group">
+            {/* <div className="relative max-w-md group">
               <div className="absolute inset-0 bg-[#4a703f]/5 blur-xl rounded-full opacity-0 group-focus-within:opacity-100 transition-opacity" />
               <div className="relative flex items-center bg-white border border-gray-200 rounded-full p-1 focus-within:border-[#4a703f] transition-all shadow-sm">
                 <div className="pl-3 md:pl-4 text-gray-400">
@@ -67,7 +67,7 @@ export default function ModernFooter() {
                   Join <ArrowRight size={14} className="hidden sm:block" />
                 </button>
               </div>
-            </div>
+            </div> */}
           </div>
 
           <div className="lg:col-span-2 space-y-4 md:space-y-6">
@@ -79,9 +79,9 @@ export default function ModernFooter() {
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className="text-gray-600 text-[14px] font-bold hover:text-[#4a703f] transition-colors flex items-center gap-2 group"
+                    className="text-gray-600 text-[14px] font-bold hover:text-[#e9aa43] transition-colors flex items-center gap-2 group"
                   >
-                    <span className="hidden md:block w-0 h-[2px] bg-[#4a703f] transition-all group-hover:w-4" />
+                    <span className="hidden md:block w-0 h-[2px] bg-[#e9aa43] transition-all group-hover:w-4" />
                     {link.name}
                   </a>
                 </li>
@@ -98,9 +98,9 @@ export default function ModernFooter() {
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className="text-gray-600 text-[14px] font-bold hover:text-[#4a703f] transition-colors flex items-center gap-2 group"
+                    className="text-gray-600 text-[14px] font-bold hover:text-[#e9aa43] transition-colors flex items-center gap-2 group"
                   >
-                    <span className="hidden md:block w-0 h-[2px] bg-[#4a703f] transition-all group-hover:w-4" />
+                    <span className="hidden md:block w-0 h-[2px] bg-[#e9aa43] transition-all group-hover:w-4" />
                     {link.name}
                   </a>
                 </li>

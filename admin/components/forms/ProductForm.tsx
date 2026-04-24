@@ -28,16 +28,7 @@ const CATEGORIES = [
   "Pantry",
 ];
 
-const WEIGHT_OPTIONS = [
-  "100ml",
-  "250ml",
-  "500ml",
-  "1L",
-  "100g",
-  "250g",
-  "500g",
-  "1kg",
-];
+const WEIGHT_OPTIONS = ["1kg", "3kg", "5kg"];
 
 const productSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -64,6 +55,7 @@ const productSchema = z.object({
   weight: z.string().optional(),
   weightOptions: z.array(z.string()).default([]),
   imageUrl: z.string().optional(),
+  image5kg: z.string().optional(),
   galleryImagesRaw: z.string().optional(),
   stock: z.coerce.number().int().min(0, "Stock cannot be negative"),
 });
@@ -76,6 +68,7 @@ export type ProductFormOutput = Omit<
 > & {
   galleryImages: string[];
   benefits: string[];
+  image5kg?: string;
 };
 
 interface ProductFormProps {
@@ -120,6 +113,7 @@ export function ProductForm({
       weight: "",
       weightOptions: [],
       imageUrl: "",
+      image5kg: "",
       galleryImagesRaw: "",
       stock: 0,
       ...defaultValues,
@@ -146,7 +140,9 @@ export function ProductForm({
           .map((s) => s.trim())
           .filter(Boolean)
       : [];
-    return onSubmit({ ...rest, galleryImages, benefits });
+    // Only send image5kg when 5kg is actually an available weight option
+    const image5kg = rest.weightOptions?.includes("5kg") ? rest.image5kg : undefined;
+    return onSubmit({ ...rest, galleryImages, benefits, image5kg });
   };
 
   return (
@@ -463,13 +459,29 @@ export function ProductForm({
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="imageUrl">Main Image URL</Label>
+            <Label htmlFor="imageUrl">Main Image URL (1kg &amp; 3kg)</Label>
             <Input
               id="imageUrl"
               placeholder="https://... (Cloudinary / S3 link)"
               {...register("imageUrl")}
             />
+            <p className="text-xs text-muted-foreground">
+              This image is shown when the customer selects 1kg or 3kg.
+            </p>
           </div>
+          {selectedWeightOptions.includes("5kg") && (
+            <div className="space-y-2 rounded-xl border border-amber-200 bg-amber-50/50 p-4">
+              <Label htmlFor="image5kg">5kg Variant Image URL</Label>
+              <Input
+                id="image5kg"
+                placeholder="https://... (Cloudinary / S3 link for the 5kg pack)"
+                {...register("image5kg")}
+              />
+              <p className="text-xs text-muted-foreground">
+                Shown automatically when the customer selects the 5kg option. Leave blank to use the main image.
+              </p>
+            </div>
+          )}
           <div className="space-y-2">
             <Label htmlFor="galleryImagesRaw">Gallery Image URLs</Label>
             <Textarea

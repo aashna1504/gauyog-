@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Heart, Package, Layers, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate, useParams } from "react-router-dom";
@@ -12,6 +12,11 @@ export default function VedicDhoopMosaicPage() {
   const [product, setProduct] = useState(null);
   const [activeImg, setActiveImg] = useState(0);
   const [selectedWeight, setSelectedWeight] = useState("");
+
+  const handleWeightSelect = (option) => {
+    setSelectedWeight(option);
+    setActiveImg(0); // reset thumbnail when weight changes
+  };
   const [loading, setLoading] = useState(true);
 
   const { id } = useParams();
@@ -44,11 +49,14 @@ export default function VedicDhoopMosaicPage() {
 
   const productImages = useMemo(() => {
     if (!product) return [PLACEHOLDER_IMG];
-    const all = [product.imageUrl, ...(product.galleryImages || [])].filter(
-      Boolean,
-    );
+    // When 5kg is selected AND a dedicated 5kg image exists, lead with it
+    const mainImage =
+      selectedWeight === "5kg" && product.image5kg
+        ? product.image5kg
+        : product.imageUrl;
+    const all = [mainImage, ...(product.galleryImages || [])].filter(Boolean);
     return all.length ? all : [PLACEHOLDER_IMG];
-  }, [product]);
+  }, [product, selectedWeight]);
 
   const handleAddToCart = async () => {
     if (!product) return;
@@ -107,7 +115,7 @@ export default function VedicDhoopMosaicPage() {
       : null;
 
   return (
-    <div className="pt-40 pb-16 px-4 md:px-8 bg-[#f8f9f5] min-h-screen">
+    <div className="lg:pt-40 pt-32 pb-16 px-4 md:px-8 bg-[#f8f9f5] min-h-screen">
       <div className="max-w-[1400px] mx-auto">
         {/*
           LAYOUT STRATEGY
@@ -122,7 +130,6 @@ export default function VedicDhoopMosaicPage() {
                               col-2 row-2            → Rest of details
         */}
         <div className="flex flex-col gap-6 lg:grid lg:grid-cols-2 lg:gap-6 lg:items-start">
-
           {/* ── INFO CARD: mobile top (order-1), desktop col-2 row-1 ── */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
@@ -186,7 +193,9 @@ export default function VedicDhoopMosaicPage() {
                       ? "bg-red-500 shadow-red-200 hover:bg-red-600"
                       : "bg-slate-50 hover:bg-red-50 shadow-slate-200"
                   }`}
-                  title={wishlisted ? "Remove from wishlist" : "Add to wishlist"}
+                  title={
+                    wishlisted ? "Remove from wishlist" : "Add to wishlist"
+                  }
                 >
                   <Heart
                     size={22}
@@ -233,7 +242,11 @@ export default function VedicDhoopMosaicPage() {
                       initial={{ opacity: 0, scale: 0.88 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 1.04 }}
-                      transition={{ type: "spring", damping: 22, stiffness: 200 }}
+                      transition={{
+                        type: "spring",
+                        damping: 22,
+                        stiffness: 200,
+                      }}
                       src={productImages[activeImg]}
                       alt={product.name}
                       className="w-full max-w-[380px] md:max-w-[460px] object-contain rounded-full"
@@ -258,16 +271,16 @@ export default function VedicDhoopMosaicPage() {
             className="order-3 lg:order-none lg:col-start-2 lg:row-start-2 flex flex-col gap-5"
           >
             {/* Weight pills */}
-            {!!product.weightOptions?.length && (
+            {!!product.weightOptions?.filter((w) => ["1kg", "3kg", "5kg"].includes(w)).length && (
               <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm">
                 <p className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-500 mb-3">
                   Select Weight
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {product.weightOptions.map((option) => (
+                  {product.weightOptions.filter((w) => ["1kg", "3kg", "5kg"].includes(w)).map((option) => (
                     <button
                       key={option}
-                      onClick={() => setSelectedWeight(option)}
+                      onClick={() => handleWeightSelect(option)}
                       className={`px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all duration-200 border-2 ${
                         currentWeight === option
                           ? "bg-[#4a703f] text-white border-[#4a703f] shadow-lg shadow-green-900/20"
@@ -275,6 +288,9 @@ export default function VedicDhoopMosaicPage() {
                       }`}
                     >
                       {option}
+                      {option === "5kg" && product.image5kg && (
+                        <span className="ml-1 text-[8px] opacity-60 ">●</span>
+                      )}
                     </button>
                   ))}
                 </div>
@@ -353,9 +369,7 @@ export default function VedicDhoopMosaicPage() {
                           key={i}
                           className="flex items-center gap-3 bg-[#f3f8ee] rounded-2xl px-4 py-3 border border-[#4a703f]/10"
                         >
-                          <div className="w-7 h-7 rounded-full bg-[#4a703f] flex items-center justify-center flex-shrink-0 shadow-sm shadow-green-900/20">
-                            <Check size={13} className="text-white" strokeWidth={3.5} />
-                          </div>
+                          <Check size={13} className="text-[#4a703f] flex-shrink-0" />
                           <span className="text-sm font-bold text-slate-800">
                             {benefit}
                           </span>
@@ -367,7 +381,7 @@ export default function VedicDhoopMosaicPage() {
 
                 {/* Ingredients */}
                 {product.ingredients && (
-                  <div className="bg-[#fdf6ee] rounded-3xl p-6 border border-[#e9aa43]/30 shadow-sm">
+                  <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm">
                     <div className="flex items-center gap-3 mb-5">
                       <div className="w-1 h-5 bg-[#e9aa43] rounded-full" />
                       <p className="text-xs font-black uppercase tracking-[0.3em] text-[#b45309]">
@@ -375,17 +389,21 @@ export default function VedicDhoopMosaicPage() {
                       </p>
                     </div>
                     <div className="flex flex-col gap-2.5">
-                      {product.ingredients.split(",").map((ing, i) => (
-                        <div
-                          key={i}
-                          className="flex items-center gap-3 bg-white/70 rounded-2xl px-4 py-3 border border-[#e9aa43]/20"
-                        >
-                          <div className="w-2 h-2 rounded-full bg-[#e9aa43] flex-shrink-0" />
-                          <span className="text-sm font-bold text-slate-800">
-                            {ing.trim()}
-                          </span>
-                        </div>
-                      ))}
+                      {product.ingredients
+                        .split(/[\n,;|]+/)
+                        .map((s) => s.trim())
+                        .filter(Boolean)
+                        .map((ing, i) => (
+                          <div
+                            key={i}
+                            className="flex items-center gap-3 bg-[#fdf6ee] rounded-2xl px-4 py-3 border border-[#e9aa43]/20"
+                          >
+                            <Check size={13} className="text-[#e9aa43] flex-shrink-0" />
+                            <span className="text-sm font-bold text-slate-800">
+                              {ing}
+                            </span>
+                          </div>
+                        ))}
                     </div>
                   </div>
                 )}
@@ -404,7 +422,11 @@ export default function VedicDhoopMosaicPage() {
 
             {/* Product detail grid */}
             <div className="grid gap-4 lg:grid-cols-2">
-              {(product.sku || product.batchNo || product.mfgDate || product.bestBefore || product.weightOptions?.length) && (
+              {(product.sku ||
+                product.batchNo ||
+                product.mfgDate ||
+                product.bestBefore ||
+                product.weightOptions?.length) && (
                 <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm">
                   <div className="flex items-center gap-3 mb-4">
                     <span className="w-1.5 h-8 rounded-full bg-[#4a703f]" />
@@ -415,33 +437,43 @@ export default function VedicDhoopMosaicPage() {
                   <div className="space-y-3 text-sm text-slate-700">
                     {product.sku && (
                       <div className="flex justify-between gap-4">
-                        <span className="font-semibold text-slate-500">SKU</span>
+                        <span className="font-semibold text-slate-500">
+                          SKU
+                        </span>
                         <span className="text-right">{product.sku}</span>
                       </div>
                     )}
                     {product.batchNo && (
                       <div className="flex justify-between gap-4">
-                        <span className="font-semibold text-slate-500">Batch No.</span>
+                        <span className="font-semibold text-slate-500">
+                          Batch No.
+                        </span>
                         <span className="text-right">{product.batchNo}</span>
                       </div>
                     )}
                     {product.mfgDate && (
                       <div className="flex justify-between gap-4">
-                        <span className="font-semibold text-slate-500">Mfg Date</span>
+                        <span className="font-semibold text-slate-500">
+                          Mfg Date
+                        </span>
                         <span className="text-right">{product.mfgDate}</span>
                       </div>
                     )}
                     {product.bestBefore && (
                       <div className="flex justify-between gap-4">
-                        <span className="font-semibold text-slate-500">Best Before</span>
+                        <span className="font-semibold text-slate-500">
+                          Best Before
+                        </span>
                         <span className="text-right">{product.bestBefore}</span>
                       </div>
                     )}
-                    {product.weightOptions?.length > 0 && (
+                    {product.weightOptions?.filter((w) => ["1kg", "3kg", "5kg"].includes(w)).length > 0 && (
                       <div className="flex justify-between gap-4">
-                        <span className="font-semibold text-slate-500">Also Available</span>
+                        <span className="font-semibold text-slate-500">
+                          Also Available
+                        </span>
                         <span className="text-right">
-                          {product.weightOptions.join(', ')}
+                          {product.weightOptions.filter((w) => ["1kg", "3kg", "5kg"].includes(w)).join(", ")}
                         </span>
                       </div>
                     )}
@@ -449,7 +481,9 @@ export default function VedicDhoopMosaicPage() {
                 </div>
               )}
 
-              {(product.usageInstructions || product.storageInstructions || product.safetyInstructions) && (
+              {(product.usageInstructions ||
+                product.storageInstructions ||
+                product.safetyInstructions) && (
                 <div className="grid gap-4">
                   {product.usageInstructions && (
                     <div className="bg-[#eef8ef] rounded-3xl p-6 border border-[#4a703f]/15 shadow-sm">
@@ -484,9 +518,7 @@ export default function VedicDhoopMosaicPage() {
                 </div>
               )}
             </div>
-
           </motion.div>
-
         </div>
       </div>
     </div>

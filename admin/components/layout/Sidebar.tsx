@@ -59,9 +59,7 @@ function SidebarContent({
           collapsed ? "justify-center px-0" : "gap-3",
         )}
       >
-        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-          <Leaf className="h-4 w-4" />
-        </div>
+       
         {!collapsed && (
           <div className="flex-1 min-w-0">
             <p className="text-sm font-bold leading-none text-sidebar-primary-foreground">

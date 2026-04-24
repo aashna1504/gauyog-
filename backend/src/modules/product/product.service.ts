@@ -18,7 +18,12 @@ export class ProductService {
     const product = await prisma.product.findUnique({ where: { id } });
     if (!product) throw new AppError('Product not found', 404);
 
-    return prisma.product.delete({ where: { id } });
+    return prisma.$transaction(async (tx) => {
+      // Remove order item rows that reference this product.
+      // CartItem and Wishlist cascade automatically via DB foreign keys.
+      await tx.orderItem.deleteMany({ where: { productId: id } });
+      return tx.product.delete({ where: { id } });
+    });
   }
 
   static async getProductById(id: string) {

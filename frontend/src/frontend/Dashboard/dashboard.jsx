@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import useAuthStore from "../../store/authStore";
 import useCartStore from "../../store/cartStore";
+import api from "../../api/axios";
 import toast from "react-hot-toast";
 import {
   User,
@@ -15,6 +16,9 @@ import {
   AlertCircle,
   X,
   ShoppingCart,
+  MapPin,
+  Phone,
+  PlusCircle,
 } from "lucide-react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
@@ -25,10 +29,23 @@ export default function FloatingNexusDashboard() {
 
   const { user, logout } = useAuthStore();
   const { cartCount, cartItems, fetchCart } = useCartStore();
+  const [address, setAddress] = useState(null);
+  const [addressLoading, setAddressLoading] = useState(true);
 
   useEffect(() => {
     fetchCart();
   }, [fetchCart]);
+
+  useEffect(() => {
+    api
+      .get("/delivery")
+      .then((res) => {
+        const d = res.data?.data;
+        if (d && (d.building || d.address)) setAddress(d);
+      })
+      .catch(() => {})
+      .finally(() => setAddressLoading(false));
+  }, []);
 
   const navItems = [
     {
@@ -173,20 +190,18 @@ export default function FloatingNexusDashboard() {
             </h1>
           </header>
 
-          <div className="w-full h-1 bg-slate-100 rounded-full overflow-hidden mb-8">
-            <div className="w-1/3 h-full bg-[#4a703f]" />
-          </div>
 
          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
        
-            <div className="bg-white border border-slate-100 p-6 rounded-[32px] shadow-sm flex flex-col justify-between hover:border-[#4a703f] transition-colors group">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center text-slate-300 group-hover:text-[#4a703f]">
-                  <User size={24} />
+            <div className="bg-white border border-slate-100 p-6 rounded-[32px] shadow-sm flex flex-col justify-between hover:border-[#744926]/30 transition-colors group">
+              {/* — User identity — */}
+              <div className="flex items-center gap-4 mb-5">
+                <div className="p-2 bg-[#744926]/10 rounded-full text-[#744926] flex items-center justify-center">
+                  <UserCircle2 size={18} />
                 </div>
-                <div>
-                  <h3 className="text-base font-black text-slate-900 leading-tight">
+                <div className="min-w-0">
+                  <h3 className="text-base font-black text-slate-900 leading-tight truncate">
                     {user?.name || user?.email?.split("@")[0] || "Guest User"}
                   </h3>
                   <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest truncate max-w-[140px]">
@@ -194,34 +209,80 @@ export default function FloatingNexusDashboard() {
                   </p>
                 </div>
               </div>
+
+              {/* — Address block — */}
+              <div className="flex-1 mb-5">
+                <div className="flex items-center gap-2 mb-3">
+                  <MapPin size={12} className="text-[#744926]" />
+                  <span className="text-[10px] font-black uppercase tracking-[0.25em] text-[#744926]">
+                    Delivery Address
+                  </span>
+                </div>
+
+                {addressLoading ? (
+                  <div className="space-y-2">
+                    <div className="h-3 bg-slate-100 rounded-full w-3/4 animate-pulse" />
+                    <div className="h-3 bg-slate-100 rounded-full w-1/2 animate-pulse" />
+                  </div>
+                ) : address ? (
+                  <div className="bg-slate-50 rounded-2xl px-4 py-3 space-y-1.5">
+                    {address.building && (
+                      <p className="text-[11px] font-bold text-slate-700 leading-snug">
+                        {address.building}
+                      </p>
+                    )}
+                    {address.address && (
+                      <p className="text-[11px] font-semibold text-slate-500 leading-snug">
+                        {address.address}
+                      </p>
+                    )}
+                    {address.phone && (
+                      <div className="flex items-center gap-1.5 pt-1 border-t border-slate-100">
+                        <Phone size={10} className="text-slate-400" />
+                        <p className="text-[10px] font-bold text-slate-400">
+                          {address.phone}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div className="bg-slate-50 rounded-2xl px-4 py-3 flex items-center gap-2">
+                    <PlusCircle size={14} className="text-slate-300" />
+                    <p className="text-[11px] font-bold text-slate-400 italic">
+                      No address added yet
+                    </p>
+                  </div>
+                )}
+              </div>
+
               <button
                 onClick={() => navigate("/settings")}
-                className="w-full py-3 bg-slate-50 rounded-full text-[9px] font-black uppercase tracking-widest text-slate-800 hover:bg-[#4a703f] hover:text-white transition-all"
+                className="w-full py-3 rounded-full text-[9px] font-black uppercase tracking-widest text-slate-200 bg-[#744926] hover:text-white transition-all"
               >
-                Edit Profile
+                {address ? "Edit Address" : "Add Address"}
               </button>
             </div>
 
             
             <div
-              className="bg-white border border-slate-100 p-6 rounded-[32px] shadow-sm flex flex-col justify-between hover:border-[#4a703f] transition-all cursor-pointer group"
+              className="bg-white border border-slate-100 p-6 rounded-[32px] shadow-sm flex flex-col justify-between hover:border-[#e9aa43]/50 transition-all cursor-pointer group"
               onClick={() => navigate("/orders")}
             >
               <div className="flex items-center gap-3 mb-6">
-                <div className="p-2 bg-[#4a703f]/10 rounded-full text-[#4a703f]">
+                <div className="p-2 bg-[#e9aa43]/10 rounded-full text-[#e9aa43]">
                   <Package size={18} />
                 </div>
                 <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-900">
                   Track Orders
                 </h3>
               </div>
-              <div className="flex items-center gap-2 mb-4 text-[#4a703f]">
+              <div className="flex items-center gap-2 mb-4 text-[#e9aa43]">
                 <Clock size={14} className="animate-pulse" />
                 <p className="text-[10px] font-black uppercase tracking-tight">
                   Active Shipments
                 </p>
               </div>
-              <button className="w-full py-3 bg-slate-50 rounded-full text-[9px] font-black uppercase tracking-widest text-slate-800 hover:bg-[#4a703f] hover:text-white transition-all">
+              <button className="w-full py-3 rounded-full text-[9px] font-black uppercase tracking-widest text-slate-100 bg-[#e9aa43] hover:text-white transition-all">
                 Order History
               </button>
             </div>
@@ -267,7 +328,7 @@ export default function FloatingNexusDashboard() {
                 )}
               </div>
 
-              <button className="w-full py-3 bg-slate-50 rounded-full text-[9px] font-black uppercase tracking-widest text-slate-800 hover:bg-blue-500 hover:text-white transition-all">
+              <button className="w-full py-3 rounded-full text-[9px] font-black uppercase tracking-widest text-slate-100 bg-blue-500 hover:text-white transition-all">
                 Proceed to Checkout
               </button>
             </div>

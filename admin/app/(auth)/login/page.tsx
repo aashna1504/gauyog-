@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
@@ -19,6 +19,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { loginRequest, signupRequest } from "@/lib/api/auth";
+import { useAdminAuthStore } from "@/store/authStore";
 import axios from "axios";
 
 const authSchema = z
@@ -51,7 +52,7 @@ function extractErrorMessage(err: unknown, fallback: string): string {
   return fallback;
 }
 
-export default function AdminAuthPage() {
+function AdminAuthForm() {
   const [authMode, setAuthMode] = useState<"signin" | "signup">("signin");
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -94,12 +95,22 @@ export default function AdminAuthPage() {
           return;
         }
 
+        // ── Store token immediately so API calls work regardless of NextAuth state ──
+        useAdminAuthStore.getState().setAccessToken(loginData.accessToken);
+
         // ── Step 3: create the NextAuth session ──
-        const result = await signIn("credentials", {
-          email: values.email,
-          password: values.password,
-          redirect: false,
-        });
+        let result;
+        try {
+          result = await signIn("credentials", {
+            email: values.email,
+            password: values.password,
+            redirect: false,
+            callbackUrl: "/dashboard",
+          });
+        } catch {
+          toast.error("Session creation failed. Please try again.");
+          return;
+        }
 
         if (result?.error) {
           toast.error("Session creation failed. Please try again.");
@@ -144,7 +155,7 @@ export default function AdminAuthPage() {
         {/* Brand */}
         <div className="text-center space-y-1">
           <h1 className="text-4xl font-black tracking-tighter text-[#1a1a1a]">
-            Gauyog Kendra
+            Gauyog Kendr
           </h1>
           <p className="text-[#4a703f] font-bold text-[10px] uppercase tracking-[0.3em] flex items-center justify-center gap-1">
             <ShieldCheck className="h-3 w-3" /> Management Portal
@@ -293,5 +304,13 @@ export default function AdminAuthPage() {
         </Card>
       </div>
     </div>
+  );
+}
+
+export default function AdminAuthPage() {
+  return (
+    <Suspense fallback={null}>
+      <AdminAuthForm />
+    </Suspense>
   );
 }
