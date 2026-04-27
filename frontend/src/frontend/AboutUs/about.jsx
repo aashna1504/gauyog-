@@ -39,7 +39,7 @@ function about() {
     {
       title: "Vision",
       subtitle: "Where we're going",
-      desc: "To become a trusted sanctuary that promotes sustainable living and holistic wellness through pure, natural practices. We aim to reconnect people with nature and traditional wisdom for a healthier future.",
+      desc: "To regenerate the living soil of millions of farms — replacing harmful chemicals with the wisdom of nature — so that land grows richer with every harvest, and natural farming becomes the way the world grows once again.",
       icon: <Eye className="text-white" size={20} />,
       color: "bg-[#e9aa43]", // Golden Amber
       glowColor: "text-amber-100/60",
