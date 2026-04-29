@@ -200,8 +200,8 @@ export default function ProductCard({
                     onClick={(e) => { e.stopPropagation(); setSelectedWeight(w); }}
                     className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider border transition-all ${
                       selectedWeight === w
-                        ? "bg-[#e9aa43] text-white border-[#e9aa43]"
-                        : "bg-white text-slate-500  hover:border-[#e9aa43]"
+                        ? "bg-[#4a703f] text-white border-[#4a703f]"
+                        : "bg-white text-slate-500  hover:border-[#4a703f]"
                     }`}
                   >
                     {w}
