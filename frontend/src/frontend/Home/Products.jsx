@@ -18,7 +18,6 @@ import { motion } from "framer-motion";
 import {
   ShieldCheck,
   Zap,
-  Crown,
   CheckCircle2,
   ArrowUpRight,
 } from "lucide-react";
@@ -80,52 +79,59 @@ export default function ProductSection() {
   ];
   const tiers = [
     {
-      level: "Essential",
-      name: "Cow Dung Powder",
-      tagline: "The Foundation Builder",
+      category: "Fertilisers",
+      name: "Organic Fertiliser Range",
+      tagline: "From Gir Cow Dung to Your Soil — Pure & Proven",
       description:
-        "Pure Gir cow dung, dried and powdered. For shoppers who want to start with organic basics.",
-      color: "#a05a2c", // Earthy Sienna
+        "Our complete line of cow-based organic fertilisers, crafted from authentic Gir cow dung and natural botanicals. Designed for farmers, gardeners, and co-operatives who want real, chemical-free results.",
+      color: "#744926",
       icon: <ShieldCheck size={24} />,
+      products: [
+        "Cow Dung Powder",
+        "Cow Dung Slurry",
+        "Ganjiv Amrut",
+        "Active Soil",
+        "Amrut Mati",
+      ],
       points: [
-        "Made from pure Gir cow dung, naturally dried and finely powdered.",
-        "Improves soil structure and enriches it with essential nutrients.",
-        "An ideal base for organic gardening and sustainable soil health.",
+        "Improves soil structure, texture, and long-term fertility",
+        "Enriches the earth with essential macro and micro nutrients",
+        "Boosts beneficial microbial activity deep in the root zone",
+        "Enhances root strength, plant immunity, and disease resistance",
+        "Accelerates germination and increases overall crop yield",
+        "Safe for all soil types — sandy loam to black cotton soil",
+        "Zero synthetic chemicals — 100% natural and compostable",
+        "Sourced exclusively from Gir cows of Gujarat, India",
       ],
       claim: "Feed Your Soil — Not Just Your Crop",
-      badge: "Level 01",
+      badge: "Category 01",
     },
     {
-      level: "Classic",
-      name: "Cow Dung Slurry",
-      tagline: "The Microbial Powerhouse",
+      category: "Coco Products",
+      name: "Premium Coco Substrate Range",
+      tagline: "Harvested from Natural Coconut Husks — Pure & pH Balanced",
       description:
-        "Fermented bio-fertiliser with live microbial cultures for active soil biology.",
-      color: "#4a703f", // Forest Green
+        "Our range of certified coco peat and coco fibre products are sustainably processed from natural coconut husks. Perfect for hydroponics, nurseries, container gardening, and greenhouse cultivation worldwide.",
+      color: "#744926",
       icon: <Zap size={24} />,
-      points: [
-        "Enriched with beneficial microbes that naturally improve soil health.",
-        "Enhances nutrient absorption and boosts plant growth effectively.",
-        "Revives soil vitality for stronger roots and better yield.",
+      products: [
+        "Coco Peat",
+        "Coco Fibre",
+        "Coco Cell",
+        
       ],
-      claim: "Activate Your Soil with Millions of Microbes",
-      badge: "Level 02",
-    },
-    {
-      level: "Premium",
-      name: "Ghanjivamrut",
-      tagline: "The Complete Growth System",
-      description:
-        "Dual-action formula combining ocean minerals with microbial power for maximum yield.",
-      color: "#e5ad06", // Deep Teal
-      icon: <Crown size={24} />,
       points: [
-        "Enhances soil fertility and microbial activity through Ghanjeevamrut.",
-        "Boosts plant growth with natural nutrients and growth hormones.",
-        "Improves root strength, yield, and overall plant health in a natural way.",
+        "Exceptional water retention — holds up to 9× its own weight",
+        "Improves soil drainage and aeration for healthy root systems",
+        "pH neutral (5.8–6.8) — compatible with all plant varieties",
+        "100% biodegradable, renewable, and eco-certified",
+        "Reduces irrigation frequency by up to 50%",
+        "Ideal growing medium for hydroponics and soilless cultivation",
+        "Naturally disease-resistant and free from pathogens",
+        "Long-lasting substrate with a 3–5 year effective lifespan",
       ],
-      claim: "Maximum Growth — Maximum Quality",
-      badge: "Level 03",
+      claim: "Grow More — Waste Less",
+      badge: "Category 02",
     },
   ];
   return (
@@ -133,7 +139,7 @@ export default function ProductSection() {
       <section className=" py-20 px-6 overflow-hidden lg:mt-32 mt-10">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch">
           {/* Left Content */}
-          <div className="flex flex-col justify-between space-y-12">
+          <div className="flex flex-col justify-between space-y-12 order-2 lg:order-1">
             {/* Main Text Block */}
             <div className="space-y-8">
               <div className="space-y-4">
@@ -155,8 +161,8 @@ export default function ProductSection() {
                   to the World
                 </h1>
 
-                <p className="text-[#e9aa43] italic font-semibold text-lg flex items-center gap-3">
-                  <span className="w-6 h-[2px] bg-[#e9aa43]/20" />
+                <p className="text-[#4a703f] italic font-semibold text-lg flex items-center gap-3">
+                  <span className="w-6 h-[2px] bg-[#4a703f]" />
                   Pure by Nature. Proven by Earth.
                 </p>
               </div>
@@ -214,7 +220,7 @@ export default function ProductSection() {
           </div>
 
           {/* Right Content */}
-          <div className="space-y-6">
+          <div className="space-y-6 order-1 lg:order-2">
             {/* Main Image Card */}
             <div className="relative rounded-[40px] overflow-hidden shadow-2xl group transition-transform duration-500 hover:scale-[1.02]">
               <img
@@ -237,7 +243,7 @@ export default function ProductSection() {
                   key={idx}
                   className="bg-white border border-slate-100 p-6 rounded-2xl flex flex-col justify-center items-center text-center space-y-2 shadow-sm hover:shadow-md transition-shadow"
                 >
-                  <span className="text-[#e9aa43] font-bold text-2xl lg:text-xl xl:text-2xl">
+                  <span className="text-[#4a703f] font-bold text-2xl lg:text-xl xl:text-2xl">
                     {stat.label}
                   </span>
                   <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest leading-tight">
@@ -253,8 +259,9 @@ export default function ProductSection() {
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-green-50 rounded-full blur-[120px] -z-10 opacity-60" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-50 rounded-full blur-[100px] -z-10 opacity-40" />
 
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 items-center gap-12 mb-24">
+        <div className="max-w-7xl mx-auto px-4 flex flex-col">
+          {/* Trusted Natural Partner — below products on mobile, above on desktop */}
+          <div className="order-2 md:order-1 grid md:grid-cols-2 items-center gap-12 mb-24 mt-10 md:mt-0">
             <div className="relative group flex justify-center order-2 md:order-1">
               <div className="absolute w-[320px] h-[320px] md:w-[450px] md:h-[450px] bg-gradient-to-tr from-green-100/40 to-emerald-50/20 rounded-full animate-pulse shadow-inner" />
               <img
@@ -304,16 +311,62 @@ export default function ProductSection() {
             </div>
           </div>
 
-          <div className="flex justify-between items-end mb-10">
-            <div className="space-y-2">
-              <h2 className="text-5xl lg:text-7xl font-bold text-gray-900 leading-[1.1]">
-                Everything from{" "}
-                <span className="text-[#4a703f] italic underline decoration-[#e9aa43]/30 underline-offset-8">
-                  Mother Earth
-                </span>
-              </h2>
+          {/* Products section — first on mobile, second on desktop */}
+          <div className="order-1 md:order-2">
+            <div className="flex justify-between items-end mb-10">
+              <div className="space-y-2">
+                <h2 className="text-5xl lg:text-7xl font-bold text-gray-900 leading-[1.1]">
+                  Everything from{" "}
+                  <span className="text-[#4a703f] italic underline decoration-[#e9aa43]/30 underline-offset-8">
+                    Mother Earth
+                  </span>
+                </h2>
+              </div>
+              {/* Arrows — desktop only */}
+              <div className="hidden md:flex gap-3">
+                <button className="group border-2 border-gray-100 p-4 rounded-full hover:bg-black hover:border-black transition-all">
+                  <ArrowLeft
+                    size={20}
+                    className="group-hover:text-white transition-colors"
+                  />
+                </button>
+                <button className="group border-2 border-gray-100 p-4 rounded-full hover:bg-black hover:border-black transition-all">
+                  <ArrowRight
+                    size={20}
+                    className="group-hover:text-white transition-colors"
+                  />
+                </button>
+              </div>
             </div>
-            <div className="flex gap-3">
+
+            {loading ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {Array.from({ length: 4 }).map((_, i) => (
+                  <div
+                    key={i}
+                    className="h-96 rounded-[40px] bg-gray-100 animate-pulse"
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-9">
+                <AnimatePresence mode="popLayout">
+                  {products.map((p) => (
+                    <ProductCard
+                      key={p.id}
+                      product={{ ...p, inCart: isInCart(p.id) }}
+                      onAddToCart={handleAddToCart}
+                      onBuyNow={handleBuyNow}
+                      onToggleWishlist={handleToggleWishlist}
+                      isInWishlist={isInWishlist(p.id)}
+                    />
+                  ))}
+                </AnimatePresence>
+              </div>
+            )}
+
+            {/* Arrows — mobile only, below the product grid */}
+            <div className="flex md:hidden justify-center gap-4 mb-9">
               <button className="group border-2 border-gray-100 p-4 rounded-full hover:bg-black hover:border-black transition-all">
                 <ArrowLeft
                   size={20}
@@ -328,32 +381,6 @@ export default function ProductSection() {
               </button>
             </div>
           </div>
-
-          {loading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {Array.from({ length: 4 }).map((_, i) => (
-                <div
-                  key={i}
-                  className="h-96 rounded-[40px] bg-gray-100 animate-pulse"
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-9">
-              <AnimatePresence mode="popLayout">
-                {products.map((p) => (
-                  <ProductCard
-                    key={p.id}
-                    product={{ ...p, inCart: isInCart(p.id) }}
-                    onAddToCart={handleAddToCart}
-                    onBuyNow={handleBuyNow}
-                    onToggleWishlist={handleToggleWishlist}
-                    isInWishlist={isInWishlist(p.id)}
-                  />
-                ))}
-              </AnimatePresence>
-            </div>
-          )}
         </div>
         <div className=" bg-[#4a703f] ">
           <div className="max-w-7xl mx-auto py-24 px-6">
@@ -371,92 +398,88 @@ export default function ProductSection() {
                 </h2>
               </div>
               <p className="max-w-xs text-slate-100 text-sm font-medium leading-relaxed border-l-2 border-slate-100 pl-6">
-                A three-tier progression system designed to take your garden
-                from basic health to professional-grade yield.
+                Two premium product categories — organic fertilisers and coco
+                substrates — crafted to transform your soil and grow naturally.
               </p>
             </div>
 
-            {/* The Premium Box Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Two-Category Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {tiers.map((tier, idx) => (
                 <motion.div
                   key={idx}
-                  whileHover={{ y: -10 }}
-                  className="relative group h-full bg-white rounded-[40px] border border-slate-100 p-2 shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden"
+                  whileHover={{ y: -6 }}
+                  className="relative group bg-white rounded-[40px] border border-slate-100 p-2 shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden"
                 >
-                  {/* Inner Styled Container */}
-                  <div className="bg-slate-50/50 h-full rounded-[34px] p-8 flex flex-col justify-between">
-                    {/* Top Section */}
-                    <div>
-                      <div className="flex justify-between items-center mb-10">
-                        <div
-                          className="w-14 h-14 rounded-2xl flex items-center justify-center text-white shadow-lg"
-                          style={{ backgroundColor: tier.color }}
-                        >
-                          {tier.icon}
-                        </div>
-                        <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest">
-                          {tier.badge}
-                        </span>
-                      </div>
-
-                      <h4
-                        className="text-[10px] font-black uppercase tracking-[0.3em] mb-2"
-                        style={{ color: tier.color }}
-                      >
-                        {tier.level}
-                      </h4>
-                      <h3 className="text-2xl font-black text-slate-900 leading-tight mb-2">
-                        {tier.name}
-                      </h3>
-                      <p className="text-xs font-bold italic text-slate-400 mb-6">
-                        {tier.tagline}
-                      </p>
-
-                      <p className="text-sm text-slate-500 font-medium leading-relaxed mb-8">
-                        {tier.description}
-                      </p>
-
-                      <ul className="space-y-4 mb-10">
-                        {tier.points.map((point, i) => (
-                          <li
-                            key={i}
-                            className="flex items-center gap-3 text-sm font-semibold text-slate-700"
-                          >
-                            <CheckCircle2
-                              size={16}
-                              style={{ color: tier.color }}
-                            />
-                            {point}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    {/* Bottom Section */}
-                    <div className="pt-4 border-t border-slate-200/60 mt-auto">
-                      <div className="mb-6">
-                        <p className="text-[9px] font-black uppercase tracking-widest text-slate-400 mb-2">
-                          Primary Goal
-                        </p>
-                        <p className="text-sm font-black italic text-slate-800 leading-tight">
-                          "{tier.claim}"
-                        </p>
-                      </div>
-
-                      <button
-                        onClick={() => (window.location.href = "/shop")}
-                        className="w-full py-4 rounded-2xl flex items-center justify-center gap-3 font-black text-[10px] uppercase tracking-widest transition-all text-white shadow-md hover:brightness-110 active:scale-95"
+                  <div className="bg-slate-50/50 rounded-[34px] p-8 flex flex-col gap-6">
+                    {/* Header row */}
+                    <div className="flex justify-between items-center">
+                      <div
+                        className="w-12 h-12 rounded-2xl flex items-center justify-center text-white shadow-lg"
                         style={{ backgroundColor: tier.color }}
                       >
-                        Browse Products <ArrowUpRight size={14} />
-                      </button>
+                        {tier.icon}
+                      </div>
+                      <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest">
+                        {tier.badge}
+                      </span>
                     </div>
+
+                    {/* Title block */}
+                    <div>
+                      <h4
+                        className="text-[10px] font-black uppercase tracking-[0.3em] mb-1"
+                        style={{ color: tier.color }}
+                      >
+                        {tier.category}
+                      </h4>
+                      <h3 className="text-2xl font-black text-slate-900 leading-tight mb-3">
+                        {tier.name}
+                      </h3>
+                      <p className="text-sm text-slate-500 font-medium leading-relaxed">
+                        {tier.description}
+                      </p>
+                    </div>
+
+                    {/* Product badges */}
+                    <div className="flex flex-wrap gap-2">
+                      {tier.products.map((product, i) => (
+                        <span
+                          key={i}
+                          className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wide border"
+                          style={{
+                            borderColor: tier.color + "50",
+                            color: tier.color,
+                            backgroundColor: tier.color + "12",
+                          }}
+                        >
+                          {product}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Benefits */}
+                    <ul className="space-y-2">
+                      {tier.points.slice(0, 4).map((point, i) => (
+                        <li key={i} className="flex items-start gap-2.5 text-sm font-semibold text-slate-700">
+                          <CheckCircle2 size={15} className="mt-0.5 shrink-0" style={{ color: tier.color }} />
+                          {point}
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* CTA */}
+                    <button
+                      onClick={() => (window.location.href = "/shop")}
+                      className="w-full py-4 rounded-2xl flex items-center justify-center gap-3 font-black text-[10px] uppercase tracking-widest transition-all text-white shadow-md hover:brightness-110 active:scale-95"
+                      style={{ backgroundColor: tier.color }}
+                    >
+                      Browse Products <ArrowUpRight size={14} />
+                    </button>
                   </div>
 
-                  {/* Subtle Color Glow in Background of Card */}
                   <div
-                    className="absolute -bottom-20 -right-20 w-40 h-40 rounded-full blur-[80px] opacity-20 -z-10"
+                    className="absolute -bottom-16 -right-16 w-40 h-40 rounded-full blur-[80px] opacity-20 -z-10"
                     style={{ backgroundColor: tier.color }}
                   />
                 </motion.div>
@@ -474,9 +497,9 @@ export default function ProductSection() {
               {/* --- LEFT SIDE: CONTENT & SEGMENTS --- */}
               <div className="lg:col-span-7 space-y-12">
                 <div className="space-y-6">
-                  <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#e9aa43]/10 border border-[#e9aa43]/20">
-                    <Globe size={14} className="text-[#e9aa43]" />
-                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#e9aa43]">
+                  <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#4a703f]/10 border border-[#4a703f]/20">
+                    <Globe size={14} className="text-[#4a703f]" />
+                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#4a703f]">
                       Global Reach & Impact
                     </span>
                   </div>

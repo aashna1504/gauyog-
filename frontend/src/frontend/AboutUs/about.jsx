@@ -33,15 +33,15 @@ function about() {
       subtitle: "What we do",
       desc: "At Gauyog Kendr, we are dedicated to preserving traditional Vedic practices through sustainable and organic living. We offer pure, farm-sourced products crafted with care and authenticity.",
       icon: <Target className="text-white" size={20} />,
-      color: "bg-red-600", // Vedic Green
+      color: "bg-[#744926]", 
       glowColor: "text-green-100/60",
     },
     {
       title: "Vision",
       subtitle: "Where we're going",
-      desc: "To become a trusted sanctuary that promotes sustainable living and holistic wellness through pure, natural practices. We aim to reconnect people with nature and traditional wisdom for a healthier future.",
+      desc: "To regenerate the living soil of millions of farms — replacing harmful chemicals with the wisdom of nature — so that land grows richer with every harvest, and natural farming becomes the way the world grows once again.",
       icon: <Eye className="text-white" size={20} />,
-      color: "bg-[#e9aa43]", // Golden Amber
+      color: "bg-[#744926]", 
       glowColor: "text-amber-100/60",
     },
     {
@@ -49,7 +49,7 @@ function about() {
       subtitle: "What we stand for",
       desc: "We stand for purity, authenticity, and sustainability in everything we do. Our values are rooted in trust, ethical practices, and respect for nature. We are committed to delivering quality while preserving traditional wisdom.",
       icon: <ShieldCheck className="text-white" size={20} />,
-      color: "bg-blue-600", // Acid Green
+      color: "bg-[#744926]", 
       glowColor: "text-green-50/60",
     },
   ];
@@ -83,29 +83,29 @@ function about() {
       subtitle: "In-House Quality",
       desc: "In-house production facility in Gujarat with full quality control.",
       icon: <Factory strokeWidth={1.5} />,
-      color: "text-[#4a703f]",
-      dotColor: "bg-[#4a703f]",
+      color: "text-[#744926]",
+      dotColor: "bg-[#744926]",
     },
     {
       title: "Women & Community",
       subtitle: "Rural Livelihoods",
       desc: "Our workforce is majority women from local villages.",
       icon: <Users2 strokeWidth={1.5} />,
-      color: "text-[#e9aa43]",
+      color: "text-[#744926]",
     },
     {
       title: "International Expertise",
       subtitle: "Global Standards",
       desc: "Bridging Indian organics with global market needs.",
       icon: <Globe2 strokeWidth={1.5} />,
-      color: "text-blue-600",
+      color: "text-[#744926]",
     },
     {
       title: "Farmer Focused",
       subtitle: "Natural Success",
       desc: "Helping farmers succeed with natural, effective methods.",
       icon: <Sprout strokeWidth={1.5} />,
-      color: "text-[#4a703f]",
+      color: "text-[#744926]",
     },
   ];
   const galleryImages = [
@@ -165,25 +165,25 @@ function about() {
       title: "Soil Vitality",
       desc: "Restoring health with essential microbes.",
       icon: <Sprout size={18} />,
-      color: "#7bbd25",
+      color: "#744926",
     },
     {
       title: "Pure Growth",
       desc: "100% chemical-free agricultural solutions.",
       icon: <ShieldCheck size={18} />,
-      color: "#4a703f",
+      color: "#744926",
     },
     {
       title: "Higher Yield",
       desc: "Optimized root strength & productivity.",
       icon: <TrendingUp size={18} />,
-      color: "#e9aa43",
+      color: "#744926",
     },
     {
       title: "Vedic Roots",
       desc: "Sustainable traditions for the future.",
       icon: <Leaf size={18} />,
-      color: "#4a703f",
+      color: "#744926",
     },
   ];
   const scrollRef = useRef(null);
@@ -234,13 +234,13 @@ function about() {
 
                 <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-slate-900 tracking-[-0.04em] leading-[0.9] mb-8">
                   Pure by Nature <br />
-                  <span className="text-[#e9aa43] italic underline decoration-[#e9aa43]/80 underline-offset-4">
+                  <span className="text-[#4a703f] italic underline decoration-[#4a703f]/80 underline-offset-4">
                     Proven by Earth.
                   </span>
                 </h1>
 
                 <div className="flex flex-wrap items-center gap-8">
-                  <p className="text-base text-slate-500 font-medium max-w-sm leading-relaxed border-l-2 border-[#e9aa43] pl-6">
+                  <p className="text-base text-slate-500 font-medium max-w-sm leading-relaxed border-l-2 border-[#4a703f] pl-6">
                     Transforming ancient wisdom into biological solutions for
                     restoring soil health and farmer prosperity.
                   </p>
@@ -248,7 +248,7 @@ function about() {
                   <div className="flex items-center gap-4">
                     <button
                       onClick={() => (window.location.href = "/shop")}
-                      className="group bg-[#4a703f] text-white p-5 rounded-full hover:bg-[#7bbd25] transition-all shadow-xl shadow-[#4a703f]/20"
+                      className="group bg-[#4a703f] text-white p-5 rounded-full transition-all shadow-xl shadow-[#4a703f]/20"
                     >
                       <ArrowUpRight
                         size={24}
@@ -309,7 +309,7 @@ function about() {
 
                     <div className="flex flex-col">
                       <div className="flex items-center gap-3">
-                        <span className="text-[10px] font-black text-[#e9aa43] tracking-tighter">
+                        <span className="text-[10px] font-black text-[#744926] tracking-tighter">
                           {item.n}
                         </span>
                         <h4 className="text-sm font-black uppercase tracking-widest text-slate-900 group-hover:text-[#4a703f] transition-colors">

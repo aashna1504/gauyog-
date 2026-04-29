@@ -10,7 +10,7 @@ const contactInfo = [
     label: "Get Directions",
     icon: MapPin,
     href: "#",
-    color: "text-emerald-500",
+    color: "text-[#744926]",
   },
   {
     category: "Digital Inbox",
@@ -18,7 +18,7 @@ const contactInfo = [
     label: "Drop a Message",
     icon: Mail,
     href: "mailto:info@gauyogkendr.com",
-    color: "text-blue-500",
+    color: "text-[#744926]",
   },
   {
     category: "Voice Support",
@@ -31,7 +31,7 @@ const contactInfo = [
     label: "Take A Call",
     icon: PhoneCall,
     href: "tel:#",
-    color: "text-[#4a703f]",
+    color: "text-[#744926]",
   },
 ];
 

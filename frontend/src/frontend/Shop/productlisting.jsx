@@ -87,12 +87,21 @@ export default function ProductListingPage() {
     await toggleWishlist(product);
   };
 
+  const certs = [
+    { name: "ISO Standards", img: "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775715667/pngtree-iso-9001-certified---quality-standard-seal-certificate-verified-standard-vector-png-image_22204284_z6qquk.png", color: "hover:border-blue-400" },
+    { name: "Best Quality", img: "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775716925/R_g3ngmr.png", color: "hover:border-yellow-500" },
+    { name: "Natural", img: "https://res.cloudinary.com/dbpzzvcik/image/upload/v1776424916/100-percent-natural-and-organic-product-badge-label-rubber-stamp-emblem-template-organic-ingredient-badge-logo-suitable-for-product-packaging-design-elements-with-leaf-png_cricy6_1_fbrhsd.png", color: "hover:border-green-700" },
+    { name: "Recyclable", img: "https://res.cloudinary.com/dbpzzvcik/image/upload/v1776424787/pngwing.com_47_e4y7od.png", color: "hover:border-green-800" },
+    { name: "GPCB", img: "https://res.cloudinary.com/dbpzzvcik/image/upload/v1776424987/gpcb-image_jqfxee.png", color: "hover:border-blue-500" },
+    { name: "Lab Tested", img: "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775716286/lab-tested-label-sign-round-stamp-band-ribbon-vector-33848228-removebg-preview_t8vpa3.png", color: "hover:border-black" },
+  ];
+
   return (
     <div className="bg-[#fcfdfd] min-h-screen pb-24 relative">
-      <section className="w-full bg-[#fdfcfb] py-24">
+      <section className="w-full bg-[#fdfcfb] py-12">
         <div className="max-w-7xl mx-auto px-6">
           {/* --- COMBINED HEADING SECTION --- */}
-          <div className="w-full max-w-4xl mx-auto text-center mb-20 space-y-5">
+          <div className="w-full max-w-4xl mx-auto text-center mb-2 space-y-5">
             {/* Gold Subheading with centered line accents */}
             <div className="flex items-center justify-center gap-3">
               <div className="w-8 h-[1px] bg-[#e9aa43]/40" />
@@ -116,60 +125,15 @@ export default function ProductListingPage() {
             </p>
           </div>
 
-          {/* --- COLORED ICONS / CERTIFICATIONS GRID --- */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
-            {[
-             
-              {
-                name: "ISO Standards",
-                img: "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775715667/pngtree-iso-9001-certified---quality-standard-seal-certificate-verified-standard-vector-png-image_22204284_z6qquk.png",
-                color: "hover:border-blue-400",
-              },
-              {
-                name: "Best Quality",
-                img: "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775716925/R_g3ngmr.png",
-                color: "hover:border-yellow-500",
-              },
-              {
-                name: "Natural",
-                img: "https://res.cloudinary.com/dbpzzvcik/image/upload/v1776424916/100-percent-natural-and-organic-product-badge-label-rubber-stamp-emblem-template-organic-ingredient-badge-logo-suitable-for-product-packaging-design-elements-with-leaf-png_cricy6_1_fbrhsd.png",
-                color: "hover:border-green-700",
-              },
-              {
-                name: "recyclable",
-                img: "https://res.cloudinary.com/dbpzzvcik/image/upload/v1776424787/pngwing.com_47_e4y7od.png",
-                color: "hover:border-green-800",
-              },
-              {
-                name: "Gpcb",
-                img: "https://res.cloudinary.com/dbpzzvcik/image/upload/v1776424987/gpcb-image_jqfxee.png",
-                color: "hover:border-blue-500",
-              },
-              {
-                name: "Lab Tested",
-                img: "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775716286/lab-tested-label-sign-round-stamp-band-ribbon-vector-33848228-removebg-preview_t8vpa3.png",
-                color: "hover:border-black",
-              },
-            ].map((cert, idx) => (
-              <div
-                key={idx}
-                className="group flex flex-col items-center space-y-4"
-              >
-                {/* Icon Circle - Increased to w-32 h-32 for better presence */}
-                <div
-                  className={`w-32 h-32 rounded-full bg-white border border-slate-100 shadow-sm flex items-center justify-center transition-all duration-500 transform group-hover:-translate-y-2 group-hover:shadow-xl ${cert.color} border-t-2 group-hover:border-opacity-100`}
-                >
-                  {/* Uniform Image Wrapper - This forces all images to be the same size */}
+          {/* Certifications grid — desktop only; mobile sees it at page bottom */}
+          <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
+            {certs.map((cert, idx) => (
+              <div key={idx} className="group flex flex-col items-center space-y-4">
+                <div className={`w-32 h-32 rounded-full bg-white border border-slate-100 shadow-sm flex items-center justify-center transition-all duration-500 transform group-hover:-translate-y-2 group-hover:shadow-xl ${cert.color} border-t-2 group-hover:border-opacity-100`}>
                   <div className="w-20 h-20 flex items-center justify-center overflow-hidden">
-                    <img
-                      src={cert.img}
-                      alt={cert.name}
-                      className="max-w-full max-h-full object-contain transition-transform  duration-500 group-hover:scale-110"
-                    />
+                    <img src={cert.img} alt={cert.name} className="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-110" />
                   </div>
                 </div>
-
-                {/* Label */}
                 <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 group-hover:text-[#2d3a29] transition-colors text-center leading-tight">
                   {cert.name}
                 </span>
@@ -270,6 +234,33 @@ export default function ProductListingPage() {
           </div>
         )}
       </main>
+
+      {/* Certifications — mobile only, shown after products */}
+      <section className="md:hidden w-full bg-[#fdfcfb] py-16 mt-8">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex items-center justify-center gap-3 mb-10">
+            <div className="w-8 h-[1px] bg-[#e9aa43]/40" />
+            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#e9aa43]">
+              Trust & Quality
+            </span>
+            <div className="w-8 h-[1px] bg-[#e9aa43]/40" />
+          </div>
+          <div className="grid grid-cols-3 gap-6 items-center">
+            {certs.map((cert, idx) => (
+              <div key={idx} className="group flex flex-col items-center space-y-3">
+                <div className={`w-20 h-20 rounded-full bg-white border border-slate-100 shadow-sm flex items-center justify-center ${cert.color} border-t-2`}>
+                  <div className="w-12 h-12 flex items-center justify-center overflow-hidden">
+                    <img src={cert.img} alt={cert.name} className="max-w-full max-h-full object-contain" />
+                  </div>
+                </div>
+                <span className="text-[9px] font-black uppercase tracking-widest text-slate-400 text-center leading-tight">
+                  {cert.name}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
