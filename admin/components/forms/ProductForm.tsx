@@ -456,6 +456,23 @@ export function ProductForm({
         </CardContent>
       </Card>
 
+      {/* Product Images */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-base">Main Product Image</CardTitle>
+          <p className="text-xs text-muted-foreground">This image is shown on product cards, wishlist, cart, and anywhere no weight-specific image is available.</p>
+        </CardHeader>
+        <CardContent>
+          <Controller
+            name="imageUrl"
+            control={control}
+            render={({ field }) => (
+              <ImageUpload value={field.value ?? ""} onChange={field.onChange} />
+            )}
+          />
+        </CardContent>
+      </Card>
+
       {/* Weight Variants */}
       <Card>
         <CardHeader>

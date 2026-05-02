@@ -11,6 +11,7 @@ import {
   Heart,
   PersonStanding,
 } from "lucide-react";
+import ProductImage from "../../Components/ProductImage";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import useAuthStore from "../../store/authStore";
@@ -392,8 +393,8 @@ export default function Header() {
                     key={item.id}
                     className="flex gap-5 group p-2 hover:bg-[#e9aa43]/10 rounded-2xl transition-all border border-transparent"
                   >
-                    <div className="w-24 h-24 bg-[#f3f8ee] rounded-full overflow-hidden flex-shrink-0 border border-slate-100">
-                      <img
+                    <div className="w-24 h-24 bg-white rounded-full overflow-hidden flex-shrink-0 border border-slate-100 flex items-center justify-center">
+                      <ProductImage
                         src={item.img}
                         alt={item.name}
                         className="w-full h-full object-contain"

@@ -695,7 +695,7 @@ export default function KineticContactBanner() {
                 <div className="h-[1px] w-12 bg-[#e9aa43] mt-1" />
               </div>
 
-              <h2 className="text-5xl md:text-6xl  font-bold text-white leading-[1.1]">
+              <h2 className="text-5xl md:text-6xl tracking-wider font-bold text-white leading-[1.1]">
                 Born from the{" "}
                 <span className="text-white italic font-medium text-6xl">
                   Earth,
@@ -787,7 +787,7 @@ export default function KineticContactBanner() {
             >
               Our Commitment
             </motion.span>
-            <h2 className="text-5xl md:text-6xl font-bold leading-tight max-w-2xl">
+            <h2 className="text-5xl md:text-6xl font-bold tracking-wider leading-tight max-w-2xl">
               Sustainability Is Our{" "}
               <span className="text-[#4a703f] italic">Foundation</span>
             </h2>

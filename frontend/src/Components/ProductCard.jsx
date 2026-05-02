@@ -59,7 +59,7 @@ export default function ProductCard({
     if (weight === "1kg" && detail.image1kg) return detail.image1kg;
     if (weight === "3kg" && detail.image3kg) return detail.image3kg;
     if (weight === "5kg" && detail.image5kg) return detail.image5kg;
-    return detail.image;
+    return detail.image || detail.image1kg || detail.image3kg || detail.image5kg || null;
   };
   const getVariantPrice = (weight) => {
     if (weight === "1kg" && detail.price1kg) return detail.price1kg;

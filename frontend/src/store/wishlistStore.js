@@ -8,7 +8,7 @@ const getProductImage = (product) => {
   if (w === '1kg' && product?.image1kg) return product.image1kg;
   if (w === '3kg' && product?.image3kg) return product.image3kg;
   if (w === '5kg' && product?.image5kg) return product.image5kg;
-  return product?.imageUrl || null;
+  return product?.imageUrl || product?.image1kg || product?.image3kg || product?.image5kg || null;
 };
 
 const useWishlistStore = create((set, get) => ({

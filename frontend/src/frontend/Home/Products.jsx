@@ -506,7 +506,7 @@ export default function ProductSection() {
                     </span>
                   </div>
 
-                  <h2 className="text-5xl md:text-7xl font-bold text-slate-950 leading-[1.1] tracking-wide">
+                  <h2 className="text-5xl md:text-7xl font-bold text-slate-950 leading-[1.1] tracking-wider">
                     Bridging{" "}
                     <span className="text-[#4a703f] italic underline decoration-[#e9aa43]/30 underline-offset-8">
                       Heritage
