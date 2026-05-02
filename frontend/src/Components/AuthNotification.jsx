@@ -5,42 +5,42 @@ import useNotificationStore from "../store/notificationStore";
 const CONFIGS = {
   login: {
     icon: <CheckCircle size={20} />,
-    gradient: "from-[#166534] to-[#22c55e]",
+    tone: "success",
     label: "Signed In",
   },
   signup: {
     icon: <UserPlus size={20} />,
-    gradient: "from-[#166534] to-[#22c55e]",
+    tone: "success",
     label: "Welcome Aboard",
   },
   logout: {
     icon: <LogOut size={20} />,
-    gradient: "from-[#7f1d1d] to-[#dc2626]",
+    tone: "error",
     label: "Signed Out",
   },
   cart_add: {
     icon: <CheckCircle size={20} />,
-    gradient: "from-[#166534] to-[#22c55e]",
+    tone: "success",
     label: "Added To Cart",
   },
   cart_remove: {
     icon: <LogOut size={20} />,
-    gradient: "from-[#7f1d1d] to-[#dc2626]",
+    tone: "error",
     label: "Removed From Cart",
   },
   wishlist_add: {
     icon: <CheckCircle size={20} />,
-    gradient: "from-[#166534] to-[#22c55e]",
+    tone: "success",
     label: "Added To Wishlist",
   },
   wishlist_remove: {
     icon: <LogOut size={20} />,
-    gradient: "from-[#7f1d1d] to-[#dc2626]",
+    tone: "error",
     label: "Removed From Wishlist",
   },
   wishlist_auth: {
     icon: <LogOut size={20} />,
-    gradient: "from-[#7f1d1d] to-[#dc2626]",
+    tone: "error",
     label: "Sign In Required",
   },
 };
@@ -50,6 +50,8 @@ export default function AuthNotification() {
   const cfg = notification
     ? (CONFIGS[notification.type] ?? CONFIGS.login)
     : null;
+  const toneClass =
+    cfg?.tone === "error" ? "bg-[#744926]" : "bg-[#4a703f]";
 
   return (
     <AnimatePresence>
@@ -63,7 +65,7 @@ export default function AuthNotification() {
           className="fixed top-24 right-4 md:right-6 z-[999] w-[calc(100%-2rem)] max-w-[400px] pointer-events-auto"
         >
           <div
-            className={`bg-gradient-to-br ${cfg.gradient} rounded-[22px] p-4 shadow-2xl shadow-black/25 text-white flex items-start gap-3 relative overflow-hidden`}
+            className={`${toneClass} rounded-[22px] p-4 shadow-2xl shadow-black/25 text-white flex items-start gap-3 relative overflow-hidden`}
           >
           
             <motion.div

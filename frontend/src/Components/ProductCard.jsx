@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import ProductImage from "./ProductImage";
 import {
   Heart,
   Eye,
@@ -106,10 +107,10 @@ export default function ProductCard({
         transition={{ duration: 0.35 }}
         className="group"
       >
-        <div className="bg-white rounded-[40px] p-4 border border-gray-100 flex flex-col h-full transition-all duration-500 hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.12)]">
-          <div className="relative h-64 w-full bg-[#f3f8ee] rounded-[32px] overflow-hidden flex items-center justify-center">
+        <div className="bg-gray-50 rounded-[40px] p-4 flex flex-col h-full transition-all duration-500 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.12)]">
+          <div className="relative h-64 w-full bg-white border border-gray-100 rounded-[32px] overflow-hidden flex items-center justify-center">
             <div className="absolute top-4 left-4 z-10">
-              <span className="backdrop-blur-md bg-white/70 px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-widest text-gray-800 border border-white/40">
+              <span className="backdrop-blur-md bg-[#744926] px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-widest text-white border border-[#744926]/20">
                 {p.tag}
               </span>
             </div>
@@ -122,37 +123,31 @@ export default function ProductCard({
               </div>
             )}
 
-            {getVariantImage(selectedWeight) ? (
-              <img
-                src={getVariantImage(selectedWeight)}
-                className="h-44 object-contain transition-transform duration-700 group-hover:scale-110 rounded-full"
-                alt={p.name}
-                onError={(e) => { e.target.style.display = "none"; }}
-              />
-            ) : (
-              <div className="h-44 w-44 rounded-full bg-[#e8f0e6] flex items-center justify-center">
-                <span className="text-4xl font-black text-[#4a703f]/30 uppercase">{p.name?.[0] ?? "?"}</span>
-              </div>
-            )}
+            <ProductImage
+              src={getVariantImage(selectedWeight)}
+              alt={p.name}
+              className="max-h-[85%] max-w-[85%] object-contain transition-transform duration-700 group-hover:scale-110"
+            />
 
             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center gap-3 bg-black/5 backdrop-blur-[2px]">
               <button
                 onClick={handleOpenModal}
-                className="w-12 h-12 bg-white rounded-full shadow-xl flex items-center justify-center text-gray-700 hover:bg-[#4a703f] hover:text-white transition-all transform translate-y-4 group-hover:translate-y-0"
+                className="w-12 h-12 bg-white rounded-full shadow-xl flex items-center justify-center text-gray-700 hover:bg-[#744926] hover:text-white transition-all transform translate-y-4 group-hover:translate-y-0"
               >
                 <Eye size={20} />
               </button>
               <button
                 onClick={handleWishlist}
-                className={`w-12 h-12 bg-white rounded-full shadow-xl flex items-center justify-center transition-all transform translate-y-4 group-hover:translate-y-0 delay-75 ${
+                className={`w-12 h-12 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 delay-75 ${
                   isInWishlist
-                    ? "bg-red-500 text-red-800"
-                    : "text-gray-700 hover:bg-red-500 hover:text-white"
+                    ? "bg-[#e9aa43] ring-2 ring-[#e9aa43]/50 ring-offset-2 hover:text-white shadow-[0_0_16px_rgba(233,170,67,0.45)]"
+                    : "bg-white text-[#e9aa43] hover:bg-[#744926] hover:text-black "
                 }`}
               >
                 <Heart
                   size={20}
                   fill={isInWishlist ? "currentColor" : "none"}
+                  className={`transition-all duration-300 ${isInWishlist ? "text-white" : "text-[#e9aa43]"}`}
                 />
               </button>
             </div>
@@ -200,8 +195,8 @@ export default function ProductCard({
                     onClick={(e) => { e.stopPropagation(); setSelectedWeight(w); }}
                     className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider border transition-all ${
                       selectedWeight === w
-                        ? "bg-[#4a703f] text-white border-[#4a703f]"
-                        : "bg-white text-slate-500  hover:border-[#4a703f]"
+                        ? "bg-[#744926] text-white border-[#744926]"
+                        : "bg-white text-slate-500 hover:border-[#744926]"
                     }`}
                   >
                     {w}
@@ -223,7 +218,7 @@ export default function ProductCard({
                 disabled={p.inStock === false}
                 className={`w-full py-4 rounded-full font-bold text-[10px] uppercase tracking-[0.2em] flex items-center justify-center gap-2 transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed ${
                   inCart
-                    ? "bg-red-50 text-red-600 hover:bg-red-100"
+                    ? "bg-[#744926]/10 text-[#744926] hover:bg-[#744926]/20"
                     : "bg-gray-50 text-gray-500 hover:bg-[#e9aa43] hover:text-white"
                 }`}
               >
@@ -267,8 +262,8 @@ export default function ProductCard({
                     onClick={handleWishlist}
                     className={`p-3 rounded-full transition-all ${
                       isInWishlist
-                        ? "bg-red-500 text-white"
-                        : "bg-red-50 text-[#ef4444] hover:bg-red-500 hover:text-white"
+                        ? "bg-[#e9aa43] text-white"
+                        : "bg-[#e9aa43]/10 text-[#e9aa43] hover:bg-[#e9aa43] hover:text-white"
                     }`}
                   >
                     <Heart
@@ -287,29 +282,19 @@ export default function ProductCard({
               </div>
 
               {/* Left: Image */}
-              <div className="w-full md:w-5/12 bg-[#f3f8ee] flex items-center justify-center p-12 relative min-h-[300px] flex-shrink-0">
-                {activeModalImage ? (
-                  <motion.img
-                    key={activeModalImage}
-                    initial={{ scale: 0.6, opacity: 0, y: 20 }}
-                    animate={{ scale: 1, opacity: 1, y: 0 }}
-                    src={activeModalImage}
-                    className="w-full max-w-[320px] z-10 rounded-full"
-                    alt={detail.name}
-                    onError={(e) => { e.target.style.display = "none"; }}
-                  />
-                ) : (
-                  <div className="w-48 h-48 rounded-full bg-[#e8f0e6] flex items-center justify-center z-10">
-                    <span className="text-6xl font-black text-[#4a703f]/30 uppercase">{detail.name?.[0] ?? "?"}</span>
-                  </div>
-                )}
+              <div className="w-full md:w-5/12 bg-white border-r border-gray-100 flex items-center justify-center p-12 relative min-h-[300px] flex-shrink-0">
+                <ProductImage
+                  src={activeModalImage}
+                  alt={detail.name}
+                  className="w-full max-w-[320px] z-10 object-contain"
+                />
                 <span className="absolute bottom-10 left-1/2 -translate-x-1/2 text-black/5 font-black text-8xl uppercase pointer-events-none select-none">
                   {detail.category || detail.tag}
                 </span>
               </div>
 
               {/* Right: Details */}
-              <div className="w-full md:w-7/12 p-8 md:p-12 bg-white overflow-y-auto">
+              <div className="w-full md:w-7/12 p-8 md:p-10 bg-white overflow-hidden">
                 {/* Header badges */}
                 <div className="flex items-center gap-2 mb-5 flex-wrap">
                   <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-green-50 text-[#4a703f] rounded-full text-[10px] font-black uppercase tracking-widest border border-green-100">
@@ -384,7 +369,7 @@ export default function ProductCard({
                     disabled={detail.inStock === false}
                     className={`flex-[2] py-4 px-8 rounded-full font-black text-sm uppercase tracking-widest shadow-xl transition-all flex items-center justify-center gap-3 active:scale-95 disabled:opacity-50 ${
                       inCart
-                        ? "bg-red-600 text-white hover:bg-red-700"
+                        ? "bg-[#744926]/10 text-[#744926] hover:bg-[#744926]/20"
                         : "bg-[#4a703f] text-white hover:bg-[#744926] shadow-green-900/20"
                     }`}
                   >

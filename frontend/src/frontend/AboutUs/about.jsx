@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { motion } from "framer-motion";
 import { ArrowUpRight, Sparkle, Trees } from "lucide-react";
 import { Target, Eye, ShieldCheck } from "lucide-react";
-import { ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { MapPin, Phone, Clock, Navigation } from "lucide-react";
 import { Instagram, Linkedin, Facebook, Youtube } from "lucide-react";
 import {
@@ -17,7 +17,6 @@ import {
   Sprout,
   TrendingUp,
 } from "lucide-react";
-import { useRef } from "react";
 function about() {
   const reveal = {
     hidden: { opacity: 0, y: 30 },
@@ -33,7 +32,7 @@ function about() {
       subtitle: "What we do",
       desc: "At Gauyog Kendr, we are dedicated to preserving traditional Vedic practices through sustainable and organic living. We offer pure, farm-sourced products crafted with care and authenticity.",
       icon: <Target className="text-white" size={20} />,
-      color: "bg-[#744926]", 
+      color: "bg-[#744926]",
       glowColor: "text-green-100/60",
     },
     {
@@ -41,7 +40,7 @@ function about() {
       subtitle: "Where we're going",
       desc: "To regenerate the living soil of millions of farms — replacing harmful chemicals with the wisdom of nature — so that land grows richer with every harvest, and natural farming becomes the way the world grows once again.",
       icon: <Eye className="text-white" size={20} />,
-      color: "bg-[#744926]", 
+      color: "bg-[#744926]",
       glowColor: "text-amber-100/60",
     },
     {
@@ -49,29 +48,34 @@ function about() {
       subtitle: "What we stand for",
       desc: "We stand for purity, authenticity, and sustainability in everything we do. Our values are rooted in trust, ethical practices, and respect for nature. We are committed to delivering quality while preserving traditional wisdom.",
       icon: <ShieldCheck className="text-white" size={20} />,
-      color: "bg-[#744926]", 
+      color: "bg-[#744926]",
       glowColor: "text-green-50/60",
     },
   ];
   const team = [
     {
       name: "John Paynter",
-      role1: "Director & Founder",
+      role1: "Director",
       role: "International Strategy Lead",
+      bio: "An Australian finance veteran and former brokerage owner. John bridges global business acumen with a deep passion for eco-organic investing to drive Gauyog Kendr's strategic growth.",
       image:
         "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775126971/c01d8c99-c1ae-4d5d-b8b1-c0c0a77dd43b_fvjb28.jpg",
       color: "bg-[#4a703f]", // Vedic Green
     },
     {
-      name: "Hitesh Bhai",
-      role: " Innovation Lead",
+      name: "Hitesh Pampania",
+      role1: "Co-Founder & Director",
+      role: "Technology, Research & Scale",
+      bio:"Hitesh Pampania is a Computer Engineer with over 10 years of experience in IT, website development, and digital systems, including operating businesses in Australia. Guided by a strong commitment to sustainable agriculture and rural empowerment, he transitioned his career toward organic fertilizer production in India. Hitesh conducted extensive field research across Gujarat, particularly in the Kutch region, to develop high-quality cow dung and cow urine-based organic fertilizers. His work focuses on improving soil health, supporting organic farming, and increasing the economic value of cows to promote their protection. By integrating technology, research, and sustainability, he plays a key role in scaling Gauyog Kendr’s impact across farming communities.",
       image:
         "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775126951/bc1fca8d-38aa-49f5-8bf9-c966891a4b3f_qw61xd.jpg",
       color: "bg-[#4a703f]", // Golden Amber
     },
     {
-      name: "Ram Bhai",
-      role: " Operations Head",
+      name: "Rambhai Barad",
+      role1: "Co-Founder & Director",
+      role: "Operations & Regional Leadership",
+      bio:"Rambhai Barad is a respected entrepreneur with strong business roots across Gujarat especially in the Somnath region. With extensive experience in construction distribution and large-scale commercial operations he brings operational strength and regional leadership to the organization. His involvement in Gauyog Kendr is purpose-driven rather than profit-driven  Rambhai’s primary goals are cow protection employment generation for rural communities and supporting the transition of Gujarat’s farmland toward organic agriculture. He views this initiative as a way into give back to nature strengthen village economies and create long-term environmental impact.",
       image:
         "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775126939/3ca0fa6d-4b0c-446f-9f12-2bedba055316_crr926.jpg",
       color: "bg-[#4a703f]", // Acid Green
@@ -187,6 +191,14 @@ function about() {
     },
   ];
   const scrollRef = useRef(null);
+  const partnershipImages = [
+    "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302434/0fc480c8-6acf-4ff0-a587-cea5c58e069b_lii8qp.jpg",
+    "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302623/2f2687a2-eb32-4584-84d0-afffeab3406c_fan0jr.jpg",
+    "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302518/7e586c73-db01-4e96-aeb5-ab0a83b14714_dmsnrp.jpg",
+    "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302654/455f921f-c6bf-4385-8da6-396c523e5dd4_qkp4bc.jpg",
+    "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302534/57f06c99-83a3-467b-ab68-c0f1a57ea899_v2ovpk.jpg",
+  ];
+  const [partnershipSlide, setPartnershipSlide] = useState(0);
 
   const scroll = (direction) => {
     const { current } = scrollRef;
@@ -196,6 +208,24 @@ function about() {
     } else {
       current.scrollBy({ left: scrollAmount, behavior: "smooth" });
     }
+  };
+
+  useEffect(() => {
+    if (partnershipImages.length <= 1) return;
+    const timer = setInterval(() => {
+      setPartnershipSlide((prev) => (prev + 1) % partnershipImages.length);
+    }, 3200);
+    return () => clearInterval(timer);
+  }, [partnershipImages.length]);
+
+  const prevPartnershipSlide = () => {
+    setPartnershipSlide((prev) =>
+      prev === 0 ? partnershipImages.length - 1 : prev - 1,
+    );
+  };
+
+  const nextPartnershipSlide = () => {
+    setPartnershipSlide((prev) => (prev + 1) % partnershipImages.length);
   };
   return (
     <div className="mt-20">
@@ -232,15 +262,15 @@ function about() {
                   </span>
                 </div>
 
-                <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-slate-900 tracking-[-0.04em] leading-[0.9] mb-8">
+                <h1 className="text-5xl md:text-7xl lg:text-7xl font-black text-slate-900 tracking-wide leading-[0.9] mb-8">
                   Pure by Nature <br />
-                  <span className="text-[#4a703f] italic underline decoration-[#4a703f]/80 underline-offset-4">
+                  <span className="text-[#4a703f] italic underline decoration-[#744926]/80 tracking-wider underline-offset-4">
                     Proven by Earth.
                   </span>
                 </h1>
 
                 <div className="flex flex-wrap items-center gap-8">
-                  <p className="text-base text-slate-500 font-medium max-w-sm leading-relaxed border-l-2 border-[#4a703f] pl-6">
+                  <p className="text-base text-slate-500 font-medium max-w-sm leading-relaxed border-l-2 border-[#744926] pl-6">
                     Transforming ancient wisdom into biological solutions for
                     restoring soil health and farmer prosperity.
                   </p>
@@ -248,7 +278,7 @@ function about() {
                   <div className="flex items-center gap-4">
                     <button
                       onClick={() => (window.location.href = "/shop")}
-                      className="group bg-[#4a703f] text-white p-5 rounded-full transition-all shadow-xl shadow-[#4a703f]/20"
+                      className="group bg-[#744926] text-white p-5 rounded-full transition-all shadow-xl shadow-[#4a703f]/20"
                     >
                       <ArrowUpRight
                         size={24}
@@ -271,7 +301,7 @@ function about() {
             <div className="lg:col-span-5 relative py-8">
               <div className="space-y-10 relative">
                 {/* Vertical Connecting Line */}
-                <div className="absolute left-[11px] top-2 bottom-2 w-[1px] bg-gradient-to-b from-[#4a703f]/50 via-slate-200 to-transparent" />
+                <div className="absolute left-[11px] top-2 bottom-2 w-[1px] bg-gradient-to-b from-[#744926] via-slate-200 to-transparent" />
 
                 {[
                   {
@@ -363,7 +393,7 @@ function about() {
               whileInView={{ opacity: 1, y: 0 }}
               className="text-center mb-16"
             >
-              <h2 className="text-6xl md:text-8xl font-black text-slate-100 tracking-tighter leading-[0.85]">
+              <h2 className="text-6xl md:text-8xl font-black text-slate-100 tracking-wider leading-[0.85]">
                 Built <span className="text-[#e9aa43]">on Truth.</span>
               </h2>
             </motion.div>
@@ -429,22 +459,66 @@ function about() {
               </div>
             </div>
           </main>
+          <div className="flex justify-center items-center pb-8">
+            <button className="w-[300px] py-4 bg-[#744926] text-white rounded-full font-black uppercase tracking-widest text-xs flex items-center justify-center gap-2">
+              Contact Us
+            </button>
+          </div>
         </div>
         <div className="w-full bg-[#fdfcfb]">
           {/* SECTION 1: OUR PARTNERSHIP */}
           <section className="max-w-7xl mx-auto py-20 px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left Image Placeholder */}
             <div className="lg:col-span-4">
-              <div className="aspect-[3/4] rounded-[32px] overflow-hidden bg-gradient-to-br from-[#4a703f]/20 to-[#4a703f]/40 relative border border-slate-100 shadow-sm">
-                <div className="absolute inset-0 flex items-center justify-center p-8 text-center">
-                  <p className="text-[#4a703f]  italic text-sm opacity-60">
+              <div className="aspect-[3/4] rounded-[32px] overflow-hidden relative border border-slate-100 shadow-sm bg-[#eef5ea]">
+                <motion.img
+                  key={partnershipSlide}
+                  src={partnershipImages[partnershipSlide]}
+                  alt="Partnership"
+                  initial={{ opacity: 0.7, scale: 1.03 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.45, ease: "easeOut" }}
+                  className="w-full h-full object-cover"
+                />
+
+                <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/55 to-transparent">
+                  <p className="text-white/90 italic text-sm">
                     John, Hitesh and Ram at our Gujarat facility
                   </p>
                 </div>
-                <img
-                  src="https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302434/0fc480c8-6acf-4ff0-a587-cea5c58e069b_lii8qp.jpg"
-                  className="w-full h-full object-cover"
-                />
+
+                {partnershipImages.length > 1 && (
+                  <>
+                    <button
+                      onClick={prevPartnershipSlide}
+                      className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 text-[#2d3a29] flex items-center justify-center hover:bg-white transition-colors"
+                      aria-label="Previous partnership image"
+                    >
+                      <ArrowLeft size={16} />
+                    </button>
+                    <button
+                      onClick={nextPartnershipSlide}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 text-[#2d3a29] flex items-center justify-center hover:bg-white transition-colors"
+                      aria-label="Next partnership image"
+                    >
+                      <ArrowRight size={16} />
+                    </button>
+                    <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5">
+                      {partnershipImages.map((_, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => setPartnershipSlide(idx)}
+                          className={`h-2 rounded-full transition-all ${
+                            idx === partnershipSlide
+                              ? "w-6 bg-white"
+                              : "w-2 bg-white/60 hover:bg-white/90"
+                          }`}
+                          aria-label={`Go to partnership image ${idx + 1}`}
+                        />
+                      ))}
+                    </div>
+                  </>
+                )}
               </div>
             </div>
 
@@ -516,13 +590,13 @@ function about() {
                   TRUST
                 </span>
 
-                <div className="flex items-center gap-3 mb-5">
+                <div className="flex items-center gap-3 mb-2">
                   <div className="h-[1px] w-12 bg-[#4a703f]" />
                   <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">
                     The Gauyog Kendr Advantages
                   </span>
                 </div>
-                <h2 className="text-5xl md:text-7xl font-black text-slate-950 tracking-[-0.05em] leading-[0.85]">
+                <h2 className="text-5xl md:text-7xl font-black text-slate-950 tracking-wide leading-[0.85]">
                   Why <span className="text-[#4a703f]">Gauyog Kendr</span>
                 </h2>
                 <p className="text-slate-500 text-xl leading-relaxed mt-6 font-medium">
@@ -590,7 +664,7 @@ function about() {
                   <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#e9aa43]">
                     Community & Women
                   </span>
-                  <h2 className="text-4xl md:text-5xl  font-bold leading-tight">
+                  <h2 className="text-4xl md:text-5xl  font-bold leading-tight tracking-wider">
                     Empowering the Hands that Feed the Earth
                   </h2>
                 </div>
@@ -678,9 +752,9 @@ function about() {
                     The Collective
                   </span>
                 </motion.div>
-                <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-slate-900 leading-[0.9]">
-                  The Hands <br />{" "}
-                  <span className="text-[#4a703f]">Behind the Bloom.</span>
+                <h2 className="text-5xl md:text-7xl font-black tracking-wide text-slate-900 leading-[0.9]">
+                   Hands
+                  <span className="text-[#4a703f]"> Behind the Bloom.</span>
                 </h2>
               </div>
               <p className="text-slate-500 font-medium max-w-xs text-lg leading-relaxed border-l-2 border-slate-100 pl-4">
@@ -703,42 +777,36 @@ function about() {
                     <img
                       src={member.image}
                       alt={member.name}
-                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
+                      className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105"
                     />
 
-                    <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-[85%] bg-white/20 backdrop-blur-xl border border-white/30 p-4 rounded-[24px] translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 flex justify-around items-center">
-                      <Linkedin
-                        size={18}
-                        className="text-white cursor-pointer hover:text-slate-900 transition-colors"
-                      />
-                      <Instagram
-                        size={18}
-                        className="text-white cursor-pointer hover:text-slate-900 transition-colors"
-                      />
-                      <Mail
-                        size={18}
-                        className="text-white cursor-pointer hover:text-slate-900 transition-colors"
-                      />
+                    <div className="absolute inset-x-5 bottom-5 top-20 bg-black/65 backdrop-blur-md border border-white/20 rounded-[24px] p-4 md:p-5 opacity-0 translate-y-3 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 overflow-y-auto">
+                      <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#e9aa43] mb-2">
+                        {member.role1}
+                      </p>
+                      <h4 className="text-lg font-black text-white leading-tight mb-2">
+                        {member.name}
+                      </h4>
+                      <p className="text-[13px] font-medium text-white/90 leading-relaxed">
+                        {member.bio}
+                      </p>
                     </div>
 
                     <div
                       className={`absolute inset-0 ${member.color} opacity-0 group-hover:opacity-10 transition-opacity duration-700 pointer-events-none`}
                     />
+
+                    <div className="absolute left-5 bottom-5 bg-white/90 backdrop-blur px-3 py-2 rounded-xl border border-white/70">
+                      <p className="text-[9px] uppercase tracking-[0.2em] font-black text-[#744926]">
+                        {member.role1}
+                      </p>
+                      <p className="text-sm font-black text-slate-900 leading-tight">
+                        {member.name}
+                      </p>
+                    </div>
                   </div>
 
-                  <div className="mt-6 text-center md:text-left px-2">
-                    <h3 className="text-xl font-black tracking-tight text-slate-900 mb-1 flex flex-col items-center md:items-start gap-1">
-                      <span className="text-[10px] uppercase tracking-[0.2em] text-[#e9aa43] italic">
-                        {member.role1}
-                      </span>
-                      <span className="text-2xl md:text-3xl leading-none">
-                        {member.name}
-                      </span>
-                    </h3>
-                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 group-hover:text-[#4a703f] transition-colors">
-                      {member.role}
-                    </p>
-                  </div>
+                  
 
                   <span className="absolute -top-4 -right-2 text-6xl font-black text-slate-100/50 -z-10 group-hover:text-slate-100 transition-colors">
                     0{index + 1}
@@ -749,7 +817,7 @@ function about() {
           </div>
         </section>
       </div>
-      <section className="py-24 px-6 md:px-12 bg-[#4a703f] overflow-hidden">
+      <section className="py-24 px-6 md:px-12 bg-[#744926] overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className=" flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -763,9 +831,9 @@ function about() {
                     Behind the Scenes
                   </span>
                 </motion.div>
-                <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-slate-100 leading-[0.9]">
-                  From Our Hands <br />{" "}
-                  <span className="text-[#e9aa43]"> To Your Fields</span>
+                <h2 className="text-5xl md:text-7xl font-black tracking-wide text-slate-100 leading-[0.9]">
+                   Our Hands To<br />{" "}
+                  <span className="text-[#e9aa43]">  Your Fields</span>
                 </h2>
               </div>
               <p className="text-slate-100 font-medium text-lg leading-relaxed border-l-2 border-slate-100 pl-4">

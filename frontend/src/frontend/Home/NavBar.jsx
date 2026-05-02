@@ -131,7 +131,7 @@ export default function Header() {
                 >
                   <User
                     size={25}
-                    className="text-yellow-500 fill-yellow-500 hover:text-yellow-600 transition-colors"
+                    className="text-[#e9aa43] fill-[#e9aa43] hover:text-[#744926] transition-colors"
                   />
                 </div>
               
@@ -141,7 +141,7 @@ export default function Header() {
                 >
                   <ShoppingCart
                     size={25}
-                    className="text-blue-500 fill-blue-500 group-hover:text-blue-600 transition-colors"
+                    className="text-[#744926] fill-[#744926] group-hover:text-[#4a703f] transition-colors"
                   />
                   <span className="absolute -top-2 -right-2 bg-[#4a703f] text-white text-[10px] font-black w-4 h-4 flex items-center justify-center rounded-full">
                     {cartCount}
@@ -217,7 +217,7 @@ export default function Header() {
                           >
                             <Heart
                               size={16}
-                              className="text-red-600 fill-red-600"
+                              className="text-[#e9aa43] fill-[#e9aa43]"
                             />
                             WishList
                           </button>
@@ -226,7 +226,7 @@ export default function Header() {
 
                           <button
                             onClick={handleLogout}
-                            className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold text-red-500 hover:bg-red-50 transition-all text-left"
+                            className="w-full flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-bold text-[#744926] hover:bg-[#744926]/10 transition-all text-left"
                           >
                             <LogOut size={16} />
                             Sign Out
@@ -249,7 +249,7 @@ export default function Header() {
             
             <div className="flex lg:hidden items-center gap-3">
               <div onClick={() => navigate("/dashboard")} className="p-1">
-                <User size={22} className="text-yellow-500 fill-yellow-500" />
+                <User size={22} className="text-[#e9aa43] fill-[#e9aa43]" />
               </div>
               <div
                 className="relative p-1 mr-1"
@@ -257,7 +257,7 @@ export default function Header() {
               >
                 <ShoppingCart
                   size={22}
-                  className="text-blue-500 fill-blue-500"
+                  className="text-[#744926] fill-[#744926]"
                 />
                 <span className="absolute -top-1 -right-1 bg-[#4a703f] text-white text-[10px] font-black w-3.5 h-3.5 flex items-center justify-center rounded-full">
                   {cartCount}
@@ -328,7 +328,7 @@ export default function Header() {
                     </div>
                     <button
                       onClick={handleLogout}
-                      className="w-full py-4 bg-red-500 text-white rounded-full font-black uppercase tracking-widest text-xs flex items-center justify-center gap-2"
+                      className="w-full py-4 bg-[#744926] text-white rounded-full font-black uppercase tracking-widest text-xs flex items-center justify-center gap-2"
                     >
                       Sign Out <LogOut size={16} />
                     </button>
@@ -380,7 +380,7 @@ export default function Header() {
                 </div>
                 <button
                   onClick={() => setCartOpen(false)}
-                  className="p-3 hover:bg-red-50 rounded-full transition-colors text-slate-400 hover:text-red-500"
+                  className="p-3 hover:bg-slate-100 rounded-full transition-colors text-slate-400 hover:text-slate-600"
                 >
                   <X size={24} />
                 </button>
@@ -422,7 +422,7 @@ export default function Header() {
                         </button>
                         <button
                           onClick={() => removeItem(item.id)}
-                          className="p-2 text-slate-300 hover:text-red-500 transition-colors border border-slate-100 rounded-full"
+                          className="p-2 text-slate-300 hover:text-[#744926] transition-colors border border-slate-100 rounded-full"
                         >
                           <Trash2 size={16} />
                         </button>

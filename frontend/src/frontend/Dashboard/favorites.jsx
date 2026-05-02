@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
+import ProductImage from "../../Components/ProductImage";
 import {
   Heart,
   Home,
@@ -85,24 +86,19 @@ export default function NexusFavourites() {
             >
               <button
                 onClick={() => handleRemove(item.productId, item.name)}
-                className="absolute top-4 right-4 z-10 text-red-500 hover:text-red-600 transition-colors opacity-0 group-hover:opacity-100"
+                className="absolute top-4 right-4 z-10 text-[#e9aa43] hover:text-[#744926] transition-colors opacity-0 group-hover:opacity-100"
               >
                 <Heart size={18} fill="currentColor" />
               </button>
 
               <div className="absolute top-[-20px] right-[-20px] w-24 h-24 bg-[#4a703f]/5 rounded-full blur-3xl group-hover:bg-[#4a703f]/10 transition-colors z-0" />
 
-              <div className="w-full aspect-square bg-[#f3f8ee] rounded-full overflow-hidden border border-slate-100 flex items-center justify-center p-4 relative z-0 mb-5">
-                {item.img ? (
-                  <img
-                    src={item.img}
-                    alt={item.name}
-                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 rounded-full"
-                    onError={(e) => { e.target.style.display = "none"; }}
-                  />
-                ) : (
-                  <span className="text-4xl font-black text-[#4a703f]/25 uppercase">{item.name?.[0] ?? "?"}</span>
-                )}
+              <div className="w-full aspect-square bg-white rounded-full overflow-hidden border border-gray-100 flex items-center justify-center p-4 relative z-0 mb-5">
+                <ProductImage
+                  src={item.img}
+                  alt={item.name}
+                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                />
               </div>
 
               <p className="text-xs font-black text-slate-700 uppercase tracking-tight text-center mb-1 line-clamp-2">
@@ -121,7 +117,7 @@ export default function NexusFavourites() {
                 </button>
                 <button
                   onClick={() => handleRemove(item.productId, item.name)}
-                  className="p-3 bg-slate-50 text-slate-300 hover:text-red-500 hover:bg-red-50 rounded-full transition-all active:scale-95 border border-slate-100"
+                  className="p-3 bg-slate-50 text-slate-300 hover:text-[#744926] hover:bg-[#744926]/10 rounded-full transition-all active:scale-95 border border-slate-100"
                 >
                   <Trash2 size={12} />
                 </button>

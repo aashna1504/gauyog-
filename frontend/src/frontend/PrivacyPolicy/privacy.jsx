@@ -120,10 +120,10 @@ export default function PrivacyPolicyPage() {
             personal data at any time. To exercise these rights or for any
             privacy-related enquiries, please contact us at{" "}
             <a
-              href="mailto:john@gauyogkendr.com"
+              href="mailto:support@gauyogkendr.com"
               className="text-[#4a703f] hover:underline"
             >
-              john@gauyogkendr.com
+              support@gauyogkendr.com
             </a>
             .
           </PrivacySection>

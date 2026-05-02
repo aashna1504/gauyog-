@@ -62,7 +62,34 @@ const Layout = () => {
         position="top-right"
         toastOptions={{
           duration: 4000,
-          style: { borderRadius: "999px", fontWeight: 700, fontSize: "12px" },
+          style: {
+            borderRadius: "999px",
+            fontWeight: 700,
+            fontSize: "12px",
+            color: "#ffffff",
+            border: "1px solid rgba(255,255,255,0.2)",
+            boxShadow: "0 10px 25px rgba(0,0,0,0.18)",
+          },
+          success: {
+            style: {
+              background: "#4a703f",
+              color: "#ffffff",
+            },
+            iconTheme: {
+              primary: "#ffffff",
+              secondary: "#4a703f",
+            },
+          },
+          error: {
+            style: {
+              background: "#744926",
+              color: "#ffffff",
+            },
+            iconTheme: {
+              primary: "#ffffff",
+              secondary: "#744926",
+            },
+          },
         }}
       />
       <main className="flex-grow">

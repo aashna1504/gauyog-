@@ -13,7 +13,8 @@ const features = [
   {
     title: "Farm-Fresh Quality",
     desc: "Sourced directly from our ethical, family-run farms every single morning for peak flavor.",
-    icon: Sprout,
+    icon: RefreshCcw,
+
     id: "01",
   },
   {
@@ -23,9 +24,9 @@ const features = [
     id: "02",
   },
   {
-    title: "Eco-Conscious Loop",
-    desc: "From biodegradable packaging to solar-powered cooling, we prioritize the planet first.",
-    icon: RefreshCcw,
+    title: "Planet-First Approach",
+    desc: "We integrate sustainable practices—from biodegradable materials to renewable energy—into everything we do.",
+    icon: Sprout,
     id: "03",
   },
   {
@@ -72,7 +73,7 @@ export default function WhyChooseUs() {
               <div className="text-[#4a703f] font-bold text-xs uppercase tracking-[0.4em] mb-4 flex items-center gap-3">
                 <span className="w-10 h-[1px] bg-[#4a703f]" /> Why Gauyog Kendr
               </div>
-              <h2 className="text-5xl md:text-6xl font-black leading-tight text-gray-900 tracking-tighter">
+              <h2 className="text-5xl md:text-6xl font-black text-gray-900 tracking-wide">
                 Pure By <span className="text-[#4a703f]">Nature,</span> <br />
                 Proven By <span className="text-[#744926]">Earth.</span>
               </h2>
