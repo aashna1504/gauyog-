@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
+import ProductImage from "../../Components/ProductImage";
 import {
   Trash2,
   Minus,
@@ -61,7 +62,7 @@ export default function ModernCartPage() {
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="order-1 lg:order-2 w-full bg-[#4a703f] rounded-[30px] md:rounded-[40px] p-6 md:p-8 text-white shadow-2xl shadow-[#4a703f]/20 lg:sticky lg:top-32"
+            className="order-1 lg:order-2 w-full bg-[#744926] rounded-[30px] md:rounded-[40px] p-6 md:p-8 text-white shadow-2xl shadow-[#744926]/20 lg:sticky lg:top-32"
           >
             <h3 className="text-lg md:text-xl font-black uppercase italic tracking-tight mb-6 md:mb-8 text-white">
               Order Summary
@@ -129,17 +130,12 @@ export default function ModernCartPage() {
                   className="bg-white border border-slate-100 rounded-[25px] md:rounded-[35px] p-4 md:p-6 shadow-sm hover:shadow-md transition-shadow"
                 >
                   <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-8">
-                    <div className="w-full sm:w-32 h-40 sm:h-32 bg-[#f3f8ee] rounded-[20px] md:rounded-[24px] flex items-center justify-center overflow-hidden group">
-                      {item.img ? (
-                        <img
-                          src={item.img}
-                          alt={item.name}
-                          className="w-3/4 sm:w-full h-auto sm:h-full object-contain group-hover:scale-110 transition-transform duration-500"
-                          onError={(e) => { e.target.style.display = "none"; }}
-                        />
-                      ) : (
-                        <span className="text-3xl font-black text-[#4a703f]/25 uppercase">{item.name?.[0] ?? "?"}</span>
-                      )}
+                    <div className="w-full sm:w-32 h-40 sm:h-32 bg-white border border-gray-100 rounded-[20px] md:rounded-[24px] flex items-center justify-center overflow-hidden group">
+                      <ProductImage
+                        src={item.img}
+                        alt={item.name}
+                        className="w-3/4 sm:w-full h-auto sm:h-full object-contain group-hover:scale-110 transition-transform duration-500"
+                      />
                     </div>
 
                     <div className="flex-1 text-center sm:text-left w-full">
@@ -167,7 +163,7 @@ export default function ModernCartPage() {
                             <Plus size={12} />
                           </button>
                         </div>
-                        <div className="text-[11px] md:text-xs font-black text-[#4a703f] tracking-tighter">
+                        <div className="text-[11px] md:text-xs font-black text-[#e9aa43] tracking-tighter">
                           {item.price} / unit
                         </div>
                       </div>
@@ -182,7 +178,7 @@ export default function ModernCartPage() {
                       </div>
                       <button
                         onClick={() => removeItem(item.id)}
-                        className="p-2.5 text-slate-300 hover:text-red-500 hover:bg-red-50 rounded-full transition-all"
+                        className="p-2.5 text-slate-300 hover:text-[#744926] hover:bg-[#744926]/10 rounded-full transition-all"
                       >
                         <Trash2 size={18} />
                       </button>

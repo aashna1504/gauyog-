@@ -14,7 +14,7 @@ const contactInfo = [
   },
   {
     category: "Digital Inbox",
-    detail: " john@gauyogkendr.com",
+    detail: " support@gauyogkendr.com",
     label: "Drop a Message",
     icon: Mail,
     href: "mailto:info@gauyogkendr.com",
@@ -24,8 +24,8 @@ const contactInfo = [
     category: "Voice Support",
     detail: (
       <>
-        +91 79849 97996 <br />
-        +91 93282 91724
+       02876222222 <br />
+       02876247996
       </>
     ),
     label: "Take A Call",
@@ -47,7 +47,7 @@ export default function ModernContactStrip() {
           >
             <Globe size={16} /> Global Connectivity
           </motion.div>
-          <h2 className="text-5xl md:text-7xl font-bold text-gray-900 tracking-tighter">
+          <h2 className="text-5xl md:text-7xl font-bold text-gray-900 tracking-wide">
             Let's <span className="text-[#4a703f] italic">Connect.</span>
           </h2>
         </div>

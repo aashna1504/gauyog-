@@ -1,6 +1,12 @@
 import { AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import { ArrowLeft, ArrowRight, CheckCircleIcon, Clock } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  CheckCircleIcon,
+  Clock,
+  ArrowRightCircle,
+} from "lucide-react";
 import ProductCard from "../../Components/ProductCard";
 import api from "../../api/axios";
 import useCartStore from "../../store/cartStore";
@@ -15,12 +21,7 @@ import {
   Award,
 } from "lucide-react";
 import { motion } from "framer-motion";
-import {
-  ShieldCheck,
-  Zap,
-  CheckCircle2,
-  ArrowUpRight,
-} from "lucide-react";
+import { ShieldCheck, Zap, CheckCircle2, ArrowUpRight } from "lucide-react";
 export default function ProductSection() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -84,7 +85,7 @@ export default function ProductSection() {
       tagline: "From Gir Cow Dung to Your Soil — Pure & Proven",
       description:
         "Our complete line of cow-based organic fertilisers, crafted from authentic Gir cow dung and natural botanicals. Designed for farmers, gardeners, and co-operatives who want real, chemical-free results.",
-      color: "#744926",
+      color: "#e9aa43",
       icon: <ShieldCheck size={24} />,
       products: [
         "Cow Dung Powder",
@@ -108,18 +109,13 @@ export default function ProductSection() {
     },
     {
       category: "Coco Products",
-      name: "Premium Coco Substrate Range",
+      name: "Premium Coco Range",
       tagline: "Harvested from Natural Coconut Husks — Pure & pH Balanced",
       description:
         "Our range of certified coco peat and coco fibre products are sustainably processed from natural coconut husks. Perfect for hydroponics, nurseries, container gardening, and greenhouse cultivation worldwide.",
-      color: "#744926",
+      color: "#e9aa43",
       icon: <Zap size={24} />,
-      products: [
-        "Coco Peat",
-        "Coco Fibre",
-        "Coco Cell",
-        
-      ],
+      products: ["Coco Peat", "Coco Fibre", "Coco Cell"],
       points: [
         "Exceptional water retention — holds up to 9× its own weight",
         "Improves soil drainage and aeration for healthy root systems",
@@ -136,7 +132,7 @@ export default function ProductSection() {
   ];
   return (
     <div>
-      <section className=" py-20 px-6 overflow-hidden lg:mt-32 mt-10">
+      <section className=" py-20 px-6 overflow-hidden mt-10">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch">
           {/* Left Content */}
           <div className="flex flex-col justify-between space-y-12 order-2 lg:order-1">
@@ -168,15 +164,14 @@ export default function ProductSection() {
               </div>
 
               <p className="text-slate-600 leading-relaxed text-lg max-w-xl">
-                From the heart of Gujarat to fields around the world — Gauyog
-                Kendr creates premium organic soil, fertiliser, and coconut
-                products that honour the earth, empower local women, and help
-                farmers grow naturally.
+                Cow-based fertilisers and coconut substrates from our sanctuary
+                in Gir Somnath - built on Vedic practice, certified for export,
+                trusted by farms, nurseries and growers across India and abroad.
               </p>
             </div>
 
             {/* NEW: Heritage & Distribution Footer (To balance height) */}
-            <div className="  space-y-8 bg-[#4a703f] p-6 rounded-2xl">
+            <div className="  space-y-8 bg-[#744926] p-6 rounded-2xl">
               <div className="flex flex-wrap gap-10">
                 <div className="space-y-2">
                   <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">
@@ -243,10 +238,10 @@ export default function ProductSection() {
                   key={idx}
                   className="bg-white border border-slate-100 p-6 rounded-2xl flex flex-col justify-center items-center text-center space-y-2 shadow-sm hover:shadow-md transition-shadow"
                 >
-                  <span className="text-[#4a703f] font-bold text-2xl lg:text-xl xl:text-2xl">
+                  <span className="text-[#e9aa43] font-bold text-2xl lg:text-xl xl:text-2xl">
                     {stat.label}
                   </span>
-                  <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest leading-tight">
+                  <span className="text-[9px] font-black text-slate-700 uppercase tracking-widest leading-tight">
                     {stat.sub}
                   </span>
                 </div>
@@ -256,8 +251,8 @@ export default function ProductSection() {
         </div>
       </section>
       <div className="bg-[#fcfdfd] relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-green-50 rounded-full blur-[120px] -z-10 opacity-60" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-50 rounded-full blur-[100px] -z-10 opacity-40" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#e9aa43]/10 rounded-full blur-[120px] -z-10 opacity-60" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#744926]/10 rounded-full blur-[100px] -z-10 opacity-40" />
 
         <div className="max-w-7xl mx-auto px-4 flex flex-col">
           {/* Trusted Natural Partner — below products on mobile, above on desktop */}
@@ -283,10 +278,10 @@ export default function ProductSection() {
             </div>
 
             <div className="lg:pl-10 space-y-6 order-1 md:order-2 text-center md:text-left">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-green-50 text-[#4a703f] text-xs font-bold uppercase tracking-widest border border-green-100">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#e9aa43]/10 text-[#744926] text-xs font-bold uppercase tracking-widest border border-[#e9aa43]/30">
                 <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#4a703f]" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#e9aa43] opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#e9aa43]" />
                 </span>
                 New Arrival 2026
               </div>
@@ -382,18 +377,18 @@ export default function ProductSection() {
             </div>
           </div>
         </div>
-        <div className=" bg-[#4a703f] ">
+        <div className=" bg-[#744926] ">
           <div className="max-w-7xl mx-auto py-24 px-6">
             {/* Header Section */}
             <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-              <div className="space-y-4">
-                <span className="text-[10px] font-black uppercase tracking-[0.5em] text-[#e9aa43]">
+              <div className="space-y-3">
+                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#e9aa43]">
                   Product Selection
                 </span>
-                <h2 className="text-5xl font-bold text-slate-100 leading-[1.1]">
-                  Choose Your{" "}
-                  <span className="text-[#e9aa43] italic underline decoration-[#e9aa43] underline-offset-8">
-                    Intensity.
+                <h2 className="text-5xl font-bold text-slate-100 ">
+                  Choose Your
+                  <span className="text-[#e9aa43] ml-2 italic underline decoration-[#e9aa43] underline-offset-8">
+                    Growth Solution
                   </span>
                 </h2>
               </div>
@@ -461,8 +456,15 @@ export default function ProductSection() {
                     {/* Benefits */}
                     <ul className="space-y-2">
                       {tier.points.slice(0, 4).map((point, i) => (
-                        <li key={i} className="flex items-start gap-2.5 text-sm font-semibold text-slate-700">
-                          <CheckCircle2 size={15} className="mt-0.5 shrink-0" style={{ color: tier.color }} />
+                        <li
+                          key={i}
+                          className="flex items-start gap-2.5 text-sm font-semibold text-slate-700"
+                        >
+                          <CheckCircle2
+                            size={15}
+                            className="mt-0.5 shrink-0"
+                            style={{ color: tier.color }}
+                          />
                           {point}
                         </li>
                       ))}
@@ -504,7 +506,7 @@ export default function ProductSection() {
                     </span>
                   </div>
 
-                  <h2 className="text-5xl md:text-7xl font-bold text-slate-950 leading-[1.1]">
+                  <h2 className="text-5xl md:text-7xl font-bold text-slate-950 leading-[1.1] tracking-wider">
                     Bridging{" "}
                     <span className="text-[#4a703f] italic underline decoration-[#e9aa43]/30 underline-offset-8">
                       Heritage
@@ -526,8 +528,8 @@ export default function ProductSection() {
                     {
                       title: "Agricultural Distributors",
                       icon: <Building2 />,
-                      desc: "Bulk organic fertilisers for wholesale across EMEA markets.",
-                      color: "bg-blue-500/10 text-blue-600",
+                      desc: "Bulk organic fertilisers for wholesale across markets.",
+                      color: "bg-[#744926]/10 text-[#744926]",
                     },
                     {
                       title: "Horticulture & Hydroponics",
@@ -552,7 +554,7 @@ export default function ProductSection() {
                         {item.icon}
                       </div>
                       <div>
-                        <h4 className="text-lg font-bold text-slate-900">
+                        <h4 className="text-lg font-bold text-slate-900 tracking-wide">
                           {item.title}
                         </h4>
                         <p className="text-slate-500 text-sm leading-relaxed">
@@ -576,11 +578,11 @@ export default function ProductSection() {
                   <div className="relative z-10 h-full flex flex-col justify-between space-y-8">
                     {/* Header Section */}
                     <div className="space-y-4">
-                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/10 text-[9px] font-black uppercase tracking-[0.3em]">
+                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/10 text-[9px] font-black uppercase tracking-[0.2em]">
                         <div className="w-1.5 h-1.5 rounded-full bg-[#e9aa43]" />
                         Our Philosophy
                       </div>
-                      <h2 className="text-3xl md:text-5xl font-black leading-[0.95] tracking-tighter">
+                      <h2 className="text-3xl md:text-5xl font-black tracking-wider">
                         Returning to <br />
                         <span className="text-[#e9aa43]">Mother Earth</span>
                       </h2>
@@ -653,6 +655,15 @@ export default function ProductSection() {
                 </div>
               </div>
             </div>
+          </div>
+
+          <div
+            onClick={() => navigate("/contact")}
+            className="flex justify-center items-center p-8"
+          >
+            <button className="w-[300px] py-4 bg-[#744926] text-white rounded-full font-black uppercase tracking-widest text-xs flex items-center justify-center gap-2">
+              Contact Us
+            </button>
           </div>
         </section>
       </div>

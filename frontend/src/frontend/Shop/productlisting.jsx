@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
-import { ChevronDown, Filter } from "lucide-react";
+import { ChevronDown, Filter, Search } from "lucide-react";
 import { AnimatePresence } from "framer-motion";
 import ProductCard from "../../Components/ProductCard";
 import api from "../../api/axios";
@@ -13,9 +13,68 @@ export default function ProductListingPage() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [activeSize, setActiveSize] = useState("All Sizes");
   const [sortBy, setSortBy] = useState("Relevant");
+  const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
-  const categories = ["All", "Fertilizer", "Coco"];
+  const categoryDefs = [
+    { name: "All", keywords: [] },
+    {
+      name: "Natural & Organic Foods",
+      keywords: [
+        "jaggery",
+        "ghee",
+        "honey",
+        "vegetable",
+        "oil",
+        "food",
+        "organic food",
+      ],
+    },
+    {
+      name: "Natural Beauty & Care",
+      keywords: [
+        "aloe vera",
+        "face pack",
+        "hair oil",
+        "shampoo",
+        "beauty",
+        "care",
+      ],
+    },
+    {
+      name: "Ayurvedic Wellness",
+      keywords: [
+        "tooth powder",
+        "toothpaste",
+        "digestive",
+        "churna",
+        "balm",
+        "wellness",
+        "ayurvedic",
+      ],
+    },
+    {
+      name: "Premium Incense",
+      keywords: ["dhoop", "incense", "camphor", "oil", "gaumaya", "modak"],
+    },
+    {
+      name: "Eco-Friendly Home Essentials",
+      keywords: [
+        "premium soil",
+        "soil",
+        "cocopeat",
+        "coco peat",
+        "coco fibre",
+        "coir",
+        "wooden",
+        "utility",
+        "active soil",
+        "fertilizer",
+        "coco",
+      ],
+    },
+  ];
+  const categories = categoryDefs.map((c) => c.name);
   const ALLOWED_WEIGHTS = ["1kg", "3kg", "5kg"];
 
   const sizes = useMemo(() => {
@@ -51,17 +110,29 @@ export default function ProductListingPage() {
   }, []);
 
   const filteredProducts = useMemo(() => {
+    const query = searchQuery.trim().toLowerCase();
+    const selectedCategory = categoryDefs.find((c) => c.name === activeCategory);
+
     let list = products.filter(
-      (p) =>
-        (activeCategory === "All" || p.category === activeCategory) &&
-        (activeSize === "All Sizes" ||
+      (p) => {
+        const haystack = `${p.name || ""} ${p.category || ""} ${p.description || ""}`.toLowerCase();
+        const inCategory =
+          activeCategory === "All" ||
+          (selectedCategory?.keywords?.length
+            ? selectedCategory.keywords.some((k) => haystack.includes(k.toLowerCase()))
+            : (p.category || "").toLowerCase() === activeCategory.toLowerCase());
+        const inSize =
+          activeSize === "All Sizes" ||
           p.weight === activeSize ||
-          (p.weightOptions || []).includes(activeSize)),
+          (p.weightOptions || []).includes(activeSize);
+        const inSearch = !query || haystack.includes(query);
+        return inCategory && inSize && inSearch;
+      },
     );
     if (sortBy === "PriceH") list = [...list].sort((a, b) => b.price - a.price);
     if (sortBy === "PriceL") list = [...list].sort((a, b) => a.price - b.price);
     return list;
-  }, [products, activeCategory, activeSize, sortBy]);
+  }, [products, activeCategory, activeSize, sortBy, searchQuery]);
 
   const handleAddToCart = async (product) => {
     const result = isInCart(product.id)
@@ -112,9 +183,9 @@ export default function ProductListingPage() {
             </div>
 
             {/* Main Heading */}
-            <h2 className="text-4xl md:text-6xl  font-bold text-[#2d3a29] tracking-tight">
+            <h2 className="text-4xl md:text-6xl  font-bold text-black tracking-wider">
               Everything from <br />
-              <span className="text-[#4a703f] italic">Mother Earth</span>
+              <span className="text-[#4a703f] ">Mother Earth</span>
             </h2>
 
             {/* Centered Description */}
@@ -126,7 +197,7 @@ export default function ProductListingPage() {
           </div>
 
           {/* Certifications grid — desktop only; mobile sees it at page bottom */}
-          <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
+          {/* <div className="hidden md:grid md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
             {certs.map((cert, idx) => (
               <div key={idx} className="group flex flex-col items-center space-y-4">
                 <div className={`w-32 h-32 rounded-full bg-white border border-slate-100 shadow-sm flex items-center justify-center transition-all duration-500 transform group-hover:-translate-y-2 group-hover:shadow-xl ${cert.color} border-t-2 group-hover:border-opacity-100`}>
@@ -139,12 +210,26 @@ export default function ProductListingPage() {
                 </span>
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
       </section>
 
       <div className="sticky top-4 z-40 max-w-7xl mx-auto px-6 mb-16">
-        <div className="bg-white/90 backdrop-blur-xl p-3 rounded-[32px] shadow-2xl shadow-green-900/5 border border-white flex flex-wrap items-center gap-3">
+        <div className="bg-[#e9aa43]/30 backdrop-blur-xl p-3 rounded-[32px] shadow-2xl shadow-green-900/5 border border-white flex flex-wrap items-center gap-3">
+          <div className="relative flex-[1.8] min-w-[220px]">
+            <Search
+              size={16}
+              className="absolute left-5 top-1/2 -translate-y-1/2 text-[#4a703f]"
+            />
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search products..."
+              className="w-full bg-gray-50 border-none pl-12 pr-5 py-4 rounded-full text-sm font-semibold text-gray-700 placeholder:text-gray-400 focus:ring-2 focus:ring-[#4a703f]/20"
+            />
+          </div>
+
           <div className="relative flex-1 min-w-[140px] group">
             <Filter
               size={16}
@@ -153,7 +238,7 @@ export default function ProductListingPage() {
             <select
               value={activeCategory}
               onChange={(e) => setActiveCategory(e.target.value)}
-              className="w-full appearance-none bg-gray-50 border-none pl-12 pr-10 py-4 rounded-full text-[10px] font-black uppercase tracking-widest text-gray-700 focus:ring-2 focus:ring-[#4a703f]/20 cursor-pointer"
+              className="w-full appearance-none bg-gray-50 border-none pl-12 pr-10 py-4 rounded-full text-xs font-bold text-gray-700 focus:ring-2 focus:ring-[#4a703f]/20 cursor-pointer"
             >
               {categories.map((c) => (
                 <option key={c} value={c}>
@@ -171,7 +256,7 @@ export default function ProductListingPage() {
             <select
               value={activeSize}
               onChange={(e) => setActiveSize(e.target.value)}
-              className="w-full appearance-none bg-gray-50 border-none px-6 py-4 rounded-full text-[10px] font-black uppercase tracking-widest text-gray-700 focus:ring-2 focus:ring-[#4a703f]/20 cursor-pointer"
+              className="w-full appearance-none bg-gray-50 border-none px-6 py-4 rounded-full text-xs font-bold text-gray-700 focus:ring-2 focus:ring-[#4a703f]/20 cursor-pointer"
             >
               {sizes.map((s) => (
                 <option key={s} value={s}>
@@ -189,7 +274,7 @@ export default function ProductListingPage() {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="w-full appearance-none bg-[#744926] text-white border-none px-8 py-4 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-lg shadow-[#744926]/20 cursor-pointer transition-all hover:bg-[#5a381d]"
+              className="w-full appearance-none bg-[#744926] text-white border-none px-8 py-4 rounded-full text-xs font-bold shadow-lg shadow-[#744926]/20 cursor-pointer transition-all hover:bg-[#5a381d]"
             >
               <option value="Relevant">Sort: Relevant</option>
               <option value="PriceH">Price: High to Low</option>

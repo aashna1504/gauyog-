@@ -93,7 +93,7 @@ export default function FloatingNexusDashboard() {
                 <X size={16} />
               </button>
 
-              <div className="w-10 h-10 bg-red-50 text-red-500 rounded-full flex items-center justify-center mx-auto mb-3">
+              <div className="w-10 h-10 bg-[#744926]/10 text-[#744926] rounded-full flex items-center justify-center mx-auto mb-3">
                 <AlertCircle size={20} />
               </div>
 
@@ -113,7 +113,7 @@ export default function FloatingNexusDashboard() {
                 </button>
                 <button
                   onClick={handleLogout}
-                  className="flex-1 py-2 text-[9px] font-black uppercase tracking-widest text-white bg-red-500 rounded-xl shadow-lg shadow-red-200 hover:bg-red-600 transition-all"
+                  className="flex-1 py-2 text-[9px] font-black uppercase tracking-widest text-white bg-[#744926] rounded-xl shadow-lg shadow-[#744926]/20 hover:bg-[#4a703f] transition-all"
                 >
                   Logout
                 </button>
@@ -177,7 +177,7 @@ export default function FloatingNexusDashboard() {
       
           <button
             onClick={() => setShowLogoutConfirm(true)}
-            className="mt-auto flex items-center gap-3 text-white/60 hover:text-red-400 transition-colors px-5 font-bold text-xs uppercase tracking-widest"
+            className="mt-auto flex items-center gap-3 text-white/60 hover:text-[#e9aa43] transition-colors px-5 font-bold text-xs uppercase tracking-widest"
           >
             <LogOut size={20} /> <span className="hidden lg:block">Logout</span>
           </button>
@@ -334,9 +334,9 @@ export default function FloatingNexusDashboard() {
             </div>
 
           
-            <div className="lg:col-span-3 bg-[#4a703f] p-6 md:p-10 rounded-[40px] shadow-2xl text-white relative overflow-hidden group mt-4 isolate border border-white/10">
-              
-              <div className="relative z-50 flex flex-col lg:flex-row items-center justify-between gap-8">
+            <div className="lg:col-span-3 bg-[#4a703f] p-6 rounded-[40px] shadow-2xl text-white relative overflow-hidden group mt-4 isolate border border-white/10">
+
+              <div className="relative z-50 flex flex-col gap-8">
                 <div className="text-center lg:text-left">
                   <div className="flex items-center justify-center lg:justify-start gap-2 mb-2">
                     <div className="w-8 h-[1px] bg-[#e9aa43]" />
@@ -344,44 +344,50 @@ export default function FloatingNexusDashboard() {
                       Assistance
                     </span>
                   </div>
-                  <h3 className="text-3xl md:text-4xl font-black tracking-tighter leading-none uppercase">
+                  <h3 className="text-3xl md:text-4xl font-black tracking-wide leading-none uppercase">
                     Need <span className="text-[#e9aa43]">Support?</span>
                   </h3>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
-                 
-                  {/* <a
-                    href="tel:+917984997996"
-                    onClick={(e) => {
-                      e.stopPropagation(); 
-                      window.location.href = "tel:+917984997996";
-                    }}
-                    className="flex-1 lg:flex-none flex items-center justify-center gap-3 bg-[#e9aa43] text-white px-10 py-5 rounded-full transition-all shadow-xl hover:bg-white hover:text-[#4a703f] active:scale-95 group/btn"
-                  >
-                    <Phone
-                      size={20}
-                      className="group-hover/btn:animate-pulse"
-                    />
-                    <span className="text-[11px] font-black uppercase tracking-widest">
-                      Call Now
-                    </span>
-                  </a> */}
-
-                  
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
                   <a
-                    href="mailto:support@gauyog.com" 
+                    href="tel:+02876222222"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      window.location.href = "tel:02876222222";
+                    }}
+                    className="flex items-center justify-center gap-2 bg-white/20 backdrop-blur-md border border-white/20 px-4 py-5 rounded-full hover:bg-white hover:text-[#4a703f] transition-all shadow-xl active:scale-95 group/phone1"
+                  >
+                    <Phone size={16} className="group-hover/phone1:animate-pulse shrink-0" />
+                    <span className="text-[12px] font-black uppercase tracking-widest whitespace-nowrap">
+                      02876222222
+                    </span>
+                  </a>
+
+                  <a
+                    href="tel:+02876247996"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      window.location.href = "tel:+02876247996";
+                    }}
+                    className="flex items-center justify-center gap-2 bg-white/20 backdrop-blur-md border border-white/20 px-4 py-5 rounded-full hover:bg-white hover:text-[#4a703f] transition-all shadow-xl active:scale-95 group/phone2"
+                  >
+                    <Phone size={16} className="group-hover/phone2:animate-pulse shrink-0" />
+                    <span className="text-[12px] font-black uppercase tracking-widest whitespace-nowrap">
+                      02876247996
+                    </span>
+                  </a>
+
+                  <a
+                    href="mailto:support@gauyog.com"
                     onClick={(e) => {
                       e.stopPropagation();
                       window.location.href = "mailto:support@gauyog.com";
                     }}
-                    className="flex-1 lg:flex-none flex items-center justify-center gap-3 bg-white/20 backdrop-blur-md border border-white/20 px-10 py-5 rounded-full hover:bg-white hover:text-[#4a703f] transition-all shadow-xl active:scale-95 group/email"
+                    className="flex items-center justify-center gap-2 bg-white/20 backdrop-blur-md border border-white/20 px-4 py-5 rounded-full hover:bg-white hover:text-[#4a703f] transition-all shadow-xl active:scale-95 group/email"
                   >
-                    <Mail
-                      size={20}
-                      className="group-hover/email:-translate-y-1 transition-transform"
-                    />
-                    <span className="text-[11px] font-black uppercase tracking-widest">
+                    <Mail size={16} className="group-hover/email:-translate-y-1 transition-transform shrink-0" />
+                    <span className="text-[12px] font-black uppercase tracking-widest whitespace-nowrap">
                       Email Us
                     </span>
                   </a>
@@ -418,7 +424,7 @@ export default function FloatingNexusDashboard() {
          
           <button
             onClick={() => setShowLogoutConfirm(true)}
-            className="flex flex-col items-center gap-1 p-2 transition-all opacity-60 hover:opacity-100 text-red-300"
+            className="flex flex-col items-center gap-1 p-2 transition-all opacity-60 hover:opacity-100 text-white"
           >
             <div className="p-2 rounded-full">
               <LogOut size={18} />

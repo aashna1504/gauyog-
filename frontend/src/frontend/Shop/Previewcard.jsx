@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Heart, Package, Layers, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import ProductImage from "../../Components/ProductImage";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../../api/axios";
 import useCartStore from "../../store/cartStore";
@@ -51,7 +52,7 @@ export default function VedicDhoopMosaicPage() {
     if (weight === "1kg" && product?.image1kg) return product.image1kg;
     if (weight === "3kg" && product?.image3kg) return product.image3kg;
     if (weight === "5kg" && product?.image5kg) return product.image5kg;
-    return product?.imageUrl ?? null;
+    return product?.imageUrl || product?.image1kg || product?.image3kg || product?.image5kg || null;
   };
 
   const getVariantPrice = (weight) => {
@@ -178,7 +179,7 @@ export default function VedicDhoopMosaicPage() {
                   className={`px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm ${
                     product.inStock
                       ? "bg-[#4a703f] text-white"
-                      : "bg-red-500 text-white"
+                      : "bg-slate-400 text-white"
                   }`}
                 >
                   {product.inStock ? "In Stock" : "Out of Stock"}
@@ -187,8 +188,8 @@ export default function VedicDhoopMosaicPage() {
                   onClick={handleToggleWishlist}
                   className={`p-3 rounded-full shadow-md transition-all duration-300 group ${
                     wishlisted
-                      ? "bg-red-500 shadow-red-200 hover:bg-red-600"
-                      : "bg-slate-50 hover:bg-red-50 shadow-slate-200"
+                      ? "bg-[#e9aa43] shadow-[#e9aa43]/20 hover:bg-[#e9aa43]/90"
+                      : "bg-slate-50 hover:bg-[#e9aa43]/10 shadow-slate-200"
                   }`}
                   title={
                     wishlisted ? "Remove from wishlist" : "Add to wishlist"
@@ -200,7 +201,7 @@ export default function VedicDhoopMosaicPage() {
                     className={`transition-all duration-300 group-hover:scale-110 ${
                       wishlisted
                         ? "text-white"
-                        : "text-slate-400 group-hover:text-red-400"
+                        : "text-slate-400 group-hover:text-[#e9aa43]"
                     }`}
                   />
                 </button>
@@ -209,47 +210,32 @@ export default function VedicDhoopMosaicPage() {
               {/* Thumbnails + Main image */}
               <div className="flex gap-3 p-4">
                 {productImages.length > 1 && (
-                  <div className="flex flex-col gap-2 overflow-y-auto max-h-[500px] md:max-h-[580px] pr-1 scrollbar-thin">
+                  <div className="flex flex-col gap-2 pr-1">
                     {productImages.map((img, idx) => (
                       <button
                         key={`${img}-${idx}`}
                         onClick={() => setActiveImg(idx)}
                         className={`flex-shrink-0 w-14 h-14 rounded-xl overflow-hidden border-2 p-1 transition-all duration-200 ${
                           activeImg === idx
-                            ? "border-[#4a703f] shadow-md shadow-green-100 scale-105 bg-[#f3f8ee]"
-                            : "border-transparent bg-[#f3f8ee] opacity-50 hover:opacity-90 hover:border-slate-200"
+                            ? "border-[#4a703f] shadow-md shadow-green-100 scale-105 bg-white"
+                            : "border-transparent bg-white opacity-50 hover:opacity-90 hover:border-slate-200"
                         }`}
                       >
-                        <img
+                        <ProductImage
                           src={img}
-                          className="w-full h-full object-contain"
                           alt={`view ${idx + 1}`}
-                          onError={(e) => { e.currentTarget.style.display = "none"; }}
+                          className="w-full h-full object-contain"
                         />
                       </button>
                     ))}
                   </div>
                 )}
-                <div className="relative flex-1 flex items-center justify-center min-h-[440px] md:min-h-[540px] bg-[#f3f8ee] rounded-2xl px-4 py-8">
-                  <AnimatePresence mode="wait">
-                    {productImages[activeImg] ? (
-                      <motion.img
-                        key={activeImg}
-                        initial={{ opacity: 0, scale: 0.88 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 1.04 }}
-                        transition={{ type: "spring", damping: 22, stiffness: 200 }}
-                        src={productImages[activeImg]}
-                        alt={product.name}
-                        className="w-full max-w-[380px] md:max-w-[460px] object-contain rounded-full"
-                        onError={(e) => { e.currentTarget.style.display = "none"; }}
-                      />
-                    ) : (
-                      <div className="w-64 h-64 rounded-full bg-[#d8e8d4] flex items-center justify-center">
-                        <span className="text-7xl font-black text-[#4a703f]/25 uppercase">{product.name?.[0] ?? "?"}</span>
-                      </div>
-                    )}
-                  </AnimatePresence>
+                <div className="relative flex-1 flex items-center justify-center min-h-[440px] md:min-h-[540px] bg-white border border-gray-100 rounded-2xl px-4 py-8">
+                  <ProductImage
+                    src={productImages[activeImg]}
+                    alt={product.name}
+                    className="w-full max-w-[380px] md:max-w-[460px] object-contain"
+                  />
                   <span className="absolute bottom-4 right-4 text-[40px] md:text-[70px] font-black text-[#4a703f]/5 leading-none tracking-tighter uppercase select-none pointer-events-none">
                     Gauyog
                   </span>
@@ -302,7 +288,7 @@ export default function VedicDhoopMosaicPage() {
                 disabled={!product.inStock}
                 className={`flex-1 py-4 rounded-full font-black text-[11px] uppercase tracking-[0.2em] transition-all duration-300 flex items-center justify-center gap-2 shadow-lg active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed ${
                   inCart
-                    ? "bg-red-600 hover:bg-red-700 text-white shadow-red-200"
+                    ? "bg-[#744926]/10 text-[#744926] hover:bg-[#744926]/20 shadow-none"
                     : "bg-[#744926] hover:bg-[#4a703f] text-white shadow-green-900/20"
                 }`}
               >
@@ -365,7 +351,7 @@ export default function VedicDhoopMosaicPage() {
                       {product.benefits.map((benefit, i) => (
                         <div
                           key={i}
-                          className="flex items-center gap-3 bg-[#f3f8ee] rounded-2xl px-4 py-3 border border-[#4a703f]/10"
+                          className="flex items-center gap-3 bg-white rounded-2xl px-4 py-3 border border-[#4a703f]/10"
                         >
                           <Check size={13} className="text-[#4a703f] flex-shrink-0" />
                           <span className="text-sm font-bold text-slate-800">
@@ -382,7 +368,7 @@ export default function VedicDhoopMosaicPage() {
                   <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm">
                     <div className="flex items-center gap-3 mb-5">
                       <div className="w-1 h-5 bg-[#e9aa43] rounded-full" />
-                      <p className="text-xs font-black uppercase tracking-[0.3em] text-[#b45309]">
+                      <p className="text-xs font-black uppercase tracking-[0.3em] text-[#744926]">
                         Ingredients
                       </p>
                     </div>
@@ -494,8 +480,8 @@ export default function VedicDhoopMosaicPage() {
                     </div>
                   )}
                   {product.storageInstructions && (
-                    <div className="bg-blue-50 rounded-3xl p-6 border border-blue-100 shadow-sm">
-                      <p className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-600 mb-3">
+                    <div className="bg-[#eef8ef] rounded-3xl p-6 border border-[#4a703f]/15 shadow-sm">
+                      <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#4a703f] mb-3">
                         Storage
                       </p>
                       <p className="text-sm leading-relaxed text-slate-700">
@@ -504,8 +490,8 @@ export default function VedicDhoopMosaicPage() {
                     </div>
                   )}
                   {product.safetyInstructions && (
-                    <div className="bg-amber-50 rounded-3xl p-6 border border-amber-100 shadow-sm">
-                      <p className="text-[10px] font-black uppercase tracking-[0.3em] text-amber-700 mb-3">
+                    <div className="bg-[#fdf6ee] rounded-3xl p-6 border border-[#e9aa43]/20 shadow-sm">
+                      <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#744926] mb-3">
                         Safety & Cautions
                       </p>
                       <p className="text-sm leading-relaxed text-slate-700">
