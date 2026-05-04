@@ -95,7 +95,7 @@ export default function RefundPolicyPage() {
 
             <motion.h1
               variants={itemVariants}
-              className="text-6xl md:text-8xl font-black text-gray-900 leading-none tracking-tighter"
+              className="text-6xl md:text-8xl font-black text-gray-900 leading-none tracking-wider"
               style={{
                 fontFamily:
                   "'Baskerville Old Face', 'Libre Baskerville', serif",
@@ -136,7 +136,7 @@ export default function RefundPolicyPage() {
 
               <div className="mt-auto flex items-center gap-2 pt-4 border-t border-slate-50 relative z-10">
                 <ShieldCheck size={14} className="text-[#4a703f]" />
-                <span className="text-[8px] font-black uppercase tracking-tighter text-slate-400">
+                <span className="text-[8px] font-black uppercase tracking-wider text-slate-400">
                   Verified
                 </span>
               </div>

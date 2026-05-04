@@ -32,7 +32,7 @@ export default function NexusFavourites() {
   };
 
   return (
-    <div className="w-full max-w-[1200px] mx-auto px-6 py-12 mt-24 text-slate-900">
+    <div className="w-full max-w-[1200px] mx-auto px-4 md:px-6 py-6 md:py-12 mt-20 md:mt-24 text-slate-900">
       <nav className="flex items-center gap-2 mb-8 px-2">
         <button
           onClick={() => navigate("/dashboard")}
@@ -47,11 +47,11 @@ export default function NexusFavourites() {
         </span>
       </nav>
 
-      <header className="mb-12 border-l-4 border-[#4a703f] pl-6">
+      <header className="mb-6 md:mb-12 border-l-4 border-[#4a703f] pl-4 md:pl-6">
         <motion.h1
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="text-3xl md:text-4xl font-[900] tracking-tighter text-[#4a703f] mb-2"
+          className="text-3xl md:text-4xl font-[900] tracking-wider text-[#4a703f] mb-2"
         >
           Wishlist
         </motion.h1>
@@ -63,18 +63,18 @@ export default function NexusFavourites() {
       {wishlistItems.length === 0 ? (
         <div className="text-center py-24">
           <Heart size={48} className="mx-auto text-slate-200 mb-4" />
-          <p className="text-slate-400 font-bold uppercase tracking-widest text-sm">
+          <p className="text-slate-400 font-bold uppercase tracking-widerst text-sm">
             Your wishlist is empty
           </p>
           <button
             onClick={() => navigate("/shop")}
-            className="mt-6 px-8 py-3 bg-[#4a703f] text-white rounded-full font-bold text-xs uppercase tracking-widest hover:bg-[#744926] transition-all"
+            className="mt-6 px-8 py-3 bg-[#4a703f] text-white rounded-full font-bold text-xs uppercase tracking-widerst hover:bg-[#744926] transition-all"
           >
             Browse Products
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
           {wishlistItems.map((item, index) => (
             <motion.div
               key={item.id}
@@ -101,7 +101,7 @@ export default function NexusFavourites() {
                 />
               </div>
 
-              <p className="text-xs font-black text-slate-700 uppercase tracking-tight text-center mb-1 line-clamp-2">
+              <p className="text-xs font-black text-slate-700 uppercase tracking-wider text-center mb-1 line-clamp-2">
                 {item.name}
               </p>
               <p className="text-sm font-black text-[#4a703f] mb-4">

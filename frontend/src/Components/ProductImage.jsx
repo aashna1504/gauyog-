@@ -6,7 +6,7 @@ export default function ProductImage({ src, alt, className }) {
   if (!src || failed) {
     return (
       <div className="flex flex-col items-center justify-center gap-1 w-full h-full">
-        <span className="text-xs font-bold text-gray-400 uppercase tracking-widest text-center px-2">
+        <span className="text-xs font-bold text-gray-400 uppercase tracking-widerst text-center px-2">
           No image added
         </span>
       </div>

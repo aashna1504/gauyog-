@@ -22,7 +22,7 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
 
 export const googleAuth = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const result = await AuthService.googleAuth(req.body.credential);
+    const result = await AuthService.googleAuth(req.body.credential, req.body.access_token);
     res.status(200).json(formatResponse(true, 'Google authentication successful', result));
   } catch (error) {
     next(error);

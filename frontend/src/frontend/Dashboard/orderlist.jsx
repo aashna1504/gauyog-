@@ -84,7 +84,7 @@ export default function NexusOrderLedger() {
         <motion.h1
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="text-3xl md:text-4xl font-[900] tracking-tighter text-[#4a703f] mb-2"
+          className="text-3xl md:text-4xl font-[900] tracking-wider text-[#4a703f] mb-2"
         >
           Order History
         </motion.h1>
@@ -140,15 +140,15 @@ export default function NexusOrderLedger() {
           {loading ? (
             <div className="flex flex-col items-center justify-center py-20 text-slate-400">
               <Package size={40} className="mb-4 text-slate-200 animate-pulse" />
-              <p className="text-xs font-black uppercase tracking-widest">Loading orders…</p>
+              <p className="text-xs font-black uppercase tracking-widerst">Loading orders…</p>
             </div>
           ) : paginated.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-20 text-slate-400">
               <Package size={40} className="mb-4 text-slate-200" />
-              <p className="text-xs font-black uppercase tracking-widest mb-4">No orders found</p>
+              <p className="text-xs font-black uppercase tracking-widerst mb-4">No orders found</p>
               <button
                 onClick={() => navigate("/shop")}
-                className="px-8 py-3 bg-[#4a703f] text-white rounded-full font-black text-xs uppercase tracking-widest hover:bg-[#744926] transition-all"
+                className="px-8 py-3 bg-[#4a703f] text-white rounded-full font-black text-xs uppercase tracking-widerst hover:bg-[#744926] transition-all"
               >
                 Start Shopping
               </button>
@@ -162,7 +162,7 @@ export default function NexusOrderLedger() {
               >
                 {/* Order ID */}
                 <div className="mb-4 md:mb-0">
-                  <p className="text-[9px] font-black text-[#4a703f] uppercase tracking-widest mb-1 md:hidden">Order ID</p>
+                  <p className="text-[9px] font-black text-[#4a703f] uppercase tracking-widerst mb-1 md:hidden">Order ID</p>
                   <h4 className="text-sm font-black text-slate-900 uppercase">
                     #{order.id.slice(0, 8).toUpperCase()}
                   </h4>
@@ -176,7 +176,7 @@ export default function NexusOrderLedger() {
                       {order.trackingId}
                     </span>
                   ) : (
-                    <span className="text-[10px] font-bold text-slate-300 uppercase tracking-widest italic">—</span>
+                    <span className="text-[10px] font-bold text-slate-300 uppercase tracking-widerst italic">—</span>
                   )}
                 </div>
 
@@ -198,7 +198,7 @@ export default function NexusOrderLedger() {
                 <div className="flex justify-between md:block mb-6 md:mb-0">
                   <span className="md:hidden text-[10px] font-bold text-slate-300 uppercase">Status</span>
                   <span
-                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest ${STATUS_COLORS[order.status] || "bg-slate-100 text-slate-500"}`}
+                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widerst ${STATUS_COLORS[order.status] || "bg-slate-100 text-slate-500"}`}
                   >
                     {order.status !== "DELIVERED" && order.status !== "CANCELLED" && (
                       <Clock size={10} className="animate-pulse" />
@@ -211,7 +211,7 @@ export default function NexusOrderLedger() {
                 <div className="flex md:block justify-center pt-6 md:pt-0 border-t md:border-none border-slate-50">
                   <button
                     onClick={() => navigate(`/trackorder?id=${order.id}`)}
-                    className="w-full md:w-auto flex items-center justify-center gap-2 px-6 py-3 bg-[#1a2e26] md:bg-transparent text-white md:text-[#1a2e26] rounded-full md:rounded-none text-[10px] font-black uppercase tracking-widest hover:text-[#4a703f] transition-all group"
+                    className="w-full md:w-auto flex items-center justify-center gap-2 px-6 py-3 bg-[#1a2e26] md:bg-transparent text-white md:text-[#1a2e26] rounded-full md:rounded-none text-[10px] font-black uppercase tracking-widerst hover:text-[#4a703f] transition-all group"
                   >
                     Track Order
                     <ArrowUpRight size={14} className="group-hover:-rotate-12 transition-transform" />

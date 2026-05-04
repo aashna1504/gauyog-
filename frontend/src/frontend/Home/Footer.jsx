@@ -34,10 +34,10 @@ const footerLinks = {
 
 export default function ModernFooter() {
   return (
-    <footer className="relative bg-[#fcfdfd] pt-8 md:pt-16 pb-8 md:pb-10 px-6 border-t border-gray-100 overflow-hidden">
+    <footer className="relative bg-white pt-8 md:pt-16 pb-8 md:pb-10 px-4 md:px-6 border-t border-gray-100 overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-12 gap-10 md:gap-16 mb-8 md:mb-12">
-          <div className="lg:col-span-5 space-y-6 md:space-y-8">
+        <div className="grid grid-cols-2 lg:grid-cols-12 gap-6 md:gap-10 lg:gap-16 mb-8 md:mb-12">
+          <div className="col-span-2 lg:col-span-5 space-y-4 md:space-y-8">
             <div className="space-y-3 md:space-y-4">
               <div className="cursor-pointer">
                 <img
@@ -63,18 +63,18 @@ export default function ModernFooter() {
                   placeholder="Enter your email"
                   className="w-full bg-transparent border-none focus:ring-0 text-[13px] font-medium px-3 text-gray-900 placeholder:text-gray-400"
                 />
-                <button className="bg-[#4a703f] text-white px-4 md:px-6 py-2.5 md:py-3 rounded-full font-bold text-[10px] md:text-xs uppercase tracking-widest hover:bg-[#744926] transition-colors flex items-center gap-2">
+                <button className="bg-[#4a703f] text-white px-4 md:px-6 py-2.5 md:py-3 rounded-full font-bold text-[10px] md:text-xs uppercase tracking-widerst hover:bg-[#744926] transition-colors flex items-center gap-2">
                   Join <ArrowRight size={14} className="hidden sm:block" />
                 </button>
               </div>
             </div> */}
           </div>
 
-          <div className="lg:col-span-2 space-y-4 md:space-y-6">
+          <div className="lg:col-span-2 space-y-3 md:space-y-6">
             <h3 className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-400">
               Quick Menu
             </h3>
-            <ul className="grid grid-cols-2 lg:grid-cols-1 gap-x-4 gap-y-2 md:gap-y-3">
+            <ul className="grid grid-cols-1 gap-y-2 md:gap-y-3">
               {footerLinks.quickMenu.map((link) => (
                 <li key={link.name}>
                   <a
@@ -89,11 +89,11 @@ export default function ModernFooter() {
             </ul>
           </div>
 
-          <div className="lg:col-span-2 space-y-4 md:space-y-6">
+          <div className="lg:col-span-2 space-y-3 md:space-y-6">
             <h3 className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-400">
               Legal
             </h3>
-            <ul className="grid grid-cols-2 lg:grid-cols-1 gap-x-4 gap-y-2 md:gap-y-3">
+            <ul className="grid grid-cols-1 gap-y-2 md:gap-y-3">
               {footerLinks.legal.map((link) => (
                 <li key={link.name}>
                   <a
@@ -108,7 +108,7 @@ export default function ModernFooter() {
             </ul>
           </div>
 
-          <div className="lg:col-span-3 space-y-6 md:space-y-8">
+          <div className="col-span-2 lg:col-span-3 space-y-4 md:space-y-8">
             <div className="space-y-4">
               <h3 className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-400">
                 Social Connect
@@ -132,7 +132,7 @@ export default function ModernFooter() {
                 <ShieldCheck size={18} />
               </div>
               <div>
-                <p className="text-[9px] font-black uppercase tracking-widest text-gray-400 leading-none mb-1">
+                <p className="text-[9px] font-black uppercase tracking-widerst text-gray-400 leading-none mb-1">
                   Security
                 </p>
                 <p className="text-xs font-bold text-gray-900 leading-none">
@@ -143,8 +143,8 @@ export default function ModernFooter() {
           </div>
         </div>
 
-        <div className="pt-6 md:pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex flex-col items-center md:items-start gap-2 text-gray-400 text-[10px] font-bold uppercase tracking-wider text-center">
+        <div className="pt-6 md:pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6">
+          <div className="flex flex-col items-center md:items-start gap-1.5 md:gap-2 text-gray-400 text-[10px] font-bold uppercase tracking-wider text-center">
             <div className="flex items-center gap-2">
               <Globe size={14} />
               <span>English (India)</span>
@@ -163,7 +163,7 @@ export default function ModernFooter() {
                 alt: "Visa",
               },
               {
-                src: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/200px-Mastercard-logo.svg.png",
+                src: "https://www.emerce.nl/content/uploads/2017/07/Mastercard_logo5.png",
                 alt: "Mastercard",
               },
             ].map((img, i) => (

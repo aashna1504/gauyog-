@@ -5,7 +5,16 @@ import useAuthStore from "../../store/authStore";
 import useNotificationStore from "../../store/notificationStore";
 import toast from "react-hot-toast";
 import { Mail, Lock, Eye, EyeOff, ArrowRight, UserPlus, User } from "lucide-react";
-import { GoogleLogin } from "@react-oauth/google";
+import { useGoogleLogin } from "@react-oauth/google";
+
+const GoogleIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24">
+    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/>
+    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+  </svg>
+);
 import { useNavigate } from "react-router-dom";
 
 export default function ModernSignUp() {
@@ -41,10 +50,9 @@ export default function ModernSignUp() {
     }
   };
 
-  const handleGoogleSuccess = async (response) => {
-    if (!response.credential) { toast.error("Google signup failed"); return; }
+  const handleGoogleSuccess = async (tokenResponse) => {
     try {
-      const res = await api.post("/auth/google", { credential: response.credential });
+      const res = await api.post("/auth/google", { access_token: tokenResponse.access_token });
       const u = res.data.data.user;
       setAuth(u, res.data.data.accessToken, res.data.data.refreshToken);
       notify(`Welcome, ${u.name || u.email.split("@")[0]}!`, "signup");
@@ -53,6 +61,11 @@ export default function ModernSignUp() {
       toast.error(error.response?.data?.message || "Google signup failed");
     }
   };
+
+  const googleLogin = useGoogleLogin({
+    onSuccess: handleGoogleSuccess,
+    onError: () => toast.error("Google signup failed"),
+  });
 
   return (
     <div className="min-h-screen flex">
@@ -75,7 +88,7 @@ export default function ModernSignUp() {
         {/* Tagline */}
         <div className="relative z-10 space-y-4">
           <div className="w-12 h-1 bg-[#e9aa43] rounded-full" />
-          <h2 className="text-5xl font-black text-white leading-tight tracking-tight">
+          <h2 className="text-5xl font-black text-white leading-tight tracking-wider">
             Join the Natural<br />
             <span className="text-[#e9aa43] italic">Revolution.</span>
           </h2>
@@ -93,15 +106,15 @@ export default function ModernSignUp() {
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-full bg-[#e9aa43] flex items-center justify-center font-black text-xs text-white flex-shrink-0">G</div>
             <div>
-              <p className="text-white font-black text-xs uppercase tracking-widest">Gauyog Kendr</p>
-              <p className="text-white/50 text-[10px] uppercase tracking-widest">Gir Somnath, Gujarat</p>
+              <p className="text-white font-black text-xs uppercase tracking-widerst">Gauyog Kendr</p>
+              <p className="text-white/50 text-[10px] uppercase tracking-widerst">Gir Somnath, Gujarat</p>
             </div>
           </div>
         </div>
       </div>
 
       {/* ── Right: Form Panel ── */}
-      <div className="w-full lg:w-1/2 min-h-screen flex items-center justify-center bg-white overflow-y-auto px-6 py-8 pt-28 lg:pt-16 lg:px-16">
+      <div className="w-full lg:w-1/2 min-h-screen flex items-center justify-center bg-white overflow-y-auto px-4 md:px-6 py-6 pt-24 lg:pt-16 lg:px-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -111,12 +124,12 @@ export default function ModernSignUp() {
         
 
           {/* Header */}
-          <div className="m-8 lg:mt-20">
+          <div className="mb-5 lg:mt-20">
             <div className="flex items-center gap-3 mb-2">
               <div className="w-10 h-10 rounded-full bg-[#744926]/10 flex items-center justify-center">
                 <UserPlus className="text-[#744926]" size={20} />
               </div>
-              <h1 className="text-3xl font-[900] text-slate-900 tracking-tighter">Create account</h1>
+              <h1 className="text-3xl font-[900] text-slate-900 tracking-wider">Create account</h1>
             </div>
             <p className="text-sm text-slate-400 font-medium ml-[52px]">Join us — it only takes a minute</p>
           </div>
@@ -237,22 +250,20 @@ export default function ModernSignUp() {
           </form>
 
           {/* Divider */}
-          <div className="relative my-8 flex items-center justify-center">
+          <div className="relative my-5 md:my-8 flex items-center justify-center">
             <div className="w-full h-px bg-slate-100" />
             <span className="absolute bg-white px-4 text-[9px] font-black text-slate-400 uppercase tracking-[0.4em]">or</span>
           </div>
 
           {/* Google */}
-          <div className="flex justify-center mb-8">
-            <GoogleLogin
-              onSuccess={handleGoogleSuccess}
-              onError={() => toast.error("Google signup failed")}
-              shape="pill"
-              theme="outline"
-              size="large"
-              text="signup_with"
-            />
-          </div>
+          <button
+            type="button"
+            onClick={() => googleLogin()}
+            className="w-full flex items-center justify-center gap-3 px-5 py-3.5 rounded-2xl border border-slate-200 bg-white hover:bg-slate-50 transition-all text-sm font-semibold text-slate-700 shadow-sm mb-5 md:mb-8"
+          >
+            <GoogleIcon />
+            Continue with Google
+          </button>
 
           {/* Login link */}
           <p className="text-center text-sm font-semibold text-slate-500">

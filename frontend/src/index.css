@@ -18,19 +18,19 @@
      Label / Caption : .type-label     → text-xs               (badges, tags, metadata)
   ─────────────────────────────────────────────────────────────── */
   .type-display {
-    @apply text-6xl lg:text-8xl font-black leading-none tracking-tighter;
+    @apply text-6xl lg:text-8xl font-black leading-none tracking-wider;
   }
   .type-h1 {
     @apply text-5xl lg:text-7xl font-bold leading-[1.1];
   }
   .type-h2 {
-    @apply text-4xl md:text-5xl font-black leading-tight tracking-tighter;
+    @apply text-4xl md:text-5xl font-black leading-tight tracking-wider;
   }
   .type-h3 {
-    @apply text-2xl md:text-3xl font-black leading-tight tracking-tight;
+    @apply text-2xl md:text-3xl font-black leading-tight tracking-wider;
   }
   .type-h4 {
-    @apply text-xl font-bold leading-snug tracking-tight;
+    @apply text-xl font-bold leading-snug tracking-wider;
   }
   .type-body-lg {
     @apply text-lg font-medium leading-relaxed;
@@ -42,14 +42,14 @@
     @apply text-sm font-medium leading-relaxed;
   }
   .type-label {
-    @apply text-xs font-black uppercase tracking-widest;
+    @apply text-xs font-black uppercase tracking-widerst;
   }
 
   /* ── Button sizes ──────────────────────────────────────────── */
   .btn-text {
-    @apply text-sm font-bold uppercase tracking-widest;
+    @apply text-sm font-bold uppercase tracking-widerst;
   }
   .btn-text-sm {
-    @apply text-xs font-black uppercase tracking-widest;
+    @apply text-xs font-black uppercase tracking-widerst;
   }
 }

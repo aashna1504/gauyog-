@@ -64,7 +64,7 @@ export default function ModernForgotPassword() {
               : <HelpCircle  className="text-[#4a703f]" size={32} strokeWidth={1.5} />
             }
           </motion.div>
-          <h1 className="text-4xl font-[900] text-slate-950 tracking-tighter mb-2 leading-none">
+          <h1 className="text-4xl font-[900] text-slate-950 tracking-wider mb-2 leading-none">
             {isSent ? (emailSent ? "Check Your Email" : "Link Ready") : "Forgot Password?"}
           </h1>
           <p className="text-[11px] font-black uppercase tracking-[0.4em] text-slate-400 mt-2">
@@ -141,7 +141,7 @@ export default function ModernForgotPassword() {
                 <button
                   onClick={handleResetRequest}
                   disabled={isLoading}
-                  className="text-[#4a703f] font-black uppercase text-[10px] tracking-widest hover:underline disabled:opacity-50"
+                  className="text-[#4a703f] font-black uppercase text-[10px] tracking-widerst hover:underline disabled:opacity-50"
                 >
                   {isLoading ? "Resending…" : "Resend Link"}
                 </button>
@@ -149,7 +149,7 @@ export default function ModernForgotPassword() {
             ) : devLink ? (
               /* Dev mode: email not delivered, show clickable link */
               <div className="text-center">
-                <div className="inline-flex items-center gap-1.5 bg-amber-50 text-amber-700 text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full mb-4 border border-amber-200">
+                <div className="inline-flex items-center gap-1.5 bg-amber-50 text-amber-700 text-[10px] font-black uppercase tracking-widerst px-3 py-1.5 rounded-full mb-4 border border-amber-200">
                   <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
                   Dev Mode
                 </div>
@@ -164,7 +164,7 @@ export default function ModernForgotPassword() {
 
                 <a
                   href={devLink}
-                  className="inline-flex items-center gap-2 bg-[#4a703f] text-white px-6 py-3 rounded-full font-black text-[11px] uppercase tracking-widest hover:bg-[#3a5a30] transition-colors mb-4"
+                  className="inline-flex items-center gap-2 bg-[#4a703f] text-white px-6 py-3 rounded-full font-black text-[11px] uppercase tracking-widerst hover:bg-[#3a5a30] transition-colors mb-4"
                 >
                   Reset Password Now
                   <ExternalLink size={13} />
@@ -186,7 +186,7 @@ export default function ModernForgotPassword() {
                 <button
                   onClick={handleResetRequest}
                   disabled={isLoading}
-                  className="text-[#4a703f] font-black uppercase text-[10px] tracking-widest hover:underline disabled:opacity-50"
+                  className="text-[#4a703f] font-black uppercase text-[10px] tracking-widerst hover:underline disabled:opacity-50"
                 >
                   {isLoading ? "Resending…" : "Resend Link"}
                 </button>

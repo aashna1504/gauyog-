@@ -307,35 +307,35 @@ export default function KineticContactBanner() {
   };
 
   return (
-    <div className="mt-16 ">
+    <div className="mt-16">
       <motion.div
         initial="hidden"
         animate="visible"
         variants={containerVariants}
-        className="relative w-full py-16 md:py-20 overflow-hidden"
+        className="relative w-full py-8 md:py-20 overflow-hidden"
       >
         {/* Background decorations */}
         <div className="absolute top-0 right-0 w-[35%] h-full bg-[#4a703f]/4 -skew-x-12 translate-x-10 -z-10" />
         <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-[#e9aa43]/8 rounded-full blur-[120px] -z-10" />
         <div className="absolute top-16 left-[25%] w-72 h-72 bg-[#4a703f]/5 rounded-full blur-[90px] -z-10" />
 
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 items-start gap-8 lg:gap-10 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 grid grid-cols-1 md:grid-cols-12 items-start gap-5 lg:gap-10 relative z-10">
           {/* LEFT SIDE — Modern info card */}
           <motion.div variants={itemVariants} className="md:col-span-5">
-            <div className="relative bg-gradient-to-br from-[#744926] via-[#3d5f34] to-[#744926] rounded-[2.5rem] p-8 md:p-10 overflow-hidden h-full">
+            <div className="relative bg-gradient-to-br from-[#744926] via-[#3d5f34] to-[#744926] rounded-[2rem] md:rounded-[2.5rem] p-5 md:p-10 overflow-hidden h-full">
               {/* Decorative orbs inside card */}
               <div className="absolute -top-14 -right-14 w-52 h-52 bg-white/5 rounded-full pointer-events-none" />
               <div className="absolute top-1/2 right-6 w-20 h-20 bg-white/3 rounded-full pointer-events-none" />
 
               {/* Heading */}
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-none tracking-wide mb-5">
+              <h1 className="text-3xl md:text-6xl lg:text-7xl font-black text-white leading-none tracking-wider mb-3 md:mb-5">
                 Connect
                 <span className="text-[#e9aa43] italic font-medium block">
                   With Us.
                 </span>
               </h1>
 
-              <p className="text-white/60 text-base leading-relaxed mb-10 max-w-xs">
+              <p className="text-white/60 text-sm md:text-base leading-relaxed mb-5 md:mb-10 max-w-xs">
                 Whether you're a distributor, retailer, co-operative, or farmer
                 looking to go organic — we'd love to hear.
               </p>
@@ -386,7 +386,7 @@ export default function KineticContactBanner() {
               </div>
 
               {/* Response time */}
-              <div className="mt-6 flex items-center gap-3 px-4 py-3 bg-[#e9aa43]/15 rounded-2xl border border-[#e9aa43]/20">
+              <div className="mt-4 md:mt-6 flex items-center gap-3 px-3 md:px-4 py-2.5 md:py-3 bg-[#e9aa43]/15 rounded-2xl border border-[#e9aa43]/20">
                 <div className="w-2 h-2 bg-[#e9aa43] rounded-full animate-pulse shrink-0" />
                 <span className="text-[10px] font-black uppercase tracking-[0.18em] text-[#e9aa43]/80">
                   Responds within 24 hours
@@ -427,7 +427,7 @@ export default function KineticContactBanner() {
                 </div>
               </div>
 
-              <form className="w-full p-6 md:p-8" onSubmit={handleSubmit}>
+              <form className="w-full p-4 md:p-8" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-5">
                   <div className="lg:col-span-2">
                     <p className="text-[9px] font-black uppercase tracking-[0.3em] text-[#4a703f] mb-3 flex items-center gap-2">
@@ -436,7 +436,7 @@ export default function KineticContactBanner() {
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       <div className="space-y-1.5 group">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">
+                        <label className="text-[10px] font-black uppercase tracking-widerst text-gray-600 group-focus-within:text-[#4a703f]">
                           Full Name <span className="text-[#744926]">*</span>
                         </label>
                         <div className="relative">
@@ -457,7 +457,7 @@ export default function KineticContactBanner() {
                       </div>
 
                       <div className="space-y-1.5 group">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">
+                        <label className="text-[10px] font-black uppercase tracking-widerst text-gray-600 group-focus-within:text-[#4a703f]">
                           Mobile Number{" "}
                           <span className="text-[#744926]">*</span>
                         </label>
@@ -479,7 +479,7 @@ export default function KineticContactBanner() {
                       </div>
 
                       <div className="space-y-1.5 group">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">
+                        <label className="text-[10px] font-black uppercase tracking-widerst text-gray-600 group-focus-within:text-[#4a703f]">
                           Email Address{" "}
                           <span className="text-[#744926]">*</span>
                         </label>
@@ -501,7 +501,7 @@ export default function KineticContactBanner() {
                       </div>
 
                       <div className="space-y-1.5 group">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">
+                        <label className="text-[10px] font-black uppercase tracking-widerst text-gray-600 group-focus-within:text-[#4a703f]">
                           Village / City
                         </label>
                         <input
@@ -516,7 +516,7 @@ export default function KineticContactBanner() {
                       </div>
 
                       <div className="space-y-1.5 group">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">
+                        <label className="text-[10px] font-black uppercase tracking-widerst text-gray-600 group-focus-within:text-[#4a703f]">
                           District
                         </label>
                         <input
@@ -531,7 +531,7 @@ export default function KineticContactBanner() {
                       </div>
 
                       <div className="space-y-1.5 group">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">
+                        <label className="text-[10px] font-black uppercase tracking-widerst text-gray-600 group-focus-within:text-[#4a703f]">
                           State
                         </label>
                         <div className="relative">
@@ -559,7 +559,7 @@ export default function KineticContactBanner() {
                   </div>
 
                   <div className="space-y-1.5 group">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-gray-600">
+                    <label className="text-[10px] font-black uppercase tracking-widerst text-gray-600">
                       You Are A…
                     </label>
                     <MultiSelect
@@ -582,7 +582,7 @@ export default function KineticContactBanner() {
                   </div>
 
                   <div className="space-y-1.5 group">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-gray-600">
+                    <label className="text-[10px] font-black uppercase tracking-widerst text-gray-600">
                       Area of Interest
                     </label>
                     <MultiSelect
@@ -594,7 +594,7 @@ export default function KineticContactBanner() {
                   </div>
 
                   <div className="space-y-1.5 group lg:col-span-2">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-gray-600">
+                    <label className="text-[10px] font-black uppercase tracking-widerst text-gray-600">
                       Product Interest
                     </label>
                     <MultiSelect
@@ -641,10 +641,10 @@ export default function KineticContactBanner() {
           </motion.div>
         </div>
       </motion.div>
-      <section className="relative bg-[#744926] py-24 px-6 overflow-hidden">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+      <section className="relative bg-[#744926] py-10 md:py-24 px-4 md:px-6 overflow-hidden">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-16 items-center">
           {/* --- LEFT SIDE: BENTO IMAGE GRID --- */}
-          <div className="lg:col-span-6 grid grid-cols-2 gap-4">
+          <div className="lg:col-span-6 grid grid-cols-2 gap-3 md:gap-4">
             <div className="space-y-4">
               {/* Large Vertical Image */}
               <div className="aspect-[3/4] rounded-[2.5rem] overflow-hidden bg-[#4a703f]/10 group shadow-xl">
@@ -686,8 +686,8 @@ export default function KineticContactBanner() {
           </div>
 
           {/* --- RIGHT SIDE: CONTENT --- */}
-          <div className="lg:col-span-6 space-y-10">
-            <div className="space-y-6">
+          <div className="lg:col-span-6 space-y-6 md:space-y-10">
+            <div className="space-y-3 md:space-y-6">
               <div className="inline-block">
                 <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#e9aa43]">
                   Our Story
@@ -695,16 +695,16 @@ export default function KineticContactBanner() {
                 <div className="h-[1px] w-12 bg-[#e9aa43] mt-1" />
               </div>
 
-              <h2 className="text-5xl md:text-6xl tracking-wider font-bold text-white leading-[1.1]">
+              <h2 className="text-3xl md:text-6xl tracking-wider font-bold text-white leading-[1.1]">
                 Born from the{" "}
-                <span className="text-white italic font-medium text-6xl">
+                <span className="text-white italic font-medium md:text-6xl">
                   Earth,
                 </span>{" "}
                 <br />
                 Built for the World
               </h2>
 
-              <div className="space-y-2 text-slate-100 text-lg leading-relaxed">
+              <div className="space-y-2 text-slate-100 text-sm md:text-lg leading-relaxed">
                 <p className="font-semibold text-[#e9aa43]">
                   Gauyog Kendr brings together Indian agricultural heritage and
                   international business vision to create premium organic
@@ -720,7 +720,7 @@ export default function KineticContactBanner() {
             </div>
 
             {/* Feature Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6 border-t border-slate-100">
+            <div className="grid grid-cols-2 md:grid-cols-2 gap-4 md:gap-8 pt-4 md:pt-6 border-t border-slate-100">
               <div className="flex gap-4">
                 <div className="w-10 h-10 rounded-full bg-green-600/30 flex items-center justify-center shrink-0">
                   <Leaf className="text-green-600" size={18} />
@@ -776,29 +776,27 @@ export default function KineticContactBanner() {
           </div>
         </div>
       </section>
-      <section className="py-24 px-6 bg-white overflow-hidden">
+      <section className="py-10 md:py-24 px-4 md:px-6 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto">
-          {/* Header - Simple & Left Aligned like your image */}
-          <div className="mb-20">
+          <div className="mb-8 md:mb-20">
             <motion.span
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              className="text-[10px] font-black uppercase tracking-[0.4em] text-[#e9aa43] mb-4 block"
+              className="text-[10px] font-black uppercase tracking-[0.4em] text-[#e9aa43] mb-2 md:mb-4 block"
             >
               Our Commitment
             </motion.span>
-            <h2 className="text-5xl md:text-6xl font-bold tracking-wider leading-tight max-w-2xl">
+            <h2 className="text-2xl md:text-6xl font-bold tracking-wider leading-tight max-w-2xl">
               Sustainability Is Our{" "}
               <span className="text-[#4a703f] italic">Foundation</span>
             </h2>
-            <p className="mt-6 text-slate-500 text-lg max-w-xl">
+            <p className="mt-3 md:mt-6 text-slate-500 text-sm md:text-lg max-w-xl">
               Every product returns value to the earth through a circular
               approach.
             </p>
           </div>
 
-          {/* 3-in-a-row Row - No Boxes */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16">
             {commitments.map((item, idx) => (
               <motion.div
                 key={idx}
@@ -808,18 +806,13 @@ export default function KineticContactBanner() {
                 viewport={{ once: true }}
                 className="group"
               >
-                {/* Title - Bold and Serif */}
-                <h3 className="text-2xl  font-bold text-[#2d3a29] mb-4">
+                <h3 className="text-lg md:text-2xl font-bold text-[#2d3a29] mb-2 md:mb-4">
                   {item.title}
                 </h3>
-
-                {/* Description - Clean and legible */}
                 <p className="text-slate-500 leading-relaxed text-sm md:text-base">
                   {item.desc}
                 </p>
-
-                {/* Animated Accent Line */}
-                <motion.div className="mt-8 h-[1px] bg-slate-100 relative overflow-hidden">
+                <motion.div className="mt-5 md:mt-8 h-[1px] bg-slate-100 relative overflow-hidden">
                   <motion.div
                     className="absolute inset-0 bg-current"
                     initial={{ x: "-100%" }}

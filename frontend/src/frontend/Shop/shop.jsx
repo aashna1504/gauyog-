@@ -66,7 +66,7 @@ export default function ModernShopBanner() {
 
             <motion.h1
               variants={itemVariants}
-              className="text-6xl md:text-8xl font-black text-gray-900 leading-none tracking-tighter"
+              className="text-6xl md:text-8xl font-black text-gray-900 leading-none tracking-wider"
               style={{
                 fontFamily:
                   "'Baskerville Old Face', 'Libre Baskerville', serif",
@@ -105,7 +105,7 @@ export default function ModernShopBanner() {
                     <p className="text-[10px] font-black uppercase text-gray-400">
                       Available Items
                     </p>
-                    <p className="text-xl font-bold text-gray-900 tracking-tight">
+                    <p className="text-xl font-bold text-gray-900 tracking-wider">
                       48+ Products
                     </p>
                   </div>
@@ -115,7 +115,7 @@ export default function ModernShopBanner() {
 
                 <div className="flex items-center justify-between bg-white p-4 rounded-full border border-gray-50 shadow-sm max-w-[240px]">
                   <div>
-                    <p className="text-[10px] font-black uppercase text-[#4a703f] tracking-widest">
+                    <p className="text-[10px] font-black uppercase text-[#4a703f] tracking-widerst">
                       Purity Level
                     </p>
                     <p className="text-sm font-bold text-gray-900">

@@ -357,13 +357,13 @@ export function OrdersTable() {
             <div className="space-y-1">
               <div className="flex justify-between items-start">
                 <div>
-                  <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Order ID</p>
+                  <p className="text-[10px] text-muted-foreground uppercase tracking-widerst">Order ID</p>
                   <span className="text-xs font-semibold font-mono">#{o.id.slice(0, 8).toUpperCase()}</span>
                 </div>
                 <Badge variant={STATUS_VARIANT[o.status] ?? 'secondary'}>{o.status}</Badge>
               </div>
               <div>
-                <p className="text-[10px] text-muted-foreground uppercase tracking-widest">Tracking ID</p>
+                <p className="text-[10px] text-muted-foreground uppercase tracking-widerst">Tracking ID</p>
                 <TrackingIdCell
                   orderId={o.id}
                   trackingId={o.trackingId}

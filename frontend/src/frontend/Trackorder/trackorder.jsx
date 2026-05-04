@@ -127,7 +127,7 @@ export default function TrackOrderPage() {
           </motion.div>
           <motion.h1
             variants={itemVariants}
-            className="text-6xl md:text-8xl font-black text-gray-900 leading-[0.9] tracking-tighter"
+            className="text-6xl md:text-8xl font-black text-gray-900 leading-[0.9] tracking-wider"
             style={{ fontFamily: "'Baskerville Old Face', 'Libre Baskerville', serif" }}
           >
             Track <br />
@@ -135,7 +135,7 @@ export default function TrackOrderPage() {
           </motion.h1>
           <motion.p
             variants={itemVariants}
-            className="mt-8 text-gray-400 max-w-sm mx-auto text-[11px] font-bold uppercase tracking-widest leading-loose"
+            className="mt-8 text-gray-400 max-w-sm mx-auto text-[11px] font-bold uppercase tracking-widerst leading-loose"
           >
             Real-time updates from us to your doorstep.
           </motion.p>
@@ -171,7 +171,7 @@ export default function TrackOrderPage() {
             <button
               onClick={handleSearch}
               disabled={loading || !orderId.trim()}
-              className="w-full bg-[#4a703f] hover:bg-slate-900 disabled:opacity-50 disabled:cursor-not-allowed text-white py-6 rounded-full font-black uppercase tracking-widest text-xs flex items-center justify-center gap-3 transition-all duration-500 group shadow-xl shadow-[#4a703f]/20"
+              className="w-full bg-[#4a703f] hover:bg-slate-900 disabled:opacity-50 disabled:cursor-not-allowed text-white py-6 rounded-full font-black uppercase tracking-widerst text-xs flex items-center justify-center gap-3 transition-all duration-500 group shadow-xl shadow-[#4a703f]/20"
             >
               {loading ? "Searching..." : "Locate Package"}
               {!loading && <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />}
@@ -180,9 +180,9 @@ export default function TrackOrderPage() {
             <div className="flex items-center justify-between pt-6 border-t border-slate-50">
               <div className="flex items-center gap-2">
                 <ShieldCheck size={14} className="text-[#4a703f]" />
-                <span className="text-[9px] font-black uppercase text-slate-400 tracking-tighter">Verified Delivery</span>
+                <span className="text-[9px] font-black uppercase text-slate-400 tracking-wider">Verified Delivery</span>
               </div>
-              <Link to="/contact" className="text-[9px] font-black uppercase text-slate-400 tracking-tighter hover:text-[#4a703f] transition-colors">
+              <Link to="/contact" className="text-[9px] font-black uppercase text-slate-400 tracking-wider hover:text-[#4a703f] transition-colors">
                 Need Help?
               </Link>
             </div>
@@ -216,14 +216,14 @@ export default function TrackOrderPage() {
               {/* Header */}
               <div className="flex items-start justify-between mb-6">
                 <div>
-                  <p className="text-[9px] font-black uppercase tracking-widest text-slate-400 mb-1">Order</p>
+                  <p className="text-[9px] font-black uppercase tracking-widerst text-slate-400 mb-1">Order</p>
                   <div className="flex items-center gap-2">
                     <h3 className="text-xl font-black text-slate-900">#{order.id.slice(0, 8).toUpperCase()}</h3>
                     <CopyButton text={order.id} />
                   </div>
                   <p className="text-xs text-slate-400 mt-1">{formatDate(order.createdAt)}</p>
                 </div>
-                <span className={`text-xs font-black uppercase tracking-widest px-4 py-2 rounded-full bg-slate-50 ${STATUS_COLORS[order.status]}`}>
+                <span className={`text-xs font-black uppercase tracking-widerst px-4 py-2 rounded-full bg-slate-50 ${STATUS_COLORS[order.status]}`}>
                   {STATUS_LABEL[order.status]}
                 </span>
               </div>
@@ -234,7 +234,7 @@ export default function TrackOrderPage() {
                   <Truck size={18} />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-[9px] font-black uppercase tracking-widest text-slate-400 mb-0.5">Courier Tracking ID</p>
+                  <p className="text-[9px] font-black uppercase tracking-widerst text-slate-400 mb-0.5">Courier Tracking ID</p>
                   {order.trackingId ? (
                     <div className="flex items-center gap-2">
                       <span className="text-sm font-black font-mono text-slate-900 tracking-wider">{order.trackingId}</span>
@@ -262,7 +262,7 @@ export default function TrackOrderPage() {
                           <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all ${done ? "bg-[#4a703f] text-white" : "bg-slate-100 text-slate-300"}`}>
                             {done ? <CheckCircle2 size={18} /> : <Clock size={18} />}
                           </div>
-                          <span className={`text-[8px] font-black uppercase tracking-widest ${done ? "text-[#4a703f]" : "text-slate-300"}`}>
+                          <span className={`text-[8px] font-black uppercase tracking-widerst ${done ? "text-[#4a703f]" : "text-slate-300"}`}>
                             {STATUS_LABEL[step]}
                           </span>
                         </div>
@@ -282,7 +282,7 @@ export default function TrackOrderPage() {
               {/* Delivery Address */}
               {(order.firstName || order.address) && (
                 <div className="bg-slate-50 rounded-[20px] p-5 mb-6">
-                  <p className="text-[9px] font-black uppercase tracking-widest text-slate-400 mb-2">Delivery Address</p>
+                  <p className="text-[9px] font-black uppercase tracking-widerst text-slate-400 mb-2">Delivery Address</p>
                   <p className="text-sm font-black text-slate-900">{order.firstName} {order.lastName}</p>
                   <p className="text-xs text-slate-500 mt-1">{[order.building, order.address].filter(Boolean).join(", ")}</p>
                   {order.phone && <p className="text-xs text-slate-400 mt-1">{order.phone}</p>}
@@ -291,7 +291,7 @@ export default function TrackOrderPage() {
 
               {/* Items */}
               <div>
-                <p className="text-[9px] font-black uppercase tracking-widest text-slate-400 mb-4">Items Ordered</p>
+                <p className="text-[9px] font-black uppercase tracking-widerst text-slate-400 mb-4">Items Ordered</p>
                 <div className="space-y-3">
                   {order.items?.map((item) => {
                     const prod = item.product;
@@ -323,7 +323,7 @@ export default function TrackOrderPage() {
 
               {/* Total */}
               <div className="mt-6 pt-6 border-t border-slate-100 flex justify-between items-center">
-                <span className="text-xs font-black uppercase tracking-widest text-slate-400">Total Paid</span>
+                <span className="text-xs font-black uppercase tracking-widerst text-slate-400">Total Paid</span>
                 <span className="text-xl font-black text-slate-900">₹{order.total.toLocaleString("en-IN")}</span>
               </div>
             </motion.div>
@@ -347,8 +347,8 @@ function FeatureBlock({ icon: Icon, title, desc }) {
         <Icon size={24} className="text-[#4a703f] group-hover:text-white transition-colors" />
       </div>
       <div className="space-y-2">
-        <h4 className="text-sm font-black uppercase tracking-widest text-slate-900 italic">{title}</h4>
-        <p className="text-xs text-slate-400 font-medium leading-relaxed uppercase tracking-tighter">{desc}</p>
+        <h4 className="text-sm font-black uppercase tracking-widerst text-slate-900 italic">{title}</h4>
+        <p className="text-xs text-slate-400 font-medium leading-relaxed uppercase tracking-wider">{desc}</p>
       </div>
     </div>
   );

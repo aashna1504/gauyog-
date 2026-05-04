@@ -168,11 +168,11 @@ export default function ProductListingPage() {
   ];
 
   return (
-    <div className="bg-[#fcfdfd] min-h-screen pb-24 relative">
-      <section className="w-full bg-[#fdfcfb] py-12">
-        <div className="max-w-7xl mx-auto px-6">
+    <div className="bg-[#fcfdfd] min-h-screen pb-10 md:pb-24 relative">
+      <section className="w-full bg-[#fdfcfb] py-6 md:py-12">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
           {/* --- COMBINED HEADING SECTION --- */}
-          <div className="w-full max-w-4xl mx-auto text-center mb-2 space-y-5">
+          <div className="w-full max-w-4xl mx-auto text-center mb-2 space-y-3 md:space-y-5">
             {/* Gold Subheading with centered line accents */}
             <div className="flex items-center justify-center gap-3">
               <div className="w-8 h-[1px] bg-[#e9aa43]/40" />
@@ -183,7 +183,7 @@ export default function ProductListingPage() {
             </div>
 
             {/* Main Heading */}
-            <h2 className="text-4xl md:text-6xl  font-bold text-black tracking-wider">
+            <h2 className="text-2xl md:text-6xl font-bold text-black tracking-wider">
               Everything from <br />
               <span className="text-[#4a703f] ">Mother Earth</span>
             </h2>
@@ -205,7 +205,7 @@ export default function ProductListingPage() {
                     <img src={cert.img} alt={cert.name} className="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-110" />
                   </div>
                 </div>
-                <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 group-hover:text-[#2d3a29] transition-colors text-center leading-tight">
+                <span className="text-[10px] font-black uppercase tracking-widerst text-slate-400 group-hover:text-[#2d3a29] transition-colors text-center leading-tight">
                   {cert.name}
                 </span>
               </div>
@@ -321,7 +321,7 @@ export default function ProductListingPage() {
       </main>
 
       {/* Certifications — mobile only, shown after products */}
-      <section className="md:hidden w-full bg-[#fdfcfb] py-16 mt-8">
+      {/* <section className="md:hidden w-full bg-[#fdfcfb] py-16 mt-8">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-center gap-3 mb-10">
             <div className="w-8 h-[1px] bg-[#e9aa43]/40" />
@@ -338,14 +338,14 @@ export default function ProductListingPage() {
                     <img src={cert.img} alt={cert.name} className="max-w-full max-h-full object-contain" />
                   </div>
                 </div>
-                <span className="text-[9px] font-black uppercase tracking-widest text-slate-400 text-center leading-tight">
+                <span className="text-[9px] font-black uppercase tracking-widerst text-slate-400 text-center leading-tight">
                   {cert.name}
                 </span>
               </div>
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

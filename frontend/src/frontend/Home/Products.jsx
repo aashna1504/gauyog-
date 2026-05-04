@@ -132,16 +132,16 @@ export default function ProductSection() {
   ];
   return (
     <div>
-      <section className=" py-20 px-6 overflow-hidden mt-10">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch">
+      <section className="py-10 md:py-20 px-4 md:px-6 overflow-hidden mt-6 md:mt-10">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-stretch">
           {/* Left Content */}
-          <div className="flex flex-col justify-between space-y-12 order-2 lg:order-1">
+          <div className="flex flex-col justify-between space-y-6 md:space-y-12 lg:order-1">
             {/* Main Text Block */}
-            <div className="space-y-8">
-              <div className="space-y-4">
+            <div className="space-y-5 md:space-y-8">
+              <div className="space-y-3 md:space-y-4">
                 {/* Logo Area */}
                 <div className="flex flex-col">
-                  <h2 className="text-3xl font-black text-[#4a703f] tracking-tight">
+                  <h2 className="text-3xl font-black text-[#4a703f] tracking-wider">
                     Gauyog Kendr
                   </h2>
                   <span className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400">
@@ -149,7 +149,7 @@ export default function ProductSection() {
                   </span>
                 </div>
 
-                <h1 className="text-5xl md:text-6xl font-bold text-black leading-[1.1]">
+                <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-black leading-[1.1]">
                   Our Gift from{" "}
                   <span className="text-[#4a703f] italic underline decoration-[#e9aa43]/30 underline-offset-8">
                     Gujarat, India
@@ -157,13 +157,13 @@ export default function ProductSection() {
                   to the World
                 </h1>
 
-                <p className="text-[#4a703f] italic font-semibold text-lg flex items-center gap-3">
+                <p className="text-[#4a703f] italic font-semibold text-base md:text-lg flex items-center gap-3">
                   <span className="w-6 h-[2px] bg-[#4a703f]" />
                   Pure by Nature. Proven by Earth.
                 </p>
               </div>
 
-              <p className="text-slate-600 leading-relaxed text-lg max-w-xl">
+              <p className="text-slate-600 leading-relaxed text-sm md:text-lg max-w-xl">
                 Cow-based fertilisers and coconut substrates from our sanctuary
                 in Gir Somnath - built on Vedic practice, certified for export,
                 trusted by farms, nurseries and growers across India and abroad.
@@ -201,13 +201,13 @@ export default function ProductSection() {
 
               {/* Modern Badge Strip */}
               <div className="flex items-center gap-6 hover:opacity-100 transition-opacity">
-                <div className="px-3 py-1 border border-slate-100 rounded text-[9px] font-black uppercase tracking-widest text-slate-100">
+                <div className="px-3 py-1 border border-slate-100 rounded text-[9px] font-black uppercase tracking-widerst text-slate-100">
                   ISO 9001:2015
                 </div>
-                <div className="px-3 py-1 border border-slate-300 rounded text-[9px] font-black uppercase tracking-widest text-slate-100">
+                <div className="px-3 py-1 border border-slate-300 rounded text-[9px] font-black uppercase tracking-widerst text-slate-100">
                   Organic Certified
                 </div>
-                <div className="px-3 py-1 border border-slate-300 rounded text-[9px] font-black uppercase tracking-widest text-slate-100">
+                <div className="px-3 py-1 border border-slate-300 rounded text-[9px] font-black uppercase tracking-widerst text-slate-100">
                   Startup India
                 </div>
               </div>
@@ -215,7 +215,7 @@ export default function ProductSection() {
           </div>
 
           {/* Right Content */}
-          <div className="space-y-6 order-1 lg:order-2">
+          <div className="space-y-6 lg:order-2">
             {/* Main Image Card */}
             <div className="relative rounded-[40px] overflow-hidden shadow-2xl group transition-transform duration-500 hover:scale-[1.02]">
               <img
@@ -241,7 +241,7 @@ export default function ProductSection() {
                   <span className="text-[#e9aa43] font-bold text-2xl lg:text-xl xl:text-2xl">
                     {stat.label}
                   </span>
-                  <span className="text-[9px] font-black text-slate-700 uppercase tracking-widest leading-tight">
+                  <span className="text-[9px] font-black text-slate-700 uppercase tracking-widerst leading-tight">
                     {stat.sub}
                   </span>
                 </div>
@@ -250,15 +250,15 @@ export default function ProductSection() {
           </div>
         </div>
       </section>
-      <div className="bg-[#fcfdfd] relative overflow-hidden">
+      <div className="bg-[#fcfdfd] relative overflow-hidden px-0">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#e9aa43]/10 rounded-full blur-[120px] -z-10 opacity-60" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#744926]/10 rounded-full blur-[100px] -z-10 opacity-40" />
 
         <div className="max-w-7xl mx-auto px-4 flex flex-col">
-          {/* Trusted Natural Partner — below products on mobile, above on desktop */}
-          <div className="order-2 md:order-1 grid md:grid-cols-2 items-center gap-12 mb-24 mt-10 md:mt-0">
+          {/* Trusted Natural Partner */}
+          <div className="grid md:grid-cols-2 items-center gap-6 md:gap-12 mb-8 md:mb-24 mt-6 md:mt-0">
             <div className="relative group flex justify-center order-2 md:order-1">
-              <div className="absolute w-[320px] h-[320px] md:w-[450px] md:h-[450px] bg-gradient-to-tr from-green-100/40 to-emerald-50/20 rounded-full animate-pulse shadow-inner" />
+              <div className="absolute w-[220px] h-[220px] md:w-[450px] md:h-[450px] bg-gradient-to-tr from-green-100/40 to-emerald-50/20 rounded-full animate-pulse shadow-inner" />
               <img
                 src="https://res.cloudinary.com/dbpzzvcik/image/upload/v1775037259/cow_v6ymwb.png"
                 className="relative w-full max-w-[420px] z-10 drop-shadow-2xl hover:scale-105 transition-transform duration-700 ease-out"
@@ -269,7 +269,7 @@ export default function ProductSection() {
                   <CheckCircleIcon size={20} />
                 </div>
                 <div>
-                  <p className="text-[10px] uppercase font-black text-gray-400 tracking-tighter">
+                  <p className="text-[10px] uppercase font-black text-gray-400 tracking-wider">
                     Certified
                   </p>
                   <p className="text-sm font-bold text-gray-900">100% Pure</p>
@@ -277,21 +277,21 @@ export default function ProductSection() {
               </div>
             </div>
 
-            <div className="lg:pl-10 space-y-6 order-1 md:order-2 text-center md:text-left">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#e9aa43]/10 text-[#744926] text-xs font-bold uppercase tracking-widest border border-[#e9aa43]/30">
+            <div className="lg:pl-10 space-y-4 md:space-y-6 text-center md:text-left order-1 md:order-2">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#e9aa43]/10 text-[#744926] text-xs font-bold uppercase tracking-widerst border border-[#e9aa43]/30">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#e9aa43] opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-[#e9aa43]" />
                 </span>
                 New Arrival 2026
               </div>
-              <h2 className="text-5xl lg:text-7xl font-bold text-gray-900 leading-[1.1]">
+              <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold text-gray-900 leading-[1.1]">
                 Your{" "}
                 <span className="text-[#4a703f] italic underline decoration-[#e9aa43]/30 underline-offset-8">
                   Trusted Natural Partner
                 </span>
               </h2>
-              <p className="text-gray-500 text-lg max-w-md leading-relaxed mx-auto md:mx-0">
+              <p className="text-gray-500 text-sm md:text-lg max-w-md leading-relaxed mx-auto md:mx-0">
                 International standards, Indian roots, and a genuine commitment
                 to communities, farmers, and the earth.
               </p>
@@ -308,9 +308,9 @@ export default function ProductSection() {
 
           {/* Products section — first on mobile, second on desktop */}
           <div className="order-1 md:order-2">
-            <div className="flex justify-between items-end mb-10">
+            <div className="flex justify-between items-end mb-6 md:mb-10">
               <div className="space-y-2">
-                <h2 className="text-5xl lg:text-7xl font-bold text-gray-900 leading-[1.1]">
+                <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold text-gray-900 leading-[1.1]">
                   Everything from{" "}
                   <span className="text-[#4a703f] italic underline decoration-[#e9aa43]/30 underline-offset-8">
                     Mother Earth
@@ -377,22 +377,22 @@ export default function ProductSection() {
             </div>
           </div>
         </div>
-        <div className=" bg-[#744926] ">
-          <div className="max-w-7xl mx-auto py-24 px-6">
+        <div className="bg-[#744926]">
+          <div className="max-w-7xl mx-auto py-12 md:py-24 px-4 md:px-6">
             {/* Header Section */}
-            <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-              <div className="space-y-3">
+            <div className="flex flex-col md:flex-row justify-between items-end mb-8 md:mb-16 gap-4 md:gap-6">
+              <div className="space-y-2 md:space-y-3">
                 <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#e9aa43]">
                   Product Selection
                 </span>
-                <h2 className="text-5xl font-bold text-slate-100 ">
+                <h2 className="text-3xl md:text-5xl font-bold text-slate-100">
                   Choose Your
                   <span className="text-[#e9aa43] ml-2 italic underline decoration-[#e9aa43] underline-offset-8">
                     Growth Solution
                   </span>
                 </h2>
               </div>
-              <p className="max-w-xs text-slate-100 text-sm font-medium leading-relaxed border-l-2 border-slate-100 pl-6">
+              <p className="max-w-xs text-slate-100 text-sm font-medium leading-relaxed border-l-2 border-slate-100 pl-4 md:pl-6">
                 Two premium product categories — organic fertilisers and coco
                 substrates — crafted to transform your soil and grow naturally.
               </p>
@@ -415,7 +415,7 @@ export default function ProductSection() {
                       >
                         {tier.icon}
                       </div>
-                      <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest">
+                      <span className="text-[10px] font-black text-slate-300 uppercase tracking-widerst">
                         {tier.badge}
                       </span>
                     </div>
@@ -441,7 +441,7 @@ export default function ProductSection() {
                       {tier.products.map((product, i) => (
                         <span
                           key={i}
-                          className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wide border"
+                          className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider border"
                           style={{
                             borderColor: tier.color + "50",
                             color: tier.color,
@@ -473,7 +473,7 @@ export default function ProductSection() {
                     {/* CTA */}
                     <button
                       onClick={() => (window.location.href = "/shop")}
-                      className="w-full py-4 rounded-2xl flex items-center justify-center gap-3 font-black text-[10px] uppercase tracking-widest transition-all text-white shadow-md hover:brightness-110 active:scale-95"
+                      className="w-full py-4 rounded-2xl flex items-center justify-center gap-3 font-black text-[10px] uppercase tracking-widerst transition-all text-white shadow-md hover:brightness-110 active:scale-95"
                       style={{ backgroundColor: tier.color }}
                     >
                       Browse Products <ArrowUpRight size={14} />
@@ -489,13 +489,13 @@ export default function ProductSection() {
             </div>
           </div>
         </div>
-        <section className="relative bg-[#fdfcfb] py-32 px-6 overflow-hidden">
+        <section className="relative bg-[#fdfcfb] py-14 md:py-32 px-4 md:px-6 overflow-hidden">
           {/* Soft Background Accents */}
           <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#4a703f]/5 rounded-full blur-[120px] -z-10" />
           <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-[#4a703f]/5 rounded-full blur-[100px] -z-10" />
 
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-20">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-20">
               {/* --- LEFT SIDE: CONTENT & SEGMENTS --- */}
               <div className="lg:col-span-7 space-y-12">
                 <div className="space-y-6">
@@ -506,7 +506,7 @@ export default function ProductSection() {
                     </span>
                   </div>
 
-                  <h2 className="text-5xl md:text-7xl font-bold text-slate-950 leading-[1.1] tracking-wider">
+                  <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold text-slate-950 leading-[1.1] tracking-wider">
                     Bridging{" "}
                     <span className="text-[#4a703f] italic underline decoration-[#e9aa43]/30 underline-offset-8">
                       Heritage
@@ -515,7 +515,7 @@ export default function ProductSection() {
                     to Modern Markets
                   </h2>
 
-                  <p className="text-slate-500 text-xl leading-relaxed max-w-xl font-medium">
+                  <p className="text-slate-500 text-sm md:text-xl leading-relaxed max-w-xl font-medium">
                     We empower diverse market segments across continents,
                     scaling from industrial distributors to high-end boutique
                     retailers.
@@ -554,7 +554,7 @@ export default function ProductSection() {
                         {item.icon}
                       </div>
                       <div>
-                        <h4 className="text-lg font-bold text-slate-900 tracking-wide">
+                        <h4 className="text-lg font-bold text-slate-900 tracking-wider">
                           {item.title}
                         </h4>
                         <p className="text-slate-500 text-sm leading-relaxed">
@@ -569,7 +569,7 @@ export default function ProductSection() {
               {/* --- RIGHT SIDE: STATS & QUOTE --- */}
               <div className="lg:col-span-5 flex flex-col gap-6">
                 {/* High-Impact Testimonial */}
-                <div className="flex-1 relative overflow-hidden bg-[#4a703f] rounded-[3rem] p-10 md:p-12 text-white shadow-2xl shadow-[#4a703f]/30 min-h-[600px] flex flex-col justify-center">
+                <div className="flex-1 relative overflow-hidden bg-[#4a703f] rounded-[2rem] md:rounded-[3rem] p-6 md:p-12 text-white shadow-2xl shadow-[#4a703f]/30 min-h-[auto] md:min-h-[600px] flex flex-col justify-center">
                   {/* Decorative Background Element */}
                   <div className="absolute -top-10 -right-10 text-white/5 font-black text-[15rem] pointer-events-none select-none">
                     G
@@ -582,11 +582,11 @@ export default function ProductSection() {
                         <div className="w-1.5 h-1.5 rounded-full bg-[#e9aa43]" />
                         Our Philosophy
                       </div>
-                      <h2 className="text-3xl md:text-5xl font-black tracking-wider">
+                      <h2 className="text-2xl md:text-5xl font-black tracking-wider">
                         Returning to <br />
                         <span className="text-[#e9aa43]">Mother Earth</span>
                       </h2>
-                      <p className="text-white/80 text-sm md:text-base font-medium leading-relaxed max-w-md italic">
+                      <p className="text-white/80 text-sm font-medium leading-relaxed max-w-md italic">
                         "The answer to healthier food and a better planet lies
                         in going back to nature — not away from it."
                       </p>
@@ -608,7 +608,7 @@ export default function ProductSection() {
                           <span className="text-4xl  font-black text-slate-50">
                             {stat.val}
                           </span>
-                          <span className="text-[10px] font-black uppercase tracking-widest text-slate-200">
+                          <span className="text-[10px] font-black uppercase tracking-widerst text-slate-200">
                             {stat.lab}
                           </span>
                         </div>
@@ -661,7 +661,7 @@ export default function ProductSection() {
             onClick={() => navigate("/contact")}
             className="flex justify-center items-center p-8"
           >
-            <button className="w-[300px] py-4 bg-[#744926] text-white rounded-full font-black uppercase tracking-widest text-xs flex items-center justify-center gap-2">
+            <button className="w-[300px] py-4 bg-[#744926] text-white rounded-full font-black uppercase tracking-widerst text-xs flex items-center justify-center gap-2">
               Contact Us
             </button>
           </div>

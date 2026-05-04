@@ -17,9 +17,14 @@ export const loginSchema = z.object({
 });
 
 export const googleAuthSchema = z.object({
-  body: z.object({
-    credential: z.string().min(1, 'Google credential is required'),
-  }),
+  body: z
+    .object({
+      credential: z.string().optional(),
+      access_token: z.string().optional(),
+    })
+    .refine((b) => b.credential || b.access_token, {
+      message: 'Google credential or access_token is required',
+    }),
 });
 
 export const refreshSchema = z.object({

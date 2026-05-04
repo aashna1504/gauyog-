@@ -62,16 +62,16 @@ export default function TestimonialSlider() {
     setIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
 
   return (
-    <div className="bg-[#4a703f] py-10 md:py-20 px-6 relative overflow-hidden">
+    <div className="bg-[#4a703f] py-8 md:py-20 px-4 md:px-6 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-64 h-64 md:w-96 md:h-96 bg-[#4a703f] rounded-full blur-[80px] md:blur-[100px] -z-10" />
 
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 md:gap-20 items-center">
+      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 md:gap-20 items-center">
         <div className="flex flex-col">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 text-[#e9aa43] text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-4 md:mb-6 w-fit">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 text-[#e9aa43] text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-3 md:mb-6 w-fit">
             <SmileIcon size={12} /> 2,000+ Happy Voices
           </div>
 
-          <h2 className="text-4xl md:text-7xl font-bold text-gray-200 leading-tight mb-4 md:mb-8">
+          <h2 className="text-3xl md:text-7xl font-bold text-gray-200 leading-tight mb-3 md:mb-8">
             The{" "}
             <span className="text-[#e9aa43] italic underline decoration-[#e9aa43] underline-offset-4 md:underline-offset-8">
               Trust
@@ -112,7 +112,7 @@ export default function TestimonialSlider() {
         </div>
 
         <div className="relative flex flex-col gap-4 md:gap-10">
-          <div className="relative h-[320px] md:h-[400px] flex items-center">
+          <div className="relative h-[280px] md:h-[400px] flex items-center">
             <AnimatePresence mode="wait">
               <motion.div
                 key={index}
@@ -127,12 +127,12 @@ export default function TestimonialSlider() {
                     <div className="w-10 h-10 md:w-12 md:h-12 bg-[#4a703f] text-white rounded-full md:rounded-full flex items-center justify-center shadow-lg shadow-green-100">
                       <Quote size={20} md={24} />
                     </div>
-                    <span className="text-[#4a703f] font-black text-[10px] md:text-xs uppercase tracking-widest">
+                    <span className="text-[#4a703f] font-black text-[10px] md:text-xs uppercase tracking-widerst">
                       {testimonials[index].tag}
                     </span>
                   </div>
 
-                  <h3 className="text-2xl md:text-4xl font-bold text-gray-100 leading-snug italic ">
+                  <h3 className="text-xl md:text-4xl font-bold text-gray-100 leading-snug italic">
                     "{testimonials[index].text}"
                   </h3>
 
@@ -146,7 +146,7 @@ export default function TestimonialSlider() {
                           className="text-[#4a703f]"
                         />
                       </p>
-                      <p className="text-[10px] md:text-sm font-bold text-gray-400 uppercase tracking-tighter">
+                      <p className="text-[10px] md:text-sm font-bold text-gray-400 uppercase tracking-wider">
                         {testimonials[index].role}
                       </p>
                     </div>

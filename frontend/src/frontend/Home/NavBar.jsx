@@ -302,7 +302,7 @@ export default function Header() {
                   >
                     <Link
                       to={link.path}
-                      className={`flex items-center justify-between text-lg font-black uppercase tracking-tighter ${
+                      className={`flex items-center justify-between text-lg font-black uppercase tracking-wider ${
                         location.pathname === link.path
                           ? "text-[#4a703f]"
                           : "text-slate-900"
@@ -329,7 +329,7 @@ export default function Header() {
                     </div>
                     <button
                       onClick={handleLogout}
-                      className="w-full py-4 bg-[#744926] text-white rounded-full font-black uppercase tracking-widest text-xs flex items-center justify-center gap-2"
+                      className="w-full py-4 bg-[#744926] text-white rounded-full font-black uppercase tracking-widerst text-xs flex items-center justify-center gap-2"
                     >
                       Sign Out <LogOut size={16} />
                     </button>
@@ -337,7 +337,7 @@ export default function Header() {
                 ) : (
                   <button
                     onClick={() => navigate("/signin")}
-                    className="w-full py-4 bg-[#744926] text-white rounded-full font-black uppercase tracking-widest text-xs flex items-center justify-center gap-2"
+                    className="w-full py-4 bg-[#744926] text-white rounded-full font-black uppercase tracking-widerst text-xs flex items-center justify-center gap-2"
                   >
                     Get Started <ArrowRightCircle size={16} />
                   </button>
@@ -402,7 +402,7 @@ export default function Header() {
                     </div>
                     <div className="flex-1 flex flex-col justify-between py-1">
                       <div>
-                        <h4 className="text-sm font-black text-slate-900 leading-tight uppercase tracking-tight">
+                        <h4 className="text-sm font-black text-slate-900 leading-tight uppercase tracking-wider">
                           {item.name}
                         </h4>
                         <div className="flex items-center justify-between mt-1">
@@ -417,7 +417,7 @@ export default function Header() {
                       <div className="flex gap-3 mt-2">
                         <button
                           onClick={() => { setCartOpen(false); navigate("/cart"); }}
-                          className="flex-1 bg-[#4a703f] hover:bg-[#744926] text-white py-2 rounded-full text-xs font-black uppercase tracking-widest"
+                          className="flex-1 bg-[#4a703f] hover:bg-[#744926] text-white py-2 rounded-full text-xs font-black uppercase tracking-widerst"
                         >
                           Buy Now
                         </button>
@@ -435,7 +435,7 @@ export default function Header() {
 
               <div className="p-8 border-t border-slate-200 bg-slate-50/30">
                 <div className="flex items-center justify-between mb-6 px-2">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">
+                  <span className="text-[10px] font-black uppercase tracking-widerst text-slate-400">
                     Estimated Total
                   </span>
                   <span className="text-xl font-black text-[#1a2e26]">
@@ -453,7 +453,7 @@ export default function Header() {
                     setCartOpen(false);
                     navigate("/cart");
                   }}
-                  className="w-full py-5 bg-[#744926] hover:bg-[#4a703f] text-white rounded-full font-black uppercase tracking-widest text-[11px] shadow-xl transition-all flex items-center justify-center gap-3"
+                  className="w-full py-5 bg-[#744926] hover:bg-[#4a703f] text-white rounded-full font-black uppercase tracking-widerst text-[11px] shadow-xl transition-all flex items-center justify-center gap-3"
                 >
                   Checkout Now <ArrowRightCircle size={18} />
                 </button>

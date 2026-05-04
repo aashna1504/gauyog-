@@ -97,23 +97,23 @@ export default function FloatingNexusDashboard() {
                 <AlertCircle size={20} />
               </div>
 
-              <h3 className="text-sm font-black text-slate-900 uppercase tracking-tight mb-1">
+              <h3 className="text-sm font-black text-slate-900 uppercase tracking-wider mb-1">
                 Confirm Logout?
               </h3>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">
+              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widerst mb-4">
                 Are you sure you want to exit?
               </p>
 
               <div className="flex gap-2">
                 <button
                   onClick={() => setShowLogoutConfirm(false)}
-                  className="flex-1 py-2 text-[9px] font-black uppercase tracking-widest text-slate-500 bg-slate-50 rounded-xl hover:bg-slate-100 transition-all"
+                  className="flex-1 py-2 text-[9px] font-black uppercase tracking-widerst text-slate-500 bg-slate-50 rounded-xl hover:bg-slate-100 transition-all"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={handleLogout}
-                  className="flex-1 py-2 text-[9px] font-black uppercase tracking-widest text-white bg-[#744926] rounded-xl shadow-lg shadow-[#744926]/20 hover:bg-[#4a703f] transition-all"
+                  className="flex-1 py-2 text-[9px] font-black uppercase tracking-widerst text-white bg-[#744926] rounded-xl shadow-lg shadow-[#744926]/20 hover:bg-[#4a703f] transition-all"
                 >
                   Logout
                 </button>
@@ -177,7 +177,7 @@ export default function FloatingNexusDashboard() {
       
           <button
             onClick={() => setShowLogoutConfirm(true)}
-            className="mt-auto flex items-center gap-3 text-white/60 hover:text-[#e9aa43] transition-colors px-5 font-bold text-xs uppercase tracking-widest"
+            className="mt-auto flex items-center gap-3 text-white/60 hover:text-[#e9aa43] transition-colors px-5 font-bold text-xs uppercase tracking-widerst"
           >
             <LogOut size={20} /> <span className="hidden lg:block">Logout</span>
           </button>
@@ -185,7 +185,7 @@ export default function FloatingNexusDashboard() {
 
         <main className="flex-1 p-6 md:p-12 overflow-y-auto bg-white/60 pb-32 md:pb-12">
           <header className="mb-5 flex justify-between items-end px-2">
-            <h1 className="text-3xl font-[900] text-slate-950 tracking-tighter">
+            <h1 className="text-3xl font-[900] text-slate-950 tracking-wider">
               User Dashboard
             </h1>
           </header>
@@ -204,7 +204,7 @@ export default function FloatingNexusDashboard() {
                   <h3 className="text-base font-black text-slate-900 leading-tight truncate">
                     {user?.name || user?.email?.split("@")[0] || "Guest User"}
                   </h3>
-                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest truncate max-w-[140px]">
+                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widerst truncate max-w-[140px]">
                     {user?.email || "No email"}
                   </p>
                 </div>
@@ -257,7 +257,7 @@ export default function FloatingNexusDashboard() {
 
               <button
                 onClick={() => navigate("/settings")}
-                className="w-full py-3 rounded-full text-[9px] font-black uppercase tracking-widest text-slate-200 bg-[#744926] hover:text-white transition-all"
+                className="w-full py-3 rounded-full text-[9px] font-black uppercase tracking-widerst text-slate-200 bg-[#744926] hover:text-white transition-all"
               >
                 {address ? "Edit Address" : "Add Address"}
               </button>
@@ -272,17 +272,17 @@ export default function FloatingNexusDashboard() {
                 <div className="p-2 bg-[#e9aa43]/10 rounded-full text-[#e9aa43]">
                   <Package size={18} />
                 </div>
-                <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-900">
+                <h3 className="text-[10px] font-black uppercase tracking-widerst text-slate-900">
                   Track Orders
                 </h3>
               </div>
               <div className="flex items-center gap-2 mb-4 text-[#e9aa43]">
                 <Clock size={14} className="animate-pulse" />
-                <p className="text-[10px] font-black uppercase tracking-tight">
+                <p className="text-[10px] font-black uppercase tracking-wider">
                   Active Shipments
                 </p>
               </div>
-              <button className="w-full py-3 rounded-full text-[9px] font-black uppercase tracking-widest text-slate-100 bg-[#e9aa43] hover:text-white transition-all">
+              <button className="w-full py-3 rounded-full text-[9px] font-black uppercase tracking-widerst text-slate-100 bg-[#e9aa43] hover:text-white transition-all">
                 Order History
               </button>
             </div>
@@ -297,7 +297,7 @@ export default function FloatingNexusDashboard() {
                   <div className="p-2 bg-blue-50 rounded-full text-blue-500">
                     <ShoppingCart size={18} />
                   </div>
-                  <h3 className="text-[10px] font-black uppercase tracking-widest text-slate-900">
+                  <h3 className="text-[10px] font-black uppercase tracking-widerst text-slate-900">
                     My Cart
                   </h3>
                 </div>
@@ -328,7 +328,7 @@ export default function FloatingNexusDashboard() {
                 )}
               </div>
 
-              <button className="w-full py-3 rounded-full text-[9px] font-black uppercase tracking-widest text-slate-100 bg-blue-500 hover:text-white transition-all">
+              <button className="w-full py-3 rounded-full text-[9px] font-black uppercase tracking-widerst text-slate-100 bg-blue-500 hover:text-white transition-all">
                 Proceed to Checkout
               </button>
             </div>
@@ -344,7 +344,7 @@ export default function FloatingNexusDashboard() {
                       Assistance
                     </span>
                   </div>
-                  <h3 className="text-3xl md:text-4xl font-black tracking-wide leading-none uppercase">
+                  <h3 className="text-3xl md:text-4xl font-black tracking-wider leading-none uppercase">
                     Need <span className="text-[#e9aa43]">Support?</span>
                   </h3>
                 </div>
@@ -359,7 +359,7 @@ export default function FloatingNexusDashboard() {
                     className="flex items-center justify-center gap-2 bg-white/20 backdrop-blur-md border border-white/20 px-4 py-5 rounded-full hover:bg-white hover:text-[#4a703f] transition-all shadow-xl active:scale-95 group/phone1"
                   >
                     <Phone size={16} className="group-hover/phone1:animate-pulse shrink-0" />
-                    <span className="text-[12px] font-black uppercase tracking-widest whitespace-nowrap">
+                    <span className="text-[12px] font-black uppercase tracking-widerst whitespace-nowrap">
                       02876222222
                     </span>
                   </a>
@@ -373,7 +373,7 @@ export default function FloatingNexusDashboard() {
                     className="flex items-center justify-center gap-2 bg-white/20 backdrop-blur-md border border-white/20 px-4 py-5 rounded-full hover:bg-white hover:text-[#4a703f] transition-all shadow-xl active:scale-95 group/phone2"
                   >
                     <Phone size={16} className="group-hover/phone2:animate-pulse shrink-0" />
-                    <span className="text-[12px] font-black uppercase tracking-widest whitespace-nowrap">
+                    <span className="text-[12px] font-black uppercase tracking-widerst whitespace-nowrap">
                       02876247996
                     </span>
                   </a>
@@ -387,7 +387,7 @@ export default function FloatingNexusDashboard() {
                     className="flex items-center justify-center gap-2 bg-white/20 backdrop-blur-md border border-white/20 px-4 py-5 rounded-full hover:bg-white hover:text-[#4a703f] transition-all shadow-xl active:scale-95 group/email"
                   >
                     <Mail size={16} className="group-hover/email:-translate-y-1 transition-transform shrink-0" />
-                    <span className="text-[12px] font-black uppercase tracking-widest whitespace-nowrap">
+                    <span className="text-[12px] font-black uppercase tracking-widerst whitespace-nowrap">
                       Email Us
                     </span>
                   </a>
@@ -415,7 +415,7 @@ export default function FloatingNexusDashboard() {
                 >
                   {item.icon}
                 </div>
-                <span className="text-[8px] font-black uppercase tracking-widest text-white">
+                <span className="text-[8px] font-black uppercase tracking-widerst text-white">
                   {item.label}
                 </span>
               </Link>
@@ -429,7 +429,7 @@ export default function FloatingNexusDashboard() {
             <div className="p-2 rounded-full">
               <LogOut size={18} />
             </div>
-            <span className="text-[8px] font-black uppercase tracking-widest">
+            <span className="text-[8px] font-black uppercase tracking-widerst">
               Logout
             </span>
           </button>

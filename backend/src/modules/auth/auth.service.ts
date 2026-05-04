@@ -13,7 +13,7 @@ import { logger } from '../../utils/logger';
 
 interface GoogleTokenInfo {
   email?: string;
-  email_verified?: 'true' | 'false';
+  email_verified?: 'true' | 'false' | boolean;
   name?: string;
   aud?: string;
 }
@@ -84,24 +84,37 @@ export class AuthService {
     };
   }
 
-  static async googleAuth(credential: string): Promise<AuthResponse> {
-    const verifyResponse = await fetch(
-      `https://oauth2.googleapis.com/tokeninfo?id_token=${encodeURIComponent(credential)}`
-    );
+  static async googleAuth(credential?: string, accessToken?: string): Promise<AuthResponse> {
+    let email: string | undefined;
+    let name: string | undefined;
 
-    if (!verifyResponse.ok) {
-      throw new AppError('Invalid Google credential', 401);
-    }
-
-    const tokenInfo = (await verifyResponse.json()) as GoogleTokenInfo;
-    const email = tokenInfo.email?.toLowerCase().trim();
-
-    if (!email || tokenInfo.email_verified !== 'true') {
-      throw new AppError('Google email is not verified', 401);
-    }
-
-    if (config.googleClientId && tokenInfo.aud !== config.googleClientId) {
-      throw new AppError('Google token audience mismatch', 401);
+    if (accessToken) {
+      // access_token flow — from useGoogleLogin custom button
+      const userinfoRes = await fetch(
+        `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${encodeURIComponent(accessToken)}`
+      );
+      if (!userinfoRes.ok) throw new AppError('Invalid Google access token', 401);
+      const userinfo = await userinfoRes.json() as { email?: string; email_verified?: boolean; name?: string };
+      if (!userinfo.email || !userinfo.email_verified) throw new AppError('Google email is not verified', 401);
+      email = userinfo.email.toLowerCase().trim();
+      name = userinfo.name;
+    } else if (credential) {
+      // id_token flow — from GoogleLogin iframe button
+      const verifyResponse = await fetch(
+        `https://oauth2.googleapis.com/tokeninfo?id_token=${encodeURIComponent(credential)}`
+      );
+      if (!verifyResponse.ok) throw new AppError('Invalid Google credential', 401);
+      const tokenInfo = (await verifyResponse.json()) as GoogleTokenInfo;
+      email = tokenInfo.email?.toLowerCase().trim();
+      name = tokenInfo.name;
+      if (!email || (tokenInfo.email_verified !== 'true' && tokenInfo.email_verified !== true)) {
+        throw new AppError('Google email is not verified', 401);
+      }
+      if (config.googleClientId && tokenInfo.aud !== config.googleClientId) {
+        throw new AppError('Google token audience mismatch', 401);
+      }
+    } else {
+      throw new AppError('Google credential or access token required', 400);
     }
 
     let user = await prisma.user.findUnique({ where: { email } });
@@ -109,8 +122,8 @@ export class AuthService {
     if (!user) {
       user = await prisma.user.create({
         data: {
-          email,
-          name: tokenInfo.name || null,
+          email: email!,
+          name: name || null,
           role: 'USER',
         },
       });
@@ -122,12 +135,12 @@ export class AuthService {
       create: { userId: user.id },
     });
 
-    const accessToken = generateAccessToken({ userId: user.id, role: user.role });
+    const newAccessToken = generateAccessToken({ userId: user.id, role: user.role });
     const refreshToken = generateRefreshToken({ userId: user.id, role: user.role });
 
     return {
       user: { id: user.id, email: user.email, name: user.name, role: user.role },
-      accessToken,
+      accessToken: newAccessToken,
       refreshToken,
     };
   }

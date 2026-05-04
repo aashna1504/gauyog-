@@ -34,11 +34,11 @@ const LogisticsLabel = ({ icon, color, title, desc }) => {
           <span
             className={`w-1.5 h-1.5 rounded-full animate-pulse ${colorMap[color].split(" ")[1]}`}
           />
-          <h5 className="text-[9px] font-black uppercase tracking-widest text-slate-400">
+          <h5 className="text-[9px] font-black uppercase tracking-widerst text-slate-400">
             Details
           </h5>
         </div>
-        <h4 className="text-[11px] md:text-xs font-black text-slate-900 uppercase tracking-tight">
+        <h4 className="text-[11px] md:text-xs font-black text-slate-900 uppercase tracking-wider">
           {title}
         </h4>
         <p className="text-[9px] leading-tight text-slate-400 font-bold uppercase mt-1 opacity-70">
@@ -50,7 +50,7 @@ const LogisticsLabel = ({ icon, color, title, desc }) => {
 };
 
 const SummaryRow = ({ label, value, color = "text-white" }) => (
-  <div className="flex justify-between items-center text-[11px] md:text-[12px] font-bold uppercase tracking-widest text-white/70">
+  <div className="flex justify-between items-center text-[11px] md:text-[12px] font-bold uppercase tracking-widerst text-white/70">
     <span>{label}</span>
     <span className={`${color}`}>{value}</span>
   </div>
@@ -149,7 +149,7 @@ export default function ModernShippingPage() {
                 {step.icon}
               </div>
               <span
-                className={`text-[8px] md:text-[10px] font-black uppercase tracking-widest ${
+                className={`text-[8px] md:text-[10px] font-black uppercase tracking-widerst ${
                   step.status === "active" ? "text-[#4a703f]" : "text-slate-400"
                 }`}
               >
@@ -162,7 +162,7 @@ export default function ModernShippingPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-start">
           <div className="lg:col-span-2 space-y-6 md:space-y-8 order-2 lg:order-1">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-2">
-              <h2 className="text-xl md:text-2xl font-[900] text-slate-950 tracking-tighter uppercase">
+              <h2 className="text-xl md:text-2xl font-[900] text-slate-950 tracking-wider uppercase">
                 Shipping <span className="text-[#4a703f]">Information</span>
               </h2>
               <button
@@ -173,7 +173,7 @@ export default function ModernShippingPage() {
                   size={16}
                   className="text-[#4a703f] group-hover:rotate-90 transition-transform"
                 />
-                <span className="text-[10px] font-black uppercase tracking-widest text-slate-600">
+                <span className="text-[10px] font-black uppercase tracking-widerst text-slate-600">
                   {savedAddress ? "Edit Address" : "Add New Address"}
                 </span>
               </button>
@@ -191,7 +191,7 @@ export default function ModernShippingPage() {
                     <Truck size={18} />
                   </div>
                   <div>
-                    <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">
+                    <p className="text-[9px] font-black text-slate-400 uppercase tracking-widerst">
                       Deliver To
                     </p>
                     <h4 className="text-sm font-black text-slate-900">
@@ -224,7 +224,7 @@ export default function ModernShippingPage() {
                       <Truck size={20} />
                     </div>
                     <div>
-                      <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">
+                      <p className="text-[9px] font-black text-slate-400 uppercase tracking-widerst">
                         Shipping Option
                       </p>
                       <h4 className="text-sm font-black text-slate-900">
@@ -243,11 +243,11 @@ export default function ModernShippingPage() {
                 </div>
 
                 <div className="bg-slate-50 rounded-[20px] md:rounded-[25px] p-5 md:p-6 flex flex-col justify-center gap-3 border border-slate-100">
-                  <div className="flex justify-between items-center text-[9px] font-black text-slate-400 uppercase tracking-widest">
+                  <div className="flex justify-between items-center text-[9px] font-black text-slate-400 uppercase tracking-widerst">
                     <span>Shipping Cost</span>
                     <span className="text-[#4a703f] text-sm">₹0.00</span>
                   </div>
-                  <div className="flex justify-between items-center text-[9px] font-black text-slate-400 uppercase tracking-widest">
+                  <div className="flex justify-between items-center text-[9px] font-black text-slate-400 uppercase tracking-widerst">
                     <span>Handling Fees</span>
                     <span className="text-slate-900 text-sm">₹0.00</span>
                   </div>
@@ -295,7 +295,7 @@ export default function ModernShippingPage() {
                 </div>
               </div>
               <div className="mb-8 md:mb-10">
-                <p className="text-[10px] md:text-[11px] font-black text-[#e9aa43] uppercase tracking-widest mb-1">
+                <p className="text-[10px] md:text-[11px] font-black text-[#e9aa43] uppercase tracking-widerst mb-1">
                   Total Payable
                 </p>
                 <h4 className="text-3xl md:text-4xl font-black">
@@ -349,7 +349,7 @@ export default function ModernShippingPage() {
                 <X size={20} />
               </button>
               <div className="mb-6 md:mb-8">
-                <h3 className="text-xl md:text-2xl font-[1000] text-slate-900 uppercase italic tracking-tighter">
+                <h3 className="text-xl md:text-2xl font-[1000] text-slate-900 uppercase italic tracking-wider">
                   {savedAddress ? "Edit" : "Add New"}{" "}
                   <span className="text-[#4a703f]">Address</span>
                 </h3>
@@ -360,7 +360,7 @@ export default function ModernShippingPage() {
               <form className="space-y-4" onSubmit={handleSaveAddress}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">
+                    <label className="text-[9px] font-black text-slate-400 uppercase tracking-widerst ml-1">
                       First Name
                     </label>
                     <input
@@ -374,7 +374,7 @@ export default function ModernShippingPage() {
                     />
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">
+                    <label className="text-[9px] font-black text-slate-400 uppercase tracking-widerst ml-1">
                       Last Name
                     </label>
                     <input
@@ -389,7 +389,7 @@ export default function ModernShippingPage() {
                   </div>
                 </div>
                 <div className="space-y-1.5">
-                  <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">
+                  <label className="text-[9px] font-black text-slate-400 uppercase tracking-widerst ml-1">
                     Phone Number
                   </label>
                   <input
@@ -403,7 +403,7 @@ export default function ModernShippingPage() {
                   />
                 </div>
                 <div className="space-y-1.5">
-                  <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">
+                  <label className="text-[9px] font-black text-slate-400 uppercase tracking-widerst ml-1">
                     Email
                   </label>
                   <input
@@ -417,7 +417,7 @@ export default function ModernShippingPage() {
                   />
                 </div>
                 <div className="space-y-1.5">
-                  <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">
+                  <label className="text-[9px] font-black text-slate-400 uppercase tracking-widerst ml-1">
                     Building / Flat
                   </label>
                   <input
@@ -431,7 +431,7 @@ export default function ModernShippingPage() {
                   />
                 </div>
                 <div className="space-y-1.5">
-                  <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">
+                  <label className="text-[9px] font-black text-slate-400 uppercase tracking-widerst ml-1">
                     {" "}
                     Address
                   </label>
@@ -448,7 +448,7 @@ export default function ModernShippingPage() {
                 <button
                   type="submit"
                   disabled={saving}
-                  className="w-full bg-[#4a703f] text-white py-4 md:py-5 rounded-2xl font-black uppercase text-[10px] tracking-widest hover:bg-[#3d5c34] disabled:opacity-60 transition-all shadow-lg shadow-[#4a703f]/20 mt-4"
+                  className="w-full bg-[#4a703f] text-white py-4 md:py-5 rounded-2xl font-black uppercase text-[10px] tracking-widerst hover:bg-[#3d5c34] disabled:opacity-60 transition-all shadow-lg shadow-[#4a703f]/20 mt-4"
                 >
                   {saving ? "Saving..." : "Save Address & Continue"}
                 </button>

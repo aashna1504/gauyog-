@@ -219,7 +219,7 @@ export default function SettingsPage() {
                 className="flex items-end gap-4"
               >
                 <div className="flex-1 space-y-2">
-                  <Label className="text-xs uppercase tracking-widest font-bold text-muted-foreground">
+                  <Label className="text-xs uppercase tracking-widerst font-bold text-muted-foreground">
                     Full Name
                   </Label>
                   <Input
@@ -266,7 +266,7 @@ export default function SettingsPage() {
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2 md:col-span-2">
-                    <Label className="text-xs uppercase tracking-widest font-bold text-muted-foreground">
+                    <Label className="text-xs uppercase tracking-widerst font-bold text-muted-foreground">
                       Current Password
                     </Label>
                     <Input
@@ -282,7 +282,7 @@ export default function SettingsPage() {
                     )}
                   </div>
                   <div className="space-y-2">
-                    <Label className="text-xs uppercase tracking-widest font-bold text-muted-foreground">
+                    <Label className="text-xs uppercase tracking-widerst font-bold text-muted-foreground">
                       New Password
                     </Label>
                     <Input
@@ -298,7 +298,7 @@ export default function SettingsPage() {
                     )}
                   </div>
                   <div className="space-y-2">
-                    <Label className="text-xs uppercase tracking-widest font-bold text-muted-foreground">
+                    <Label className="text-xs uppercase tracking-widerst font-bold text-muted-foreground">
                       Confirm New Password
                     </Label>
                     <Input
@@ -351,7 +351,7 @@ export default function SettingsPage() {
                 >
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2 md:col-span-2">
-                      <Label className="text-xs uppercase tracking-widest font-bold text-muted-foreground">
+                      <Label className="text-xs uppercase tracking-widerst font-bold text-muted-foreground">
                         Sales Member Email
                       </Label>
                       <Input
@@ -367,7 +367,7 @@ export default function SettingsPage() {
                       )}
                     </div>
                     <div className="space-y-2">
-                      <Label className="text-xs uppercase tracking-widest font-bold text-muted-foreground">
+                      <Label className="text-xs uppercase tracking-widerst font-bold text-muted-foreground">
                         Password
                       </Label>
                       <Input
@@ -383,7 +383,7 @@ export default function SettingsPage() {
                       )}
                     </div>
                     <div className="space-y-2">
-                      <Label className="text-xs uppercase tracking-widest font-bold text-muted-foreground">
+                      <Label className="text-xs uppercase tracking-widerst font-bold text-muted-foreground">
                         Confirm Password
                       </Label>
                       <Input
@@ -401,7 +401,7 @@ export default function SettingsPage() {
                   </div>
 
                   <div className="rounded-lg bg-blue-50 border border-blue-100 p-3 text-xs text-blue-700 space-y-1">
-                    <p className="font-bold uppercase tracking-wide">Sales Team Access</p>
+                    <p className="font-bold uppercase tracking-wider">Sales Team Access</p>
                     <ul className="list-disc list-inside space-y-0.5 text-blue-600">
                       <li>View dashboard &amp; analytics</li>
                       <li>Browse product catalog (read-only)</li>

@@ -159,7 +159,7 @@ function AdminAuthForm() {
       <div className="w-full max-w-[440px] space-y-6 relative z-10">
         {/* Brand */}
         <div className="text-center space-y-1">
-          <h1 className="text-4xl font-black tracking-tighter text-[#1a1a1a]">
+          <h1 className="text-4xl font-black tracking-wider text-[#1a1a1a]">
             Gauyog Kendr
           </h1>
           <p className="text-[#4a703f] font-bold text-[10px] uppercase tracking-[0.3em] flex items-center justify-center gap-1">
@@ -193,7 +193,7 @@ function AdminAuthForm() {
 
         <Card className="shadow-2xl border-none rounded-[32px] bg-white/90 backdrop-blur-md overflow-hidden ring-1 ring-black/5">
           <CardHeader className="pb-2 pt-8 text-center">
-            <CardTitle className="text-2xl font-black tracking-tight">
+            <CardTitle className="text-2xl font-black tracking-wider">
               {authMode === "signin" ? "Access Console" : "Create Account"}
             </CardTitle>
             <CardDescription className="text-xs">
@@ -218,7 +218,7 @@ function AdminAuthForm() {
             >
               {/* Email */}
               <div className="space-y-1 group">
-                <Label className="text-[10px] uppercase tracking-widest font-black text-slate-400 ml-4 group-focus-within:text-[#4a703f] transition-colors">
+                <Label className="text-[10px] uppercase tracking-widerst font-black text-slate-400 ml-4 group-focus-within:text-[#4a703f] transition-colors">
                   Admin Email
                 </Label>
                 <div className="relative">
@@ -239,7 +239,7 @@ function AdminAuthForm() {
 
               {/* Password */}
               <div className="space-y-1 group">
-                <Label className="text-[10px] uppercase tracking-widest font-black text-slate-400 ml-4 group-focus-within:text-[#4a703f] transition-colors">
+                <Label className="text-[10px] uppercase tracking-widerst font-black text-slate-400 ml-4 group-focus-within:text-[#4a703f] transition-colors">
                   Security Key
                 </Label>
                 <div className="relative">
@@ -271,7 +271,7 @@ function AdminAuthForm() {
               {/* Confirm Password — signup only */}
               {authMode === "signup" && (
                 <div className="space-y-1 group animate-in slide-in-from-top-2 duration-300">
-                  <Label className="text-[10px] uppercase tracking-widest font-black text-slate-400 ml-4 group-focus-within:text-[#4a703f]">
+                  <Label className="text-[10px] uppercase tracking-widerst font-black text-slate-400 ml-4 group-focus-within:text-[#4a703f]">
                     Verify Key
                   </Label>
                   <div className="relative">
@@ -293,7 +293,7 @@ function AdminAuthForm() {
 
               <Button
                 type="submit"
-                className="w-full h-12 bg-[#4a703f] hover:bg-[#4a703f] text-white rounded-full font-black uppercase tracking-widest text-[11px] shadow-xl shadow-[#4a703f]/20 transition-all active:scale-[0.98] mt-2"
+                className="w-full h-12 bg-[#4a703f] hover:bg-[#4a703f] text-white rounded-full font-black uppercase tracking-widerst text-[11px] shadow-xl shadow-[#4a703f]/20 transition-all active:scale-[0.98] mt-2"
                 disabled={isLoading}
               >
                 {isLoading ? (
