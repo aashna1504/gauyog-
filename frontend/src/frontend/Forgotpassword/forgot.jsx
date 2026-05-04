@@ -64,7 +64,7 @@ export default function ModernForgotPassword() {
               : <HelpCircle  className="text-[#4a703f]" size={32} strokeWidth={1.5} />
             }
           </motion.div>
-          <h1 className="text-4xl font-[900] text-slate-950 tracking-tighter mb-2 leading-none">
+          <h1 className="text-4xl font-[900] text-slate-950 tracking-wider mb-2 leading-none">
             {isSent ? (emailSent ? "Check Your Email" : "Link Ready") : "Forgot Password?"}
           </h1>
           <p className="text-[11px] font-black uppercase tracking-[0.4em] text-slate-400 mt-2">

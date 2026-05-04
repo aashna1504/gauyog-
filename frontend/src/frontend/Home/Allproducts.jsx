@@ -58,14 +58,14 @@ export default function AllProducts() {
   };
 
   return (
-    <div className="bg-white py-24 px-6">
+    <div className="bg-white py-10 md:py-24 px-4 md:px-6">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
-          <div className="space-y-4">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 md:mb-16 gap-4 md:gap-8">
+          <div className="space-y-2 md:space-y-4">
             <div className="flex items-center gap-2 text-[#4a703f] font-bold text-xs uppercase tracking-widest">
               Our Full Collection
             </div>
-            <h2 className="text-5xl font-bold text-gray-900">
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900">
               Browse <span className="text-[#4a703f]">All Products</span>
             </h2>
           </div>
@@ -88,13 +88,13 @@ export default function AllProducts() {
         </div>
 
         {loading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 md:gap-8">
             {Array.from({ length: 8 }).map((_, i) => (
-              <div key={i} className="bg-gray-100 rounded-[40px] h-96 animate-pulse" />
+              <div key={i} className="bg-gray-100 rounded-[40px] h-64 md:h-96 animate-pulse" />
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 md:gap-8">
             <AnimatePresence mode="popLayout">
               {filtered.map((p) => (
                 <ProductCard
@@ -112,7 +112,7 @@ export default function AllProducts() {
 
         <div
           onClick={() => (window.location.href = "/shop")}
-          className="mt-10 text-center"
+          className="mt-6 md:mt-10 text-center"
         >
           <button className="px-10 py-4 rounded-full border-2 border-[#744926]/10 font-bold text-white bg-[#744926] hover:bg-[#4a703f] transition-all shadow-xl">
             Load More Products

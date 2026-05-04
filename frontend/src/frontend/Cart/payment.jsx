@@ -170,7 +170,7 @@ export default function ModernPaymentPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
           <div className="lg:col-span-2 space-y-8 order-2 lg:order-1">
             <div className="px-2">
-              <h2 className="text-2xl font-[900] text-slate-950 tracking-tighter uppercase">
+              <h2 className="text-2xl font-[900] text-slate-950 tracking-wider uppercase">
                 Payment <span className="text-[#4a703f]">Gateway</span>
               </h2>
               <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">
@@ -363,7 +363,7 @@ export default function ModernPaymentPage() {
                   <CheckCircle2 size={44} className="text-[#4a703f]" />
                 </div>
 
-                <h3 className="text-2xl font-[1000] text-slate-900 tracking-tighter uppercase italic">
+                <h3 className="text-2xl font-[1000] text-slate-900 tracking-wider uppercase italic">
                   Order <span className="text-[#4a703f]">Confirmed</span>
                 </h3>
 

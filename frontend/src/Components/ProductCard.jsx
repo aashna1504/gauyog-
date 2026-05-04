@@ -6,13 +6,11 @@ import {
   Eye,
   ShoppingCart,
   ShoppingBag,
-  Star,
   CreditCard,
   X,
   ShieldCheck,
   Loader2,
 } from "lucide-react";
-
 import { useNavigate } from "react-router-dom";
 import api from "../api/axios";
 
@@ -31,7 +29,6 @@ export default function ProductCard({
   );
   const navigate = useNavigate();
 
-  // Base product shape from listing props
   const p = {
     ...product,
     image: product.imageUrl || product.image || null,
@@ -41,7 +38,6 @@ export default function ProductCard({
     tag: product.tag || product.category || "",
   };
 
-  // Merged data: fresh backend data takes priority over listing props
   const detail = modalProduct
     ? {
         ...p,
@@ -54,13 +50,19 @@ export default function ProductCard({
       }
     : p;
 
-  // Resolve image and price based on selected weight
   const getVariantImage = (weight) => {
     if (weight === "1kg" && detail.image1kg) return detail.image1kg;
     if (weight === "3kg" && detail.image3kg) return detail.image3kg;
     if (weight === "5kg" && detail.image5kg) return detail.image5kg;
-    return detail.image || detail.image1kg || detail.image3kg || detail.image5kg || null;
+    return (
+      detail.image ||
+      detail.image1kg ||
+      detail.image3kg ||
+      detail.image5kg ||
+      null
+    );
   };
+
   const getVariantPrice = (weight) => {
     if (weight === "1kg" && detail.price1kg) return detail.price1kg;
     if (weight === "3kg" && detail.price3kg) return detail.price3kg;
@@ -69,6 +71,7 @@ export default function ProductCard({
   };
 
   const activeModalImage = getVariantImage(selectedWeight);
+  const activeCardImage = getVariantImage(selectedWeight);
   const activePrice = getVariantPrice(selectedWeight);
 
   const handleOpenModal = async () => {
@@ -108,7 +111,10 @@ export default function ProductCard({
         className="group"
       >
         <div className="bg-gray-50 rounded-[40px] p-4 flex flex-col h-full transition-all duration-500 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.12)]">
-          <div className="relative h-64 w-full bg-white border border-gray-100 rounded-[32px] overflow-hidden flex items-center justify-center">
+          <div
+            className="relative w-full bg-white border border-gray-100 rounded-[32px] overflow-hidden"
+            style={{ height: "16rem" }}
+          >
             <div className="absolute top-4 left-4 z-10">
               <span className="backdrop-blur-md bg-[#744926] px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-widest text-white border border-[#744926]/20">
                 {p.tag}
@@ -123,11 +129,15 @@ export default function ProductCard({
               </div>
             )}
 
-            <ProductImage
-              src={getVariantImage(selectedWeight)}
-              alt={p.name}
-              className="max-h-[85%] max-w-[85%] object-contain transition-transform duration-700 group-hover:scale-110"
-            />
+            <div className="absolute inset-0 flex items-center justify-center pb-8">
+              <div className="w-full h-full flex items-center justify-center px-6 pt-6">
+                <ProductImage
+                  src={activeCardImage}
+                  alt={p.name}
+                  className="max-h-full max-w-full object-contain"
+                />
+              </div>
+            </div>
 
             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center gap-3 bg-black/5 backdrop-blur-[2px]">
               <button
@@ -141,13 +151,15 @@ export default function ProductCard({
                 className={`w-12 h-12 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 delay-75 ${
                   isInWishlist
                     ? "bg-[#e9aa43] ring-2 ring-[#e9aa43]/50 ring-offset-2 hover:text-white shadow-[0_0_16px_rgba(233,170,67,0.45)]"
-                    : "bg-white text-[#e9aa43] hover:bg-[#744926] hover:text-black "
+                    : "bg-white text-[#e9aa43] hover:bg-[#744926] hover:text-black"
                 }`}
               >
                 <Heart
                   size={20}
                   fill={isInWishlist ? "currentColor" : "none"}
-                  className={`transition-all duration-300 ${isInWishlist ? "text-white" : "text-[#e9aa43]"}`}
+                  className={`transition-all duration-300 ${
+                    isInWishlist ? "text-white" : "text-[#e9aa43]"
+                  }`}
                 />
               </button>
             </div>
@@ -156,20 +168,6 @@ export default function ProductCard({
           <div className="mt-6 flex flex-col flex-grow px-2">
             <div className="flex justify-between items-start mb-4">
               <div className="flex-1">
-                {/* <div className="flex gap-1 mb-2">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      size={10}
-                      className="fill-yellow-400 text-yellow-400"
-                    />
-                  ))}
-                  {p.rating && (
-                    <span className="text-[10px] text-gray-400 font-bold ml-1">
-                      {p.rating}
-                    </span>
-                  )}
-                </div> */}
                 <h3 className="font-bold text-xl text-gray-800 line-clamp-1 group-hover:text-[#4a703f] transition-colors uppercase tracking-tight">
                   {p.name}
                 </h3>
@@ -180,28 +178,33 @@ export default function ProductCard({
                 </p>
               </div>
               <div className="pl-2 text-right">
-                <p className="text-2xl font-black text-[#4a703f] tracking-tighter">
+                <p className="text-2xl font-black text-[#4a703f] tracking-wider">
                   ₹{getVariantPrice(selectedWeight)}
                 </p>
               </div>
             </div>
 
-            {/* Weight selector on card */}
-            {p.weightOptions?.filter((w) => ["1kg", "3kg", "5kg"].includes(w)).length > 1 && (
+            {p.weightOptions?.filter((w) => ["1kg", "3kg", "5kg"].includes(w))
+              .length > 1 && (
               <div className="flex gap-1.5 mb-3 flex-wrap">
-                {p.weightOptions.filter((w) => ["1kg", "3kg", "5kg"].includes(w)).map((w) => (
-                  <button
-                    key={w}
-                    onClick={(e) => { e.stopPropagation(); setSelectedWeight(w); }}
-                    className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider border transition-all ${
-                      selectedWeight === w
-                        ? "bg-[#744926] text-white border-[#744926]"
-                        : "bg-white text-slate-500 hover:border-[#744926]"
-                    }`}
-                  >
-                    {w}
-                  </button>
-                ))}
+                {p.weightOptions
+                  .filter((w) => ["1kg", "3kg", "5kg"].includes(w))
+                  .map((w) => (
+                    <button
+                      key={w}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedWeight(w);
+                      }}
+                      className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider border transition-all ${
+                        selectedWeight === w
+                          ? "bg-[#744926] text-white border-[#744926]"
+                          : "bg-white text-slate-500 hover:border-[#744926]"
+                      }`}
+                    >
+                      {w}
+                    </button>
+                  ))}
               </div>
             )}
 
@@ -222,11 +225,7 @@ export default function ProductCard({
                     : "bg-gray-50 text-gray-500 hover:bg-[#e9aa43] hover:text-white"
                 }`}
               >
-                {inCart ? (
-                  <ShoppingBag size={18} />
-                ) : (
-                  <ShoppingCart size={18} />
-                )}
+                {inCart ? <ShoppingBag size={18} /> : <ShoppingCart size={18} />}
                 {inCart ? "Remove From Cart" : "Add To Cart"}
               </button>
             </div>
@@ -234,11 +233,9 @@ export default function ProductCard({
         </div>
       </motion.div>
 
-      {/* ── Quick View Modal ── */}
       <AnimatePresence>
         {showModal && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8">
-            {/* Backdrop */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -254,7 +251,6 @@ export default function ProductCard({
               transition={{ type: "spring", stiffness: 300, damping: 28 }}
               className="relative bg-white w-full max-w-5xl rounded-[40px] md:rounded-[56px] overflow-hidden shadow-2xl flex flex-col md:flex-row max-h-[90vh]"
             >
-              {/* Top-right buttons */}
               <div className="absolute top-6 right-6 z-50 flex items-center gap-3">
                 <div className="flex bg-white/90 backdrop-blur-md p-1.5 rounded-full shadow-xl border border-white/50">
                   <motion.button
@@ -281,115 +277,111 @@ export default function ProductCard({
                 </button>
               </div>
 
-              {/* Left: Image */}
-              <div className="w-full md:w-5/12 bg-white border-r border-gray-100 flex items-center justify-center p-12 relative min-h-[300px] flex-shrink-0">
+              <div className="w-full md:w-5/12 bg-white border-r border-gray-100 flex items-center justify-center p-4 md:p-12 relative min-h-[160px] md:min-h-[300px] flex-shrink-0">
                 <ProductImage
                   src={activeModalImage}
                   alt={detail.name}
-                  className="w-full max-w-[320px] z-10 object-contain"
+                  className="w-full max-w-[140px] md:max-w-[320px] z-10 object-contain"
                 />
-                <span className="absolute bottom-10 left-1/2 -translate-x-1/2 text-black/5 font-black text-8xl uppercase pointer-events-none select-none">
+                <span className="hidden md:block absolute bottom-10 left-1/2 -translate-x-1/2 text-black/5 font-black text-8xl uppercase pointer-events-none select-none">
                   {detail.category || detail.tag}
                 </span>
               </div>
 
-              {/* Right: Details */}
-              <div className="w-full md:w-7/12 p-8 md:p-10 bg-white overflow-hidden">
-                {/* Header badges */}
-                <div className="flex items-center gap-2 mb-5 flex-wrap">
-                  <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-green-50 text-[#4a703f] rounded-full text-[10px] font-black uppercase tracking-widest border border-green-100">
-                    <ShieldCheck size={13} /> Certified Organic
+              <div className="w-full md:w-7/12 p-4 md:p-10 bg-white overflow-y-auto">
+                <div className="flex items-center gap-2 mb-3 md:mb-5 flex-wrap">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 md:px-4 md:py-1.5 bg-green-50 text-[#4a703f] rounded-full text-[10px] font-black uppercase tracking-widest border border-green-100">
+                    <ShieldCheck size={12} /> Certified Organic
                   </div>
-                  <span className="px-4 py-1.5 bg-[#4a703f]/10 text-[#4a703f] rounded-full text-[10px] font-black uppercase tracking-widest">
+                  <span className="px-3 py-1 md:px-4 md:py-1.5 bg-[#4a703f]/10 text-[#4a703f] rounded-full text-[10px] font-black uppercase tracking-widest">
                     {detail.category || detail.tag}
                   </span>
                 </div>
 
-                <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-1 tracking-tighter leading-tight line-clamp-1">
+                <h2 className="text-xl md:text-4xl font-black text-gray-900 mb-1 tracking-wider leading-tight">
                   {detail.name}
                 </h2>
                 {detail.scientificName && (
-                  <p className="text-sm text-gray-400 italic mb-4">
+                  <p className="text-xs md:text-sm text-gray-400 italic mb-2 md:mb-4">
                     {detail.scientificName}
                   </p>
                 )}
 
-                {/* Price row */}
-                <div className="flex items-center gap-4 mb-6 pb-5 border-b border-gray-100">
-                  <p className="text-4xl font-black text-[#4a703f] tracking-tighter">
+                <div className="flex items-center gap-3 mb-3 md:mb-6 pb-3 md:pb-5 border-b border-gray-100">
+                  <p className="text-2xl md:text-4xl font-black text-[#4a703f] tracking-wider">
                     ₹{activePrice}
                   </p>
                   {(selectedWeight || detail.size) && (
-                    <>
-                      <div className="h-8 w-[2px] bg-gray-100" />
-                      <p className="text-gray-400 font-bold uppercase tracking-widest text-sm">
-                        {selectedWeight || detail.size}
-                      </p>
-                    </>
+                    <p className="text-gray-400 font-bold uppercase tracking-widest text-xs md:text-sm">
+                      {selectedWeight || detail.size}
+                    </p>
                   )}
                 </div>
 
+                <button
+                  onClick={() => navigate(`/product/${p.id}`)}
+                  className="w-full md:hidden mb-3 bg-[#e9aa43] py-3.5 rounded-full font-black text-xs uppercase tracking-widest text-white flex items-center justify-center gap-2 active:scale-95"
+                >
+                  <Eye size={16} />
+                  View Full Product Details
+                </button>
+
                 {detail.weightOptions?.filter((w) => ["1kg", "3kg", "5kg"].includes(w)).length > 0 && (
-                  <div className="mb-5">
+                  <div className="mb-3 md:mb-5">
                     <p className="text-[10px] font-black uppercase tracking-[0.25em] text-slate-500 mb-2">
                       Select Weight
                     </p>
                     <div className="flex flex-wrap gap-2">
-                      {detail.weightOptions.filter((w) => ["1kg", "3kg", "5kg"].includes(w)).map((option) => (
-                        <button
-                          key={option}
-                          onClick={() => setSelectedWeight(option)}
-                          className={`px-4 py-2 rounded-full text-xs font-black uppercase tracking-wider transition-all duration-200 border-2 ${
-                            selectedWeight === option
-                              ? "bg-[#4a703f] text-white border-[#4a703f] shadow-sm"
-                              : "bg-white text-slate-500 border-slate-200 hover:border-[#4a703f] hover:text-[#4a703f]"
-                          }`}
-                        >
-                          {option}
-                        </button>
-                      ))}
+                      {detail.weightOptions
+                        .filter((w) => ["1kg", "3kg", "5kg"].includes(w))
+                        .map((option) => (
+                          <button
+                            key={option}
+                            onClick={() => setSelectedWeight(option)}
+                            className={`px-4 py-2 rounded-full text-xs font-black uppercase tracking-wider transition-all duration-200 border-2 ${
+                              selectedWeight === option
+                                ? "bg-[#4a703f] text-white border-[#4a703f] shadow-sm"
+                                : "bg-white text-slate-500 border-slate-200 hover:border-[#4a703f] hover:text-[#4a703f]"
+                            }`}
+                          >
+                            {option}
+                          </button>
+                        ))}
                     </div>
                   </div>
                 )}
 
-                {/* Description */}
                 {detail.desc && (
-                  <p className="text-gray-500 leading-relaxed mb-5 text-sm font-medium line-clamp-1">
+                  <p className="text-gray-500 leading-relaxed mb-3 md:mb-5 text-sm font-medium">
                     {detail.desc}
                   </p>
                 )}
 
-                {/* Action buttons */}
-                <div className="flex flex-col sm:flex-row gap-3 mb-6">
+                <div className="flex flex-col sm:flex-row gap-2 md:gap-3 mb-4 md:mb-6">
                   <button
                     onClick={() => {
                       onAddToCart?.({ ...detail, selectedWeight });
                       handleCloseModal();
                     }}
                     disabled={detail.inStock === false}
-                    className={`flex-[2] py-4 px-8 rounded-full font-black text-sm uppercase tracking-widest shadow-xl transition-all flex items-center justify-center gap-3 active:scale-95 disabled:opacity-50 ${
+                    className={`flex-[2] py-3.5 md:py-4 px-6 md:px-8 rounded-full font-black text-xs md:text-sm uppercase tracking-widest shadow-xl transition-all flex items-center justify-center gap-2 md:gap-3 active:scale-95 disabled:opacity-50 ${
                       inCart
                         ? "bg-[#744926]/10 text-[#744926] hover:bg-[#744926]/20"
                         : "bg-[#4a703f] text-white hover:bg-[#744926] shadow-green-900/20"
                     }`}
                   >
-                    {inCart ? (
-                      <ShoppingBag size={20} />
-                    ) : (
-                      <ShoppingCart size={20} />
-                    )}
+                    {inCart ? <ShoppingBag size={16} /> : <ShoppingCart size={16} />}
                     {inCart ? "Remove From Cart" : "Add To Cart"}
                   </button>
                   <button
                     onClick={() => navigate(`/product/${p.id}`)}
-                    className="flex-1 bg-[#e9aa43] py-4 px-8 rounded-full font-bold text-xs uppercase tracking-widest hover:text-gray-600 text-white transition-all flex items-center justify-center gap-2 active:scale-95"
+                    className="hidden md:flex flex-1 bg-[#e9aa43] py-4 px-8 rounded-full font-bold text-xs uppercase tracking-widest hover:text-gray-600 text-white transition-all items-center justify-center gap-2 active:scale-95"
                   >
                     <Eye size={18} />
                     Full Info
                   </button>
                 </div>
 
-                {/* ── BENEFITS — real data fetched from backend ── */}
                 {modalLoading ? (
                   <div className="rounded-2xl p-5 bg-[#f0f7ee] border border-[#4a703f]/15 mb-4">
                     <div className="flex items-center gap-2 mb-4">
@@ -422,7 +414,6 @@ export default function ProductCard({
                           key={i}
                           className="flex items-center gap-3 bg-white/80 rounded-xl px-3 py-2.5 border border-[#4a703f]/10"
                         >
-                        
                           <span className="text-sm font-bold text-slate-800">
                             {item}
                           </span>
@@ -432,12 +423,11 @@ export default function ProductCard({
                   </div>
                 ) : null}
 
-                {/* Loading spinner overlay for initial fetch */}
                 {modalLoading && (
                   <div className="flex items-center gap-2 mt-4 text-[#4a703f]/60">
                     <Loader2 size={14} className="animate-spin" />
                     <span className="text-xs font-semibold">
-                      Loading product details…
+                      Loading product details...
                     </span>
                   </div>
                 )}

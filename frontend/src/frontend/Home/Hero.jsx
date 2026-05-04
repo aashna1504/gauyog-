@@ -59,9 +59,9 @@ export default function GlobalModernHero() {
       <div className="absolute top-20 -left-24 h-56 w-56 rounded-full border border-[#4a703f]/10" />
       <div className="absolute bottom-10 right-6 h-40 w-40 rounded-full border border-[#4a703f]/10" />
 
-      <div className="relative max-w-7xl mx-auto px-6 pt-36 pb-10 lg:pb-8">
-        <div className="grid items-center gap-10 lg:gap-14 lg:grid-cols-[1.05fr,0.95fr]">
-          <div className="space-y-7">
+      <div className="relative max-w-7xl mx-auto px-4 md:px-6 pt-28 md:pt-36 pb-8 lg:pb-8">
+        <div className="grid items-center gap-8 lg:gap-14 lg:grid-cols-[1.05fr,0.95fr]">
+          <div className="space-y-5 md:space-y-7">
             <motion.div
               initial={{ opacity: 0, y: -12 }}
               animate={{ opacity: 1, y: 0 }}
@@ -81,12 +81,12 @@ export default function GlobalModernHero() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-5xl md:text-6xl font-bold text-[#4a703f] leading-[1.04] tracking-tight"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#4a703f] leading-[1.04] tracking-tight"
             >
               Pure By Nature.
               <br />
            
-              <span className="italic font-semibold text-[#744926]">
+              <span className=" font-semibold text-[#744926]">
                 Proven By Earth.
               </span>
             </motion.h1>
@@ -95,7 +95,7 @@ export default function GlobalModernHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-[#4b5f58] text-base md:text-lg leading-relaxed max-w-[560px] font-medium"
+              className="text-[#4b5f58] text-sm md:text-base lg:text-lg leading-relaxed max-w-[560px] font-medium"
             >
               To regenerate the living soil of millions of farms — replacing
               harmful chemicals with the wisdom of nature — so that land grows
@@ -107,17 +107,17 @@ export default function GlobalModernHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-wrap gap-3"
+              className="flex flex-wrap gap-3 pt-1"
             >
               <button
                 onClick={() => (window.location.href = "/shop")}
-                className="inline-flex items-center gap-2 px-7 py-4 bg-[#4a703f] text-white rounded-full font-bold text-sm hover:bg-[#744926] transition-all duration-300 shadow-lg shadow-[#4a703f]/25"
+                className="inline-flex items-center gap-2 px-6 py-3.5 md:px-7 md:py-4 bg-[#4a703f] text-white rounded-full font-bold text-sm hover:bg-[#744926] transition-all duration-300 shadow-lg shadow-[#4a703f]/25"
               >
                 Shop Products
               </button>
               <button
                 onClick={() => (window.location.href = "/contact")}
-                className="px-7 py-4 border-2 border-[#744926] text-[#744926] rounded-full font-bold text-sm hover:border-[#4a703f] hover:bg-[#4a703f] hover:text-white transition-all duration-300"
+                className="px-6 py-3.5 md:px-7 md:py-4 border-2 border-[#744926] text-[#744926] rounded-full font-bold text-sm hover:border-[#4a703f] hover:bg-[#4a703f] hover:text-white transition-all duration-300"
               >
                 Bulk &amp; export enquiries
               </button>

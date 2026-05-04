@@ -127,7 +127,7 @@ export default function TrackOrderPage() {
           </motion.div>
           <motion.h1
             variants={itemVariants}
-            className="text-6xl md:text-8xl font-black text-gray-900 leading-[0.9] tracking-tighter"
+            className="text-6xl md:text-8xl font-black text-gray-900 leading-[0.9] tracking-wider"
             style={{ fontFamily: "'Baskerville Old Face', 'Libre Baskerville', serif" }}
           >
             Track <br />
@@ -180,9 +180,9 @@ export default function TrackOrderPage() {
             <div className="flex items-center justify-between pt-6 border-t border-slate-50">
               <div className="flex items-center gap-2">
                 <ShieldCheck size={14} className="text-[#4a703f]" />
-                <span className="text-[9px] font-black uppercase text-slate-400 tracking-tighter">Verified Delivery</span>
+                <span className="text-[9px] font-black uppercase text-slate-400 tracking-wider">Verified Delivery</span>
               </div>
-              <Link to="/contact" className="text-[9px] font-black uppercase text-slate-400 tracking-tighter hover:text-[#4a703f] transition-colors">
+              <Link to="/contact" className="text-[9px] font-black uppercase text-slate-400 tracking-wider hover:text-[#4a703f] transition-colors">
                 Need Help?
               </Link>
             </div>
@@ -348,7 +348,7 @@ function FeatureBlock({ icon: Icon, title, desc }) {
       </div>
       <div className="space-y-2">
         <h4 className="text-sm font-black uppercase tracking-widest text-slate-900 italic">{title}</h4>
-        <p className="text-xs text-slate-400 font-medium leading-relaxed uppercase tracking-tighter">{desc}</p>
+        <p className="text-xs text-slate-400 font-medium leading-relaxed uppercase tracking-wider">{desc}</p>
       </div>
     </div>
   );

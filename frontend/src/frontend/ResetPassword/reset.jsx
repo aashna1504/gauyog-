@@ -82,7 +82,7 @@ export default function ResetPasswordPage() {
               : <Lock className="text-[#4a703f]" size={28} strokeWidth={1.5} />
             }
           </div>
-          <h1 className="text-4xl font-[900] text-slate-950 tracking-tighter leading-none mb-2">
+          <h1 className="text-4xl font-[900] text-slate-950 tracking-wider leading-none mb-2">
             {done ? "All Done!" : "New Password"}
           </h1>
           <p className="text-[11px] font-black uppercase tracking-[0.4em] text-slate-400">

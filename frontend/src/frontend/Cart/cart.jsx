@@ -30,7 +30,7 @@ export default function ModernCartPage() {
   const subtotal = cartItems.reduce((acc, item) => acc + item.rawPrice * item.qty, 0);
 
   return (
-    <div className="min-h-screen bg-[#fcfdfd] lg:pt-40 pt-32 pb-20 px-4 md:px-8">
+    <div className="min-h-screen bg-[#fcfdfd] lg:pt-40 pt-24 pb-10 md:pb-20 px-3 md:px-8">
       <div className="max-w-[1200px] mx-auto">
         {/* Steps */}
         <div className="flex justify-between items-center mb-8 md:mb-12 max-w-3xl mx-auto relative px-2 md:px-0">
@@ -62,7 +62,7 @@ export default function ModernCartPage() {
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="order-1 lg:order-2 w-full bg-[#744926] rounded-[30px] md:rounded-[40px] p-6 md:p-8 text-white shadow-2xl shadow-[#744926]/20 lg:sticky lg:top-32"
+            className="order-1 lg:order-2 w-full bg-[#4a703f] rounded-[30px] md:rounded-[40px] p-6 md:p-8 text-white shadow-2xl shadow-[#744926]/20 lg:sticky lg:top-32"
           >
             <h3 className="text-lg md:text-xl font-black uppercase italic tracking-tight mb-6 md:mb-8 text-white">
               Order Summary
@@ -79,7 +79,7 @@ export default function ModernCartPage() {
               <p className="text-[10px] md:text-[11px] font-black text-[#e9aa43] uppercase tracking-[0.2em] mb-1">
                 Total Payable
               </p>
-              <h4 className="text-3xl md:text-4xl font-black tracking-tighter">
+              <h4 className="text-3xl md:text-4xl font-black tracking-wider">
                 ₹{subtotal.toLocaleString("en-IN")}
               </h4>
             </div>
@@ -99,7 +99,7 @@ export default function ModernCartPage() {
           {/* Cart Items */}
           <div className="order-2 lg:order-1 lg:col-span-2 w-full space-y-6">
             <div className="flex items-center justify-between px-2">
-              <h2 className="text-xl md:text-2xl font-[900] text-slate-950 tracking-tighter uppercase">
+              <h2 className="text-xl md:text-2xl font-[900] text-slate-950 tracking-wider uppercase">
                 Your <span className="text-[#4a703f]">Cart</span>
               </h2>
               <span className="text-[10px] font-black bg-slate-100 text-slate-500 px-3 py-1 rounded-full uppercase">
@@ -163,7 +163,7 @@ export default function ModernCartPage() {
                             <Plus size={12} />
                           </button>
                         </div>
-                        <div className="text-[11px] md:text-xs font-black text-[#e9aa43] tracking-tighter">
+                        <div className="text-[11px] md:text-xs font-black text-[#e9aa43] tracking-wider">
                           {item.price} / unit
                         </div>
                       </div>
@@ -172,7 +172,7 @@ export default function ModernCartPage() {
                     <div className="flex flex-row sm:flex-col items-center justify-between sm:justify-center gap-4 w-full sm:w-auto border-t sm:border-t-0 pt-4 sm:pt-0 border-slate-50">
                       <div className="text-left sm:text-right">
                         <p className="text-[9px] font-black text-slate-400 uppercase mb-0.5">Total</p>
-                        <p className="text-lg font-black text-slate-900 tracking-tighter">
+                        <p className="text-lg font-black text-slate-900 tracking-wider">
                           ₹{(item.rawPrice * item.qty).toLocaleString("en-IN")}
                         </p>
                       </div>

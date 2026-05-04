@@ -40,7 +40,7 @@ const TermsSection = ({ title, children }) => (
   >
     <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12">
       <div className="md:col-span-4">
-        <h3 className="text-2xl font-black text-slate-900 tracking-tighter italic uppercase">
+        <h3 className="text-2xl font-black text-slate-900 tracking-wider italic uppercase">
           {title}
         </h3>
       </div>

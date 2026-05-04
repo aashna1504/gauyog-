@@ -159,7 +159,7 @@ function AdminAuthForm() {
       <div className="w-full max-w-[440px] space-y-6 relative z-10">
         {/* Brand */}
         <div className="text-center space-y-1">
-          <h1 className="text-4xl font-black tracking-tighter text-[#1a1a1a]">
+          <h1 className="text-4xl font-black tracking-wider text-[#1a1a1a]">
             Gauyog Kendr
           </h1>
           <p className="text-[#4a703f] font-bold text-[10px] uppercase tracking-[0.3em] flex items-center justify-center gap-1">

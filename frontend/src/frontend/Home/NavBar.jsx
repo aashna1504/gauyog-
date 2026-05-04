@@ -302,7 +302,7 @@ export default function Header() {
                   >
                     <Link
                       to={link.path}
-                      className={`flex items-center justify-between text-lg font-black uppercase tracking-tighter ${
+                      className={`flex items-center justify-between text-lg font-black uppercase tracking-wider ${
                         location.pathname === link.path
                           ? "text-[#4a703f]"
                           : "text-slate-900"

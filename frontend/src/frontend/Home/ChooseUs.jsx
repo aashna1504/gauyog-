@@ -41,11 +41,11 @@ export default function WhyChooseUs() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <div className="bg-[#fcfdfd ] py-24 px-6 relative overflow-hidden  text-gray-900">
+    <div className="bg-[#fcfdfd] py-12 md:py-24 px-4 md:px-6 relative overflow-hidden text-gray-900">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#4a703f]/5 rounded-full blur-[140px] -z-10" />
 
       <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-16 items-center">
           <div className="relative hidden lg:flex justify-center items-center">
             <AnimatePresence mode="wait">
               <motion.div
@@ -68,12 +68,12 @@ export default function WhyChooseUs() {
             <div className="absolute w-[500px] h-[500px] border border-dashed border-gray-200 rounded-full animate-[spin_40s_linear_infinite]" />
           </div>
 
-          <div className="lg:pl-10 ">
-            <header className="mb-14">
-              <div className="text-[#4a703f] font-bold text-xs uppercase tracking-[0.4em] mb-4 flex items-center gap-3">
-                <span className="w-10 h-[1px] bg-[#4a703f]" /> Why Gauyog Kendr
+          <div className="lg:pl-10">
+            <header className="mb-8 md:mb-14">
+              <div className="text-[#4a703f] font-bold text-xs uppercase tracking-[0.4em] mb-3 md:mb-4 flex items-center gap-3">
+                <span className="w-8 md:w-10 h-[1px] bg-[#4a703f]" /> Why Gauyog Kendr
               </div>
-              <h2 className="text-5xl md:text-6xl font-black text-gray-900 tracking-wide">
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-gray-900 tracking-wide leading-tight">
                 Pure By <span className="text-[#4a703f]">Nature,</span> <br />
                 Proven By <span className="text-[#744926]">Earth.</span>
               </h2>
@@ -88,19 +88,20 @@ export default function WhyChooseUs() {
                   <div
                     key={i}
                     onMouseEnter={() => setActiveIndex(i)}
-                    className={`relative p-6 cursor-pointer rounded-full transition-all duration-500 group overflow-hidden ${isActive ? "bg-white shadow-xl shadow-gray-200/50" : "hover:bg-gray-50"}`}
+                    onClick={() => setActiveIndex(i)}
+                    className={`relative p-4 md:p-6 cursor-pointer rounded-2xl md:rounded-full transition-all duration-500 group overflow-hidden ${isActive ? "bg-white shadow-xl shadow-gray-200/50" : "hover:bg-gray-50"}`}
                   >
-                    <div className="flex items-center gap-6">
+                    <div className="flex items-center gap-4 md:gap-6">
                       <div
-                        className={`w-14 h-14 rounded-full flex items-center justify-center transition-all duration-500 ${isActive ? "bg-[#744926] text-white rotate-6 shadow-lg shadow-[#744926]/20" : "bg-gray-100 text-gray-400"}`}
+                        className={`w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-500 ${isActive ? "bg-[#744926] text-white rotate-6 shadow-lg shadow-[#744926]/20" : "bg-gray-100 text-gray-400"}`}
                       >
-                        <Icon size={24} strokeWidth={isActive ? 2.5 : 1.5} />
+                        <Icon size={22} strokeWidth={isActive ? 2.5 : 1.5} />
                       </div>
 
-                      <div className="flex-1">
+                      <div className="flex-1 min-w-0">
                         <div className="flex items-center justify-between">
                           <h3
-                            className={`text-xl font-black transition-all duration-300 tracking-tight ${isActive ? "text-[#744926]" : "text-gray-400"}`}
+                            className={`text-base md:text-xl font-black transition-all duration-300 tracking-tight ${isActive ? "text-[#744926]" : "text-gray-400"}`}
                           >
                             {item.title}
                           </h3>

@@ -66,7 +66,7 @@ export default function ModernShopBanner() {
 
             <motion.h1
               variants={itemVariants}
-              className="text-6xl md:text-8xl font-black text-gray-900 leading-none tracking-tighter"
+              className="text-6xl md:text-8xl font-black text-gray-900 leading-none tracking-wider"
               style={{
                 fontFamily:
                   "'Baskerville Old Face', 'Libre Baskerville', serif",

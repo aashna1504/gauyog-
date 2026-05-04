@@ -229,7 +229,7 @@ function about() {
   };
   return (
     <div className="mt-20">
-      <section className="relative min-h-[85vh] flex items-center justify-center px-6 py-12 overflow-hidden bg-[#fcfdfd]">
+      <section className="relative flex items-center justify-center px-4 md:px-6 py-8 md:py-12 overflow-hidden bg-[#fcfdfd]">
         {/* --- LAYER 1: ABSTRACT BACKGROUND DNA --- */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           {/* Geometric Rings */}
@@ -255,21 +255,21 @@ function about() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                <div className="flex items-center gap-3 mb-6">
+                <div className="flex items-center gap-3 mb-3 md:mb-6">
                   <div className="h-[1px] w-10 bg-[#4a703f]" />
                   <span className="text-[9px] font-black uppercase tracking-[0.4em] text-[#4a703f]">
                     POWERED BY NATURE
                   </span>
                 </div>
 
-                <h1 className="text-5xl md:text-7xl lg:text-7xl font-black text-slate-900 tracking-wide leading-[0.9] mb-8">
+                <h1 className="text-3xl md:text-7xl font-black text-slate-900 tracking-wide leading-[1] md:leading-[0.9] mb-4 md:mb-8">
                   Pure by Nature <br />
                   <span className="text-[#4a703f] italic underline decoration-[#744926]/80 tracking-wider underline-offset-4">
                     Proven by Earth.
                   </span>
                 </h1>
 
-                <div className="flex flex-wrap items-center gap-8">
+                <div className="flex flex-wrap items-center gap-4 md:gap-8">
                   <p className="text-base text-slate-500 font-medium max-w-sm leading-relaxed border-l-2 border-[#744926] pl-6">
                     Transforming ancient wisdom into biological solutions for
                     restoring soil health and farmer prosperity.
@@ -298,8 +298,8 @@ function about() {
             </div>
 
             {/* --- RIGHT: THE 4 PILLARS (Replaces Single Image) --- */}
-            <div className="lg:col-span-5 relative py-8">
-              <div className="space-y-10 relative">
+            <div className="lg:col-span-5 relative py-4 md:py-8">
+              <div className="space-y-5 md:space-y-10 relative">
                 {/* Vertical Connecting Line */}
                 <div className="absolute left-[11px] top-2 bottom-2 w-[1px] bg-gradient-to-b from-[#744926] via-slate-200 to-transparent" />
 
@@ -339,7 +339,7 @@ function about() {
 
                     <div className="flex flex-col">
                       <div className="flex items-center gap-3">
-                        <span className="text-[10px] font-black text-[#744926] tracking-tighter">
+                        <span className="text-[10px] font-black text-[#744926] tracking-wider">
                           {item.n}
                         </span>
                         <h4 className="text-sm font-black uppercase tracking-widest text-slate-900 group-hover:text-[#4a703f] transition-colors">
@@ -361,7 +361,7 @@ function about() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="mt-1 pt-10 border-t border-slate-100 grid grid-cols-2 lg:grid-cols-4 gap-8"
+            className="mt-1 pt-5 md:pt-10 border-t border-slate-100 grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8"
           >
             {features.map((item, idx) => (
               <div key={idx} className="group cursor-default">
@@ -387,13 +387,13 @@ function about() {
       <div className="bg-[#fcfdfd ] min-h-screen text-slate-900 selection:bg-[#4a703f]/30">
         <div className="fixed top-0 right-0 w-[40%] h-[40%] bg-[#4a703f]/5 rounded-full blur-[120px] -z-10" />
         <div className="bg-[#4a703f]">
-          <main className="max-w-[1400px] mx-auto px-6 py-12 ">
+          <main className="max-w-[1400px] mx-auto px-4 md:px-6 py-6 md:py-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              className="text-center mb-16"
+              className="text-center mb-5 md:mb-16"
             >
-              <h2 className="text-6xl md:text-8xl font-black text-slate-100 tracking-wider leading-[0.85]">
+              <h2 className="text-2xl md:text-8xl font-black text-slate-100 tracking-wider leading-tight md:leading-[0.85]">
                 Built <span className="text-[#e9aa43]">on Truth.</span>
               </h2>
             </motion.div>
@@ -401,73 +401,60 @@ function about() {
             <div className="relative">
               <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-slate-100 to-transparent hidden md:block" />
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-4 relative z-10">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 relative z-10">
                 {missionCards.map((card, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ delay: index * 0.2 }}
-                    className="relative group flex flex-col items-center md:items-start text-center md:text-left px-4"
+                    className="relative group flex flex-row md:flex-col items-start gap-4 md:gap-0 md:items-start text-left md:text-left px-3 md:px-4 py-3 md:py-0 bg-white/5 md:bg-transparent rounded-2xl md:rounded-none"
                   >
-                    <div className="relative mb-8">
+                    <div className="relative flex-shrink-0 mb-0 md:mb-8">
                       <div
-                        className={`absolute inset-0 rounded-full blur-2xl opacity-20 group-hover:opacity-40 group-hover:scale-150 transition-all duration-700 ${card.color}`}
+                        className={`absolute inset-0 rounded-full blur-2xl opacity-20 group-hover:opacity-40 transition-all duration-700 ${card.color}`}
                       />
-
-                      <div
-                        className={`relative z-10 size-md rounded-full border border-slate-100 bg-white flex items-center justify-center shadow-sm group-hover:shadow-xl group-hover:-translate-y-2 transition-all duration-500`}
-                      >
+                      <div className="relative z-10 rounded-full border border-slate-100 bg-white flex items-center justify-center shadow-sm w-10 h-10 md:w-12 md:h-12">
                         <div
-                          className={`size-10 rounded-full ${card.color} flex items-center justify-center text-white shadow-inner`}
+                          className={`w-8 h-8 md:w-10 md:h-10 rounded-full ${card.color} flex items-center justify-center text-white shadow-inner`}
                         >
-                          {React.cloneElement(card.icon, { size: 18 })}
+                          {React.cloneElement(card.icon, { size: 16 })}
                         </div>
                       </div>
                     </div>
 
-                    <div className="space-y-3">
+                    <div className="space-y-1 md:space-y-3 flex-1 min-w-0">
                       <div className="flex flex-col">
-                        <span className="text-sm font-black uppercase tracking-[0.4em] text-slate-300 group-hover:text-[#4a703f] transition-colors">
+                        <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-300">
                           0{index + 1}
                         </span>
-                        <h3 className="text-2xl font-black tracking-tight text-[#4a703f]">
+                        <h3 className="text-base md:text-2xl font-black tracking-tight text-[#e9aa43]">
                           {card.title}
                         </h3>
                       </div>
 
-                      <p className="text-sm font-bold uppercase tracking-widest text-[#4a703f]/60 italic">
+                      <p className="hidden md:block text-sm font-bold uppercase tracking-widest text-[#4a703f]/60 italic">
                         {card.subtitle}
                       </p>
 
-                      <p className="text-slate-100 text-sm md:text-base leading-relaxed font-medium max-w-[280px]">
+                      <p className="text-slate-200 text-xs md:text-base leading-relaxed font-medium">
                         {card.desc}
                       </p>
                     </div>
-
-                    <motion.div
-                      animate={{ y: [0, -10, 0] }}
-                      transition={{
-                        repeat: Infinity,
-                        duration: 3,
-                        delay: index * 0.5,
-                      }}
-                      className={`hidden md:block absolute -right-2 top-1/2 size-1.5 rounded-full ${card.color} opacity-30`}
-                    />
                   </motion.div>
                 ))}
               </div>
             </div>
           </main>
-          <div className="flex justify-center items-center pb-8">
-            <button className="w-[300px] py-4 bg-[#744926] text-white rounded-full font-black uppercase tracking-widest text-xs flex items-center justify-center gap-2">
+          <div className="flex justify-center items-center py-4 md:pb-8">
+            <button className="w-[260px] md:w-[300px] py-3 md:py-4 bg-[#744926] text-white rounded-full font-black uppercase tracking-widest text-xs flex items-center justify-center gap-2">
               Contact Us
             </button>
           </div>
         </div>
         <div className="w-full bg-[#fdfcfb]">
           {/* SECTION 1: OUR PARTNERSHIP */}
-          <section className="max-w-7xl mx-auto py-20 px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          <section className="max-w-7xl mx-auto py-8 md:py-20 px-4 md:px-6 grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-12 items-start">
             {/* Left Image Placeholder */}
             <div className="lg:col-span-4">
               <div className="aspect-[3/4] rounded-[32px] overflow-hidden relative border border-slate-100 shadow-sm bg-[#eef5ea]">
@@ -523,15 +510,15 @@ function about() {
             </div>
 
             {/* Right Text Content */}
-            <div className="lg:col-span-8 space-y-8">
-              <div className="space-y-4">
+            <div className="lg:col-span-8 space-y-5 md:space-y-8">
+              <div className="space-y-2 md:space-y-4">
                 <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#e9aa43]">
                   Our Partnership
                 </span>
-                <h2 className="text-4xl md:text-5xl  font-bold text-[#2d3a29] leading-tight">
+                <h2 className="text-2xl md:text-5xl font-bold text-[#2d3a29] leading-tight">
                   Where Western Vision Meets Indian Heritage
                 </h2>
-                <p className="text-slate-700 text-lg leading-relaxed font-medium">
+                <p className="text-slate-700 text-sm md:text-lg leading-relaxed font-medium">
                   Gauyog Kendr is a unique collaboration — a hands-on
                   partnership between international business strategy and
                   deep-rooted Indian agricultural expertise.
@@ -581,12 +568,12 @@ function about() {
               </div> */}
             </div>
           </section>
-          <section className="py-32 px-6 bg-[#fcfdfd] overflow-hidden border-y">
+          <section className="py-10 md:py-32 px-4 md:px-6 bg-[#fcfdfd] overflow-hidden border-y">
             <div className="max-w-7xl mx-auto">
               {/* --- Unified Header Section --- */}
-              <div className="relative mb-24 max-w-2xl">
+              <div className="relative mb-8 md:mb-24 max-w-2xl">
                 {/* Faint watermark text for depth */}
-                <span className="absolute top-0 right-0 text-[10vw] font-black text-[#4a703f] opacity-[0.02] select-none pointer-events-none uppercase tracking-tighter">
+                <span className="absolute top-0 right-0 text-[10vw] font-black text-[#4a703f] opacity-[0.02] select-none pointer-events-none uppercase tracking-wider">
                   TRUST
                 </span>
 
@@ -596,10 +583,10 @@ function about() {
                     The Gauyog Kendr Advantages
                   </span>
                 </div>
-                <h2 className="text-5xl md:text-7xl font-black text-slate-950 tracking-wide leading-[0.85]">
+                <h2 className="text-3xl md:text-7xl font-black text-slate-950 tracking-wide leading-tight md:leading-[0.85]">
                   Why <span className="text-[#4a703f]">Gauyog Kendr</span>
                 </h2>
-                <p className="text-slate-500 text-xl leading-relaxed mt-6 font-medium">
+                <p className="text-slate-500 text-sm md:text-xl leading-relaxed mt-3 md:mt-6 font-medium">
                   A cohesive approach combining production control, social
                   empowerment, and global market vision.
                 </p>
@@ -612,7 +599,7 @@ function about() {
                 <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-[#4a703f]/5 rounded-full blur-[100px] -z-10" />
                 <div className="absolute top-1/4 right-0 w-[300px] h-[300px] bg-[#e9aa43]/5 rounded-full blur-[80px] -z-10" />
 
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-x-12 gap-y-16 items-start relative">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-8 md:gap-x-12 md:gap-y-16 items-start relative">
                   {advantageData.map((item, index) => (
                     <motion.div
                       key={index}
@@ -657,14 +644,14 @@ function about() {
           </section>
 
           {/* SECTION 2: COMMUNITY & WOMEN */}
-          <section className="bg-[#4a703f] text-white py-24 px-6 overflow-hidden">
-            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <div className="space-y-8">
-                <div className="space-y-4">
+          <section className="bg-[#4a703f] text-white py-10 md:py-24 px-4 md:px-6 overflow-hidden">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-center">
+              <div className="space-y-5 md:space-y-8">
+                <div className="space-y-2 md:space-y-4">
                   <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#e9aa43]">
                     Community & Women
                   </span>
-                  <h2 className="text-4xl md:text-5xl  font-bold leading-tight tracking-wider">
+                  <h2 className="text-2xl md:text-5xl font-bold leading-tight tracking-wider">
                     Empowering the Hands that Feed the Earth
                   </h2>
                 </div>
@@ -692,7 +679,7 @@ function about() {
                 </div>
 
                 {/* Bottom Stats */}
-                <div className="grid grid-cols-3 gap-8 pt-8 border-t border-white/10">
+                <div className="grid grid-cols-3 gap-3 md:gap-8 pt-5 md:pt-8 border-t border-white/10">
                   <Stat value="60%+" label="WOMEN WORKFORCE" />
                   <Stat value="50+" label="LOCAL FAMILIES SUPPORTED" />
                   <Stat value="100%" label="FAIR WAGE COMMITMENT" />
@@ -739,9 +726,9 @@ function about() {
           </section>
         </div>
 
-        <section className="py-16 px-6 md:px-12 bg-[#fcfdfd]">
+        <section className="py-8 md:py-16 px-4 md:px-12 bg-[#fcfdfd]">
           <div className="max-w-7xl mx-auto">
-            <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="mb-6 md:mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6">
               <div className="max-w-xl">
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
@@ -752,8 +739,8 @@ function about() {
                     The Collective
                   </span>
                 </motion.div>
-                <h2 className="text-5xl md:text-7xl font-black tracking-wide text-slate-900 leading-[0.9]">
-                   Hands
+                <h2 className="text-3xl md:text-7xl font-black tracking-wide text-slate-900 leading-tight md:leading-[0.9]">
+                  Hands
                   <span className="text-[#4a703f]"> Behind the Bloom.</span>
                 </h2>
               </div>
@@ -817,9 +804,9 @@ function about() {
           </div>
         </section>
       </div>
-      <section className="py-24 px-6 md:px-12 bg-[#744926] overflow-hidden">
+      <section className="py-8 md:py-24 px-4 md:px-12 bg-[#744926] overflow-hidden">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div className="mb-6 md:mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6">
             <div className=" flex flex-col md:flex-row md:items-end justify-between gap-6">
               <div className="">
                 <motion.div
@@ -831,9 +818,9 @@ function about() {
                     Behind the Scenes
                   </span>
                 </motion.div>
-                <h2 className="text-5xl md:text-7xl font-black tracking-wide text-slate-100 leading-[0.9]">
-                   Our Hands To<br />{" "}
-                  <span className="text-[#e9aa43]">  Your Fields</span>
+                <h2 className="text-3xl md:text-7xl font-black tracking-wide text-slate-100 leading-tight md:leading-[0.9]">
+                  Our Hands To<br />
+                  <span className="text-[#e9aa43]">Your Fields</span>
                 </h2>
               </div>
               <p className="text-slate-100 font-medium text-lg leading-relaxed border-l-2 border-slate-100 pl-4">
@@ -889,7 +876,7 @@ function about() {
                   className="w-full h-full object-cover transition-all duration-700"
                 />
                 <div className="absolute bottom-4 left-4 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
-                  <span className="text-[9px] font-black text-white uppercase tracking-tighter">
+                  <span className="text-[9px] font-black text-white uppercase tracking-wider">
                     Frame 0{index + 1}
                   </span>
                 </div>

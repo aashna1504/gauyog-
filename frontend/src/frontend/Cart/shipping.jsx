@@ -162,7 +162,7 @@ export default function ModernShippingPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-start">
           <div className="lg:col-span-2 space-y-6 md:space-y-8 order-2 lg:order-1">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-2">
-              <h2 className="text-xl md:text-2xl font-[900] text-slate-950 tracking-tighter uppercase">
+              <h2 className="text-xl md:text-2xl font-[900] text-slate-950 tracking-wider uppercase">
                 Shipping <span className="text-[#4a703f]">Information</span>
               </h2>
               <button
@@ -349,7 +349,7 @@ export default function ModernShippingPage() {
                 <X size={20} />
               </button>
               <div className="mb-6 md:mb-8">
-                <h3 className="text-xl md:text-2xl font-[1000] text-slate-900 uppercase italic tracking-tighter">
+                <h3 className="text-xl md:text-2xl font-[1000] text-slate-900 uppercase italic tracking-wider">
                   {savedAddress ? "Edit" : "Add New"}{" "}
                   <span className="text-[#4a703f]">Address</span>
                 </h3>

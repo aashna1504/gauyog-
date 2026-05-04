@@ -168,11 +168,11 @@ export default function ProductListingPage() {
   ];
 
   return (
-    <div className="bg-[#fcfdfd] min-h-screen pb-24 relative">
-      <section className="w-full bg-[#fdfcfb] py-12">
-        <div className="max-w-7xl mx-auto px-6">
+    <div className="bg-[#fcfdfd] min-h-screen pb-10 md:pb-24 relative">
+      <section className="w-full bg-[#fdfcfb] py-6 md:py-12">
+        <div className="max-w-7xl mx-auto px-4 md:px-6">
           {/* --- COMBINED HEADING SECTION --- */}
-          <div className="w-full max-w-4xl mx-auto text-center mb-2 space-y-5">
+          <div className="w-full max-w-4xl mx-auto text-center mb-2 space-y-3 md:space-y-5">
             {/* Gold Subheading with centered line accents */}
             <div className="flex items-center justify-center gap-3">
               <div className="w-8 h-[1px] bg-[#e9aa43]/40" />
@@ -183,7 +183,7 @@ export default function ProductListingPage() {
             </div>
 
             {/* Main Heading */}
-            <h2 className="text-4xl md:text-6xl  font-bold text-black tracking-wider">
+            <h2 className="text-2xl md:text-6xl font-bold text-black tracking-wider">
               Everything from <br />
               <span className="text-[#4a703f] ">Mother Earth</span>
             </h2>
@@ -321,7 +321,7 @@ export default function ProductListingPage() {
       </main>
 
       {/* Certifications — mobile only, shown after products */}
-      <section className="md:hidden w-full bg-[#fdfcfb] py-16 mt-8">
+      {/* <section className="md:hidden w-full bg-[#fdfcfb] py-16 mt-8">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-center gap-3 mb-10">
             <div className="w-8 h-[1px] bg-[#e9aa43]/40" />
@@ -345,7 +345,7 @@ export default function ProductListingPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

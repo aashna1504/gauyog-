@@ -185,7 +185,7 @@ export default function FloatingNexusDashboard() {
 
         <main className="flex-1 p-6 md:p-12 overflow-y-auto bg-white/60 pb-32 md:pb-12">
           <header className="mb-5 flex justify-between items-end px-2">
-            <h1 className="text-3xl font-[900] text-slate-950 tracking-tighter">
+            <h1 className="text-3xl font-[900] text-slate-950 tracking-wider">
               User Dashboard
             </h1>
           </header>

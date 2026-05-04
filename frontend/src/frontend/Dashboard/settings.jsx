@@ -94,7 +94,7 @@ export default function NexusAddressPage() {
         <motion.h1
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="text-3xl md:text-4xl font-[900] tracking-tighter text-[#4a703f] mb-2"
+          className="text-3xl md:text-4xl font-[900] tracking-wider text-[#4a703f] mb-2"
         >
           Manage Address
         </motion.h1>
