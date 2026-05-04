@@ -171,8 +171,8 @@ export default function ProductSection() {
             </div>
 
             {/* NEW: Heritage & Distribution Footer (To balance height) */}
-            <div className="  space-y-8 bg-[#744926] p-6 rounded-2xl">
-              <div className="flex flex-wrap gap-10">
+            <div className="  space-y-8 bg-[#744926] p-4 rounded-2xl">
+              <div className="flex flex-wrap gap-5">
                 <div className="space-y-2">
                   <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">
                     Origin
@@ -309,8 +309,10 @@ export default function ProductSection() {
           {/* Products section — first on mobile, second on desktop */}
           <div className="order-1 md:order-2">
             <div className="flex justify-between items-end mb-6 md:mb-10">
-              <div className="space-y-2">
-                <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold text-gray-900 leading-[1.1]">
+              <div className="space-y-2 ">
+                              <div className="w-full h-[1px] bg-[#e9aa43]/40 lg:hidden my-3" />
+
+                <h2 className="text-5xl md:text-5xl lg:text-7xl font-bold text-gray-900 leading-[1.1]">
                   Everything from{" "}
                   <span className="text-[#4a703f] italic underline decoration-[#e9aa43]/30 underline-offset-8">
                     Mother Earth

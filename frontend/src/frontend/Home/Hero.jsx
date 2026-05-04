@@ -15,7 +15,7 @@ export default function GlobalModernHero() {
     "Coco Peat & Fibre",
     "Bulk & Export",
     "Horticulture Trade",
-    "Farming Co-ops",
+    
   ];
 
   const [activeSlide, setActiveSlide] = useState(0);
@@ -218,12 +218,12 @@ export default function GlobalModernHero() {
         className="bg-[#4a703f]"
       >
         <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-center gap-6 md:gap-10 flex-wrap">
+          <div className="flex items-center justify-center gap-6 flex-wrap">
             {categories.map((cat, i) => (
               <React.Fragment key={i}>
                 <button
                   onClick={() => (window.location.href = "/shop")}
-                  className="text-[9px] md:text-[10px] font-black uppercase tracking-widerst text-white/60 hover:text-white transition-colors"
+                  className="text-[10px] font-black uppercase tracking-widerst text-white/80 hover:text-white transition-colors"
                 >
                   {cat}
                 </button>
