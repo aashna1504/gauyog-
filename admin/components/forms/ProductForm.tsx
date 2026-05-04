@@ -482,7 +482,7 @@ export function ProductForm({
         <CardContent className="space-y-6">
           {/* 1kg */}
           <div className="rounded-xl border border-border p-4 space-y-3">
-            <p className="text-sm font-bold uppercase tracking-widest text-[#4a703f]">1 kg</p>
+            <p className="text-sm font-bold uppercase tracking-widerst text-[#4a703f]">1 kg</p>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label>Price (₹)</Label>
@@ -504,7 +504,7 @@ export function ProductForm({
 
           {/* 3kg */}
           <div className="rounded-xl border border-border p-4 space-y-3">
-            <p className="text-sm font-bold uppercase tracking-widest text-[#4a703f]">3 kg</p>
+            <p className="text-sm font-bold uppercase tracking-widerst text-[#4a703f]">3 kg</p>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label>Price (₹)</Label>
@@ -526,7 +526,7 @@ export function ProductForm({
 
           {/* 5kg */}
           <div className="rounded-xl border border-amber-200 bg-amber-50/40 p-4 space-y-3">
-            <p className="text-sm font-bold uppercase tracking-widest text-amber-700">5 kg</p>
+            <p className="text-sm font-bold uppercase tracking-widerst text-amber-700">5 kg</p>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label>Price (₹)</Label>

@@ -80,7 +80,7 @@ export default function ModernSignIn() {
         {/* Tagline */}
         <div className="relative z-10 space-y-4">
           <div className="w-12 h-1 bg-[#e9aa43] rounded-full" />
-          <h2 className="text-5xl font-black text-white leading-tight tracking-tight">
+          <h2 className="text-5xl font-black text-white leading-tight tracking-wider">
             Pure by Nature.<br />
             <span className="text-[#e9aa43] italic">Proven by Earth.</span>
           </h2>
@@ -99,7 +99,7 @@ export default function ModernSignIn() {
           ].map((s) => (
             <div key={s.label} className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/15">
               <p className="text-2xl font-black text-[#e9aa43]">{s.val}</p>
-              <p className="text-[10px] font-black uppercase tracking-widest text-white/60 mt-0.5">{s.label}</p>
+              <p className="text-[10px] font-black uppercase tracking-widerst text-white/60 mt-0.5">{s.label}</p>
             </div>
           ))}
         </div>

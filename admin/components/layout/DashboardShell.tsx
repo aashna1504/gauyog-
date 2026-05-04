@@ -14,7 +14,7 @@ export function DashboardShell({ title, description, action, children, className
       {(title || action) && (
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            {title && <h2 className="text-xl sm:text-2xl font-bold tracking-tight">{title}</h2>}
+            {title && <h2 className="text-xl sm:text-2xl font-bold tracking-wider">{title}</h2>}
             {description && <p className="text-sm text-muted-foreground mt-1">{description}</p>}
           </div>
           {action && <div className="shrink-0">{action}</div>}

@@ -116,14 +116,14 @@ export default function ProductCard({
             style={{ height: "16rem" }}
           >
             <div className="absolute top-4 left-4 z-10">
-              <span className="backdrop-blur-md bg-[#744926] px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-widest text-white border border-[#744926]/20">
+              <span className="backdrop-blur-md bg-[#744926] px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-widerst text-white border border-[#744926]/20">
                 {p.tag}
               </span>
             </div>
 
             {p.inStock === false && (
               <div className="absolute inset-0 bg-black/30 z-20 flex items-center justify-center rounded-[32px]">
-                <span className="bg-white text-gray-800 font-black text-xs uppercase tracking-widest px-4 py-2 rounded-full">
+                <span className="bg-white text-gray-800 font-black text-xs uppercase tracking-widerst px-4 py-2 rounded-full">
                   Out of Stock
                 </span>
               </div>
@@ -168,10 +168,10 @@ export default function ProductCard({
           <div className="mt-6 flex flex-col flex-grow px-2">
             <div className="flex justify-between items-start mb-4">
               <div className="flex-1">
-                <h3 className="font-bold text-xl text-gray-800 line-clamp-1 group-hover:text-[#4a703f] transition-colors uppercase tracking-tight">
+                <h3 className="font-bold text-xl text-gray-800 line-clamp-1 group-hover:text-[#4a703f] transition-colors uppercase tracking-wider">
                   {p.name}
                 </h3>
-                <p className="text-[10px] text-gray-400 font-black uppercase tracking-widest mt-1">
+                <p className="text-[10px] text-gray-400 font-black uppercase tracking-widerst mt-1">
                   {[p.category, selectedWeight || p.size]
                     .filter(Boolean)
                     .join(" • ")}
@@ -212,7 +212,7 @@ export default function ProductCard({
               <button
                 onClick={() => onBuyNow?.(p)}
                 disabled={p.inStock === false}
-                className="w-full bg-[#4a703f] text-white py-4 rounded-full font-bold text-xs uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-[#744926] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-[#4a703f] text-white py-4 rounded-full font-bold text-xs uppercase tracking-widerst flex items-center justify-center gap-2 hover:bg-[#744926] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <CreditCard size={18} /> Buy Now
               </button>
@@ -290,10 +290,10 @@ export default function ProductCard({
 
               <div className="w-full md:w-7/12 p-4 md:p-10 bg-white overflow-y-auto">
                 <div className="flex items-center gap-2 mb-3 md:mb-5 flex-wrap">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 md:px-4 md:py-1.5 bg-green-50 text-[#4a703f] rounded-full text-[10px] font-black uppercase tracking-widest border border-green-100">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 md:px-4 md:py-1.5 bg-green-50 text-[#4a703f] rounded-full text-[10px] font-black uppercase tracking-widerst border border-green-100">
                     <ShieldCheck size={12} /> Certified Organic
                   </div>
-                  <span className="px-3 py-1 md:px-4 md:py-1.5 bg-[#4a703f]/10 text-[#4a703f] rounded-full text-[10px] font-black uppercase tracking-widest">
+                  <span className="px-3 py-1 md:px-4 md:py-1.5 bg-[#4a703f]/10 text-[#4a703f] rounded-full text-[10px] font-black uppercase tracking-widerst">
                     {detail.category || detail.tag}
                   </span>
                 </div>
@@ -312,7 +312,7 @@ export default function ProductCard({
                     ₹{activePrice}
                   </p>
                   {(selectedWeight || detail.size) && (
-                    <p className="text-gray-400 font-bold uppercase tracking-widest text-xs md:text-sm">
+                    <p className="text-gray-400 font-bold uppercase tracking-widerst text-xs md:text-sm">
                       {selectedWeight || detail.size}
                     </p>
                   )}
@@ -320,7 +320,7 @@ export default function ProductCard({
 
                 <button
                   onClick={() => navigate(`/product/${p.id}`)}
-                  className="w-full md:hidden mb-3 bg-[#e9aa43] py-3.5 rounded-full font-black text-xs uppercase tracking-widest text-white flex items-center justify-center gap-2 active:scale-95"
+                  className="w-full md:hidden mb-3 bg-[#e9aa43] py-3.5 rounded-full font-black text-xs uppercase tracking-widerst text-white flex items-center justify-center gap-2 active:scale-95"
                 >
                   <Eye size={16} />
                   View Full Product Details
@@ -364,7 +364,7 @@ export default function ProductCard({
                       handleCloseModal();
                     }}
                     disabled={detail.inStock === false}
-                    className={`flex-[2] py-3.5 md:py-4 px-6 md:px-8 rounded-full font-black text-xs md:text-sm uppercase tracking-widest shadow-xl transition-all flex items-center justify-center gap-2 md:gap-3 active:scale-95 disabled:opacity-50 ${
+                    className={`flex-[2] py-3.5 md:py-4 px-6 md:px-8 rounded-full font-black text-xs md:text-sm uppercase tracking-widerst shadow-xl transition-all flex items-center justify-center gap-2 md:gap-3 active:scale-95 disabled:opacity-50 ${
                       inCart
                         ? "bg-[#744926]/10 text-[#744926] hover:bg-[#744926]/20"
                         : "bg-[#4a703f] text-white hover:bg-[#744926] shadow-green-900/20"
@@ -375,7 +375,7 @@ export default function ProductCard({
                   </button>
                   <button
                     onClick={() => navigate(`/product/${p.id}`)}
-                    className="hidden md:flex flex-1 bg-[#e9aa43] py-4 px-8 rounded-full font-bold text-xs uppercase tracking-widest hover:text-gray-600 text-white transition-all items-center justify-center gap-2 active:scale-95"
+                    className="hidden md:flex flex-1 bg-[#e9aa43] py-4 px-8 rounded-full font-bold text-xs uppercase tracking-widerst hover:text-gray-600 text-white transition-all items-center justify-center gap-2 active:scale-95"
                   >
                     <Eye size={18} />
                     Full Info

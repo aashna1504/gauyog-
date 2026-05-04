@@ -73,7 +73,7 @@ export default function WhyChooseUs() {
               <div className="text-[#4a703f] font-bold text-xs uppercase tracking-[0.4em] mb-3 md:mb-4 flex items-center gap-3">
                 <span className="w-8 md:w-10 h-[1px] bg-[#4a703f]" /> Why Gauyog Kendr
               </div>
-              <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-gray-900 tracking-wide leading-tight">
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-gray-900 tracking-wider leading-tight">
                 Pure By <span className="text-[#4a703f]">Nature,</span> <br />
                 Proven By <span className="text-[#744926]">Earth.</span>
               </h2>
@@ -101,7 +101,7 @@ export default function WhyChooseUs() {
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center justify-between">
                           <h3
-                            className={`text-base md:text-xl font-black transition-all duration-300 tracking-tight ${isActive ? "text-[#744926]" : "text-gray-400"}`}
+                            className={`text-base md:text-xl font-black transition-all duration-300 tracking-wider ${isActive ? "text-[#744926]" : "text-gray-400"}`}
                           >
                             {item.title}
                           </h3>

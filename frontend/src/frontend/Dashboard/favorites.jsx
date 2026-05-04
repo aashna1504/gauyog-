@@ -63,12 +63,12 @@ export default function NexusFavourites() {
       {wishlistItems.length === 0 ? (
         <div className="text-center py-24">
           <Heart size={48} className="mx-auto text-slate-200 mb-4" />
-          <p className="text-slate-400 font-bold uppercase tracking-widest text-sm">
+          <p className="text-slate-400 font-bold uppercase tracking-widerst text-sm">
             Your wishlist is empty
           </p>
           <button
             onClick={() => navigate("/shop")}
-            className="mt-6 px-8 py-3 bg-[#4a703f] text-white rounded-full font-bold text-xs uppercase tracking-widest hover:bg-[#744926] transition-all"
+            className="mt-6 px-8 py-3 bg-[#4a703f] text-white rounded-full font-bold text-xs uppercase tracking-widerst hover:bg-[#744926] transition-all"
           >
             Browse Products
           </button>
@@ -101,7 +101,7 @@ export default function NexusFavourites() {
                 />
               </div>
 
-              <p className="text-xs font-black text-slate-700 uppercase tracking-tight text-center mb-1 line-clamp-2">
+              <p className="text-xs font-black text-slate-700 uppercase tracking-wider text-center mb-1 line-clamp-2">
                 {item.name}
               </p>
               <p className="text-sm font-black text-[#4a703f] mb-4">

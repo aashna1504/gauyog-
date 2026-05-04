@@ -105,7 +105,7 @@ export default function VedicDhoopMosaicPage() {
         </h1>
         <button
           onClick={() => navigate("/shop")}
-          className="px-8 py-4 rounded-full bg-[#4a703f] text-white font-black text-xs uppercase tracking-widest"
+          className="px-8 py-4 rounded-full bg-[#4a703f] text-white font-black text-xs uppercase tracking-widerst"
         >
           Back To Shop
         </button>
@@ -133,7 +133,7 @@ export default function VedicDhoopMosaicPage() {
               <span className="inline-block px-3 py-1 bg-[#4a703f]/10 text-[#4a703f] rounded-full text-[10px] font-black uppercase tracking-[0.3em] mb-2">
                 {product.category}
               </span>
-              <h1 className="text-2xl md:text-4xl font-black text-slate-900 tracking-tight leading-tight mb-1">
+              <h1 className="text-2xl md:text-4xl font-black text-slate-900 tracking-wider leading-tight mb-1">
                 {product.name}
               </h1>
               {product.scientificName && (
@@ -142,11 +142,11 @@ export default function VedicDhoopMosaicPage() {
                 </p>
               )}
               <div className="flex items-baseline gap-3 mt-3 pt-3 border-t border-slate-100">
-                <span className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
+                <span className="text-3xl md:text-4xl font-black text-slate-900 tracking-wider">
                   ₹{getVariantPrice(currentWeight)}
                 </span>
                 {currentWeight && (
-                  <span className="text-xs font-black text-slate-400 uppercase tracking-widest">
+                  <span className="text-xs font-black text-slate-400 uppercase tracking-widerst">
                     {currentWeight}
                   </span>
                 )}
@@ -165,7 +165,7 @@ export default function VedicDhoopMosaicPage() {
               {/* Top bar */}
               <div className="flex items-center justify-between px-4 md:px-5 pt-4 md:pt-5">
                 <span
-                  className={`px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm ${
+                  className={`px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widerst shadow-sm ${
                     product.inStock ? "bg-[#4a703f] text-white" : "bg-slate-400 text-white"
                   }`}
                 >
@@ -312,7 +312,7 @@ export default function VedicDhoopMosaicPage() {
                   <Package size={16} className="text-[#4a703f]" />
                 </div>
                 <div>
-                  <p className="text-[9px] font-black uppercase tracking-widest text-slate-400 mb-0.5">
+                  <p className="text-[9px] font-black uppercase tracking-widerst text-slate-400 mb-0.5">
                     Pack Size
                   </p>
                   <p className="text-sm md:text-base font-black text-slate-800">
@@ -325,7 +325,7 @@ export default function VedicDhoopMosaicPage() {
                   <Layers size={16} className="text-[#4a703f]" />
                 </div>
                 <div>
-                  <p className="text-[9px] font-black uppercase tracking-widest text-slate-400 mb-0.5">
+                  <p className="text-[9px] font-black uppercase tracking-widerst text-slate-400 mb-0.5">
                     Stock
                   </p>
                   <p className="text-sm md:text-base font-black text-slate-800">

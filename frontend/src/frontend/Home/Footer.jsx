@@ -63,7 +63,7 @@ export default function ModernFooter() {
                   placeholder="Enter your email"
                   className="w-full bg-transparent border-none focus:ring-0 text-[13px] font-medium px-3 text-gray-900 placeholder:text-gray-400"
                 />
-                <button className="bg-[#4a703f] text-white px-4 md:px-6 py-2.5 md:py-3 rounded-full font-bold text-[10px] md:text-xs uppercase tracking-widest hover:bg-[#744926] transition-colors flex items-center gap-2">
+                <button className="bg-[#4a703f] text-white px-4 md:px-6 py-2.5 md:py-3 rounded-full font-bold text-[10px] md:text-xs uppercase tracking-widerst hover:bg-[#744926] transition-colors flex items-center gap-2">
                   Join <ArrowRight size={14} className="hidden sm:block" />
                 </button>
               </div>
@@ -132,7 +132,7 @@ export default function ModernFooter() {
                 <ShieldCheck size={18} />
               </div>
               <div>
-                <p className="text-[9px] font-black uppercase tracking-widest text-gray-400 leading-none mb-1">
+                <p className="text-[9px] font-black uppercase tracking-widerst text-gray-400 leading-none mb-1">
                   Security
                 </p>
                 <p className="text-xs font-bold text-gray-900 leading-none">

@@ -88,7 +88,7 @@ export default function ModernSignUp() {
         {/* Tagline */}
         <div className="relative z-10 space-y-4">
           <div className="w-12 h-1 bg-[#e9aa43] rounded-full" />
-          <h2 className="text-5xl font-black text-white leading-tight tracking-tight">
+          <h2 className="text-5xl font-black text-white leading-tight tracking-wider">
             Join the Natural<br />
             <span className="text-[#e9aa43] italic">Revolution.</span>
           </h2>
@@ -106,8 +106,8 @@ export default function ModernSignUp() {
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-full bg-[#e9aa43] flex items-center justify-center font-black text-xs text-white flex-shrink-0">G</div>
             <div>
-              <p className="text-white font-black text-xs uppercase tracking-widest">Gauyog Kendr</p>
-              <p className="text-white/50 text-[10px] uppercase tracking-widest">Gir Somnath, Gujarat</p>
+              <p className="text-white font-black text-xs uppercase tracking-widerst">Gauyog Kendr</p>
+              <p className="text-white/50 text-[10px] uppercase tracking-widerst">Gir Somnath, Gujarat</p>
             </div>
           </div>
         </div>

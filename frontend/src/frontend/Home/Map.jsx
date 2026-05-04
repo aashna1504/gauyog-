@@ -47,7 +47,7 @@ export default function ModernContactStrip() {
           >
             <Globe size={16} /> Global Connectivity
           </motion.div>
-          <h2 className="text-3xl md:text-7xl font-bold text-gray-900 tracking-wide">
+          <h2 className="text-3xl md:text-7xl font-bold text-gray-900 tracking-wider">
             Let's <span className="text-[#4a703f] italic">Connect.</span>
           </h2>
         </div>

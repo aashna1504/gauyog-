@@ -44,9 +44,9 @@ const PaymentMethodCard = ({ icon, title, desc, active, onClick }) => (
         <span
           className={`w-1.5 h-1.5 rounded-full ${active ? "bg-[#4a703f] animate-pulse" : "bg-slate-200"}`}
         />
-        <h5 className="text-[9px] font-black uppercase tracking-widest text-slate-400">Option</h5>
+        <h5 className="text-[9px] font-black uppercase tracking-widerst text-slate-400">Option</h5>
       </div>
-      <h4 className="text-xs font-black text-slate-900 uppercase tracking-tight">{title}</h4>
+      <h4 className="text-xs font-black text-slate-900 uppercase tracking-wider">{title}</h4>
       <p className="text-[9px] leading-tight text-slate-400 font-bold uppercase mt-1 opacity-70">{desc}</p>
     </div>
     {active && (
@@ -58,7 +58,7 @@ const PaymentMethodCard = ({ icon, title, desc, active, onClick }) => (
 );
 
 const SummaryRow = ({ label, value, color = "text-white" }) => (
-  <div className="flex justify-between items-center text-[11px] md:text-[12px] font-bold uppercase tracking-widest text-white/70">
+  <div className="flex justify-between items-center text-[11px] md:text-[12px] font-bold uppercase tracking-widerst text-white/70">
     <span>{label}</span>
     <span className={`${color}`}>{value}</span>
   </div>
@@ -66,7 +66,7 @@ const SummaryRow = ({ label, value, color = "text-white" }) => (
 
 const InputField = ({ label, placeholder, icon: Icon, value, onChange }) => (
   <div className="space-y-1.5">
-    <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">{label}</label>
+    <label className="text-[9px] font-black text-slate-400 uppercase tracking-widerst ml-1">{label}</label>
     <div className="relative group">
       {Icon && (
         <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-[#4a703f] transition-colors">
@@ -159,7 +159,7 @@ export default function ModernPaymentPage() {
                 {step.icon}
               </div>
               <span
-                className={`text-[10px] font-black uppercase tracking-widest ${step.id === 3 ? "text-[#4a703f]" : "text-slate-400"}`}
+                className={`text-[10px] font-black uppercase tracking-widerst ${step.id === 3 ? "text-[#4a703f]" : "text-slate-400"}`}
               >
                 {step.label}
               </span>
@@ -173,7 +173,7 @@ export default function ModernPaymentPage() {
               <h2 className="text-2xl font-[900] text-slate-950 tracking-wider uppercase">
                 Payment <span className="text-[#4a703f]">Gateway</span>
               </h2>
-              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">
+              <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widerst mt-1">
                 Select your preferred method of payment
               </p>
             </div>
@@ -267,7 +267,7 @@ export default function ModernPaymentPage() {
                     <Wallet className="text-amber-500" size={32} />
                   </div>
                   <div>
-                    <h4 className="text-xs font-black uppercase text-slate-900 tracking-widest">Cash on Delivery</h4>
+                    <h4 className="text-xs font-black uppercase text-slate-900 tracking-widerst">Cash on Delivery</h4>
                     <p className="text-[9px] text-slate-400 font-bold uppercase mt-2 max-w-xs leading-relaxed">
                       Pay in cash when your order arrives at your doorstep.
                     </p>
@@ -283,7 +283,7 @@ export default function ModernPaymentPage() {
                 </div>
                 <div>
                   <h5 className="text-[10px] font-black uppercase text-slate-900">Encrypted Protocol</h5>
-                  <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">256-Bit SSL Protection</p>
+                  <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widerst">256-Bit SSL Protection</p>
                 </div>
               </div>
               <div className="flex items-center gap-4 bg-white p-5 rounded-[25px] border border-slate-100 group hover:shadow-lg transition-all duration-500">
@@ -292,7 +292,7 @@ export default function ModernPaymentPage() {
                 </div>
                 <div>
                   <h5 className="text-[10px] font-black uppercase text-slate-900">PCI Compliant</h5>
-                  <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widest">Global Safety Standard</p>
+                  <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widerst">Global Safety Standard</p>
                 </div>
               </div>
             </div>
@@ -314,7 +314,7 @@ export default function ModernPaymentPage() {
                 </div>
               </div>
               <div className="mb-10">
-                <p className="text-[11px] font-black text-[#e9aa43] uppercase tracking-widest mb-1">Final Payment</p>
+                <p className="text-[11px] font-black text-[#e9aa43] uppercase tracking-widerst mb-1">Final Payment</p>
                 <h4 className="text-4xl font-black">₹{subtotal.toLocaleString("en-IN")}</h4>
               </div>
 
@@ -368,12 +368,12 @@ export default function ModernPaymentPage() {
                 </h3>
 
                 {placedOrderId && (
-                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-2">
+                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-widerst mt-2">
                     Order ID: {placedOrderId.slice(0, 8).toUpperCase()}
                   </p>
                 )}
 
-                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-3 leading-relaxed">
+                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widerst mt-3 leading-relaxed">
                   Your order has been received. <br />
                   We'll update you on the delivery status.
                 </p>
@@ -383,13 +383,13 @@ export default function ModernPaymentPage() {
                 <div className="space-y-3 w-full">
                   <button
                     onClick={() => navigate("/orders")}
-                    className="w-full bg-[#4a703f] text-white py-4 rounded-2xl font-black uppercase text-[10px] tracking-widest flex items-center justify-center gap-2 hover:bg-[#744926] transition-colors shadow-lg"
+                    className="w-full bg-[#4a703f] text-white py-4 rounded-2xl font-black uppercase text-[10px] tracking-widerst flex items-center justify-center gap-2 hover:bg-[#744926] transition-colors shadow-lg"
                   >
                     View My Orders
                   </button>
                   <button
                     onClick={() => navigate("/")}
-                    className="w-full bg-white border border-slate-100 text-slate-700 py-4 rounded-2xl font-black uppercase text-[10px] tracking-widest flex items-center justify-center gap-2 hover:bg-slate-50 transition-colors"
+                    className="w-full bg-white border border-slate-100 text-slate-700 py-4 rounded-2xl font-black uppercase text-[10px] tracking-widerst flex items-center justify-center gap-2 hover:bg-slate-50 transition-colors"
                   >
                     <Home size={14} /> Back to Home
                   </button>

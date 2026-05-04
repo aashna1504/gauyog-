@@ -328,7 +328,7 @@ export default function KineticContactBanner() {
               <div className="absolute top-1/2 right-6 w-20 h-20 bg-white/3 rounded-full pointer-events-none" />
 
               {/* Heading */}
-              <h1 className="text-3xl md:text-6xl lg:text-7xl font-black text-white leading-none tracking-wide mb-3 md:mb-5">
+              <h1 className="text-3xl md:text-6xl lg:text-7xl font-black text-white leading-none tracking-wider mb-3 md:mb-5">
                 Connect
                 <span className="text-[#e9aa43] italic font-medium block">
                   With Us.
@@ -436,7 +436,7 @@ export default function KineticContactBanner() {
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       <div className="space-y-1.5 group">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">
+                        <label className="text-[10px] font-black uppercase tracking-widerst text-gray-600 group-focus-within:text-[#4a703f]">
                           Full Name <span className="text-[#744926]">*</span>
                         </label>
                         <div className="relative">
@@ -457,7 +457,7 @@ export default function KineticContactBanner() {
                       </div>
 
                       <div className="space-y-1.5 group">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">
+                        <label className="text-[10px] font-black uppercase tracking-widerst text-gray-600 group-focus-within:text-[#4a703f]">
                           Mobile Number{" "}
                           <span className="text-[#744926]">*</span>
                         </label>
@@ -479,7 +479,7 @@ export default function KineticContactBanner() {
                       </div>
 
                       <div className="space-y-1.5 group">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">
+                        <label className="text-[10px] font-black uppercase tracking-widerst text-gray-600 group-focus-within:text-[#4a703f]">
                           Email Address{" "}
                           <span className="text-[#744926]">*</span>
                         </label>
@@ -501,7 +501,7 @@ export default function KineticContactBanner() {
                       </div>
 
                       <div className="space-y-1.5 group">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">
+                        <label className="text-[10px] font-black uppercase tracking-widerst text-gray-600 group-focus-within:text-[#4a703f]">
                           Village / City
                         </label>
                         <input
@@ -516,7 +516,7 @@ export default function KineticContactBanner() {
                       </div>
 
                       <div className="space-y-1.5 group">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">
+                        <label className="text-[10px] font-black uppercase tracking-widerst text-gray-600 group-focus-within:text-[#4a703f]">
                           District
                         </label>
                         <input
@@ -531,7 +531,7 @@ export default function KineticContactBanner() {
                       </div>
 
                       <div className="space-y-1.5 group">
-                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-600 group-focus-within:text-[#4a703f]">
+                        <label className="text-[10px] font-black uppercase tracking-widerst text-gray-600 group-focus-within:text-[#4a703f]">
                           State
                         </label>
                         <div className="relative">
@@ -559,7 +559,7 @@ export default function KineticContactBanner() {
                   </div>
 
                   <div className="space-y-1.5 group">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-gray-600">
+                    <label className="text-[10px] font-black uppercase tracking-widerst text-gray-600">
                       You Are A…
                     </label>
                     <MultiSelect
@@ -582,7 +582,7 @@ export default function KineticContactBanner() {
                   </div>
 
                   <div className="space-y-1.5 group">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-gray-600">
+                    <label className="text-[10px] font-black uppercase tracking-widerst text-gray-600">
                       Area of Interest
                     </label>
                     <MultiSelect
@@ -594,7 +594,7 @@ export default function KineticContactBanner() {
                   </div>
 
                   <div className="space-y-1.5 group lg:col-span-2">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-gray-600">
+                    <label className="text-[10px] font-black uppercase tracking-widerst text-gray-600">
                       Product Interest
                     </label>
                     <MultiSelect

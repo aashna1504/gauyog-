@@ -106,7 +106,7 @@ export default function ResetPasswordPage() {
             </p>
             <button
               onClick={() => navigate("/signin")}
-              className="w-full bg-[#4a703f] text-white py-4 rounded-full font-black uppercase text-[10px] tracking-widest transition-all hover:bg-[#3a5a30]"
+              className="w-full bg-[#4a703f] text-white py-4 rounded-full font-black uppercase text-[10px] tracking-widerst transition-all hover:bg-[#3a5a30]"
             >
               Go to Login Now
             </button>
@@ -197,7 +197,7 @@ export default function ResetPasswordPage() {
                 Remember it now?{" "}
                 <span
                   onClick={() => navigate("/signin")}
-                  className="text-[#4a703f] font-black uppercase text-[10px] tracking-widest cursor-pointer hover:underline"
+                  className="text-[#4a703f] font-black uppercase text-[10px] tracking-widerst cursor-pointer hover:underline"
                 >
                   Sign In
                 </span>

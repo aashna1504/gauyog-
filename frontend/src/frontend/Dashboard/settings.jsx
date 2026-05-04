@@ -187,7 +187,7 @@ export default function NexusAddressPage() {
             <button
               type="submit"
               disabled={saving}
-              className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#4a703f] text-white rounded-full text-[11px] font-black uppercase tracking-widest hover:scale-[1.02] transition shadow-lg shadow-[#1a2e26]/20 disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100"
+              className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#4a703f] text-white rounded-full text-[11px] font-black uppercase tracking-widerst hover:scale-[1.02] transition shadow-lg shadow-[#1a2e26]/20 disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100"
             >
               {saving ? (
                 <Loader size={16} className="animate-spin" />

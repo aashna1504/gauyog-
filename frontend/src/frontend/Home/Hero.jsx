@@ -81,7 +81,7 @@ export default function GlobalModernHero() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#4a703f] leading-[1.04] tracking-tight"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#4a703f] leading-[1.04] tracking-wider"
             >
               Pure By Nature.
               <br />
@@ -139,7 +139,7 @@ export default function GlobalModernHero() {
                   className="rounded-2xl p-2 bg-[#744926]"
                 >
                   <p className="text-xl font-black text-[#e9aa43]">{s.val}</p>
-                  <p className="text-[9px] font-black uppercase tracking-widest text-gray-200 mt-0.5">
+                  <p className="text-[9px] font-black uppercase tracking-widerst text-gray-200 mt-0.5">
                     {s.label}
                   </p>
                 </div>
@@ -223,7 +223,7 @@ export default function GlobalModernHero() {
               <React.Fragment key={i}>
                 <button
                   onClick={() => (window.location.href = "/shop")}
-                  className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-white/60 hover:text-white transition-colors"
+                  className="text-[9px] md:text-[10px] font-black uppercase tracking-widerst text-white/60 hover:text-white transition-colors"
                 >
                   {cat}
                 </button>

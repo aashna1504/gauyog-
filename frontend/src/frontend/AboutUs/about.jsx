@@ -262,7 +262,7 @@ function about() {
                   </span>
                 </div>
 
-                <h1 className="text-3xl md:text-7xl font-black text-slate-900 tracking-wide leading-[1] md:leading-[0.9] mb-4 md:mb-8">
+                <h1 className="text-3xl md:text-7xl font-black text-slate-900 tracking-wider leading-[1] md:leading-[0.9] mb-4 md:mb-8">
                   Pure by Nature <br />
                   <span className="text-[#4a703f] italic underline decoration-[#744926]/80 tracking-wider underline-offset-4">
                     Proven by Earth.
@@ -287,7 +287,7 @@ function about() {
                     </button>
                     <span
                       onClick={() => (window.location.href = "/shop")}
-                      className="text-[10px] font-black uppercase tracking-widest text-slate-900"
+                      className="text-[10px] font-black uppercase tracking-widerst text-slate-900"
                     >
                       Explore <br />
                       Products
@@ -342,7 +342,7 @@ function about() {
                         <span className="text-[10px] font-black text-[#744926] tracking-wider">
                           {item.n}
                         </span>
-                        <h4 className="text-sm font-black uppercase tracking-widest text-slate-900 group-hover:text-[#4a703f] transition-colors">
+                        <h4 className="text-sm font-black uppercase tracking-widerst text-slate-900 group-hover:text-[#4a703f] transition-colors">
                           {item.t}
                         </h4>
                       </div>
@@ -372,7 +372,7 @@ function about() {
                   >
                     {item.icon}
                   </div>
-                  <h4 className="text-[11px] font-black uppercase tracking-widest text-slate-900">
+                  <h4 className="text-[11px] font-black uppercase tracking-widerst text-slate-900">
                     {item.title}
                   </h4>
                 </div>
@@ -428,12 +428,12 @@ function about() {
                         <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-300">
                           0{index + 1}
                         </span>
-                        <h3 className="text-base md:text-2xl font-black tracking-tight text-[#e9aa43]">
+                        <h3 className="text-base md:text-2xl font-black tracking-wider text-[#e9aa43]">
                           {card.title}
                         </h3>
                       </div>
 
-                      <p className="hidden md:block text-sm font-bold uppercase tracking-widest text-[#4a703f]/60 italic">
+                      <p className="hidden md:block text-sm font-bold uppercase tracking-widerst text-[#4a703f]/60 italic">
                         {card.subtitle}
                       </p>
 
@@ -447,7 +447,7 @@ function about() {
             </div>
           </main>
           <div className="flex justify-center items-center py-4 md:pb-8">
-            <button className="w-[260px] md:w-[300px] py-3 md:py-4 bg-[#744926] text-white rounded-full font-black uppercase tracking-widest text-xs flex items-center justify-center gap-2">
+            <button className="w-[260px] md:w-[300px] py-3 md:py-4 bg-[#744926] text-white rounded-full font-black uppercase tracking-widerst text-xs flex items-center justify-center gap-2">
               Contact Us
             </button>
           </div>
@@ -583,7 +583,7 @@ function about() {
                     The Gauyog Kendr Advantages
                   </span>
                 </div>
-                <h2 className="text-3xl md:text-7xl font-black text-slate-950 tracking-wide leading-tight md:leading-[0.85]">
+                <h2 className="text-3xl md:text-7xl font-black text-slate-950 tracking-wider leading-tight md:leading-[0.85]">
                   Why <span className="text-[#4a703f]">Gauyog Kendr</span>
                 </h2>
                 <p className="text-slate-500 text-sm md:text-xl leading-relaxed mt-3 md:mt-6 font-medium">
@@ -627,7 +627,7 @@ function about() {
                         </p>
 
                         {/* Main Title - Smaller and cleaner */}
-                        <h3 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight leading-tight">
+                        <h3 className="text-2xl md:text-3xl font-black text-slate-900 tracking-wider leading-tight">
                           {item.title}
                         </h3>
 
@@ -739,7 +739,7 @@ function about() {
                     The Collective
                   </span>
                 </motion.div>
-                <h2 className="text-3xl md:text-7xl font-black tracking-wide text-slate-900 leading-tight md:leading-[0.9]">
+                <h2 className="text-3xl md:text-7xl font-black tracking-wider text-slate-900 leading-tight md:leading-[0.9]">
                   Hands
                   <span className="text-[#4a703f]"> Behind the Bloom.</span>
                 </h2>
@@ -818,7 +818,7 @@ function about() {
                     Behind the Scenes
                   </span>
                 </motion.div>
-                <h2 className="text-3xl md:text-7xl font-black tracking-wide text-slate-100 leading-tight md:leading-[0.9]">
+                <h2 className="text-3xl md:text-7xl font-black tracking-wider text-slate-100 leading-tight md:leading-[0.9]">
                   Our Hands To<br />
                   <span className="text-[#e9aa43]">Your Fields</span>
                 </h2>
@@ -920,7 +920,7 @@ function Stat({ value, label }) {
   return (
     <div className="space-y-1">
       <div className="text-2xl font-bold text-[#e9aa43]">{value}</div>
-      <div className="text-[9px] font-black tracking-widest text-white/60 leading-tight uppercase">
+      <div className="text-[9px] font-black tracking-widerst text-white/60 leading-tight uppercase">
         {label}
       </div>
     </div>

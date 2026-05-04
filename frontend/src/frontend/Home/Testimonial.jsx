@@ -127,7 +127,7 @@ export default function TestimonialSlider() {
                     <div className="w-10 h-10 md:w-12 md:h-12 bg-[#4a703f] text-white rounded-full md:rounded-full flex items-center justify-center shadow-lg shadow-green-100">
                       <Quote size={20} md={24} />
                     </div>
-                    <span className="text-[#4a703f] font-black text-[10px] md:text-xs uppercase tracking-widest">
+                    <span className="text-[#4a703f] font-black text-[10px] md:text-xs uppercase tracking-widerst">
                       {testimonials[index].tag}
                     </span>
                   </div>

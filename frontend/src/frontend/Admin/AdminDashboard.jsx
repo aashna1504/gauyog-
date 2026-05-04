@@ -38,7 +38,7 @@ function StatCard({ label, value, icon: Icon, sub, color = "text-[#4a703f]" }) {
         <Icon size={22} />
       </div>
       <div>
-        <p className="text-xs font-black uppercase tracking-widest text-slate-400">{label}</p>
+        <p className="text-xs font-black uppercase tracking-widerst text-slate-400">{label}</p>
         <p className="text-2xl font-black text-slate-900">{value ?? "—"}</p>
         {sub && <p className="text-[11px] text-slate-500 font-semibold">{sub}</p>}
       </div>
@@ -52,7 +52,7 @@ function BarChart({ data }) {
   const max = Math.max(...data.map((d) => d.value), 1);
   return (
     <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100">
-      <p className="text-xs font-black uppercase tracking-widest text-slate-400 mb-4">Monthly Revenue (₹)</p>
+      <p className="text-xs font-black uppercase tracking-widerst text-slate-400 mb-4">Monthly Revenue (₹)</p>
       <div className="flex items-end gap-1 h-32">
         {data.map((d, i) => (
           <div key={i} className="flex flex-col items-center flex-1 gap-1">
@@ -104,7 +104,7 @@ function Overview({ stats, loading }) {
       {stats.recentProducts && stats.recentProducts.length > 0 && (
         <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
           <div className="px-5 py-4 border-b border-slate-100">
-            <p className="text-xs font-black uppercase tracking-widest text-slate-400">Recent Products</p>
+            <p className="text-xs font-black uppercase tracking-widerst text-slate-400">Recent Products</p>
           </div>
           <div className="divide-y divide-slate-50">
             {stats.recentProducts.map((p) => (
@@ -164,7 +164,7 @@ function Orders() {
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
       <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
-        <p className="text-xs font-black uppercase tracking-widest text-slate-400">All Orders ({orders.length})</p>
+        <p className="text-xs font-black uppercase tracking-widerst text-slate-400">All Orders ({orders.length})</p>
         <button onClick={fetchOrders} className="text-slate-400 hover:text-[#4a703f] transition-colors">
           <RefreshCw size={14} />
         </button>
@@ -174,7 +174,7 @@ function Orders() {
           <thead className="bg-slate-50">
             <tr>
               {["Order ID", "Customer", "Items", "Total", "Payment", "Status", "Date", "Action"].map((h) => (
-                <th key={h} className="px-4 py-3 text-left text-[10px] font-black uppercase tracking-widest text-slate-400">
+                <th key={h} className="px-4 py-3 text-left text-[10px] font-black uppercase tracking-widerst text-slate-400">
                   {h}
                 </th>
               ))}
@@ -288,7 +288,7 @@ function EditProductModal({ product, onClose, onSaved }) {
             { label: "Stock", key: "stock", type: "number" },
           ].map(({ label, key, type }) => (
             <div key={key}>
-              <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1 block">{label}</label>
+              <label className="text-[10px] font-black uppercase tracking-widerst text-slate-400 mb-1 block">{label}</label>
               <input
                 type={type}
                 value={form[key]}
@@ -298,7 +298,7 @@ function EditProductModal({ product, onClose, onSaved }) {
             </div>
           ))}
           <div>
-            <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1 block">Description</label>
+            <label className="text-[10px] font-black uppercase tracking-widerst text-slate-400 mb-1 block">Description</label>
             <textarea
               rows={3}
               value={form.description}
@@ -307,7 +307,7 @@ function EditProductModal({ product, onClose, onSaved }) {
             />
           </div>
           <div>
-            <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1 block">Category</label>
+            <label className="text-[10px] font-black uppercase tracking-widerst text-slate-400 mb-1 block">Category</label>
             <select
               value={form.category}
               onChange={(e) => set("category", e.target.value)}
@@ -319,7 +319,7 @@ function EditProductModal({ product, onClose, onSaved }) {
             </select>
           </div>
           <div className="flex items-center gap-3">
-            <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">In Stock</label>
+            <label className="text-[10px] font-black uppercase tracking-widerst text-slate-400">In Stock</label>
             <button
               type="button"
               onClick={() => set("inStock", !form.inStock)}
@@ -434,7 +434,7 @@ function Products() {
       )}
       <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
         <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
-          <p className="text-xs font-black uppercase tracking-widest text-slate-400">All Products ({products.length})</p>
+          <p className="text-xs font-black uppercase tracking-widerst text-slate-400">All Products ({products.length})</p>
           <button onClick={fetchProducts} className="text-slate-400 hover:text-[#4a703f] transition-colors">
             <RefreshCw size={14} />
           </button>
@@ -444,7 +444,7 @@ function Products() {
             <thead className="bg-slate-50">
               <tr>
                 {["Image", "Name", "Price", "Stock", "Status", "Actions"].map((h) => (
-                  <th key={h} className="px-4 py-3 text-left text-[10px] font-black uppercase tracking-widest text-slate-400">{h}</th>
+                  <th key={h} className="px-4 py-3 text-left text-[10px] font-black uppercase tracking-widerst text-slate-400">{h}</th>
                 ))}
               </tr>
             </thead>
@@ -516,14 +516,14 @@ function UsersTab() {
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
       <div className="px-5 py-4 border-b border-slate-100">
-        <p className="text-xs font-black uppercase tracking-widest text-slate-400">All Users ({users.length})</p>
+        <p className="text-xs font-black uppercase tracking-widerst text-slate-400">All Users ({users.length})</p>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead className="bg-slate-50">
             <tr>
               {["Name", "Email", "Role", "Joined"].map((h) => (
-                <th key={h} className="px-4 py-3 text-left text-[10px] font-black uppercase tracking-widest text-slate-400">{h}</th>
+                <th key={h} className="px-4 py-3 text-left text-[10px] font-black uppercase tracking-widerst text-slate-400">{h}</th>
               ))}
             </tr>
           </thead>
@@ -569,7 +569,7 @@ function Contacts() {
   return (
     <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
       <div className="px-5 py-4 border-b border-slate-100">
-        <p className="text-xs font-black uppercase tracking-widest text-slate-400">Contact Messages ({contacts.length})</p>
+        <p className="text-xs font-black uppercase tracking-widerst text-slate-400">Contact Messages ({contacts.length})</p>
       </div>
       <div className="divide-y divide-slate-50">
         {contacts.map((c) => (
@@ -626,7 +626,7 @@ export default function AdminDashboard() {
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-black text-slate-900 tracking-tight">Admin Dashboard</h1>
+          <h1 className="text-3xl font-black text-slate-900 tracking-wider">Admin Dashboard</h1>
           <p className="text-sm text-slate-400 font-semibold mt-1">Manage your store</p>
         </div>
 
@@ -638,7 +638,7 @@ export default function AdminDashboard() {
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${
+                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-black uppercase tracking-widerst transition-all ${
                   activeTab === tab
                     ? "bg-[#4a703f] text-white shadow-md"
                     : "text-slate-500 hover:text-slate-800"

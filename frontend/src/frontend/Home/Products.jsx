@@ -141,7 +141,7 @@ export default function ProductSection() {
               <div className="space-y-3 md:space-y-4">
                 {/* Logo Area */}
                 <div className="flex flex-col">
-                  <h2 className="text-3xl font-black text-[#4a703f] tracking-tight">
+                  <h2 className="text-3xl font-black text-[#4a703f] tracking-wider">
                     Gauyog Kendr
                   </h2>
                   <span className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400">
@@ -201,13 +201,13 @@ export default function ProductSection() {
 
               {/* Modern Badge Strip */}
               <div className="flex items-center gap-6 hover:opacity-100 transition-opacity">
-                <div className="px-3 py-1 border border-slate-100 rounded text-[9px] font-black uppercase tracking-widest text-slate-100">
+                <div className="px-3 py-1 border border-slate-100 rounded text-[9px] font-black uppercase tracking-widerst text-slate-100">
                   ISO 9001:2015
                 </div>
-                <div className="px-3 py-1 border border-slate-300 rounded text-[9px] font-black uppercase tracking-widest text-slate-100">
+                <div className="px-3 py-1 border border-slate-300 rounded text-[9px] font-black uppercase tracking-widerst text-slate-100">
                   Organic Certified
                 </div>
-                <div className="px-3 py-1 border border-slate-300 rounded text-[9px] font-black uppercase tracking-widest text-slate-100">
+                <div className="px-3 py-1 border border-slate-300 rounded text-[9px] font-black uppercase tracking-widerst text-slate-100">
                   Startup India
                 </div>
               </div>
@@ -241,7 +241,7 @@ export default function ProductSection() {
                   <span className="text-[#e9aa43] font-bold text-2xl lg:text-xl xl:text-2xl">
                     {stat.label}
                   </span>
-                  <span className="text-[9px] font-black text-slate-700 uppercase tracking-widest leading-tight">
+                  <span className="text-[9px] font-black text-slate-700 uppercase tracking-widerst leading-tight">
                     {stat.sub}
                   </span>
                 </div>
@@ -278,7 +278,7 @@ export default function ProductSection() {
             </div>
 
             <div className="lg:pl-10 space-y-4 md:space-y-6 text-center md:text-left order-1 md:order-2">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#e9aa43]/10 text-[#744926] text-xs font-bold uppercase tracking-widest border border-[#e9aa43]/30">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#e9aa43]/10 text-[#744926] text-xs font-bold uppercase tracking-widerst border border-[#e9aa43]/30">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#e9aa43] opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-[#e9aa43]" />
@@ -415,7 +415,7 @@ export default function ProductSection() {
                       >
                         {tier.icon}
                       </div>
-                      <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest">
+                      <span className="text-[10px] font-black text-slate-300 uppercase tracking-widerst">
                         {tier.badge}
                       </span>
                     </div>
@@ -441,7 +441,7 @@ export default function ProductSection() {
                       {tier.products.map((product, i) => (
                         <span
                           key={i}
-                          className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wide border"
+                          className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider border"
                           style={{
                             borderColor: tier.color + "50",
                             color: tier.color,
@@ -473,7 +473,7 @@ export default function ProductSection() {
                     {/* CTA */}
                     <button
                       onClick={() => (window.location.href = "/shop")}
-                      className="w-full py-4 rounded-2xl flex items-center justify-center gap-3 font-black text-[10px] uppercase tracking-widest transition-all text-white shadow-md hover:brightness-110 active:scale-95"
+                      className="w-full py-4 rounded-2xl flex items-center justify-center gap-3 font-black text-[10px] uppercase tracking-widerst transition-all text-white shadow-md hover:brightness-110 active:scale-95"
                       style={{ backgroundColor: tier.color }}
                     >
                       Browse Products <ArrowUpRight size={14} />
@@ -554,7 +554,7 @@ export default function ProductSection() {
                         {item.icon}
                       </div>
                       <div>
-                        <h4 className="text-lg font-bold text-slate-900 tracking-wide">
+                        <h4 className="text-lg font-bold text-slate-900 tracking-wider">
                           {item.title}
                         </h4>
                         <p className="text-slate-500 text-sm leading-relaxed">
@@ -608,7 +608,7 @@ export default function ProductSection() {
                           <span className="text-4xl  font-black text-slate-50">
                             {stat.val}
                           </span>
-                          <span className="text-[10px] font-black uppercase tracking-widest text-slate-200">
+                          <span className="text-[10px] font-black uppercase tracking-widerst text-slate-200">
                             {stat.lab}
                           </span>
                         </div>
@@ -661,7 +661,7 @@ export default function ProductSection() {
             onClick={() => navigate("/contact")}
             className="flex justify-center items-center p-8"
           >
-            <button className="w-[300px] py-4 bg-[#744926] text-white rounded-full font-black uppercase tracking-widest text-xs flex items-center justify-center gap-2">
+            <button className="w-[300px] py-4 bg-[#744926] text-white rounded-full font-black uppercase tracking-widerst text-xs flex items-center justify-center gap-2">
               Contact Us
             </button>
           </div>

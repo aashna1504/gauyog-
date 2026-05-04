@@ -111,7 +111,7 @@ function ContactDetailDialog({
             <DialogTitle className="text-2xl font-bold">
               {contact.name}
             </DialogTitle>
-            <p className="text-sm text-[#e9aa43] uppercase tracking-wide">
+            <p className="text-sm text-[#e9aa43] uppercase tracking-wider">
               {roles[0] ?? "General Visitor"}
             </p>
           </DialogHeader>
