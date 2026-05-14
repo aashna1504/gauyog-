@@ -3,10 +3,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
 
 const sliderImages = [
-  "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302434/0fc480c8-6acf-4ff0-a587-cea5c58e069b_lii8qp.jpg",
-  "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302534/57f06c99-83a3-467b-ab68-c0f1a57ea899_v2ovpk.jpg",
-  "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302623/2f2687a2-eb32-4584-84d0-afffeab3406c_fan0jr.jpg",
-  "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302434/0fc480c8-6acf-4ff0-a587-cea5c58e069b_lii8qp.jpg",
+  "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1775302434/0fc480c8-6acf-4ff0-a587-cea5c58e069b_lii8qp.jpg",
+  "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778736294/DSC00175_iqozlc.jpg",
+  "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778744023/DSC00215_kqdbva.jpg",
 ];
 
 export default function GlobalModernHero() {
@@ -15,7 +14,6 @@ export default function GlobalModernHero() {
     "Coco Peat & Fibre",
     "Bulk & Export",
     "Horticulture Trade",
-    
   ];
 
   const [activeSlide, setActiveSlide] = useState(0);
@@ -85,7 +83,6 @@ export default function GlobalModernHero() {
             >
               Pure By Nature.
               <br />
-           
               <span className=" font-semibold text-[#744926]">
                 Proven By Earth.
               </span>
@@ -134,10 +131,7 @@ export default function GlobalModernHero() {
                 { val: "100%", label: "Chemical-Free" },
                 { val: "Products", label: "Export-Ready" },
               ].map((s, i) => (
-                <div
-                  key={i}
-                  className="rounded-2xl p-2 bg-[#744926]"
-                >
+                <div key={i} className="rounded-2xl p-2 bg-[#744926]">
                   <p className="text-xl font-black text-[#e9aa43]">{s.val}</p>
                   <p className="text-[9px] font-black uppercase tracking-widerst text-gray-200 mt-0.5">
                     {s.label}

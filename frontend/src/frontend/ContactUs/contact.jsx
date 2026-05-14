@@ -649,17 +649,17 @@ export default function KineticContactBanner() {
               {/* Large Vertical Image */}
               <div className="aspect-[3/4] rounded-[2.5rem] overflow-hidden bg-[#4a703f]/10 group shadow-xl">
                 <img
-                  src="https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302434/0fc480c8-6acf-4ff0-a587-cea5c58e069b_lii8qp.jpg"
+                  src="https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778741619/DSC00374_1_rc1jjo.jpg"
                   alt="Rooted in Community"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
               </div>
               {/* Established Badge */}
-              <div className="bg-[#e9aa43] rounded-3xl p-6 text-center shadow-lg shadow-[#e9aa43]/20">
-                <span className="block text-3xl  font-black text-[#2d3a29]">
-                  2021
+              <div className="bg-[#4a703f] rounded-3xl p-6 text-center shadow-lg shadow-[#4a703f]/20">
+                <span className="block text-3xl  font-black text-white">
+                  2026
                 </span>
-                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#2d3a29]/60">
+                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-300">
                   Est. Gujarat, India
                 </span>
               </div>
@@ -669,7 +669,7 @@ export default function KineticContactBanner() {
               {/* Small Top Image */}
               <div className="aspect-square rounded-[2.5rem] overflow-hidden bg-[#4a703f]/10 group shadow-xl">
                 <img
-                  src="https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302623/2f2687a2-eb32-4584-84d0-afffeab3406c_fan0jr.jpg"
+                  src="https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778740198/DSC00585_1_ypoyj7.jpg"
                   alt="Global Trade"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
@@ -677,7 +677,7 @@ export default function KineticContactBanner() {
               {/* Large Bottom Image */}
               <div className="aspect-square rounded-[2.5rem] overflow-hidden bg-[#4a703f]/10 group shadow-xl">
                 <img
-                  src="https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302534/57f06c99-83a3-467b-ab68-c0f1a57ea899_v2ovpk.jpg"
+                  src="https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778741041/DSC00541_1_sofgme.jpg"
                   alt="Leadership"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
@@ -761,7 +761,7 @@ export default function KineticContactBanner() {
 
               <div className="flex gap-4">
                 <div className="w-10 h-10 rounded-full bg-red-700/30 flex items-center justify-center shrink-0">
-                  <Heart className="text-red-900" size={18} />
+                  <Heart className="text-red-600" size={18} />
                 </div>
                 <div>
                   <h4 className="font-bold text-white text-sm">
