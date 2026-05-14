@@ -183,7 +183,7 @@ export default function FloatingNexusDashboard() {
           </button>
         </aside>
 
-        <main className="flex-1 p-6 md:p-12 overflow-y-auto bg-white/60 pb-32 md:pb-12">
+        <main className="flex-1 p-6 overflow-y-auto bg-white/60 pb-32 md:pb-12 shadow-lg">
           <header className="mb-5 flex justify-between items-end px-2">
             <h1 className="text-3xl font-[900] text-slate-950 tracking-wider">
               User Dashboard
@@ -336,7 +336,7 @@ export default function FloatingNexusDashboard() {
           
             <div className="lg:col-span-3 bg-[#4a703f] p-6 rounded-[40px] shadow-2xl text-white relative overflow-hidden group mt-4 isolate border border-white/10">
 
-              <div className="relative z-50 flex flex-col gap-8">
+              <div className="relative z-50 flex flex-col gap-4">
                 <div className="text-center lg:text-left">
                   <div className="flex items-center justify-center lg:justify-start gap-2 mb-2">
                     <div className="w-8 h-[1px] bg-[#e9aa43]" />

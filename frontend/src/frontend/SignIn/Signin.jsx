@@ -63,41 +63,36 @@ export default function ModernSignIn() {
     <div className="min-h-screen flex">
 
       {/* ── Left: Image Panel ── */}
-      <div className="hidden lg:flex lg:w-1/2 relative flex-col justify-between p-12 overflow-hidden">
+      <div className="hidden lg:flex lg:w-1/2 relative flex-col justify-center items-center p-12 overflow-hidden gap-10">
         <img
-          src="https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302434/0fc480c8-6acf-4ff0-a587-cea5c58e069b_lii8qp.jpg"
+          src="https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778740198/DSC00585_1_ypoyj7.jpg"
           alt="Gauyog"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/75" />
+        <div className="absolute inset-0 bg-black/85" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#4a703f]/60 via-transparent to-[#744926]/70" />
 
-        {/* Logo */}
-        <div className="relative z-10">
-      
-        </div>
-
         {/* Tagline */}
-        <div className="relative z-10 space-y-4">
-          <div className="w-12 h-1 bg-[#e9aa43] rounded-full" />
+        <div className="relative z-10 space-y-4 text-center">
+          <div className="w-12 h-1 bg-[#e9aa43] rounded-full mx-auto" />
           <h2 className="text-5xl font-black text-white leading-tight tracking-wider">
             Pure by Nature.<br />
             <span className="text-[#e9aa43] italic">Proven by Earth.</span>
           </h2>
-          <p className="text-white/75 text-base font-medium max-w-sm leading-relaxed">
+          <p className="text-white/75 text-base font-medium max-w-sm leading-relaxed mx-auto">
             100% natural products from Gir Somnath, Gujarat — crafted with Vedic
             wisdom and certified for the world.
           </p>
         </div>
 
         {/* Stats */}
-        <div className="relative z-10 grid grid-cols-3 gap-4">
+        <div className="relative z-10 grid grid-cols-3 gap-4 w-full max-w-sm">
           {[
             { val: "5+", label: "Years" },
             { val: "100%", label: "Organic" },
             { val: "5000+", label: "Farmers" },
           ].map((s) => (
-            <div key={s.label} className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/15">
+            <div key={s.label} className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 border border-white/15 text-center">
               <p className="text-2xl font-black text-[#e9aa43]">{s.val}</p>
               <p className="text-[10px] font-black uppercase tracking-widerst text-white/60 mt-0.5">{s.label}</p>
             </div>
@@ -106,15 +101,13 @@ export default function ModernSignIn() {
       </div>
 
       {/* ── Right: Form Panel ── */}
-      <div className="w-full lg:w-1/2 min-h-screen flex items-center justify-center bg-white overflow-y-auto px-4 md:px-6 py-6 pt-24 lg:pt-16 lg:px-16">
+      <div className="w-full lg:w-1/2 min-h-screen flex items-center justify-center bg-white overflow-y-auto px-4 md:px-6 py-6 pt-24 lg:px-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="w-full max-w-[420px]"
         >
-        
-    
 
           {/* Header */}
           <div className="mb-5 lg:m-10">

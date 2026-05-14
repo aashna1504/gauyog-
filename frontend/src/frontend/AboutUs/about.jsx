@@ -59,25 +59,25 @@ function about() {
       role: "International Strategy Lead",
       bio: "An Australian finance veteran and former brokerage owner. John bridges global business acumen with a deep passion for eco-organic investing to drive Gauyog Kendr's strategic growth.",
       image:
-        "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775126971/c01d8c99-c1ae-4d5d-b8b1-c0c0a77dd43b_fvjb28.jpg",
+        "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1775126971/c01d8c99-c1ae-4d5d-b8b1-c0c0a77dd43b_fvjb28.jpg",
       color: "bg-[#4a703f]", // Vedic Green
     },
     {
       name: "Hitesh Pampania",
       role1: "Co-Founder & Director",
       role: "Technology, Research & Scale",
-      bio:"Hitesh Pampania is a Computer Engineer with over 10 years of experience in IT, website development, and digital systems, including operating businesses in Australia. Guided by a strong commitment to sustainable agriculture and rural empowerment, he transitioned his career toward organic fertilizer production in India. Hitesh conducted extensive field research across Gujarat, particularly in the Kutch region, to develop high-quality cow dung and cow urine-based organic fertilizers. His work focuses on improving soil health, supporting organic farming, and increasing the economic value of cows to promote their protection. By integrating technology, research, and sustainability, he plays a key role in scaling Gauyog Kendr’s impact across farming communities.",
+      bio: "Hitesh Pampania is a Computer Engineer with over 10 years of experience in IT, website development, and digital systems, including operating businesses in Australia. Guided by a strong commitment to sustainable agriculture and rural empowerment, he transitioned his career toward organic fertilizer production in India. Hitesh conducted extensive field research across Gujarat, particularly in the Kutch region, to develop high-quality cow dung and cow urine-based organic fertilizers. His work focuses on improving soil health, supporting organic farming, and increasing the economic value of cows to promote their protection. By integrating technology, research, and sustainability, he plays a key role in scaling Gauyog Kendr’s impact across farming communities.",
       image:
-        "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775126951/bc1fca8d-38aa-49f5-8bf9-c966891a4b3f_qw61xd.jpg",
+        "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1775126951/bc1fca8d-38aa-49f5-8bf9-c966891a4b3f_qw61xd.jpg",
       color: "bg-[#4a703f]", // Golden Amber
     },
     {
       name: "Rambhai Barad",
       role1: "Co-Founder & Director",
       role: "Operations & Regional Leadership",
-      bio:"Rambhai Barad is a respected entrepreneur with strong business roots across Gujarat especially in the Somnath region. With extensive experience in construction distribution and large-scale commercial operations he brings operational strength and regional leadership to the organization. His involvement in Gauyog Kendr is purpose-driven rather than profit-driven  Rambhai’s primary goals are cow protection employment generation for rural communities and supporting the transition of Gujarat’s farmland toward organic agriculture. He views this initiative as a way into give back to nature strengthen village economies and create long-term environmental impact.",
+      bio: "Rambhai Barad is a respected entrepreneur with strong business roots across Gujarat especially in the Somnath region. With extensive experience in construction distribution and large-scale commercial operations he brings operational strength and regional leadership to the organization. His involvement in Gauyog Kendr is purpose-driven rather than profit-driven  Rambhai’s primary goals are cow protection employment generation for rural communities and supporting the transition of Gujarat’s farmland toward organic agriculture. He views this initiative as a way into give back to nature strengthen village economies and create long-term environmental impact.",
       image:
-        "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775126939/3ca0fa6d-4b0c-446f-9f12-2bedba055316_crr926.jpg",
+        "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1775126939/3ca0fa6d-4b0c-446f-9f12-2bedba055316_crr926.jpg",
       color: "bg-[#4a703f]", // Acid Green
     },
   ];
@@ -192,11 +192,13 @@ function about() {
   ];
   const scrollRef = useRef(null);
   const partnershipImages = [
-    "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302434/0fc480c8-6acf-4ff0-a587-cea5c58e069b_lii8qp.jpg",
-    "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302623/2f2687a2-eb32-4584-84d0-afffeab3406c_fan0jr.jpg",
-    "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302518/7e586c73-db01-4e96-aeb5-ab0a83b14714_dmsnrp.jpg",
-    "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302654/455f921f-c6bf-4385-8da6-396c523e5dd4_qkp4bc.jpg",
-    "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302534/57f06c99-83a3-467b-ab68-c0f1a57ea899_v2ovpk.jpg",
+    "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778736294/DSC00175_iqozlc.jpg",
+    "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778739066/DSC00727_1_cgyreu.jpg",
+    "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778739371/DSC00751_1_oj5pup.jpg",
+    "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778744023/DSC00215_kqdbva.jpg",
+    "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778740839/DSC00531_1_ufdg3f.jpg",
+    "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778742848/DSC00757_1_mrx5rk.jpg",
+    "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778742258/DSC00611_1_ckc6b8.jpg",
   ];
   const [partnershipSlide, setPartnershipSlide] = useState(0);
 
@@ -457,7 +459,7 @@ function about() {
           <section className="max-w-7xl mx-auto py-8 md:py-20 px-4 md:px-6 grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-12 items-start">
             {/* Left Image Placeholder */}
             <div className="lg:col-span-4">
-              <div className="aspect-[3/4] rounded-[32px] overflow-hidden relative border border-slate-100 shadow-sm bg-[#eef5ea]">
+              <div className="h-[300px] w-full lg:h-auto lg:aspect-[3/4] rounded-[32px] overflow-hidden relative border border-slate-100 shadow-sm bg-[#eef5ea]">
                 <motion.img
                   key={partnershipSlide}
                   src={partnershipImages[partnershipSlide]}
@@ -465,7 +467,7 @@ function about() {
                   initial={{ opacity: 0.7, scale: 1.03 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.45, ease: "easeOut" }}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover "
                 />
 
                 <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/55 to-transparent">
@@ -692,7 +694,7 @@ function about() {
                 <div className="group aspect-square bg-[#336a36] rounded-3xl border border-white/10 overflow-hidden relative shadow-inner">
                   {/* Full Image */}
                   <img
-                    src="https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302625/e51625c5-4e05-45ee-ade3-3739297e5a59_chikgj.jpg" // Replace with your image path (cover recommended)
+                    src="https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778741236/DSC00393_1_wmyf6e.jpg" // Replace with your image path (cover recommended)
                     alt="Hand-sorted workforce"
                     className="w-full h-full object-cover  filter brightness-110 transition-transform duration-700 ease-out group-hover:scale-110"
                   />
@@ -704,7 +706,7 @@ function about() {
                 <div className="group aspect-square bg-[#336a36] rounded-3xl border border-white/10 overflow-hidden relative shadow-inner">
                   {/* Full Image */}
                   <img
-                    src="https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302570/2e52526a-bb97-4628-8b23-8facf9e28c73_zzazcn.jpg" // Replace with your image path (cover recommended)
+                    src="https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778741619/DSC00374_1_rc1jjo.jpg" // Replace with your image path (cover recommended)
                     alt="Quality weighing process"
                     className="w-full h-full object-cover filter brightness-110 transition-transform duration-700 ease-out group-hover:scale-110"
                   />
@@ -715,7 +717,7 @@ function about() {
                 <div className="group col-span-2 aspect-[2/1] rounded-3xl border border-white/10 overflow-hidden relative shadow-inner">
                   {/* Full Image */}
                   <img
-                    src="https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302469/3eff6049-8246-4172-859b-2b6ecad4a9da_kbigrv.jpg" // Replace with your image path (contain or cover recommended)
+                    src="https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778741516/DSC00359_1_yojjjm.jpg" // Replace with your image path (contain or cover recommended)
                     alt="Gauyog Kendr full team"
                     className="w-full h-full object-cover filter brightness-110 transition-transform duration-700 ease-out group-hover:scale-110"
                   />
@@ -793,8 +795,6 @@ function about() {
                     </div>
                   </div>
 
-                  
-
                   <span className="absolute -top-4 -right-2 text-6xl font-black text-slate-100/50 -z-10 group-hover:text-slate-100 transition-colors">
                     0{index + 1}
                   </span>
@@ -819,7 +819,8 @@ function about() {
                   </span>
                 </motion.div>
                 <h2 className="text-3xl md:text-7xl font-black tracking-wider text-slate-100 leading-tight md:leading-[0.9]">
-                  Our Hands To<br />
+                  Our Hands To
+                  <br />
                   <span className="text-[#e9aa43]">Your Fields</span>
                 </h2>
               </div>
@@ -851,16 +852,16 @@ function about() {
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {[
-              "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302434/0fc480c8-6acf-4ff0-a587-cea5c58e069b_lii8qp.jpg",
-              "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302469/3eff6049-8246-4172-859b-2b6ecad4a9da_kbigrv.jpg",
-              "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302518/7e586c73-db01-4e96-aeb5-ab0a83b14714_dmsnrp.jpg",
-              "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302534/57f06c99-83a3-467b-ab68-c0f1a57ea899_v2ovpk.jpg",
-              "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302548/37e48444-39eb-4c31-83e6-77bd9029cf55_atnrah.jpg",
-              "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302570/2e52526a-bb97-4628-8b23-8facf9e28c73_zzazcn.jpg",
-              "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302598/bd4a46fe-4b00-4d42-8a64-19677841ec23_mexmji.jpg",
-              "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302623/2f2687a2-eb32-4584-84d0-afffeab3406c_fan0jr.jpg",
-              "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302625/e51625c5-4e05-45ee-ade3-3739297e5a59_chikgj.jpg",
-              "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302654/455f921f-c6bf-4385-8da6-396c523e5dd4_qkp4bc.jpg",
+              "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778741619/DSC00374_1_rc1jjo.jpg",
+              "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778742848/DSC00757_1_mrx5rk.jpg",
+              "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778742382/DSC00385_1_iivpfp.jpg",
+              "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778741405/DSC00367_1_frji1m.jpg",
+              "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778743001/DSC00737_1_yuwn5e.jpg",
+              "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778739708/DSC00642_2_1_vch4fe.jpg",
+              "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778741516/DSC00359_1_yojjjm.jpg",
+              "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778738318/DSC00345_jtxnnk.jpg",
+              "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778741041/DSC00541_1_sofgme.jpg",
+              "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778740839/DSC00531_1_ufdg3f.jpg",
             ].map((url, index) => (
               <motion.div
                 key={index}
@@ -871,7 +872,7 @@ function about() {
                 className="group relative min-w-[85%] md:min-w-0 aspect-square overflow-hidden bg-slate-100 border-[8px] border-transparent md:hover:border-white transition-all duration-500 z-10 snap-center"
               >
                 <img
-                  src={`${url}?q=80&w=800&auto=format&fit=crop`}
+                  src={url}
                   alt="Field Work"
                   className="w-full h-full object-cover transition-all duration-700"
                 />

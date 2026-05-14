@@ -71,35 +71,30 @@ export default function ModernSignUp() {
     <div className="min-h-screen flex">
 
       {/* ── Left: Image Panel ── */}
-      <div className="hidden lg:flex lg:w-1/2 relative flex-col justify-between p-12 overflow-hidden">
+      <div className="hidden lg:flex lg:w-1/2 relative flex-col justify-center items-center p-12 overflow-hidden gap-8">
         <img
-          src="https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302534/57f06c99-83a3-467b-ab68-c0f1a57ea899_v2ovpk.jpg"
+          src="https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778741516/DSC00359_1_yojjjm.jpg"
           alt="Gauyog"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/75" />
+        <div className="absolute inset-0 bg-black/85" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#744926]/60 via-transparent to-[#4a703f]/70" />
 
-        {/* Logo */}
-        <div className="relative z-10">
-         
-        </div>
-
         {/* Tagline */}
-        <div className="relative z-10 space-y-4">
-          <div className="w-12 h-1 bg-[#e9aa43] rounded-full" />
+        <div className="relative z-10 space-y-4 text-center">
+          <div className="w-12 h-1 bg-[#e9aa43] rounded-full mx-auto" />
           <h2 className="text-5xl font-black text-white leading-tight tracking-wider">
             Join the Natural<br />
             <span className="text-[#e9aa43] italic">Revolution.</span>
           </h2>
-          <p className="text-white/75 text-base font-medium max-w-sm leading-relaxed">
+          <p className="text-white/75 text-base font-medium max-w-sm leading-relaxed mx-auto">
             Be part of a growing community that chooses nature over chemicals —
             for healthier harvests and a better planet.
           </p>
         </div>
 
         {/* Testimonial */}
-        <div className="relative z-10 bg-white/10 backdrop-blur-sm rounded-3xl p-6 border border-white/15">
+        <div className="relative z-10 bg-white/10 backdrop-blur-sm rounded-3xl p-6 border border-white/15 w-full max-w-sm">
           <p className="text-white/85 text-sm font-medium leading-relaxed italic mb-4">
             "The answer to healthier food lies in going back to nature — not away from it."
           </p>

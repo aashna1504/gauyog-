@@ -219,14 +219,14 @@ export default function ProductSection() {
             {/* Main Image Card */}
             <div className="relative rounded-[40px] overflow-hidden shadow-2xl group transition-transform duration-500 hover:scale-[1.02]">
               <img
-                src="https://res.cloudinary.com/dbpzzvcik/image/upload/v1775302434/0fc480c8-6acf-4ff0-a587-cea5c58e069b_lii8qp.jpg"
+                src="https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778739708/DSC00642_2_1_vch4fe.jpg"
                 alt="Gauyog Team at Gujarat Expo"
                 className="w-full h-[450px] object-cover"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-8">
                 <p className="text-white/90 font-medium text-sm flex items-center gap-2">
                   <span className="w-8 h-[1px] bg-white/50" />
-                  Gauyog Kendr team — Gujarat Expo 2025
+                  Gauyog Kendr team
                 </p>
               </div>
             </div>
@@ -260,7 +260,7 @@ export default function ProductSection() {
             <div className="relative group flex justify-center order-2 md:order-1">
               <div className="absolute w-[220px] h-[220px] md:w-[450px] md:h-[450px] bg-gradient-to-tr from-green-100/40 to-emerald-50/20 rounded-full animate-pulse shadow-inner" />
               <img
-                src="https://res.cloudinary.com/dbpzzvcik/image/upload/v1775037259/cow_v6ymwb.png"
+                src="https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1775037259/cow_v6ymwb.png"
                 className="relative w-full max-w-[420px] z-10 drop-shadow-2xl hover:scale-105 transition-transform duration-700 ease-out"
                 alt="Mascot"
               />
@@ -310,7 +310,7 @@ export default function ProductSection() {
           <div className="order-1 md:order-2">
             <div className="flex justify-between items-end mb-6 md:mb-10">
               <div className="space-y-2 ">
-                              <div className="w-full h-[1px] bg-[#e9aa43]/40 lg:hidden my-3" />
+                <div className="w-full h-[1px] bg-[#e9aa43]/40 lg:hidden my-3" />
 
                 <h2 className="text-5xl md:text-5xl lg:text-7xl font-bold text-gray-900 leading-[1.1]">
                   Everything from{" "}
