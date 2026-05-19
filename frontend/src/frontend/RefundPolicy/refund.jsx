@@ -77,7 +77,7 @@ export default function RefundPolicyPage() {
           }}
         />
 
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-12 items-center gap-8 relative z-10  mt-20 lg:mt-14">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 grid grid-cols-1 md:grid-cols-12 items-center gap-8 relative z-10  mt-20 lg:mt-14">
          
           <div className="md:col-span-7 text-center md:text-left">
             <motion.div
@@ -156,7 +156,7 @@ export default function RefundPolicyPage() {
       </motion.div>
 
    
-      <div className="max-w-7xl mx-auto px-6 py-20 md:py-24 selection:bg-[#4a703f] selection:text-white">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-12 md:py-24 selection:bg-[#4a703f] selection:text-white">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
        
           <div className="lg:col-span-12 space-y-2">

@@ -119,7 +119,7 @@ export default function TrackOrderPage() {
           className="absolute top-1/2 -right-1/4 -translate-y-1/2 w-[60%] h-[150%] opacity-20 blur-[120px] rounded-full pointer-events-none animate-pulse"
           style={{ background: "radial-gradient(circle at right, #4a703f 0%, transparent 70%)", zIndex: -20 }}
         />
-        <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
+        <div className="max-w-4xl mx-auto px-4 md:px-6 relative z-10 text-center">
           <motion.div variants={itemVariants} className="flex items-center justify-center gap-3 mb-6">
             <div className="w-10 h-[1px] bg-slate-200" />
             <span className="text-[10px] font-black uppercase tracking-[0.5em] text-[#4a703f]">Logistics Portal</span>
@@ -142,7 +142,7 @@ export default function TrackOrderPage() {
         </div>
       </motion.div>
 
-      <div className="max-w-7xl mx-auto px-6 -mt-12 relative z-20">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 -mt-12 relative z-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

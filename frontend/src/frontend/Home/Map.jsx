@@ -37,7 +37,7 @@ const contactInfo = [
 
 export default function ModernContactStrip() {
   return (
-    <div className="bg-[#fcfdfd] pt-8 md:pt-20 px-4 md:px-6 relative overflow-hidden">
+    <div className="bg-[#fcfdfd] pt-12 md:pt-20 px-4 md:px-6 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="mb-6 md:mb-10">
           <motion.div
@@ -59,7 +59,7 @@ export default function ModernContactStrip() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.15 }}
-              className="flex-1 py-6 md:py-12 lg:px-10 border-b lg:border-b-0 lg:border-r border-gray-100 last:border-r-0 group relative overflow-hidden"
+              className="flex-1 py-8 md:py-12 lg:px-10 border-b lg:border-b-0 lg:border-r border-gray-100 last:border-r-0 group relative overflow-hidden"
             >
               <div className="absolute inset-0 bg-gray-50 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out -z-10" />
 

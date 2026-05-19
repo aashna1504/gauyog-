@@ -70,7 +70,7 @@ export default function NexusAddressPage() {
   };
 
   return (
-    <div className="w-full max-w-[1200px] mx-auto px-6 py-12 mt-24 text-slate-900">
+    <div className="w-full max-w-[1200px] mx-auto px-4 md:px-6 py-8 md:py-12 mt-20 md:mt-24 text-slate-900">
       
       <nav className="flex items-center gap-2 mb-8 px-2">
         <button

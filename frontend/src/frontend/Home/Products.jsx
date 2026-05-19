@@ -132,7 +132,7 @@ export default function ProductSection() {
   ];
   return (
     <div>
-      <section className="py-10 md:py-20 px-4 md:px-6 overflow-hidden mt-6 md:mt-10">
+      <section className="py-12 md:py-20 px-4 md:px-6 overflow-hidden mt-8 md:mt-10">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-stretch">
           {/* Left Content */}
           <div className="flex flex-col justify-between space-y-6 md:space-y-12 lg:order-1">
@@ -170,46 +170,37 @@ export default function ProductSection() {
               </p>
             </div>
 
-            {/* NEW: Heritage & Distribution Footer (To balance height) */}
-            <div className="  space-y-8 bg-[#744926] p-4 rounded-2xl">
-              <div className="flex flex-wrap gap-5">
-                <div className="space-y-2">
-                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">
-                    Origin
-                  </p>
-                  <p className="text-sm font-bold text-slate-200">
-                    Veraval, Gir Somnath
-                  </p>
-                </div>
-                <div className="space-y-2">
-                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">
-                    Operations
-                  </p>
-                  <p className="text-sm font-bold text-slate-200">
-                    Manufacturing & Export
-                  </p>
-                </div>
-                <div className="space-y-2">
-                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em]">
-                    Network
-                  </p>
-                  <p className="text-sm font-bold text-slate-200">
-                    5,000+ Farmers
-                  </p>
-                </div>
+            {/* Heritage & Distribution Footer */}
+            <div className="space-y-4 bg-[#744926] p-4 md:p-5 rounded-2xl">
+              <div className="grid grid-cols-3 gap-2 md:gap-4">
+                {[
+                  { label: "Origin", value: "Veraval, Gir Somnath" },
+                  { label: "Operations", value: "Mfg & Export" },
+                  { label: "Network", value: "5,000+ Farmers" },
+                ].map((item) => (
+                  <div key={item.label} className="space-y-1">
+                    <p className="text-[10px] md:text-[11px] font-black text-slate-100 uppercase tracking-[0.2em] md:tracking-[0.3em]">
+                      {item.label}
+                    </p>
+                    <p className="text-sm md:text-base font-bold text-slate-200 leading-snug">
+                      {item.value}
+                    </p>
+                  </div>
+                ))}
               </div>
 
-              {/* Modern Badge Strip */}
-              <div className="flex items-center gap-6 hover:opacity-100 transition-opacity">
-                <div className="px-3 py-1 border border-slate-100 rounded text-[9px] font-black uppercase tracking-widerst text-slate-100">
-                  ISO 9001:2015
-                </div>
-                <div className="px-3 py-1 border border-slate-300 rounded text-[9px] font-black uppercase tracking-widerst text-slate-100">
-                  Organic Certified
-                </div>
-                <div className="px-3 py-1 border border-slate-300 rounded text-[9px] font-black uppercase tracking-widerst text-slate-100">
-                  Startup India
-                </div>
+              <div className="h-[1px] bg-white/10" />
+
+              {/* Badge Strip */}
+              <div className="flex flex-wrap items-center gap-1.5 md:gap-2">
+                {["ISO 9001:2015", "Organic Certified", "Startup India"].map((badge) => (
+                  <div
+                    key={badge}
+                    className="px-2.5 md:px-3 py-1 md:py-1.5 border border-slate-100/40 rounded-full text-[10px] md:text-[11px] font-black uppercase tracking-wider text-slate-200"
+                  >
+                    {badge}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -221,7 +212,7 @@ export default function ProductSection() {
               <img
                 src="https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778739708/DSC00642_2_1_vch4fe.jpg"
                 alt="Gauyog Team at Gujarat Expo"
-                className="w-full h-[450px] object-cover"
+                className="w-full lg:h-[450px] h-[350px] object-cover"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-8">
                 <p className="text-white/90 font-medium text-sm flex items-center gap-2">
@@ -236,12 +227,12 @@ export default function ProductSection() {
               {stats.map((stat, idx) => (
                 <div
                   key={idx}
-                  className="bg-white border border-slate-100 p-6 rounded-2xl flex flex-col justify-center items-center text-center space-y-2 shadow-sm hover:shadow-md transition-shadow"
+                  className="bg-white border border-slate-100 p-3 md:p-6 rounded-2xl flex flex-col justify-center items-center text-center space-y-2 shadow-sm hover:shadow-md transition-shadow"
                 >
                   <span className="text-[#e9aa43] font-bold text-2xl lg:text-xl xl:text-2xl">
                     {stat.label}
                   </span>
-                  <span className="text-[9px] font-black text-slate-700 uppercase tracking-widerst leading-tight">
+                  <span className="text-[11px] text-slate-700 leading-tight">
                     {stat.sub}
                   </span>
                 </div>
@@ -285,7 +276,7 @@ export default function ProductSection() {
                 </span>
                 New Arrival 2026
               </div>
-              <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold text-gray-900 leading-[1.1]">
+              <h2 className="text-2xl md:text-5xl lg:text-7xl font-bold text-gray-900 leading-[1.1]">
                 Your{" "}
                 <span className="text-[#4a703f] italic underline decoration-[#e9aa43]/30 underline-offset-8">
                   Trusted Natural Partner
@@ -310,9 +301,9 @@ export default function ProductSection() {
           <div className="order-1 md:order-2">
             <div className="flex justify-between items-end mb-6 md:mb-10">
               <div className="space-y-2 ">
-                <div className="w-full h-[1px] bg-[#e9aa43]/40 lg:hidden my-3" />
+                <div className="w-full h-[1px] bg-[#e9aa43]/40 lg:hidden my-5" />
 
-                <h2 className="text-5xl md:text-5xl lg:text-7xl font-bold text-gray-900 leading-[1.1]">
+                <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold text-gray-900 leading-[1.1]">
                   Everything from{" "}
                   <span className="text-[#4a703f] italic underline decoration-[#e9aa43]/30 underline-offset-8">
                     Mother Earth
@@ -401,14 +392,14 @@ export default function ProductSection() {
             </div>
 
             {/* Two-Category Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
               {tiers.map((tier, idx) => (
                 <motion.div
                   key={idx}
                   whileHover={{ y: -6 }}
                   className="relative group bg-white rounded-[40px] border border-slate-100 p-2 shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden"
                 >
-                  <div className="bg-slate-50/50 rounded-[34px] p-8 flex flex-col gap-6">
+                  <div className="bg-slate-50/50 rounded-[34px] p-5 md:p-8 flex flex-col gap-5 md:gap-6">
                     {/* Header row */}
                     <div className="flex justify-between items-center">
                       <div
@@ -497,7 +488,7 @@ export default function ProductSection() {
           <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-[#4a703f]/5 rounded-full blur-[100px] -z-10" />
 
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-20">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-20">
               {/* --- LEFT SIDE: CONTENT & SEGMENTS --- */}
               <div className="lg:col-span-7 space-y-12">
                 <div className="space-y-6">
@@ -508,7 +499,7 @@ export default function ProductSection() {
                     </span>
                   </div>
 
-                  <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold text-slate-950 leading-[1.1] tracking-wider">
+                  <h2 className="text-2xl md:text-5xl lg:text-7xl font-bold text-slate-950 leading-[1.1] tracking-wider">
                     Bridging{" "}
                     <span className="text-[#4a703f] italic underline decoration-[#e9aa43]/30 underline-offset-8">
                       Heritage
@@ -548,7 +539,7 @@ export default function ProductSection() {
                   ].map((item, i) => (
                     <div
                       key={i}
-                      className="group relative flex items-center gap-6 p-6 rounded-[2rem] bg-white border border-slate-100 hover:border-[#4a703f]/20 hover:shadow-2xl hover:shadow-[#4a703f]/5 transition-all duration-500 cursor-default"
+                      className="group relative flex items-center gap-4 md:gap-6 p-4 md:p-6 rounded-[2rem] bg-white border border-slate-100 hover:border-[#4a703f]/20 hover:shadow-2xl hover:shadow-[#4a703f]/5 transition-all duration-500 cursor-default"
                     >
                       <div
                         className={`flex-shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center transition-transform group-hover:scale-110 ${item.color}`}
@@ -661,7 +652,7 @@ export default function ProductSection() {
 
           <div
             onClick={() => navigate("/contact")}
-            className="flex justify-center items-center p-8"
+            className="flex justify-center items-center p-5 md:p-8"
           >
             <button className="w-[300px] py-4 bg-[#744926] text-white rounded-full font-black uppercase tracking-widerst text-xs flex items-center justify-center gap-2">
               Contact Us

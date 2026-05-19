@@ -41,7 +41,7 @@ export default function WhyChooseUs() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <div className="bg-[#fcfdfd] py-12 md:py-24 px-4 md:px-6 relative overflow-hidden text-gray-900">
+    <div className="bg-[#fcfdfd] py-14 md:py-24 px-4 md:px-6 relative overflow-hidden text-gray-900">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#4a703f]/5 rounded-full blur-[140px] -z-10" />
 
       <div className="max-w-7xl mx-auto">
@@ -69,7 +69,7 @@ export default function WhyChooseUs() {
           </div>
 
           <div className="lg:pl-10">
-            <header className="mb-8 md:mb-14">
+            <header className="mb-10 md:mb-14">
               <div className="text-[#4a703f] font-bold text-xs uppercase tracking-[0.4em] mb-3 md:mb-4 flex items-center gap-3">
                 <span className="w-8 md:w-10 h-[1px] bg-[#4a703f]" /> Why Gauyog Kendr
               </div>

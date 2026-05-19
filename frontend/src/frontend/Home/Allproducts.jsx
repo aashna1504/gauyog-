@@ -58,7 +58,7 @@ export default function AllProducts() {
   };
 
   return (
-    <div className="bg-white py-10 md:py-24 px-4 md:px-6">
+    <div className="bg-white py-12 md:py-24 px-4 md:px-6">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 md:mb-16 gap-4 md:gap-8">
           <div className="space-y-2 md:space-y-4">
