@@ -192,11 +192,10 @@ function about() {
   ];
   const scrollRef = useRef(null);
   const partnershipImages = [
-    "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778736294/DSC00175_iqozlc.jpg",
     "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778739066/DSC00727_1_cgyreu.jpg",
-    "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778739371/DSC00751_1_oj5pup.jpg",
-    "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778744023/DSC00215_kqdbva.jpg",
     "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778740839/DSC00531_1_ufdg3f.jpg",
+
+    "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778739371/DSC00751_1_oj5pup.jpg",
     "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778742848/DSC00757_1_mrx5rk.jpg",
     "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778742258/DSC00611_1_ckc6b8.jpg",
   ];
