@@ -312,7 +312,7 @@ export default function KineticContactBanner() {
         initial="hidden"
         animate="visible"
         variants={containerVariants}
-        className="relative w-full py-8 md:py-20 overflow-hidden"
+        className="relative w-full py-12 md:py-20 overflow-hidden"
       >
         {/* Background decorations */}
         <div className="absolute top-0 right-0 w-[35%] h-full bg-[#4a703f]/4 -skew-x-12 translate-x-10 -z-10" />
@@ -641,7 +641,7 @@ export default function KineticContactBanner() {
           </motion.div>
         </div>
       </motion.div>
-      <section className="relative bg-[#744926] py-10 md:py-24 px-4 md:px-6 overflow-hidden">
+      <section className="relative bg-[#744926] py-12 md:py-24 px-4 md:px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-16 items-center">
           {/* --- LEFT SIDE: BENTO IMAGE GRID --- */}
           <div className="lg:col-span-6 grid grid-cols-2 gap-3 md:gap-4">
@@ -776,7 +776,7 @@ export default function KineticContactBanner() {
           </div>
         </div>
       </section>
-      <section className="py-10 md:py-24 px-4 md:px-6 bg-white overflow-hidden">
+      <section className="py-12 md:py-24 px-4 md:px-6 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="mb-8 md:mb-20">
             <motion.span
@@ -796,7 +796,7 @@ export default function KineticContactBanner() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16">
             {commitments.map((item, idx) => (
               <motion.div
                 key={idx}

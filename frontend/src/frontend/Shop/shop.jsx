@@ -37,7 +37,7 @@ const statsBoxVariants = {
 
 export default function ModernShopBanner() {
   return (
-    <div className="mt-16">
+    <div className="lg:mt-32 mt-20">
       {/* <motion.div
         initial="hidden"
         animate="visible"

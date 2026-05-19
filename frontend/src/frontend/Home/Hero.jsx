@@ -29,7 +29,7 @@ export default function GlobalModernHero() {
     if (sliderItems.length <= 1) return;
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % sliderItems.length);
-    }, 3200);
+    }, 5500);
     return () => clearInterval(timer);
   }, [sliderItems.length]);
 
@@ -57,7 +57,7 @@ export default function GlobalModernHero() {
       <div className="absolute top-20 -left-24 h-56 w-56 rounded-full border border-[#4a703f]/10" />
       <div className="absolute bottom-10 right-6 h-40 w-40 rounded-full border border-[#4a703f]/10" />
 
-      <div className="relative max-w-7xl mx-auto px-4 md:px-6 pt-28 md:pt-36 pb-8 lg:pb-8">
+      <div className="relative max-w-7xl mx-auto px-4 md:px-6 pt-28 md:pt-36 pb-12 md:pb-8 lg:pb-8">
         <div className="grid items-center gap-8 lg:gap-14 lg:grid-cols-[1.05fr,0.95fr]">
           <div className="space-y-5 md:space-y-7">
             <motion.div
@@ -131,9 +131,9 @@ export default function GlobalModernHero() {
                 { val: "100%", label: "Chemical-Free" },
                 { val: "Products", label: "Export-Ready" },
               ].map((s, i) => (
-                <div key={i} className="rounded-2xl p-2 bg-[#744926]">
-                  <p className="text-xl font-black text-[#e9aa43]">{s.val}</p>
-                  <p className="text-[9px] font-black uppercase tracking-widerst text-gray-200 mt-0.5">
+                <div key={i} className="rounded-2xl p-2 bg-[#744926] text-center">
+                  <p className="text-xl font-black text-gray-200">{s.val}</p>
+                  <p className="text-[13px] text-gray-200 mt-0.5">
                     {s.label}
                   </p>
                 </div>
@@ -211,13 +211,13 @@ export default function GlobalModernHero() {
         transition={{ duration: 0.6, delay: 0.6 }}
         className="bg-[#4a703f]"
       >
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-center gap-6 flex-wrap">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 py-4">
+          <div className="flex items-center justify-center gap-4 md:gap-6 flex-wrap">
             {categories.map((cat, i) => (
               <React.Fragment key={i}>
                 <button
                   onClick={() => (window.location.href = "/shop")}
-                  className="text-[10px] font-black uppercase tracking-widerst text-white/80 hover:text-white transition-colors"
+                  className="text-[14px] uppercase tracking-wider text-white/80 hover:text-white transition-colors"
                 >
                   {cat}
                 </button>

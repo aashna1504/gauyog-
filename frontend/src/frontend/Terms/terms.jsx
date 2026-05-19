@@ -67,8 +67,8 @@ export default function TermsConditionsPage() {
 
         <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(#000_1px,transparent_1px),linear-gradient(90deg,#000_1px,transparent_1px)] bg-[size:40px_40px]" />
 
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="grid md:grid-cols-2 gap-12 items-center mt-20">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center mt-20">
             <div>
               <motion.h1
                 variants={itemVariants}
@@ -93,7 +93,7 @@ export default function TermsConditionsPage() {
         </div>
       </motion.div>
 
-      <div className="max-w-7xl mx-auto px-6 py-10">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-10">
         <motion.div
           initial="hidden"
           whileInView="visible"

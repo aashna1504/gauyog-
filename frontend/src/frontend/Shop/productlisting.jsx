@@ -17,61 +17,23 @@ export default function ProductListingPage() {
   const navigate = useNavigate();
 
   const categoryDefs = [
-    { name: "All", keywords: [] },
-    {
-      name: "Natural & Organic Foods",
-      keywords: [
-        "jaggery",
-        "ghee",
-        "honey",
-        "vegetable",
-        "oil",
-        "food",
-        "organic food",
-      ],
-    },
+    { name: "All", keywords: [], match: null },
+    { name: "Fertilizers", keywords: [], match: "Fertilizer" },
+    { name: "Coco Products", keywords: [], match: "Coco" },
     {
       name: "Natural Beauty & Care",
-      keywords: [
-        "aloe vera",
-        "face pack",
-        "hair oil",
-        "shampoo",
-        "beauty",
-        "care",
-      ],
+      keywords: ["aloe vera", "face pack", "hair oil", "shampoo", "beauty", "care"],
+      match: null,
     },
     {
       name: "Ayurvedic Wellness",
-      keywords: [
-        "tooth powder",
-        "toothpaste",
-        "digestive",
-        "churna",
-        "balm",
-        "wellness",
-        "ayurvedic",
-      ],
+      keywords: ["tooth powder", "toothpaste", "digestive", "churna", "balm", "wellness", "ayurvedic"],
+      match: null,
     },
     {
       name: "Premium Incense",
       keywords: ["dhoop", "incense", "camphor", "oil", "gaumaya", "modak"],
-    },
-    {
-      name: "Eco-Friendly Home Essentials",
-      keywords: [
-        "premium soil",
-        "soil",
-        "cocopeat",
-        "coco peat",
-        "coco fibre",
-        "coir",
-        "wooden",
-        "utility",
-        "active soil",
-        "fertilizer",
-        "coco",
-      ],
+      match: null,
     },
   ];
   const categories = categoryDefs.map((c) => c.name);
@@ -113,22 +75,22 @@ export default function ProductListingPage() {
     const query = searchQuery.trim().toLowerCase();
     const selectedCategory = categoryDefs.find((c) => c.name === activeCategory);
 
-    let list = products.filter(
-      (p) => {
-        const haystack = `${p.name || ""} ${p.category || ""} ${p.description || ""}`.toLowerCase();
-        const inCategory =
-          activeCategory === "All" ||
-          (selectedCategory?.keywords?.length
-            ? selectedCategory.keywords.some((k) => haystack.includes(k.toLowerCase()))
-            : (p.category || "").toLowerCase() === activeCategory.toLowerCase());
-        const inSize =
-          activeSize === "All Sizes" ||
-          p.weight === activeSize ||
-          (p.weightOptions || []).includes(activeSize);
-        const inSearch = !query || haystack.includes(query);
-        return inCategory && inSize && inSearch;
-      },
-    );
+    let list = products.filter((p) => {
+      const haystack = `${p.name || ""} ${p.category || ""} ${p.description || ""}`.toLowerCase();
+      const inCategory =
+        activeCategory === "All" ||
+        (selectedCategory?.match
+          ? (p.category || "").toLowerCase() === selectedCategory.match.toLowerCase()
+          : selectedCategory?.keywords?.length
+          ? selectedCategory.keywords.some((k) => haystack.includes(k.toLowerCase()))
+          : false);
+      const inSize =
+        activeSize === "All Sizes" ||
+        p.weight === activeSize ||
+        (p.weightOptions || []).includes(activeSize);
+      const inSearch = !query || haystack.includes(query);
+      return inCategory && inSize && inSearch;
+    });
     if (sortBy === "PriceH") list = [...list].sort((a, b) => b.price - a.price);
     if (sortBy === "PriceL") list = [...list].sort((a, b) => a.price - b.price);
     return list;
@@ -214,81 +176,85 @@ export default function ProductListingPage() {
         </div>
       </section>
 
-      <div className="sticky top-4 z-40 max-w-7xl mx-auto px-6 mb-16">
-        <div className="bg-[#e9aa43]/30 backdrop-blur-xl p-3 rounded-[32px] shadow-2xl shadow-green-900/5 border border-white flex flex-wrap items-center gap-3">
-          <div className="relative flex-[1.8] min-w-[220px]">
+      <div className="sticky top-4 z-40 max-w-7xl mx-auto px-4 md:px-6 mb-6 md:mb-16">
+        <div className="bg-[#e9aa43]/30 backdrop-blur-xl p-2 md:p-3 rounded-[24px] md:rounded-[32px] shadow-2xl shadow-green-900/5 border border-white flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-2 sm:gap-3">
+          {/* Search — full width on mobile, flex item on sm+ */}
+          <div className="relative sm:flex-[1.8] sm:min-w-[220px]">
             <Search
-              size={16}
-              className="absolute left-5 top-1/2 -translate-y-1/2 text-[#4a703f]"
+              size={14}
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-[#4a703f]"
             />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search products..."
-              className="w-full bg-gray-50 border-none pl-12 pr-5 py-4 rounded-full text-sm font-semibold text-gray-700 placeholder:text-gray-400 focus:ring-2 focus:ring-[#4a703f]/20"
+              className="w-full bg-gray-50 border-none pl-10 sm:pl-12 pr-4 py-2.5 sm:py-4 rounded-full text-xs sm:text-sm font-semibold text-gray-700 placeholder:text-gray-400 focus:ring-2 focus:ring-[#4a703f]/20"
             />
           </div>
 
-          <div className="relative flex-1 min-w-[140px] group">
-            <Filter
-              size={16}
-              className="absolute left-5 top-1/2 -translate-y-1/2 text-[#4a703f]"
-            />
-            <select
-              value={activeCategory}
-              onChange={(e) => setActiveCategory(e.target.value)}
-              className="w-full appearance-none bg-gray-50 border-none pl-12 pr-10 py-4 rounded-full text-xs font-bold text-gray-700 focus:ring-2 focus:ring-[#4a703f]/20 cursor-pointer"
-            >
-              {categories.map((c) => (
-                <option key={c} value={c}>
-                  {c} Category
-                </option>
-              ))}
-            </select>
-            <ChevronDown
-              size={14}
-              className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-300 pointer-events-none"
-            />
-          </div>
+          {/* 3 selects: 3-column grid on mobile, individual flex items on sm+ */}
+          <div className="grid grid-cols-3 gap-2 sm:contents">
+            <div className="relative sm:flex-1 sm:min-w-[140px] group">
+              <Filter
+                size={13}
+                className="absolute left-3 sm:left-5 top-1/2 -translate-y-1/2 text-[#4a703f]"
+              />
+              <select
+                value={activeCategory}
+                onChange={(e) => setActiveCategory(e.target.value)}
+                className="w-full appearance-none bg-gray-50 border-none pl-8 sm:pl-12 pr-5 py-2.5 sm:py-4 rounded-full text-[10px] sm:text-xs font-bold text-gray-700 focus:ring-2 focus:ring-[#4a703f]/20 cursor-pointer"
+              >
+                {categories.map((c) => (
+                  <option key={c} value={c}>
+                    {c}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown
+                size={12}
+                className="absolute right-2 sm:right-5 top-1/2 -translate-y-1/2 text-gray-300 pointer-events-none"
+              />
+            </div>
 
-          <div className="relative flex-1 min-w-[140px]">
-            <select
-              value={activeSize}
-              onChange={(e) => setActiveSize(e.target.value)}
-              className="w-full appearance-none bg-gray-50 border-none px-6 py-4 rounded-full text-xs font-bold text-gray-700 focus:ring-2 focus:ring-[#4a703f]/20 cursor-pointer"
-            >
-              {sizes.map((s) => (
-                <option key={s} value={s}>
-                  {s}
-                </option>
-              ))}
-            </select>
-            <ChevronDown
-              size={14}
-              className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-300 pointer-events-none"
-            />
-          </div>
+            <div className="relative sm:flex-1 sm:min-w-[140px]">
+              <select
+                value={activeSize}
+                onChange={(e) => setActiveSize(e.target.value)}
+                className="w-full appearance-none bg-gray-50 border-none px-3 sm:px-6 py-2.5 sm:py-4 rounded-full text-[10px] sm:text-xs font-bold text-gray-700 focus:ring-2 focus:ring-[#4a703f]/20 cursor-pointer"
+              >
+                {sizes.map((s) => (
+                  <option key={s} value={s}>
+                    {s}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown
+                size={12}
+                className="absolute right-2 sm:right-5 top-1/2 -translate-y-1/2 text-gray-300 pointer-events-none"
+              />
+            </div>
 
-          <div className="relative flex-[1.5] min-w-[200px]">
-            <select
-              value={sortBy}
-              onChange={(e) => setSortBy(e.target.value)}
-              className="w-full appearance-none bg-[#744926] text-white border-none px-8 py-4 rounded-full text-xs font-bold shadow-lg shadow-[#744926]/20 cursor-pointer transition-all hover:bg-[#5a381d]"
-            >
-              <option value="Relevant">Sort: Relevant</option>
-              <option value="PriceH">Price: High to Low</option>
-              <option value="PriceL">Price: Low to High</option>
-            </select>
-            <ChevronDown
-              size={14}
-              className="absolute right-6 top-1/2 -translate-y-1/2 text-white/50 pointer-events-none"
-            />
+            <div className="relative sm:flex-[1.5] sm:min-w-[200px]">
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className="w-full appearance-none bg-[#744926] text-white border-none px-3 sm:px-8 py-2.5 sm:py-4 rounded-full text-[10px] sm:text-xs font-bold shadow-lg shadow-[#744926]/20 cursor-pointer transition-all hover:bg-[#5a381d]"
+              >
+                <option value="Relevant">Sort</option>
+                <option value="PriceH">High → Low</option>
+                <option value="PriceL">Low → High</option>
+              </select>
+              <ChevronDown
+                size={12}
+                className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 text-white/50 pointer-events-none"
+              />
+            </div>
           </div>
         </div>
       </div>
 
-      <main className="max-w-7xl mx-auto px-6">
+      <main className="max-w-7xl mx-auto px-4 md:px-6">
         {loading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {Array.from({ length: 8 }).map((_, i) => (

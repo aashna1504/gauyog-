@@ -62,7 +62,7 @@ export default function TestimonialSlider() {
     setIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
 
   return (
-    <div className="bg-[#4a703f] py-8 md:py-20 px-4 md:px-6 relative overflow-hidden">
+    <div className="bg-[#4a703f] py-12 md:py-20 px-4 md:px-6 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-64 h-64 md:w-96 md:h-96 bg-[#4a703f] rounded-full blur-[80px] md:blur-[100px] -z-10" />
 
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 md:gap-20 items-center">

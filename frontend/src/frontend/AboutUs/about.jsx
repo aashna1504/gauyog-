@@ -215,7 +215,7 @@ function about() {
     if (partnershipImages.length <= 1) return;
     const timer = setInterval(() => {
       setPartnershipSlide((prev) => (prev + 1) % partnershipImages.length);
-    }, 3200);
+    }, 5500);
     return () => clearInterval(timer);
   }, [partnershipImages.length]);
 
@@ -248,7 +248,7 @@ function about() {
         </div>
 
         <div className="max-w-7xl mx-auto w-full z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
             {/* --- LEFT: COMPACT NARRATIVE --- */}
             <div className="lg:col-span-7">
               <motion.div
@@ -394,7 +394,7 @@ function about() {
               whileInView={{ opacity: 1, y: 0 }}
               className="text-center mb-5 md:mb-16"
             >
-              <h2 className="text-2xl md:text-8xl font-black text-slate-100 tracking-wider leading-tight md:leading-[0.85]">
+              <h2 className="text-3xl md:text-8xl font-black text-slate-100 tracking-wider leading-tight md:leading-[0.85]">
                 Built <span className="text-[#e9aa43]">on Truth.</span>
               </h2>
             </motion.div>
@@ -569,10 +569,10 @@ function about() {
               </div> */}
             </div>
           </section>
-          <section className="py-10 md:py-32 px-4 md:px-6 bg-[#fcfdfd] overflow-hidden border-y">
+          <section className="py-12 md:py-32 px-4 md:px-6 bg-[#fcfdfd] overflow-hidden border-y">
             <div className="max-w-7xl mx-auto">
               {/* --- Unified Header Section --- */}
-              <div className="relative mb-8 md:mb-24 max-w-2xl">
+              <div className="relative mb-10 md:mb-24 max-w-2xl">
                 {/* Faint watermark text for depth */}
                 <span className="absolute top-0 right-0 text-[10vw] font-black text-[#4a703f] opacity-[0.02] select-none pointer-events-none uppercase tracking-wider">
                   TRUST
@@ -600,7 +600,7 @@ function about() {
                 <div className="absolute top-1/2 left-0 w-[400px] h-[400px] bg-[#4a703f]/5 rounded-full blur-[100px] -z-10" />
                 <div className="absolute top-1/4 right-0 w-[300px] h-[300px] bg-[#e9aa43]/5 rounded-full blur-[80px] -z-10" />
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-8 md:gap-x-12 md:gap-y-16 items-start relative">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 md:gap-x-12 md:gap-y-16 items-start relative">
                   {advantageData.map((item, index) => (
                     <motion.div
                       key={index}
@@ -727,7 +727,7 @@ function about() {
           </section>
         </div>
 
-        <section className="py-8 md:py-16 px-4 md:px-12 bg-[#fcfdfd]">
+        <section className="py-10 md:py-16 px-4 md:px-12 bg-[#fcfdfd]">
           <div className="max-w-7xl mx-auto">
             <div className="mb-6 md:mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6">
               <div className="max-w-xl">
@@ -803,7 +803,7 @@ function about() {
           </div>
         </section>
       </div>
-      <section className="py-8 md:py-24 px-4 md:px-12 bg-[#744926] overflow-hidden">
+      <section className="py-10 md:py-24 px-4 md:px-12 bg-[#744926] overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="mb-6 md:mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-6">
             <div className=" flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -891,7 +891,7 @@ function about() {
                 style={{ width: "30%" }} // You could make this dynamic based on scroll position
               />
             </div>
-            <span className="ml-6 text-[10px] font-black uppercase text-slate-400">
+            <span className="ml-6 text-[10px] font-black uppercase text-slate-100">
               Manual Scroll Enabled
             </span>
           </div>
