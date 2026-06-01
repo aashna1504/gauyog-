@@ -299,7 +299,7 @@ export default function FloatingNexusDashboard() {
                   </div>
                   <h2 className="text-[10px] font-black uppercase tracking-widerst text-slate-900">
                     My Cart
-                  </h3>
+                  </h2>
                 </div>
                 <span className="text-[9px] font-black text-blue-500 bg-blue-50 px-2 py-1 rounded-lg">
                   {cartCount} Items
