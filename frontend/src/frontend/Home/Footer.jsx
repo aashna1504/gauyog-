@@ -25,10 +25,10 @@ const footerLinks = {
     { name: "Refund Policy", href: "/refund" },
   ],
   socials: [
-    { icon: Instagram, href: "#", color: "hover:text-pink-500" },
-    { icon: Twitter, href: "#", color: "hover:text-blue-400" },
-    { icon: Facebook, href: "#", color: "hover:text-blue-600" },
-    { icon: Youtube, href: "#", color: "hover:text-red-500" },
+    { icon: Instagram, href: "#", color: "hover:text-pink-500", name: "Instagram" },
+    { icon: Twitter, href: "#", color: "hover:text-blue-400", name: "Twitter / X" },
+    { icon: Facebook, href: "#", color: "hover:text-blue-600", name: "Facebook" },
+    { icon: Youtube, href: "#", color: "hover:text-red-500", name: "YouTube" },
   ],
 };
 
@@ -122,9 +122,10 @@ export default function ModernFooter() {
                     key={i}
                     href={social.href}
                     whileHover={{ y: -5 }}
-                    className={`w-10 h-10 md:w-11 md:h-11 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 border border-transparent hover:border-gray-100 hover:bg-white transition-all ${social.color}`}
+                    aria-label={`Follow us on ${social.name}`}
+                    className={`w-11 h-11 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 border border-transparent hover:border-gray-100 hover:bg-white transition-all ${social.color}`}
                   >
-                    <social.icon size={18} strokeWidth={2.5} />
+                    <social.icon size={18} strokeWidth={2.5} aria-hidden="true" />
                   </motion.a>
                 ))}
               </div>

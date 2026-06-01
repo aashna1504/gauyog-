@@ -90,7 +90,7 @@ export default function TestimonialSlider() {
                 className="absolute inset-0 bg-[#4a703f]"
               />
             </div>
-            <span className="text-xs md:text-sm font-black text-gray-400">
+            <span className="text-xs md:text-sm font-black text-gray-200">
               0{index + 1} / 0{testimonials.length}
             </span>
           </div>
@@ -98,15 +98,17 @@ export default function TestimonialSlider() {
           <div className="hidden lg:flex gap-4">
             <button
               onClick={prevSlide}
-              className="w-14 h-14 rounded-full border-2 border-gray-400  text-gray-400 flex items-center justify-center hover:bg-white hover:text-black transition-all shadow-xl shadow-transparent hover:shadow-gray-500"
+              aria-label="Previous testimonial"
+              className="w-14 h-14 rounded-full border-2 border-gray-300 text-gray-200 flex items-center justify-center hover:bg-white hover:text-black transition-all shadow-xl shadow-transparent hover:shadow-gray-500"
             >
-              <ArrowUp size={24} />
+              <ArrowUp size={24} aria-hidden="true" />
             </button>
             <button
               onClick={nextSlide}
-              className="w-14 h-14 rounded-full border-2 border-gray-400 text-gray-400 flex items-center justify-center hover:bg-white hover:text-black transition-all shadow-xl shadow-transparent hover:shadow-gray-500"
+              aria-label="Next testimonial"
+              className="w-14 h-14 rounded-full border-2 border-gray-300 text-gray-200 flex items-center justify-center hover:bg-white hover:text-black transition-all shadow-xl shadow-transparent hover:shadow-gray-500"
             >
-              <ArrowDown size={24} />
+              <ArrowDown size={24} aria-hidden="true" />
             </button>
           </div>
         </div>
@@ -146,7 +148,7 @@ export default function TestimonialSlider() {
                           className="text-[#4a703f]"
                         />
                       </p>
-                      <p className="text-[10px] md:text-sm font-bold text-gray-400 uppercase tracking-wider">
+                      <p className="text-[10px] md:text-sm font-bold text-gray-200 uppercase tracking-wider">
                         {testimonials[index].role}
                       </p>
                     </div>
@@ -174,15 +176,17 @@ export default function TestimonialSlider() {
           <div className="flex lg:hidden gap-3 justify-center">
             <button
               onClick={prevSlide}
+              aria-label="Previous testimonial"
               className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center bg-white hover:bg-black hover:text-white transition-all shadow-sm"
             >
-              <ArrowUp size={20} />
+              <ArrowUp size={20} aria-hidden="true" />
             </button>
             <button
               onClick={nextSlide}
+              aria-label="Next testimonial"
               className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center bg-white hover:bg-black hover:text-white transition-all shadow-sm"
             >
-              <ArrowDown size={20} />
+              <ArrowDown size={20} aria-hidden="true" />
             </button>
           </div>
         </div>
