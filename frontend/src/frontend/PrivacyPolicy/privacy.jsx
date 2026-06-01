@@ -60,7 +60,7 @@ export default function PrivacyPolicyPage() {
             <div>
               <motion.h1
                 variants={itemVariants}
-                className="text-5xl md:text-7xl font-extrabold text-gray-900 leading-tight"
+                className="text-5xl md:text-7xl font-extrabold text-gray-900 "
               >
                 Privacy 
                 <span className="text-[#4a703f] italic font-semibold">

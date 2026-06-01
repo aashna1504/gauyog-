@@ -65,17 +65,21 @@ export default function ModernSignIn() {
       {/* ── Left: Image Panel ── */}
       <div className="hidden lg:flex lg:w-1/2 relative flex-col justify-center items-center p-12 overflow-hidden gap-10">
         <img
-          src="https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778740198/DSC00585_1_ypoyj7.jpg"
+          src="https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto,w_1200/v1778740198/DSC00585_1_ypoyj7.jpg"
           alt="Gauyog"
           className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+          decoding="async"
+          width={1200}
+          height={800}
         />
-        <div className="absolute inset-0 bg-black/85" />
+        <div className="absolute inset-0 bg-black/80" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#4a703f]/60 via-transparent to-[#744926]/70" />
 
         {/* Tagline */}
         <div className="relative z-10 space-y-4 text-center">
           <div className="w-12 h-1 bg-[#e9aa43] rounded-full mx-auto" />
-          <h2 className="text-5xl font-black text-white leading-tight tracking-wider">
+          <h2 className="text-5xl font-black text-white  tracking-wider">
             Pure by Nature.<br />
             <span className="text-[#e9aa43] italic">Proven by Earth.</span>
           </h2>

@@ -402,7 +402,7 @@ export default function Header() {
                     </div>
                     <div className="flex-1 flex flex-col justify-between py-1">
                       <div>
-                        <h4 className="text-sm font-black text-slate-900 leading-tight uppercase tracking-wider">
+                        <h4 className="text-sm font-black text-slate-900  uppercase tracking-wider">
                           {item.name}
                         </h4>
                         <div className="flex items-center justify-between mt-1">

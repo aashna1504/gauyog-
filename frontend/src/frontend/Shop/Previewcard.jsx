@@ -133,7 +133,7 @@ export default function VedicDhoopMosaicPage() {
               <span className="inline-block px-3 py-1 bg-[#4a703f]/10 text-[#4a703f] rounded-full text-[10px] font-black uppercase tracking-[0.3em] mb-2">
                 {product.category}
               </span>
-              <h1 className="text-2xl md:text-4xl font-black text-slate-900 tracking-wider leading-tight mb-1">
+              <h1 className="text-2xl md:text-4xl font-black text-slate-900 tracking-wider  mb-1">
                 {product.name}
               </h1>
               {product.scientificName && (

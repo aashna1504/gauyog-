@@ -1,4 +1,5 @@
 import { AnimatePresence } from "framer-motion";
+import { clUrl, clSrcSet } from "../../utils/cloudinary";
 import { useEffect, useState } from "react";
 import {
   ArrowLeft,
@@ -210,9 +211,15 @@ export default function ProductSection() {
             {/* Main Image Card */}
             <div className="relative rounded-[40px] overflow-hidden shadow-2xl group transition-transform duration-500 hover:scale-[1.02]">
               <img
-                src="https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778739708/DSC00642_2_1_vch4fe.jpg"
+                src={clUrl("https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/v1778739708/DSC00642_2_1_vch4fe.jpg", 1200)}
+                srcSet={clSrcSet("https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/v1778739708/DSC00642_2_1_vch4fe.jpg", [480, 800, 1200])}
+                sizes="(max-width: 1024px) 100vw, 600px"
                 alt="Gauyog Team at Gujarat Expo"
-                className="w-full lg:h-[450px] h-[350px] object-cover"
+                className="w-full lg:h-[350px] h-[250px] object-cover"
+                loading="lazy"
+                decoding="async"
+                width={1200}
+                height={450}
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-8">
                 <p className="text-white/90 font-medium text-sm flex items-center gap-2">
@@ -232,7 +239,7 @@ export default function ProductSection() {
                   <span className="text-[#e9aa43] font-bold text-2xl lg:text-xl xl:text-2xl">
                     {stat.label}
                   </span>
-                  <span className="text-[11px] text-slate-700 leading-tight">
+                  <span className="text-[11px] text-slate-700 ">
                     {stat.sub}
                   </span>
                 </div>
@@ -251,9 +258,15 @@ export default function ProductSection() {
             <div className="relative group flex justify-center order-2 md:order-1">
               <div className="absolute w-[220px] h-[220px] md:w-[450px] md:h-[450px] bg-gradient-to-tr from-green-100/40 to-emerald-50/20 rounded-full animate-pulse shadow-inner" />
               <img
-                src="https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1775037259/cow_v6ymwb.png"
+                src={clUrl("https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/v1775037259/cow_v6ymwb.png", 500)}
+                srcSet={clSrcSet("https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/v1775037259/cow_v6ymwb.png", [280, 420, 500])}
+                sizes="(max-width: 768px) 280px, 420px"
                 className="relative w-full max-w-[420px] z-10 drop-shadow-2xl hover:scale-105 transition-transform duration-700 ease-out"
                 alt="Mascot"
+                loading="lazy"
+                decoding="async"
+                width={500}
+                height={500}
               />
               <div className="absolute bottom-4 right-10 z-20 bg-white/80 backdrop-blur-md p-4 rounded-full shadow-xl border border-white flex items-center gap-3 animate-bounce">
                 <div className="bg-[#4a703f] p-2 rounded-full text-white shadow-lg shadow-green-200">
@@ -421,7 +434,7 @@ export default function ProductSection() {
                       >
                         {tier.category}
                       </h4>
-                      <h3 className="text-2xl font-black text-slate-900 leading-tight mb-3">
+                      <h3 className="text-2xl font-black text-slate-900  mb-3">
                         {tier.name}
                       </h3>
                       <p className="text-sm text-slate-500 font-medium leading-relaxed">
@@ -637,7 +650,7 @@ export default function ProductSection() {
                             <p className="font-black text-[10px] uppercase tracking-[0.2em] text-white">
                               {item.label}
                             </p>
-                            <p className="text-white/60 text-[11px] font-medium leading-tight mt-1">
+                            <p className="text-white/60 text-[11px] font-medium  mt-1">
                               {item.desc}
                             </p>
                           </div>

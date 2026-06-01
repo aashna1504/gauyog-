@@ -1,226 +1,97 @@
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import React, { Suspense } from "react";
+import React, { Suspense, lazy } from "react";
 import "./index.css";
 import Layout from "./Layout.jsx";
-import App from "./App.jsx";
-import Shop from "./frontend/Shop/shop.jsx";
-import PreviewCard from "./frontend/Shop/Previewcard.jsx";
-import AboutUs from "./frontend/AboutUs/about.jsx";
-import ContactUs from "./frontend/ContactUs/contact.jsx";
-import SignIn from "./frontend/SignIn/Signin.jsx";
-import SignUp from "./frontend/SignUp/Signup.jsx";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import Forgotpassword from "./frontend/Forgotpassword/forgot.jsx";
-import ResetPassword from "./frontend/ResetPassword/reset.jsx";
-import Dashboard from "./frontend/Dashboard/dashboard.jsx";
-import Settings from "./frontend/Dashboard/settings.jsx";
-import Orderlist from "./frontend/Dashboard/orderlist.jsx";
-import Favorites from "./frontend/Dashboard/favorites.jsx";
-import Cart from "./frontend/Cart/cart.jsx";
-import Shipping from "./frontend/Cart/shipping.jsx";
-import RefundPolicy from "./frontend/RefundPolicy/refund.jsx";
-import Terms from "./frontend/Terms/terms.jsx";
-import PrivacyPolicy from "./frontend/PrivacyPolicy/privacy.jsx";
-import TrackOrder from "./frontend/Trackorder/trackorder.jsx";
-import Payment from "./frontend/Cart/payment.jsx";
 import ProtectedRoute from "./Components/ProtectedRoute.jsx";
 import AdminRoute from "./Components/AdminRoute.jsx";
-import AdminDashboard from "./frontend/Admin/AdminDashboard.jsx";
+
+// Eagerly load the home page (it's what visitors see first)
+import App from "./App.jsx";
+
+// Every other route is lazy-loaded — its JS is only downloaded when navigated to
+const Shop            = lazy(() => import("./frontend/Shop/shop.jsx"));
+const PreviewCard     = lazy(() => import("./frontend/Shop/Previewcard.jsx"));
+const AboutUs         = lazy(() => import("./frontend/AboutUs/about.jsx"));
+const ContactUs       = lazy(() => import("./frontend/ContactUs/contact.jsx"));
+const SignIn          = lazy(() => import("./frontend/SignIn/Signin.jsx"));
+const SignUp          = lazy(() => import("./frontend/SignUp/Signup.jsx"));
+const Forgotpassword  = lazy(() => import("./frontend/Forgotpassword/forgot.jsx"));
+const ResetPassword   = lazy(() => import("./frontend/ResetPassword/reset.jsx"));
+const Dashboard       = lazy(() => import("./frontend/Dashboard/dashboard.jsx"));
+const Settings        = lazy(() => import("./frontend/Dashboard/settings.jsx"));
+const Orderlist       = lazy(() => import("./frontend/Dashboard/orderlist.jsx"));
+const Favorites       = lazy(() => import("./frontend/Dashboard/favorites.jsx"));
+const Cart            = lazy(() => import("./frontend/Cart/cart.jsx"));
+const Shipping        = lazy(() => import("./frontend/Cart/shipping.jsx"));
+const Payment         = lazy(() => import("./frontend/Cart/payment.jsx"));
+const RefundPolicy    = lazy(() => import("./frontend/RefundPolicy/refund.jsx"));
+const Terms           = lazy(() => import("./frontend/Terms/terms.jsx"));
+const PrivacyPolicy   = lazy(() => import("./frontend/PrivacyPolicy/privacy.jsx"));
+const TrackOrder      = lazy(() => import("./frontend/Trackorder/trackorder.jsx"));
+const AdminDashboard  = lazy(() => import("./frontend/Admin/AdminDashboard.jsx"));
+
+const PageLoader = () => (
+  <div className="min-h-screen flex items-center justify-center">
+    <div className="w-8 h-8 rounded-full border-4 border-[#4a703f] border-t-transparent animate-spin" />
+  </div>
+);
 
 const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
-      {
-        path: "/",
-        element: (
-          <Suspense fallback={<div> Loading ... </div>}>
-            <App />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/shop",
-        element: (
-          <Suspense fallback={<div> Loading ... </div>}>
-            <Shop />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/product/:id",
-        element: (
-          <Suspense fallback={<div> Loading ... </div>}>
-            <PreviewCard />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/about",
-        element: (
-          <Suspense fallback={<div> Loading ... </div>}>
-            <AboutUs />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/contact",
-        element: (
-          <Suspense fallback={<div> Loading ... </div>}>
-            <ContactUs />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/signin",
-        element: (
-          <Suspense fallback={<div> Loading ... </div>}>
-            <SignIn />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/signup",
-        element: (
-          <Suspense fallback={<div> Loading ... </div>}>
-            <SignUp />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/forgotpassword",
-        element: (
-          <Suspense fallback={<div> Loading ... </div>}>
-            <Forgotpassword />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/reset-password",
-        element: (
-          <Suspense fallback={<div> Loading ... </div>}>
-            <ResetPassword />
-          </Suspense>
-        ),
-      },
+      { path: "/",            element: <App /> },
+      { path: "/shop",        element: <Suspense fallback={<PageLoader />}><Shop /></Suspense> },
+      { path: "/product/:id", element: <Suspense fallback={<PageLoader />}><PreviewCard /></Suspense> },
+      { path: "/about",       element: <Suspense fallback={<PageLoader />}><AboutUs /></Suspense> },
+      { path: "/contact",     element: <Suspense fallback={<PageLoader />}><ContactUs /></Suspense> },
+      { path: "/signin",      element: <Suspense fallback={<PageLoader />}><SignIn /></Suspense> },
+      { path: "/signup",      element: <Suspense fallback={<PageLoader />}><SignUp /></Suspense> },
+      { path: "/forgotpassword", element: <Suspense fallback={<PageLoader />}><Forgotpassword /></Suspense> },
+      { path: "/reset-password", element: <Suspense fallback={<PageLoader />}><ResetPassword /></Suspense> },
+      { path: "/refund",      element: <Suspense fallback={<PageLoader />}><RefundPolicy /></Suspense> },
+      { path: "/terms",       element: <Suspense fallback={<PageLoader />}><Terms /></Suspense> },
+      { path: "/privacy",     element: <Suspense fallback={<PageLoader />}><PrivacyPolicy /></Suspense> },
+      { path: "/trackorder",  element: <Suspense fallback={<PageLoader />}><TrackOrder /></Suspense> },
       {
         path: "/dashboard",
-        element: (
-          <ProtectedRoute>
-            <Suspense fallback={<div> Loading ... </div>}>
-              <Dashboard />
-            </Suspense>
-          </ProtectedRoute>
-        ),
+        element: <ProtectedRoute><Suspense fallback={<PageLoader />}><Dashboard /></Suspense></ProtectedRoute>,
       },
       {
         path: "/settings",
-        element: (
-          <ProtectedRoute>
-            <Suspense fallback={<div> Loading ... </div>}>
-              <Settings />
-            </Suspense>
-          </ProtectedRoute>
-        ),
+        element: <ProtectedRoute><Suspense fallback={<PageLoader />}><Settings /></Suspense></ProtectedRoute>,
       },
       {
         path: "/orders",
-        element: (
-          <ProtectedRoute>
-            <Suspense fallback={<div> Loading ... </div>}>
-              <Orderlist />
-            </Suspense>
-          </ProtectedRoute>
-        ),
+        element: <ProtectedRoute><Suspense fallback={<PageLoader />}><Orderlist /></Suspense></ProtectedRoute>,
       },
       {
         path: "/favorites",
-        element: (
-          <ProtectedRoute>
-            <Suspense fallback={<div> Loading ... </div>}>
-              <Favorites />
-            </Suspense>
-          </ProtectedRoute>
-        ),
+        element: <ProtectedRoute><Suspense fallback={<PageLoader />}><Favorites /></Suspense></ProtectedRoute>,
       },
       {
         path: "/cart",
-        element: (
-          <ProtectedRoute>
-            <Suspense fallback={<div> Loading ... </div>}>
-              <Cart />
-            </Suspense>
-          </ProtectedRoute>
-        ),
+        element: <ProtectedRoute><Suspense fallback={<PageLoader />}><Cart /></Suspense></ProtectedRoute>,
       },
       {
         path: "/shipping",
-        element: (
-          <ProtectedRoute>
-            <Suspense fallback={<div> Loading ... </div>}>
-              <Shipping />
-            </Suspense>
-          </ProtectedRoute>
-        ),
-      },
-      {
-        path: "/refund",
-        element: (
-          <Suspense fallback={<div> Loading ... </div>}>
-            <RefundPolicy />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/terms",
-        element: (
-          <Suspense fallback={<div> Loading ... </div>}>
-            <Terms />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/privacy",
-        element: (
-          <Suspense fallback={<div> Loading ... </div>}>
-            <PrivacyPolicy />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/trackorder",
-        element: (
-          <Suspense fallback={<div> Loading ... </div>}>
-            <TrackOrder />
-          </Suspense>
-        ),
+        element: <ProtectedRoute><Suspense fallback={<PageLoader />}><Shipping /></Suspense></ProtectedRoute>,
       },
       {
         path: "/payment",
-        element: (
-          <Suspense fallback={<div> Loading ... </div>}>
-            <Payment />
-          </Suspense>
-        ),
+        element: <ProtectedRoute><Suspense fallback={<PageLoader />}><Payment /></Suspense></ProtectedRoute>,
       },
       {
         path: "/admin",
-        element: (
-          <AdminRoute>
-            <Suspense fallback={<div> Loading ... </div>}>
-              <AdminDashboard />
-            </Suspense>
-          </AdminRoute>
-        ),
+        element: <AdminRoute><Suspense fallback={<PageLoader />}><AdminDashboard /></Suspense></AdminRoute>,
       },
     ],
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
       <RouterProvider router={router} />

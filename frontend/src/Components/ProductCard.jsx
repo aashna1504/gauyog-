@@ -298,7 +298,7 @@ export default function ProductCard({
                   </span>
                 </div>
 
-                <h2 className="text-xl md:text-4xl font-black text-gray-900 mb-1 tracking-wider leading-tight">
+                <h2 className="text-xl md:text-4xl font-black text-gray-900 mb-1 tracking-wider ">
                   {detail.name}
                 </h2>
                 {detail.scientificName && (

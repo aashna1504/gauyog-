@@ -41,9 +41,12 @@ export default function ModernFooter() {
             <div className="space-y-3 md:space-y-4">
               <div className="cursor-pointer">
                 <img
-                  src="https://res.cloudinary.com/dbpzzvcik/image/upload/v1775049866/final_logo_copy.jpg_puj109.jpg"
+                  src="https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto,w_200/v1775049866/final_logo_copy.jpg_puj109.jpg"
                   className="h-[100px] md:h-[140px] w-auto object-contain transition-all"
                   alt="Logo"
+                  decoding="async"
+                  width={200}
+                  height={140}
                 />
                 <p className="text-gray-500 max-w-sm leading-relaxed text-xs md:text-sm">
                   Sign up to receive updates on new products and exclusive
@@ -175,6 +178,10 @@ export default function ModernFooter() {
                   src={img.src}
                   className="h-full w-full object-contain"
                   alt={img.alt}
+                  loading="lazy"
+                  decoding="async"
+                  width={64}
+                  height={40}
                 />
               </div>
             ))}

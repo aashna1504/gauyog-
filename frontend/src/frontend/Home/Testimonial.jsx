@@ -71,7 +71,7 @@ export default function TestimonialSlider() {
             <SmileIcon size={12} /> 2,000+ Happy Voices
           </div>
 
-          <h2 className="text-3xl md:text-7xl font-bold text-gray-200 leading-tight mb-3 md:mb-8">
+          <h2 className="text-3xl md:text-7xl font-bold text-gray-200  mb-3 md:mb-8">
             The{" "}
             <span className="text-[#e9aa43] italic underline decoration-[#e9aa43] underline-offset-4 md:underline-offset-8">
               Trust
