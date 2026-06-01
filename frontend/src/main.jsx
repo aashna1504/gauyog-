@@ -3,7 +3,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import React, { Suspense, lazy } from "react";
 import "./index.css";
 import Layout from "./Layout.jsx";
-import { GoogleOAuthProvider } from "@react-oauth/google";
 import ProtectedRoute from "./Components/ProtectedRoute.jsx";
 import AdminRoute from "./Components/AdminRoute.jsx";
 
@@ -31,6 +30,7 @@ const Terms           = lazy(() => import("./frontend/Terms/terms.jsx"));
 const PrivacyPolicy   = lazy(() => import("./frontend/PrivacyPolicy/privacy.jsx"));
 const TrackOrder      = lazy(() => import("./frontend/Trackorder/trackorder.jsx"));
 const AdminDashboard  = lazy(() => import("./frontend/Admin/AdminDashboard.jsx"));
+const GoogleAuthLayout = lazy(() => import("./GoogleAuthLayout.jsx"));
 
 const PageLoader = () => (
   <div className="min-h-screen flex items-center justify-center">
@@ -47,8 +47,8 @@ const router = createBrowserRouter([
       { path: "/product/:id", element: <Suspense fallback={<PageLoader />}><PreviewCard /></Suspense> },
       { path: "/about",       element: <Suspense fallback={<PageLoader />}><AboutUs /></Suspense> },
       { path: "/contact",     element: <Suspense fallback={<PageLoader />}><ContactUs /></Suspense> },
-      { path: "/signin",      element: <Suspense fallback={<PageLoader />}><SignIn /></Suspense> },
-      { path: "/signup",      element: <Suspense fallback={<PageLoader />}><SignUp /></Suspense> },
+      { path: "/signin",      element: <Suspense fallback={<PageLoader />}><GoogleAuthLayout><SignIn /></GoogleAuthLayout></Suspense> },
+      { path: "/signup",      element: <Suspense fallback={<PageLoader />}><GoogleAuthLayout><SignUp /></GoogleAuthLayout></Suspense> },
       { path: "/forgotpassword", element: <Suspense fallback={<PageLoader />}><Forgotpassword /></Suspense> },
       { path: "/reset-password", element: <Suspense fallback={<PageLoader />}><ResetPassword /></Suspense> },
       { path: "/refund",      element: <Suspense fallback={<PageLoader />}><RefundPolicy /></Suspense> },
@@ -93,8 +93,6 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
-      <RouterProvider router={router} />
-    </GoogleOAuthProvider>
+    <RouterProvider router={router} />
   </React.StrictMode>,
 );

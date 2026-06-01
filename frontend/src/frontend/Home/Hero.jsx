@@ -11,9 +11,10 @@ const HERO_PATHS = [
 ];
 
 // Pre-build full URL objects for each slide
+// Container displays at ~540–600px wide on desktop; cap at 600 to avoid over-serving
 const sliderImages = HERO_PATHS.map(p => ({
-  src:    clUrl(`https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/${p}`, 900),
-  srcSet: clSrcSet(`https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/${p}`, [480, 900]),
+  src:    clUrl(`https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/${p}`, 600),
+  srcSet: clSrcSet(`https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/${p}`, [480, 600]),
 }));
 
 export default function GlobalModernHero() {
@@ -160,17 +161,17 @@ export default function GlobalModernHero() {
                       key={currentSlide.id || activeSlide}
                       src={currentSlide.src}
                       srcSet={currentSlide.srcSet}
-                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      sizes="(max-width: 1024px) 100vw, 600px"
                       alt={`Slide ${activeSlide + 1}`}
-                      initial={{ opacity: 0, scale: 1.05 }}
+                      initial={activeSlide === 0 ? false : { opacity: 0, scale: 1.05 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.98 }}
                       transition={{ duration: 0.45, ease: "easeOut" }}
                       className="w-full h-full object-cover drop-shadow-[0_24px_30px_rgba(22,52,42,0.2)]"
                       fetchpriority={activeSlide === 0 ? "high" : "low"}
                       decoding="async"
-                      width={900}
-                      height={600}
+                      width={600}
+                      height={450}
                     />
                   </AnimatePresence>
                 ) : (
