@@ -111,19 +111,17 @@ export default function WhyChooseUs() {
                           />
                         </div>
 
-                        <motion.div
-                          initial={false}
-                          animate={{
-                            height: isActive ? "auto" : 0,
-                            opacity: isActive ? 1 : 0,
-                            marginTop: isActive ? 8 : 0,
-                          }}
-                          className="overflow-hidden"
+                        <div
+                          className={`overflow-hidden transition-all duration-500 ${
+                            isActive
+                              ? "max-h-24 opacity-100 mt-2"
+                              : "max-h-0 opacity-0 mt-0"
+                          }`}
                         >
                           <p className="text-gray-500 text-sm leading-relaxed max-w-sm font-medium">
                             {item.desc}
                           </p>
-                        </motion.div>
+                        </div>
                       </div>
                     </div>
                   </div>
