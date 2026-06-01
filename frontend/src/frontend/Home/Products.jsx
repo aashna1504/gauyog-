@@ -150,13 +150,13 @@ export default function ProductSection() {
                   </span>
                 </div>
 
-                <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-black leading-[1.1]">
+                <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-black leading-[1.1]">
                   Our Gift from{" "}
                   <span className="text-[#4a703f] italic underline decoration-[#e9aa43]/30 underline-offset-8">
                     Gujarat, India
                   </span>{" "}
                   to the World
-                </h1>
+                </h2>
 
                 <p className="text-[#4a703f] italic font-semibold text-base md:text-lg flex items-center gap-3">
                   <span className="w-6 h-[2px] bg-[#4a703f]" />
@@ -211,14 +211,14 @@ export default function ProductSection() {
             {/* Main Image Card */}
             <div className="relative rounded-[40px] overflow-hidden shadow-2xl group transition-transform duration-500 hover:scale-[1.02]">
               <img
-                src={clUrl("https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/v1778739708/DSC00642_2_1_vch4fe.jpg", 1200)}
-                srcSet={clSrcSet("https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/v1778739708/DSC00642_2_1_vch4fe.jpg", [480, 800, 1200])}
+                src={clUrl("https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/v1778739708/DSC00642_2_1_vch4fe.jpg", 800)}
+                srcSet={clSrcSet("https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/v1778739708/DSC00642_2_1_vch4fe.jpg", [480, 800])}
                 sizes="(max-width: 1024px) 100vw, 600px"
                 alt="Gauyog Team at Gujarat Expo"
                 className="w-full lg:h-[350px] h-[250px] object-cover"
                 loading="lazy"
                 decoding="async"
-                width={1200}
+                width={800}
                 height={450}
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-8">
@@ -236,7 +236,7 @@ export default function ProductSection() {
                   key={idx}
                   className="bg-white border border-slate-100 p-3 md:p-6 rounded-2xl flex flex-col justify-center items-center text-center space-y-2 shadow-sm hover:shadow-md transition-shadow"
                 >
-                  <span className="text-[#e9aa43] font-bold text-2xl lg:text-xl xl:text-2xl">
+                  <span className="text-[#744926] font-bold text-2xl lg:text-xl xl:text-2xl">
                     {stat.label}
                   </span>
                   <span className="text-[11px] text-slate-700 ">
@@ -377,7 +377,7 @@ export default function ProductSection() {
             {/* Header Section */}
             <div className="flex flex-col md:flex-row justify-between items-end mb-8 md:mb-16 gap-4 md:gap-6">
               <div className="space-y-2 md:space-y-3">
-                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#e9aa43]">
+                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white">
                   Product Selection
                 </span>
                 <h2 className="text-3xl md:text-5xl font-bold text-slate-100">
@@ -417,10 +417,7 @@ export default function ProductSection() {
 
                     {/* Title block */}
                     <div>
-                      <p
-                        className="text-[10px] font-black uppercase tracking-[0.3em] mb-1"
-                        style={{ color: tier.color }}
-                      >
+                      <p className="text-[10px] font-black uppercase tracking-[0.3em] mb-1 text-slate-600">
                         {tier.category}
                       </p>
                       <h3 className="text-2xl font-black text-slate-900  mb-3">
@@ -468,7 +465,7 @@ export default function ProductSection() {
                     {/* CTA */}
                     <button
                       onClick={() => (window.location.href = "/shop")}
-                      className="w-full py-4 rounded-2xl flex items-center justify-center gap-3 font-black text-[10px] uppercase tracking-widerst transition-all text-white shadow-md hover:brightness-110 active:scale-95"
+                      className="w-full py-4 rounded-2xl flex items-center justify-center gap-3 font-black text-[10px] uppercase tracking-widerst transition-all text-slate-900 shadow-md hover:brightness-90 active:scale-95"
                       style={{ backgroundColor: tier.color }}
                     >
                       Browse Products <ArrowUpRight size={14} />
@@ -549,9 +546,9 @@ export default function ProductSection() {
                         {item.icon}
                       </div>
                       <div>
-                        <h4 className="text-lg font-bold text-slate-900 tracking-wider">
+                        <h3 className="text-lg font-bold text-slate-900 tracking-wider">
                           {item.title}
-                        </h4>
+                        </h3>
                         <p className="text-slate-500 text-sm leading-relaxed">
                           {item.desc}
                         </p>
@@ -564,13 +561,12 @@ export default function ProductSection() {
               {/* --- RIGHT SIDE: STATS & QUOTE --- */}
               <div className="lg:col-span-5 flex flex-col gap-6">
                 {/* High-Impact Testimonial */}
-                <div className="flex-1 relative overflow-hidden bg-[#4a703f] rounded-[2rem] md:rounded-[3rem] p-6 md:p-12 text-white shadow-2xl shadow-[#4a703f]/30 min-h-[auto] md:min-h-[600px] flex flex-col justify-center">
+                <div className="flex-1 relative overflow-hidden bg-[#4a703f] rounded-[2rem] md:rounded-[3rem] p-6 md:p-12 text-white shadow-2xl shadow-[#4a703f]/30 md:min-h-[600px] flex flex-col justify-between space-y-8">
                   {/* Decorative Background Element */}
-                  <div className="absolute -top-10 -right-10 text-white/5 font-black text-[15rem] pointer-events-none select-none">
+                  <div className="absolute -top-10 -right-10 text-white/5 font-black text-[15rem] pointer-events-none select-none -z-10">
                     G
                   </div>
 
-                  <div className="relative z-10 h-full flex flex-col justify-between space-y-8">
                     {/* Header Section */}
                     <div className="space-y-4">
                       <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/10 text-[9px] font-black uppercase tracking-[0.2em]">
@@ -600,10 +596,10 @@ export default function ProductSection() {
                           key={i}
                           className="bg-white/20 backdrop-blur-md p-5 rounded-[2.5rem] flex flex-col items-center text-center space-y-2 shadow-sm"
                         >
-                          <span className="text-4xl  font-black text-[#e9aa43]">
+                          <span className="text-4xl  font-black text-white">
                             {stat.val}
                           </span>
-                          <span className="text-[10px] font-black uppercase tracking-widerst text-slate-100">
+                          <span className="text-[10px] font-black uppercase tracking-widerst text-white">
                             {stat.lab}
                           </span>
                         </div>
@@ -632,21 +628,20 @@ export default function ProductSection() {
                           key={idx}
                           className="group flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors"
                         >
-                          <span className="text-[#e9aa43] font-black text-xs mt-1 group-hover:opacity-100 transition-opacity">
+                          <span className="text-white/70 font-black text-xs mt-1 group-hover:text-white transition-colors">
                             {item.icon}
                           </span>
                           <div>
                             <p className="font-black text-[10px] uppercase tracking-[0.2em] text-white">
                               {item.label}
                             </p>
-                            <p className="text-white/60 text-[11px] font-medium  mt-1">
+                            <p className="text-slate-200 text-[11px] font-medium mt-1">
                               {item.desc}
                             </p>
                           </div>
                         </div>
                       ))}
                     </div>
-                  </div>
                 </div>
               </div>
             </div>

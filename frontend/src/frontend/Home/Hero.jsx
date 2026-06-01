@@ -13,7 +13,7 @@ const HERO_PATHS = [
 // Pre-build full URL objects for each slide
 const sliderImages = HERO_PATHS.map(p => ({
   src:    clUrl(`https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/${p}`, 900),
-  srcSet: clSrcSet(`https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/${p}`, [480, 900, 1400]),
+  srcSet: clSrcSet(`https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/${p}`, [480, 900]),
 }));
 
 export default function GlobalModernHero() {

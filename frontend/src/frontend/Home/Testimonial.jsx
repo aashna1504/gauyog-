@@ -67,13 +67,13 @@ export default function TestimonialSlider() {
 
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 md:gap-20 items-center">
         <div className="flex flex-col">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 text-[#e9aa43] text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-3 md:mb-6 w-fit">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 text-[#744926] text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-3 md:mb-6 w-fit">
             <SmileIcon size={12} /> 2,000+ Happy Voices
           </div>
 
           <h2 className="text-3xl md:text-7xl font-bold text-gray-200  mb-3 md:mb-8">
             The{" "}
-            <span className="text-[#e9aa43] italic underline decoration-[#e9aa43] underline-offset-4 md:underline-offset-8">
+            <span className="text-amber-300 italic underline decoration-amber-300 underline-offset-4 md:underline-offset-8">
               Trust
             </span>{" "}
             <br />
