@@ -173,6 +173,7 @@ export default function VedicDhoopMosaicPage() {
                 </span>
                 <button
                   onClick={handleToggleWishlist}
+                  aria-label={wishlisted ? `Remove ${product?.name} from wishlist` : `Add ${product?.name} to wishlist`}
                   className={`p-2.5 md:p-3 rounded-full shadow-md transition-all duration-300 group ${
                     wishlisted
                       ? "bg-[#e9aa43] shadow-[#e9aa43]/20 hover:bg-[#e9aa43]/90"
@@ -181,9 +182,10 @@ export default function VedicDhoopMosaicPage() {
                 >
                   <Heart
                     size={20}
+                    aria-hidden="true"
                     fill={wishlisted ? "white" : "none"}
                     className={`transition-all duration-300 group-hover:scale-110 ${
-                      wishlisted ? "text-white" : "text-slate-400 group-hover:text-[#e9aa43]"
+                      wishlisted ? "text-white" : "text-slate-600 group-hover:text-[#e9aa43]"
                     }`}
                   />
                 </button>

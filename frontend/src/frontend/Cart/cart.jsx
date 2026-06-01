@@ -173,7 +173,7 @@ export default function ModernCartPage() {
 
                     <div className="flex flex-row sm:flex-col items-center justify-between sm:justify-center gap-4 w-full sm:w-auto border-t sm:border-t-0 pt-4 sm:pt-0 border-slate-50">
                       <div className="text-left sm:text-right">
-                        <p className="text-[9px] font-black text-slate-400 uppercase mb-0.5">Total</p>
+                        <p className="text-[9px] font-black text-slate-600 uppercase mb-0.5">Total</p>
                         <p className="text-lg font-black text-slate-900 tracking-wider">
                           ₹{(item.rawPrice * item.qty).toLocaleString("en-IN")}
                         </p>
