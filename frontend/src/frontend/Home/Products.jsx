@@ -145,7 +145,7 @@ export default function ProductSection() {
                   <p className="text-3xl font-black text-[#4a703f] tracking-wider">
                     Gauyog Kendr
                   </p>
-                  <span className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400">
+                  <span className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-600">
                     Sustainables
                   </span>
                 </div>
