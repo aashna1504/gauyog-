@@ -581,7 +581,7 @@ export default function ProductSection() {
                         Returning to <br />
                         <span className="text-white">Mother Earth</span>
                       </h2>
-                      <p className="text-white/80 text-sm font-medium leading-relaxed max-w-md italic">
+                      <p className="text-white/90 text-sm font-medium leading-relaxed max-w-md italic">
                         "The answer to healthier food and a better planet lies
                         in going back to nature — not away from it."
                       </p>
@@ -600,10 +600,10 @@ export default function ProductSection() {
                           key={i}
                           className="bg-white/20 backdrop-blur-md p-5 rounded-[2.5rem] flex flex-col items-center text-center space-y-2 shadow-sm"
                         >
-                          <span className="text-4xl  font-black text-slate-50">
+                          <span className="text-4xl  font-black text-[#e9aa43]">
                             {stat.val}
                           </span>
-                          <span className="text-[10px] font-black uppercase tracking-widerst text-slate-200">
+                          <span className="text-[10px] font-black uppercase tracking-widerst text-slate-100">
                             {stat.lab}
                           </span>
                         </div>
@@ -632,7 +632,7 @@ export default function ProductSection() {
                           key={idx}
                           className="group flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors"
                         >
-                          <span className="text-[#e9aa43] font-black text-xs mt-1 opacity-50 group-hover:opacity-100 transition-opacity">
+                          <span className="text-[#e9aa43] font-black text-xs mt-1 group-hover:opacity-100 transition-opacity">
                             {item.icon}
                           </span>
                           <div>
