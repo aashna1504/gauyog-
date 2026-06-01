@@ -14,6 +14,8 @@
     <!-- Preconnect so font CSS + woff2 files are fetched in parallel, not serially -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Cloudinary images load on every page; pre-establish the TCP/TLS connection -->
+    <link rel="preconnect" href="https://res.cloudinary.com" crossorigin />
     <!-- Use media trick to load font stylesheet non-render-blocking, then swap to all -->
     <link
       href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap"
