@@ -205,17 +205,15 @@ export default function VedicDhoopMosaicPage() {
                   <>
                     <button
                       onClick={() => setActiveImg(i => (i - 1 + productImages.length) % productImages.length)}
-                      aria-label="Previous product image"
                       className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 md:w-9 md:h-9 bg-[#4a703f]/20 backdrop-blur-sm rounded-full flex items-center justify-center text-[#4a703f] opacity-0 group-hover/img:opacity-100 transition-all duration-200 hover:bg-[#4a703f]/40 hover:scale-110"
                     >
-                      <ChevronLeft size={16} strokeWidth={2.5} aria-hidden="true" />
+                      <ChevronLeft size={16} strokeWidth={2.5} />
                     </button>
                     <button
                       onClick={() => setActiveImg(i => (i + 1) % productImages.length)}
-                      aria-label="Next product image"
                       className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 md:w-9 md:h-9 bg-[#4a703f]/20 backdrop-blur-sm rounded-full flex items-center justify-center text-[#4a703f] opacity-0 group-hover/img:opacity-100 transition-all duration-200 hover:bg-[#4a703f]/40 hover:scale-110"
                     >
-                      <ChevronRight size={16} strokeWidth={2.5} aria-hidden="true" />
+                      <ChevronRight size={16} strokeWidth={2.5} />
                     </button>
                   </>
                 )}

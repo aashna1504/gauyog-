@@ -325,11 +325,17 @@ export default function ProductSection() {
               </div>
               {/* Arrows — desktop only */}
               <div className="hidden md:flex gap-3">
-                <button aria-label="Previous products" className="group border-2 border-gray-100 p-4 rounded-full hover:bg-black hover:border-black transition-all">
-                  <ArrowLeft size={20} aria-hidden="true" className="group-hover:text-white transition-colors" />
+                <button className="group border-2 border-gray-100 p-4 rounded-full hover:bg-black hover:border-black transition-all">
+                  <ArrowLeft
+                    size={20}
+                    className="group-hover:text-white transition-colors"
+                  />
                 </button>
-                <button aria-label="Next products" className="group border-2 border-gray-100 p-4 rounded-full hover:bg-black hover:border-black transition-all">
-                  <ArrowRight size={20} aria-hidden="true" className="group-hover:text-white transition-colors" />
+                <button className="group border-2 border-gray-100 p-4 rounded-full hover:bg-black hover:border-black transition-all">
+                  <ArrowRight
+                    size={20}
+                    className="group-hover:text-white transition-colors"
+                  />
                 </button>
               </div>
             </div>
@@ -362,11 +368,17 @@ export default function ProductSection() {
 
             {/* Arrows — mobile only, below the product grid */}
             <div className="flex md:hidden justify-center gap-4 mb-9">
-              <button aria-label="Previous products" className="group border-2 border-gray-100 p-4 rounded-full hover:bg-black hover:border-black transition-all">
-                <ArrowLeft size={20} aria-hidden="true" className="group-hover:text-white transition-colors" />
+              <button className="group border-2 border-gray-100 p-4 rounded-full hover:bg-black hover:border-black transition-all">
+                <ArrowLeft
+                  size={20}
+                  className="group-hover:text-white transition-colors"
+                />
               </button>
-              <button aria-label="Next products" className="group border-2 border-gray-100 p-4 rounded-full hover:bg-black hover:border-black transition-all">
-                <ArrowRight size={20} aria-hidden="true" className="group-hover:text-white transition-colors" />
+              <button className="group border-2 border-gray-100 p-4 rounded-full hover:bg-black hover:border-black transition-all">
+                <ArrowRight
+                  size={20}
+                  className="group-hover:text-white transition-colors"
+                />
               </button>
             </div>
           </div>

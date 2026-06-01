@@ -126,30 +126,28 @@ export default function Header() {
             <div className="hidden lg:flex items-center gap-5 text-gray-700">
               <div className="flex items-center gap-4 pr-4 border-r border-gray-100">
                
-                <button
+                <div
                   onClick={() => navigate("/dashboard")}
-                  aria-label="Go to my account"
-                  className="cursor-pointer bg-transparent border-none p-0"
+                  className="cursor-pointer"
                 >
                   <User
                     size={25}
                     className="text-[#e9aa43] fill-[#e9aa43] hover:text-[#744926] transition-colors"
                   />
-                </button>
-
-                <button
-                  className="relative cursor-pointer group bg-transparent border-none p-0"
+                </div>
+              
+                <div
+                  className="relative cursor-pointer group"
                   onClick={() => setCartOpen(true)}
-                  aria-label={`Open cart, ${cartCount} item${cartCount !== 1 ? "s" : ""}`}
                 >
                   <ShoppingCart
                     size={25}
                     className="text-[#744926] fill-[#744926] group-hover:text-[#4a703f] transition-colors"
                   />
-                  <span className="absolute -top-2 -right-2 bg-[#4a703f] text-white text-[10px] font-black w-4 h-4 flex items-center justify-center rounded-full" aria-hidden="true">
+                  <span className="absolute -top-2 -right-2 bg-[#4a703f] text-white text-[10px] font-black w-4 h-4 flex items-center justify-center rounded-full">
                     {cartCount}
                   </span>
-                </button>
+                </div>
               </div>
 
               {isAuthenticated ? (
@@ -251,27 +249,24 @@ export default function Header() {
 
             
             <div className="flex lg:hidden items-center gap-3">
-              <button onClick={() => navigate("/dashboard")} className="p-1 bg-transparent border-none" aria-label="Go to my account">
+              <div onClick={() => navigate("/dashboard")} className="p-1">
                 <User size={22} className="text-[#e9aa43] fill-[#e9aa43]" />
-              </button>
-              <button
-                className="relative p-1 mr-1 bg-transparent border-none"
+              </div>
+              <div
+                className="relative p-1 mr-1"
                 onClick={() => setCartOpen(true)}
-                aria-label={`Open cart, ${cartCount} item${cartCount !== 1 ? "s" : ""}`}
               >
                 <ShoppingCart
                   size={22}
                   className="text-[#744926] fill-[#744926]"
                 />
-                <span className="absolute -top-1 -right-1 bg-[#4a703f] text-white text-[10px] font-black w-3.5 h-3.5 flex items-center justify-center rounded-full" aria-hidden="true">
+                <span className="absolute -top-1 -right-1 bg-[#4a703f] text-white text-[10px] font-black w-3.5 h-3.5 flex items-center justify-center rounded-full">
                   {cartCount}
                 </span>
-              </button>
+              </div>
               <button
                 className="p-2 bg-gray-50 rounded-full text-slate-900 ml-1"
                 onClick={() => setMenuOpen(!menuOpen)}
-                aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
-                aria-expanded={menuOpen}
               >
                 {menuOpen ? <X size={20} /> : <Menu size={20} />}
               </button>
@@ -387,7 +382,6 @@ export default function Header() {
                 <button
                   onClick={() => setCartOpen(false)}
                   className="p-3 hover:bg-slate-100 rounded-full transition-colors text-slate-400 hover:text-slate-600"
-                  aria-label="Close cart"
                 >
                   <X size={24} />
                 </button>
@@ -430,7 +424,6 @@ export default function Header() {
                         <button
                           onClick={() => removeItem(item.id)}
                           className="p-2 text-slate-300 hover:text-[#744926] transition-colors border border-slate-100 rounded-full"
-                          aria-label={`Remove ${item.name} from cart`}
                         >
                           <Trash2 size={16} />
                         </button>

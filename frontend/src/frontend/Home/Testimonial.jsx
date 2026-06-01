@@ -98,17 +98,15 @@ export default function TestimonialSlider() {
           <div className="hidden lg:flex gap-4">
             <button
               onClick={prevSlide}
-              aria-label="Previous testimonial"
               className="w-14 h-14 rounded-full border-2 border-gray-400  text-gray-400 flex items-center justify-center hover:bg-white hover:text-black transition-all shadow-xl shadow-transparent hover:shadow-gray-500"
             >
-              <ArrowUp size={24} aria-hidden="true" />
+              <ArrowUp size={24} />
             </button>
             <button
               onClick={nextSlide}
-              aria-label="Next testimonial"
               className="w-14 h-14 rounded-full border-2 border-gray-400 text-gray-400 flex items-center justify-center hover:bg-white hover:text-black transition-all shadow-xl shadow-transparent hover:shadow-gray-500"
             >
-              <ArrowDown size={24} aria-hidden="true" />
+              <ArrowDown size={24} />
             </button>
           </div>
         </div>
@@ -176,17 +174,15 @@ export default function TestimonialSlider() {
           <div className="flex lg:hidden gap-3 justify-center">
             <button
               onClick={prevSlide}
-              aria-label="Previous testimonial"
               className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center bg-white hover:bg-black hover:text-white transition-all shadow-sm"
             >
-              <ArrowUp size={20} aria-hidden="true" />
+              <ArrowUp size={20} />
             </button>
             <button
               onClick={nextSlide}
-              aria-label="Next testimonial"
               className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center bg-white hover:bg-black hover:text-white transition-all shadow-sm"
             >
-              <ArrowDown size={20} aria-hidden="true" />
+              <ArrowDown size={20} />
             </button>
           </div>
         </div>
