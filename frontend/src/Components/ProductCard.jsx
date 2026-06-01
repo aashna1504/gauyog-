@@ -142,14 +142,12 @@ export default function ProductCard({
             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center gap-3 bg-black/5 backdrop-blur-[2px]">
               <button
                 onClick={handleOpenModal}
-                aria-label={`Quick view ${p.name}`}
                 className="w-12 h-12 bg-white rounded-full shadow-xl flex items-center justify-center text-gray-700 hover:bg-[#744926] hover:text-white transition-all transform translate-y-4 group-hover:translate-y-0"
               >
-                <Eye size={20} aria-hidden="true" />
+                <Eye size={20} />
               </button>
               <button
                 onClick={handleWishlist}
-                aria-label={isInWishlist ? `Remove ${p.name} from wishlist` : `Add ${p.name} to wishlist`}
                 className={`w-12 h-12 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 delay-75 ${
                   isInWishlist
                     ? "bg-[#e9aa43] ring-2 ring-[#e9aa43]/50 ring-offset-2 hover:text-white shadow-[0_0_16px_rgba(233,170,67,0.45)]"
@@ -159,7 +157,6 @@ export default function ProductCard({
                 <Heart
                   size={20}
                   fill={isInWishlist ? "currentColor" : "none"}
-                  aria-hidden="true"
                   className={`transition-all duration-300 ${
                     isInWishlist ? "text-white" : "text-[#e9aa43]"
                   }`}
@@ -259,7 +256,6 @@ export default function ProductCard({
                   <motion.button
                     whileHover={{ scale: 1.1 }}
                     onClick={handleWishlist}
-                    aria-label={isInWishlist ? `Remove ${detail.name} from wishlist` : `Add ${detail.name} to wishlist`}
                     className={`p-3 rounded-full transition-all ${
                       isInWishlist
                         ? "bg-[#e9aa43] text-white"
@@ -270,16 +266,14 @@ export default function ProductCard({
                       size={20}
                       strokeWidth={2.5}
                       fill={isInWishlist ? "currentColor" : "none"}
-                      aria-hidden="true"
                     />
                   </motion.button>
                 </div>
                 <button
                   onClick={handleCloseModal}
-                  aria-label="Close product preview"
                   className="p-4 bg-gray-900 text-white rounded-full hover:bg-black transition-all shadow-lg"
                 >
-                  <X size={24} aria-hidden="true" />
+                  <X size={24} />
                 </button>
               </div>
 
