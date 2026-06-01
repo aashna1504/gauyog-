@@ -574,12 +574,12 @@ export default function ProductSection() {
                     {/* Header Section */}
                     <div className="space-y-4">
                       <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/10 text-[9px] font-black uppercase tracking-[0.2em]">
-                        <div className="w-1.5 h-1.5 rounded-full bg-[#e9aa43]" />
+                        <div className="w-1.5 h-1.5 rounded-full bg-white" />
                         Our Philosophy
                       </div>
                       <h2 className="text-2xl md:text-5xl font-black tracking-wider">
                         Returning to <br />
-                        <span className="text-[#e9aa43]">Mother Earth</span>
+                        <span className="text-white">Mother Earth</span>
                       </h2>
                       <p className="text-white/80 text-sm font-medium leading-relaxed max-w-md italic">
                         "The answer to healthier food and a better planet lies
