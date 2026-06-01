@@ -9,4 +9,22 @@ export default defineConfig({
       'Cross-Origin-Embedder-Policy': 'unsafe-none',
     },
   },
+  build: {
+    // Keep individual chunk size warnings at 500 kB
+    chunkSizeWarningLimit: 500,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // React runtime — tiny and changes rarely, long cache life
+          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+          // Animation library — large, cache separately
+          'vendor-motion': ['framer-motion'],
+          // Icon library — tree-shaken per page but still worth splitting
+          'vendor-icons': ['lucide-react'],
+          // State / auth
+          'vendor-store': ['zustand', '@react-oauth/google'],
+        },
+      },
+    },
+  },
 })

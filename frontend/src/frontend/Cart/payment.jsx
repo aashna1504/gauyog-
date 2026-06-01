@@ -47,7 +47,7 @@ const PaymentMethodCard = ({ icon, title, desc, active, onClick }) => (
         <h5 className="text-[9px] font-black uppercase tracking-widerst text-slate-400">Option</h5>
       </div>
       <h4 className="text-xs font-black text-slate-900 uppercase tracking-wider">{title}</h4>
-      <p className="text-[9px] leading-tight text-slate-400 font-bold uppercase mt-1 opacity-70">{desc}</p>
+      <p className="text-[9px]  text-slate-400 font-bold uppercase mt-1 opacity-70">{desc}</p>
     </div>
     {active && (
       <div className="bg-[#4a703f] rounded-full p-1">

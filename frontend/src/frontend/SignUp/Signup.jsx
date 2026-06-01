@@ -96,17 +96,21 @@ export default function ModernSignUp() {
       {/* ── Left: Image Panel ── */}
       <div className="hidden lg:flex lg:w-1/2 relative flex-col justify-center items-center p-12 overflow-hidden gap-8">
         <img
-          src="https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778741516/DSC00359_1_yojjjm.jpg"
+          src="https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto,w_1200/v1778741516/DSC00359_1_yojjjm.jpg"
           alt="Gauyog"
           className="absolute inset-0 w-full h-full object-cover"
+          loading="lazy"
+          decoding="async"
+          width={1200}
+          height={800}
         />
-        <div className="absolute inset-0 bg-black/85" />
+        <div className="absolute inset-0 bg-black/80" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#744926]/60 via-transparent to-[#4a703f]/70" />
 
         {/* Tagline */}
         <div className="relative z-10 space-y-4 text-center">
           <div className="w-12 h-1 bg-[#e9aa43] rounded-full mx-auto" />
-          <h2 className="text-5xl font-black text-white leading-tight tracking-wider">
+          <h2 className="text-5xl font-black text-white  tracking-wider">
             Join the Natural
             <br />
             <span className="text-[#e9aa43] italic">Revolution.</span>

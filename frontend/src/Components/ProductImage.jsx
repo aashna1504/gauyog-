@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { clUrl, clSrcSet } from "../utils/cloudinary";
 
-export default function ProductImage({ src, alt, className }) {
+export default function ProductImage({ src, alt, className, priority = false, sizes = "(max-width: 768px) 200px, 400px" }) {
   const [failed, setFailed] = useState(false);
 
   if (!src || failed) {
@@ -13,11 +14,19 @@ export default function ProductImage({ src, alt, className }) {
     );
   }
 
+  const isCloudinary = src.includes("res.cloudinary.com");
+
   return (
     <img
-      src={src}
+      src={isCloudinary ? clUrl(src, 400) : src}
+      srcSet={isCloudinary ? clSrcSet(src, [200, 400, 800]) : undefined}
+      sizes={isCloudinary ? sizes : undefined}
       alt={alt}
       className={className}
+      loading={priority ? "eager" : "lazy"}
+      decoding="async"
+      width={400}
+      height={400}
       onError={() => setFailed(true)}
     />
   );

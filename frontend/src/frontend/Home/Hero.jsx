@@ -1,12 +1,20 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight, Sparkles } from "lucide-react";
+import { clUrl, clSrcSet } from "../../utils/cloudinary";
 
-const sliderImages = [
-  "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1775302434/0fc480c8-6acf-4ff0-a587-cea5c58e069b_lii8qp.jpg",
-  "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778736294/DSC00175_iqozlc.jpg",
-  "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778744023/DSC00215_kqdbva.jpg",
+// Store just the versioned public paths — widths are computed on render
+const HERO_PATHS = [
+  "v1775302434/0fc480c8-6acf-4ff0-a587-cea5c58e069b_lii8qp.jpg",
+  "v1778736294/DSC00175_iqozlc.jpg",
+  "v1778744023/DSC00215_kqdbva.jpg",
 ];
+
+// Pre-build full URL objects for each slide
+const sliderImages = HERO_PATHS.map(p => ({
+  src:    clUrl(`https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/${p}`, 900),
+  srcSet: clSrcSet(`https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/${p}`, [480, 900, 1400]),
+}));
 
 export default function GlobalModernHero() {
   const categories = [
@@ -19,10 +27,7 @@ export default function GlobalModernHero() {
   const [activeSlide, setActiveSlide] = useState(0);
 
   const sliderItems = useMemo(() => {
-    return sliderImages.filter(Boolean).map((image, index) => ({
-      id: `manual-${index}`,
-      image,
-    }));
+    return sliderImages.map((img, index) => ({ id: `manual-${index}`, ...img }));
   }, []);
 
   useEffect(() => {
@@ -153,13 +158,19 @@ export default function GlobalModernHero() {
                   <AnimatePresence mode="wait">
                     <motion.img
                       key={currentSlide.id || activeSlide}
-                      src={currentSlide.image}
+                      src={currentSlide.src}
+                      srcSet={currentSlide.srcSet}
+                      sizes="(max-width: 1024px) 100vw, 50vw"
                       alt={`Slide ${activeSlide + 1}`}
                       initial={{ opacity: 0, scale: 1.05 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.98 }}
                       transition={{ duration: 0.45, ease: "easeOut" }}
                       className="w-full h-full object-cover drop-shadow-[0_24px_30px_rgba(22,52,42,0.2)]"
+                      fetchpriority={activeSlide === 0 ? "high" : "low"}
+                      decoding="async"
+                      width={900}
+                      height={600}
                     />
                   </AnimatePresence>
                 ) : (

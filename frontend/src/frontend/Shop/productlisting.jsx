@@ -167,7 +167,7 @@ export default function ProductListingPage() {
                     <img src={cert.img} alt={cert.name} className="max-w-full max-h-full object-contain transition-transform duration-500 group-hover:scale-110" />
                   </div>
                 </div>
-                <span className="text-[10px] font-black uppercase tracking-widerst text-slate-400 group-hover:text-[#2d3a29] transition-colors text-center leading-tight">
+                <span className="text-[10px] font-black uppercase tracking-widerst text-slate-400 group-hover:text-[#2d3a29] transition-colors text-center ">
                   {cert.name}
                 </span>
               </div>
@@ -301,10 +301,10 @@ export default function ProductListingPage() {
               <div key={idx} className="group flex flex-col items-center space-y-3">
                 <div className={`w-20 h-20 rounded-full bg-white border border-slate-100 shadow-sm flex items-center justify-center ${cert.color} border-t-2`}>
                   <div className="w-12 h-12 flex items-center justify-center overflow-hidden">
-                    <img src={cert.img} alt={cert.name} className="max-w-full max-h-full object-contain" />
+                    <img src={cert.img} alt={cert.name} className="max-w-full max-h-full object-contain" loading="lazy" decoding="async" width={48} height={48} />
                   </div>
                 </div>
-                <span className="text-[9px] font-black uppercase tracking-widerst text-slate-400 text-center leading-tight">
+                <span className="text-[9px] font-black uppercase tracking-widerst text-slate-400 text-center ">
                   {cert.name}
                 </span>
               </div>

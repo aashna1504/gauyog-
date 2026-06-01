@@ -2,19 +2,39 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    
-    <link 
-    classname="rounded-full"
-      rel="icon" 
-      type="image/jpeg" 
-      href="https://res.cloudinary.com/dbpzzvcik/image/upload/v1775049866/final_logo_copy.jpg_puj109.jpg" 
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <link
+      rel="icon"
+      type="image/jpeg"
+      href="https://res.cloudinary.com/dbpzzvcik/image/upload/v1775049866/final_logo_copy.jpg_puj109.jpg"
     />
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gauyog</title>
+    <!-- Preconnect so font CSS + woff2 files are fetched in parallel, not serially -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Use media trick to load font stylesheet non-render-blocking, then swap to all -->
     <link
       href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+    <!-- Preload LCP hero image with responsive hints so mobile gets the 480w version -->
+    <link
+      rel="preload"
+      as="image"
+      href="https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto,w_900/v1775302434/0fc480c8-6acf-4ff0-a587-cea5c58e069b_lii8qp.jpg"
+      imagesrcset="https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto,w_480/v1775302434/0fc480c8-6acf-4ff0-a587-cea5c58e069b_lii8qp.jpg 480w, https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto,w_900/v1775302434/0fc480c8-6acf-4ff0-a587-cea5c58e069b_lii8qp.jpg 900w, https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto,w_1400/v1775302434/0fc480c8-6acf-4ff0-a587-cea5c58e069b_lii8qp.jpg 1400w"
+      imagesizes="(max-width: 1024px) 100vw, 50vw"
+      fetchpriority="high"
     />
   </head>
   <body>

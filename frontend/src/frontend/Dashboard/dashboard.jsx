@@ -201,7 +201,7 @@ export default function FloatingNexusDashboard() {
                   <UserCircle2 size={18} />
                 </div>
                 <div className="min-w-0">
-                  <h3 className="text-base font-black text-slate-900 leading-tight truncate">
+                  <h3 className="text-base font-black text-slate-900  truncate">
                     {user?.name || user?.email?.split("@")[0] || "Guest User"}
                   </h3>
                   <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widerst truncate max-w-[140px]">
@@ -379,10 +379,10 @@ export default function FloatingNexusDashboard() {
                   </a>
 
                   <a
-                    href="mailto:support@gauyog.com"
+                    href="mailto:support@gauyogkendr.com"
                     onClick={(e) => {
                       e.stopPropagation();
-                      window.location.href = "mailto:support@gauyog.com";
+                      window.location.href = "mailto:support@gauyogkendr.com";
                     }}
                     className="flex items-center justify-center gap-2 bg-white/20 backdrop-blur-md border border-white/20 px-4 py-5 rounded-full hover:bg-white hover:text-[#4a703f] transition-all shadow-xl active:scale-95 group/email"
                   >
