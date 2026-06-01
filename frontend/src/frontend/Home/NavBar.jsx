@@ -12,6 +12,7 @@ import {
   PersonStanding,
 } from "lucide-react";
 import ProductImage from "../../Components/ProductImage";
+import { clUrl, clSrcSet } from "../../utils/cloudinary";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import useAuthStore from "../../store/authStore";
@@ -97,12 +98,17 @@ export default function Header() {
            
             <Link
               to="/"
+              aria-label="Gauyog Kendr — go to homepage"
               className="flex-shrink-0 transition-transform active:scale-95"
             >
               <img
-                src="https://res.cloudinary.com/dbpzzvcik/image/upload/v1775301193/logo_copy.jpg_buosrm-removebg-preview_ot372q.png"
+                src={clUrl("https://res.cloudinary.com/dbpzzvcik/image/upload/v1775301193/logo_copy.jpg_buosrm-removebg-preview_ot372q.png", 200)}
+                srcSet={clSrcSet("https://res.cloudinary.com/dbpzzvcik/image/upload/v1775301193/logo_copy.jpg_buosrm-removebg-preview_ot372q.png", [100, 200])}
+                sizes="(max-width: 1024px) 102px, 180px"
                 className="lg:h-20 h-12 w-auto object-contain"
                 alt="Logo"
+                width={200}
+                height={94}
               />
             </Link>
 
