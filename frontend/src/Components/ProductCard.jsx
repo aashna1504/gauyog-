@@ -302,7 +302,7 @@ export default function ProductCard({
                   {detail.name}
                 </h2>
                 {detail.scientificName && (
-                  <p className="text-xs md:text-sm text-gray-400 italic mb-2 md:mb-4">
+                  <p className="text-xs md:text-sm text-gray-600 italic mb-2 md:mb-4">
                     {detail.scientificName}
                   </p>
                 )}
@@ -312,7 +312,7 @@ export default function ProductCard({
                     ₹{activePrice}
                   </p>
                   {(selectedWeight || detail.size) && (
-                    <p className="text-gray-400 font-bold uppercase tracking-widerst text-xs md:text-sm">
+                    <p className="text-gray-600 font-bold uppercase tracking-widerst text-xs md:text-sm">
                       {selectedWeight || detail.size}
                     </p>
                   )}
