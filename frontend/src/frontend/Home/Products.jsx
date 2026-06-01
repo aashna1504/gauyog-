@@ -142,9 +142,9 @@ export default function ProductSection() {
               <div className="space-y-3 md:space-y-4">
                 {/* Logo Area */}
                 <div className="flex flex-col">
-                  <h2 className="text-3xl font-black text-[#4a703f] tracking-wider">
+                  <p className="text-3xl font-black text-[#4a703f] tracking-wider">
                     Gauyog Kendr
-                  </h2>
+                  </p>
                   <span className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400">
                     Sustainables
                   </span>
@@ -421,19 +421,19 @@ export default function ProductSection() {
                       >
                         {tier.icon}
                       </div>
-                      <span className="text-[10px] font-black text-slate-300 uppercase tracking-widerst">
+                      <span className="text-[10px] font-black text-slate-500 uppercase tracking-widerst">
                         {tier.badge}
                       </span>
                     </div>
 
                     {/* Title block */}
                     <div>
-                      <h4
+                      <p
                         className="text-[10px] font-black uppercase tracking-[0.3em] mb-1"
                         style={{ color: tier.color }}
                       >
                         {tier.category}
-                      </h4>
+                      </p>
                       <h3 className="text-2xl font-black text-slate-900  mb-3">
                         {tier.name}
                       </h3>

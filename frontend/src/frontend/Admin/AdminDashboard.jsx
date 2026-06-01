@@ -110,7 +110,7 @@ function Overview({ stats, loading }) {
             {stats.recentProducts.map((p) => (
               <div key={p.id} className="flex items-center gap-4 px-5 py-3">
                 {p.imageUrl && (
-                  <img src={p.imageUrl} alt={p.name} className="w-10 h-10 rounded-lg object-cover" />
+                  <img src={p.imageUrl} alt={p.name} className="w-10 h-10 rounded-lg object-cover" width={40} height={40} loading="lazy" decoding="async" />
                 )}
                 <div className="flex-1 min-w-0">
                   <p className="font-bold text-slate-800 text-sm truncate">{p.name}</p>
@@ -453,7 +453,7 @@ function Products() {
                 <tr key={p.id} className="hover:bg-slate-50/50 transition-colors">
                   <td className="px-4 py-3">
                     {p.imageUrl ? (
-                      <img src={p.imageUrl} alt={p.name} className="w-10 h-10 rounded-lg object-cover" />
+                      <img src={p.imageUrl} alt={p.name} className="w-10 h-10 rounded-lg object-cover" width={40} height={40} loading="lazy" decoding="async" />
                     ) : (
                       <div className="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center">
                         <Package size={14} className="text-slate-300" />

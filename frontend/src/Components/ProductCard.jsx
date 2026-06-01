@@ -171,7 +171,7 @@ export default function ProductCard({
                 <h3 className="font-bold text-xl text-gray-800 line-clamp-1 group-hover:text-[#4a703f] transition-colors uppercase tracking-wider">
                   {p.name}
                 </h3>
-                <p className="text-[10px] text-gray-400 font-black uppercase tracking-widerst mt-1">
+                <p className="text-[10px] text-gray-600 font-black uppercase tracking-widerst mt-1">
                   {[p.category, selectedWeight || p.size]
                     .filter(Boolean)
                     .join(" • ")}

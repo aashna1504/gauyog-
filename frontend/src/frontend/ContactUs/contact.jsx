@@ -415,12 +415,12 @@ export default function KineticContactBanner() {
                       Direct Channel
                     </span>
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-black text-white ">
+                  <h2 className="text-2xl md:text-3xl font-black text-white ">
                     Let's{" "}
                     <span className="text-[#e9aa43] italic font-medium">
                       Grow Together
                     </span>
-                  </h3>
+                  </h2>
                   <p className="text-white/55 text-sm mt-1.5 max-w-md leading-relaxed">
                     Fill in your details and we'll reach out to nurture the
                     partnership.
@@ -745,9 +745,9 @@ export default function KineticContactBanner() {
                   <Leaf className="text-green-600" size={18} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-white text-sm">
+                  <h3 className="font-bold text-white text-sm">
                     Natural Farming
-                  </h4>
+                  </h3>
                   <p className="text-xs text-slate-200 mt-1">
                     100% organic, chemical-free production.
                   </p>
@@ -759,7 +759,7 @@ export default function KineticContactBanner() {
                   <Users className="text-[#e9aa43]" size={18} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-white text-sm">Women First</h4>
+                  <h3 className="font-bold text-white text-sm">Women First</h3>
                   <p className="text-xs text-slate-200 mt-1">
                     Employing and empowering local women.
                   </p>
@@ -771,7 +771,7 @@ export default function KineticContactBanner() {
                   <Globe className="text-blue-700" size={18} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-white text-sm">Global Reach</h4>
+                  <h3 className="font-bold text-white text-sm">Global Reach</h3>
                   <p className="text-xs text-slate-200 mt-1">
                     International quality, worldwide coverage.
                   </p>
@@ -783,9 +783,9 @@ export default function KineticContactBanner() {
                   <Heart className="text-red-600" size={18} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-white text-sm">
+                  <h3 className="font-bold text-white text-sm">
                     Farmer Support
-                  </h4>
+                  </h3>
                   <p className="text-xs text-slate-200 mt-1">
                     Helping farmers transition to organic.
                   </p>
