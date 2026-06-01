@@ -44,10 +44,10 @@ const PaymentMethodCard = ({ icon, title, desc, active, onClick }) => (
         <span
           className={`w-1.5 h-1.5 rounded-full ${active ? "bg-[#4a703f] animate-pulse" : "bg-slate-200"}`}
         />
-        <h5 className="text-[9px] font-black uppercase tracking-widerst text-slate-400">Option</h5>
+        <p className="text-[9px] font-black uppercase tracking-widerst text-slate-600">Option</p>
       </div>
-      <h4 className="text-xs font-black text-slate-900 uppercase tracking-wider">{title}</h4>
-      <p className="text-[9px]  text-slate-400 font-bold uppercase mt-1 opacity-70">{desc}</p>
+      <h3 className="text-xs font-black text-slate-900 uppercase tracking-wider">{title}</h3>
+      <p className="text-[9px] text-slate-600 font-bold uppercase mt-1 opacity-70">{desc}</p>
     </div>
     {active && (
       <div className="bg-[#4a703f] rounded-full p-1">
@@ -267,8 +267,8 @@ export default function ModernPaymentPage() {
                     <Wallet className="text-amber-500" size={32} />
                   </div>
                   <div>
-                    <h4 className="text-xs font-black uppercase text-slate-900 tracking-widerst">Cash on Delivery</h4>
-                    <p className="text-[9px] text-slate-400 font-bold uppercase mt-2 max-w-xs leading-relaxed">
+                    <h3 className="text-xs font-black uppercase text-slate-900 tracking-widerst">Cash on Delivery</h3>
+                    <p className="text-[9px] text-slate-600 font-bold uppercase mt-2 max-w-xs leading-relaxed">
                       Pay in cash when your order arrives at your doorstep.
                     </p>
                   </div>
@@ -282,8 +282,8 @@ export default function ModernPaymentPage() {
                   <ShieldCheck size={24} />
                 </div>
                 <div>
-                  <h5 className="text-[10px] font-black uppercase text-slate-900">Encrypted Protocol</h5>
-                  <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widerst">256-Bit SSL Protection</p>
+                  <p className="text-[10px] font-black uppercase text-slate-900">Encrypted Protocol</p>
+                  <p className="text-[8px] font-bold text-slate-600 uppercase tracking-widerst">256-Bit SSL Protection</p>
                 </div>
               </div>
               <div className="flex items-center gap-4 bg-white p-5 rounded-[25px] border border-slate-100 group hover:shadow-lg transition-all duration-500">
@@ -291,8 +291,8 @@ export default function ModernPaymentPage() {
                   <CreditCard size={24} />
                 </div>
                 <div>
-                  <h5 className="text-[10px] font-black uppercase text-slate-900">PCI Compliant</h5>
-                  <p className="text-[8px] font-bold text-slate-400 uppercase tracking-widerst">Global Safety Standard</p>
+                  <p className="text-[10px] font-black uppercase text-slate-900">PCI Compliant</p>
+                  <p className="text-[8px] font-bold text-slate-600 uppercase tracking-widerst">Global Safety Standard</p>
                 </div>
               </div>
             </div>
@@ -315,7 +315,7 @@ export default function ModernPaymentPage() {
               </div>
               <div className="mb-10">
                 <p className="text-[11px] font-black text-[#e9aa43] uppercase tracking-widerst mb-1">Final Payment</p>
-                <h4 className="text-4xl font-black">₹{subtotal.toLocaleString("en-IN")}</h4>
+                <p className="text-4xl font-black">₹{subtotal.toLocaleString("en-IN")}</p>
               </div>
 
               <button

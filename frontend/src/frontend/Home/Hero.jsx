@@ -205,9 +205,11 @@ export default function GlobalModernHero() {
                     <button
                       key={item.id || index}
                       onClick={() => setActiveSlide(index)}
-                      className={`h-2.5 rounded-full transition-all ${index === activeSlide ? "w-8 bg-[#4a703f]" : "w-2.5 bg-stone-300 hover:bg-stone-400"}`}
+                      className="min-w-[44px] min-h-[44px] flex items-center justify-center"
                       aria-label={`Go to slide ${index + 1}`}
-                    />
+                    >
+                      <span className={`h-2.5 block rounded-full transition-all ${index === activeSlide ? "w-8 bg-[#4a703f]" : "w-2.5 bg-stone-300 hover:bg-stone-400"}`} />
+                    </button>
                   ))}
                 </div>
               )}

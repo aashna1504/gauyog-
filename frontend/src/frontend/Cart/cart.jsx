@@ -149,18 +149,20 @@ export default function ModernCartPage() {
                               if (item.qty <= 1) removeItem(item.id);
                               else updateItem(item.id, item.qty - 1);
                             }}
-                            className="w-8 h-8 flex items-center justify-center hover:bg-white rounded-full transition-all text-slate-500"
+                            aria-label={`Decrease quantity of ${item.name}`}
+                            className="w-11 h-11 flex items-center justify-center hover:bg-white rounded-full transition-all text-slate-500"
                           >
-                            <Minus size={12} />
+                            <Minus size={12} aria-hidden="true" />
                           </button>
-                          <span className="w-8 text-center text-xs font-black text-slate-900">
+                          <span className="w-8 text-center text-xs font-black text-slate-900" aria-live="polite" aria-label={`Quantity: ${item.qty}`}>
                             {item.qty}
                           </span>
                           <button
                             onClick={() => updateItem(item.id, item.qty + 1)}
-                            className="w-8 h-8 flex items-center justify-center hover:bg-white rounded-full transition-all text-slate-500"
+                            aria-label={`Increase quantity of ${item.name}`}
+                            className="w-11 h-11 flex items-center justify-center hover:bg-white rounded-full transition-all text-slate-500"
                           >
-                            <Plus size={12} />
+                            <Plus size={12} aria-hidden="true" />
                           </button>
                         </div>
                         <div className="text-[11px] md:text-xs font-black text-[#e9aa43] tracking-wider">
@@ -178,9 +180,10 @@ export default function ModernCartPage() {
                       </div>
                       <button
                         onClick={() => removeItem(item.id)}
-                        className="p-2.5 text-slate-300 hover:text-[#744926] hover:bg-[#744926]/10 rounded-full transition-all"
+                        aria-label={`Remove ${item.name} from cart`}
+                        className="w-11 h-11 flex items-center justify-center text-slate-400 hover:text-[#744926] hover:bg-[#744926]/10 rounded-full transition-all"
                       >
-                        <Trash2 size={18} />
+                        <Trash2 size={18} aria-hidden="true" />
                       </button>
                     </div>
                   </div>

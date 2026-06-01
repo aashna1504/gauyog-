@@ -191,6 +191,7 @@ function about() {
     },
   ];
   const scrollRef = useRef(null);
+  const cachedScrollWidth = useRef(0);
   const partnershipImages = [
     "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778739066/DSC00727_1_cgyreu.jpg",
     "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778740839/DSC00531_1_ufdg3f.jpg",
@@ -201,14 +202,20 @@ function about() {
   ];
   const [partnershipSlide, setPartnershipSlide] = useState(0);
 
+  // Cache offsetWidth so the scroll handler never triggers a forced reflow
+  useEffect(() => {
+    const update = () => {
+      if (scrollRef.current) cachedScrollWidth.current = scrollRef.current.offsetWidth;
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
   const scroll = (direction) => {
-    const { current } = scrollRef;
-    const scrollAmount = current.offsetWidth * 0.8; // Match the 80% width of cards
-    if (direction === "left") {
-      current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-    } else {
-      current.scrollBy({ left: scrollAmount, behavior: "smooth" });
-    }
+    const amount = cachedScrollWidth.current * 0.8;
+    if (!scrollRef.current || !amount) return;
+    scrollRef.current.scrollBy({ left: direction === "left" ? -amount : amount, behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -485,14 +492,14 @@ function about() {
                   <>
                     <button
                       onClick={prevPartnershipSlide}
-                      className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 text-[#2d3a29] flex items-center justify-center hover:bg-white transition-colors"
+                      className="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/90 text-[#2d3a29] flex items-center justify-center hover:bg-white transition-colors"
                       aria-label="Previous partnership image"
                     >
                       <ArrowLeft size={16} />
                     </button>
                     <button
                       onClick={nextPartnershipSlide}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 text-[#2d3a29] flex items-center justify-center hover:bg-white transition-colors"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/90 text-[#2d3a29] flex items-center justify-center hover:bg-white transition-colors"
                       aria-label="Next partnership image"
                     >
                       <ArrowRight size={16} />
@@ -502,13 +509,15 @@ function about() {
                         <button
                           key={idx}
                           onClick={() => setPartnershipSlide(idx)}
-                          className={`h-2 rounded-full transition-all ${
+                          className="min-w-[44px] min-h-[44px] flex items-center justify-center"
+                          aria-label={`Go to partnership image ${idx + 1}`}
+                        >
+                          <span className={`h-2 block rounded-full transition-all ${
                             idx === partnershipSlide
                               ? "w-6 bg-white"
                               : "w-2 bg-white/60 hover:bg-white/90"
-                          }`}
-                          aria-label={`Go to partnership image ${idx + 1}`}
-                        />
+                          }`} />
+                        </button>
                       ))}
                     </div>
                   </>
