@@ -343,9 +343,9 @@ function about() {
                         <span className="text-[10px] font-black text-[#744926] tracking-wider">
                           {item.n}
                         </span>
-                        <h4 className="text-sm font-black uppercase tracking-widerst text-slate-900 group-hover:text-[#4a703f] transition-colors">
+                        <h3 className="text-sm font-black uppercase tracking-widerst text-slate-900 group-hover:text-[#4a703f] transition-colors">
                           {item.t}
-                        </h4>
+                        </h3>
                       </div>
                       <p className="text-[12px] text-slate-500 font-medium leading-relaxed mt-1 max-w-xs">
                         {item.d}
@@ -373,9 +373,9 @@ function about() {
                   >
                     {item.icon}
                   </div>
-                  <h4 className="text-[11px] font-black uppercase tracking-widerst text-slate-900">
+                  <h3 className="text-[11px] font-black uppercase tracking-widerst text-slate-900">
                     {item.title}
-                  </h4>
+                  </h3>
                 </div>
                 <p className="text-[12px] text-slate-500 font-medium leading-relaxed group-hover:text-slate-900 transition-colors">
                   {item.desc}
@@ -586,7 +586,7 @@ function about() {
 
                 <div className="flex items-center gap-3 mb-2">
                   <div className="h-[1px] w-12 bg-[#4a703f]" />
-                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">
+                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-600">
                     The Gauyog Kendr Advantages
                   </span>
                 </div>
@@ -629,7 +629,7 @@ function about() {
                         </div>
 
                         {/* Subtitle / Labelling */}
-                        <p className="text-[11px] font-black uppercase tracking-[0.3em] text-slate-400 group-hover:text-slate-600 transition-colors pt-2">
+                        <p className="text-[11px] font-black uppercase tracking-[0.3em] text-slate-600 group-hover:text-slate-800 transition-colors pt-2">
                           {item.subtitle}
                         </p>
 
@@ -760,7 +760,7 @@ function about() {
                   whileInView={{ opacity: 1, x: 0 }}
                   className="flex items-center gap-2 mb-3"
                 >
-                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">
+                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-600">
                     The Collective
                   </span>
                 </motion.div>
@@ -802,9 +802,9 @@ function about() {
                       <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#e9aa43] mb-2">
                         {member.role1}
                       </p>
-                      <h4 className="text-lg font-black text-white  mb-2">
+                      <h3 className="text-lg font-black text-white  mb-2">
                         {member.name}
-                      </h4>
+                      </h3>
                       <p className="text-[13px] font-medium text-white/90 leading-relaxed">
                         {member.bio}
                       </p>
@@ -862,15 +862,17 @@ function about() {
             <div className="flex md:hidden items-center gap-4">
               <button
                 onClick={() => scroll("left")}
+                aria-label="Scroll gallery left"
                 className="size-12 rounded-full border border-slate-200 flex items-center justify-center text-slate-900 active:bg-[#4a703f] active:text-white transition-all"
               >
-                <ArrowRight className="rotate-180" size={20} />
+                <ArrowRight className="rotate-180" size={20} aria-hidden="true" />
               </button>
               <button
                 onClick={() => scroll("right")}
+                aria-label="Scroll gallery right"
                 className="size-12 rounded-full bg-slate-900 flex items-center justify-center text-white active:bg-[#4a703f] transition-all shadow-lg"
               >
-                <ArrowRight size={20} />
+                <ArrowRight size={20} aria-hidden="true" />
               </button>
             </div>
           </div>
@@ -943,8 +945,8 @@ function Director({ name, role, initial }) {
         {initial}
       </div>
       <div>
-        <h4 className="text-sm font-black text-slate-900">{name}</h4>
-        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+        <p className="text-sm font-black text-slate-900">{name}</p>
+        <p className="text-[10px] font-bold text-slate-600 uppercase tracking-wider">
           {role}
         </p>
       </div>

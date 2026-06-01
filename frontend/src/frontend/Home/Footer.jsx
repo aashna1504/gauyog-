@@ -74,7 +74,7 @@ export default function ModernFooter() {
           </div>
 
           <div className="lg:col-span-2 space-y-3 md:space-y-6">
-            <h3 className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-400">
+            <h3 className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-600">
               Quick Menu
             </h3>
             <ul className="grid grid-cols-1 gap-y-2 md:gap-y-3">
@@ -93,7 +93,7 @@ export default function ModernFooter() {
           </div>
 
           <div className="lg:col-span-2 space-y-3 md:space-y-6">
-            <h3 className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-400">
+            <h3 className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-600">
               Legal
             </h3>
             <ul className="grid grid-cols-1 gap-y-2 md:gap-y-3">
@@ -113,7 +113,7 @@ export default function ModernFooter() {
 
           <div className="col-span-2 lg:col-span-3 space-y-4 md:space-y-8">
             <div className="space-y-4">
-              <h3 className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-400">
+              <h3 className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-600">
                 Social Connect
               </h3>
               <div className="flex gap-3">
@@ -135,7 +135,7 @@ export default function ModernFooter() {
                 <ShieldCheck size={18} />
               </div>
               <div>
-                <p className="text-[9px] font-black uppercase tracking-widerst text-gray-400 leading-none mb-1">
+                <p className="text-[9px] font-black uppercase tracking-widerst text-gray-600 leading-none mb-1">
                   Security
                 </p>
                 <p className="text-xs font-bold text-gray-900 leading-none">
@@ -147,7 +147,7 @@ export default function ModernFooter() {
         </div>
 
         <div className="pt-6 md:pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6">
-          <div className="flex flex-col items-center md:items-start gap-1.5 md:gap-2 text-gray-400 text-[10px] font-bold uppercase tracking-wider text-center">
+          <div className="flex flex-col items-center md:items-start gap-1.5 md:gap-2 text-gray-600 text-[10px] font-bold uppercase tracking-wider text-center">
             <div className="flex items-center gap-2">
               <Globe size={14} />
               <span>English (India)</span>
