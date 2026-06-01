@@ -21,8 +21,10 @@ export default defineConfig({
           'vendor-motion': ['framer-motion'],
           // Icon library — tree-shaken per page but still worth splitting
           'vendor-icons': ['lucide-react'],
-          // State / auth
-          'vendor-store': ['zustand', '@react-oauth/google'],
+          // State management
+          'vendor-store': ['zustand'],
+          // Google OAuth — only needed on /signin and /signup, lazy-loaded
+          'vendor-oauth': ['@react-oauth/google'],
         },
       },
     },
