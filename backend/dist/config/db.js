@@ -7,13 +7,25 @@ exports.prisma = new client_1.PrismaClient({
     log: ['query', 'info', 'warn', 'error'],
 });
 const connectDB = async () => {
-    try {
-        await exports.prisma.$connect();
-        logger_1.logger.info('PostgreSQL connected successfully');
-    }
-    catch (error) {
-        logger_1.logger.error('PostgreSQL connection failed', error);
-        process.exit(1);
+    const maxRetries = 5;
+    const retryDelayMs = 3000;
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+        try {
+            await exports.prisma.$connect();
+            logger_1.logger.info('PostgreSQL connected successfully');
+            return;
+        }
+        catch (error) {
+            logger_1.logger.error(`PostgreSQL connection failed (attempt ${attempt}/${maxRetries})`, error);
+            if (attempt < maxRetries) {
+                logger_1.logger.info(`Retrying in ${retryDelayMs / 1000}s... (Neon may be waking from auto-suspend)`);
+                await new Promise((resolve) => setTimeout(resolve, retryDelayMs));
+            }
+            else {
+                logger_1.logger.error('All connection attempts failed. Exiting.');
+                process.exit(1);
+            }
+        }
     }
 };
 exports.connectDB = connectDB;

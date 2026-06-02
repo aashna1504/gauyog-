@@ -1,9 +1,9 @@
-import { useEffect } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Clock, Tag, ArrowLeft, ArrowRight, ChevronRight } from "lucide-react";
-import { getBlogPost, getRelatedPosts } from "../../data/blogPosts";
+import { Clock, Tag, ArrowLeft, ArrowRight, ChevronRight, BookOpen } from "lucide-react";
 import { setPageMeta } from "../../utils/seo";
+import api from "../../api/axios";
 
 function renderBlock(block, i) {
   switch (block.type) {
@@ -25,7 +25,7 @@ function renderBlock(block, i) {
     case "list":
       return (
         <ul key={i} className="mb-6 space-y-2">
-          {block.items.map((item, j) => (
+          {(block.items || []).map((item, j) => (
             <li key={j} className="flex items-start gap-3 text-slate-600 text-base font-medium">
               <span className="w-1.5 h-1.5 rounded-full bg-[#4a703f] flex-shrink-0 mt-2" />
               {item}
@@ -40,26 +40,50 @@ function renderBlock(block, i) {
 
 export default function BlogPostPage() {
   const { slug } = useParams();
-  const navigate = useNavigate();
-  const post = getBlogPost(slug);
-  const related = getRelatedPosts(slug, 3);
+  const [post, setPost] = useState(null);
+  const [related, setRelated] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    setNotFound(false);
+    api
+      .get(`/blog/${slug}`)
+      .then((res) => {
+        const p = res.data.data;
+        setPost(p);
+        // Fetch related posts (same category, exclude current)
+        return api.get(`/blog?limit=50`).then((r) => {
+          const all = r.data.data?.blogs || [];
+          const rel = all
+            .filter((b) => b.slug !== slug && b.category === p.category)
+            .slice(0, 3);
+          setRelated(rel.length >= 2 ? rel : all.filter((b) => b.slug !== slug).slice(0, 3));
+        });
+      })
+      .catch((err) => {
+        if (err.response?.status === 404) setNotFound(true);
+      })
+      .finally(() => setLoading(false));
+  }, [slug]);
 
   useEffect(() => {
     if (!post) return;
+
     setPageMeta({
       title: post.title,
-      description: post.metaDescription,
+      description: post.metaDescription || post.excerpt,
       image: post.image,
       url: `https://www.gauyogkendr.com/blog/${post.slug}`,
       type: "article",
     });
 
-    // Article schema JSON-LD
     const schema = {
       "@context": "https://schema.org",
       "@type": "Article",
       headline: post.title,
-      description: post.metaDescription,
+      description: post.metaDescription || post.excerpt,
       image: post.image,
       author: { "@type": "Organization", name: post.author },
       publisher: {
@@ -84,12 +108,12 @@ export default function BlogPostPage() {
     }
     el.textContent = JSON.stringify(schema);
 
-    // FAQ schema if post has FAQ
-    if (post.faq?.length) {
+    const faqData = Array.isArray(post.faq) ? post.faq : [];
+    if (faqData.length) {
       const faqSchema = {
         "@context": "https://schema.org",
         "@type": "FAQPage",
-        mainEntity: post.faq.map((q) => ({
+        mainEntity: faqData.map((q) => ({
           "@type": "Question",
           name: q.question,
           acceptedAnswer: { "@type": "Answer", text: q.answer },
@@ -111,9 +135,18 @@ export default function BlogPostPage() {
     };
   }, [post]);
 
-  if (!post) {
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center pt-32">
+        <div className="w-8 h-8 rounded-full border-2 border-[#4a703f] border-t-transparent animate-spin" />
+      </div>
+    );
+  }
+
+  if (notFound || !post) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center px-6 text-center pt-32">
+        <BookOpen size={48} className="text-slate-200 mb-6" />
         <h1 className="text-4xl font-black text-slate-900 mb-4">Article Not Found</h1>
         <p className="text-slate-500 mb-6">This blog post doesn't exist or may have been moved.</p>
         <Link
@@ -126,21 +159,29 @@ export default function BlogPostPage() {
     );
   }
 
+  const contentBlocks = Array.isArray(post.content) ? post.content : [];
+  const faqItems = Array.isArray(post.faq) ? post.faq : [];
+  const tags = Array.isArray(post.tags) ? post.tags : [];
+
   return (
     <div className="bg-[#fdfcfb] min-h-screen">
       {/* Hero Image */}
       <div className="relative h-[320px] md:h-[520px] w-full overflow-hidden">
-        <img
-          src={post.image}
-          alt={post.title}
-          className="w-full h-full object-cover scale-105"
-          loading="eager"
-          width={1200}
-          height={520}
-        />
-        {/* Base dim layer */}
+        {post.image ? (
+          <img
+            src={post.image}
+            alt={post.title}
+            className="w-full h-full object-cover scale-105"
+            loading="eager"
+            width={1200}
+            height={520}
+          />
+        ) : (
+          <div className="w-full h-full bg-[#f0f7ee] flex items-center justify-center">
+            <BookOpen size={64} className="text-[#4a703f]/20" />
+          </div>
+        )}
         <div className="absolute inset-0 bg-black/50" />
-        {/* Strong bottom-to-top gradient for text area */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/10" />
 
         <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-16 pb-10 md:pb-14">
@@ -191,15 +232,18 @@ export default function BlogPostPage() {
           transition={{ duration: 0.5 }}
           className="prose-custom"
         >
-          {post.content.map((block, i) => renderBlock(block, i))}
+          {contentBlocks.length > 0
+            ? contentBlocks.map((block, i) => renderBlock(block, i))
+            : <p className="text-slate-500 font-medium">{post.excerpt}</p>
+          }
         </motion.article>
 
         {/* Tags */}
-        {post.tags?.length > 0 && (
+        {tags.length > 0 && (
           <div className="mt-10 pt-8 border-t border-slate-100">
             <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3">Tags</p>
             <div className="flex flex-wrap gap-2">
-              {post.tags.map((tag) => (
+              {tags.map((tag) => (
                 <span
                   key={tag}
                   className="px-3 py-1 bg-[#4a703f]/10 text-[#4a703f] rounded-full text-xs font-bold"
@@ -212,14 +256,14 @@ export default function BlogPostPage() {
         )}
 
         {/* FAQ Section */}
-        {post.faq?.length > 0 && (
+        {faqItems.length > 0 && (
           <div className="mt-12">
             <h2 className="text-xl font-black text-slate-900 tracking-wider mb-6 flex items-center gap-3">
               <span className="w-1 h-6 bg-[#e9aa43] rounded-full" />
               Frequently Asked Questions
             </h2>
             <div className="space-y-4">
-              {post.faq.map((item, i) => (
+              {faqItems.map((item, i) => (
                 <div key={i} className="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
                   <h3 className="font-black text-slate-900 text-base mb-2">{item.question}</h3>
                   <p className="text-slate-600 text-sm leading-relaxed font-medium">{item.answer}</p>
@@ -254,15 +298,21 @@ export default function BlogPostPage() {
                   to={`/blog/${rPost.slug}`}
                   className="group bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-lg hover:shadow-[#4a703f]/10 transition-all"
                 >
-                  <div className="h-40 overflow-hidden">
-                    <img
-                      src={rPost.image}
-                      alt={rPost.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      loading="lazy"
-                      width={400}
-                      height={160}
-                    />
+                  <div className="h-40 overflow-hidden bg-[#f0f7ee]">
+                    {rPost.image ? (
+                      <img
+                        src={rPost.image}
+                        alt={rPost.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                        width={400}
+                        height={160}
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center">
+                        <BookOpen size={28} className="text-[#4a703f]/30" />
+                      </div>
+                    )}
                   </div>
                   <div className="p-5">
                     <span className="text-[9px] font-black uppercase tracking-widest text-[#e9aa43] block mb-2">

@@ -13,4 +13,6 @@ router.post('/forgot-password', (0, validate_middleware_1.validateRequest)(auth_
 router.post('/reset-password', (0, validate_middleware_1.validateRequest)(auth_schema_1.resetPasswordSchema), auth_controller_1.resetPassword);
 router.post('/logout', auth_middleware_1.authenticate, auth_controller_1.logout);
 router.post('/refresh', (0, validate_middleware_1.validateRequest)(auth_schema_1.refreshSchema), auth_controller_1.refresh);
+router.get('/me', auth_middleware_1.authenticate, auth_controller_1.getProfile);
+router.patch('/profile', auth_middleware_1.authenticate, auth_controller_1.updateProfile);
 exports.default = router;

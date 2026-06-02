@@ -7,5 +7,5 @@ const contact_schema_1 = require("./contact.schema");
 const auth_middleware_1 = require("../../middleware/auth.middleware");
 const router = (0, express_1.Router)();
 router.post('/', (0, validate_middleware_1.validateRequest)(contact_schema_1.submitContactSchema), contact_controller_1.submitContact);
-router.get('/', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), contact_controller_1.getContacts);
+router.get('/', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN', 'SALES'), contact_controller_1.getContacts);
 exports.default = router;

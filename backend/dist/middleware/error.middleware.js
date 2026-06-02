@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.errorHandler = void 0;
 const zod_1 = require("zod");
+const client_1 = require("@prisma/client");
 const helpers_1 = require("../utils/helpers");
 const logger_1 = require("../utils/logger");
 const errorHandler = (err, req, res, next) => {
@@ -23,7 +24,19 @@ const errorHandler = (err, req, res, next) => {
             errors,
         });
     }
-    // Handle Prisma / JWT Errors appropriately if needed
+    // Prisma known request errors (FK violations, unique constraint, etc.)
+    if (err instanceof client_1.Prisma.PrismaClientKnownRequestError) {
+        if (err.code === 'P2003') {
+            return res.status(400).json({ success: false, message: 'Cannot complete operation: record is referenced by other data.' });
+        }
+        if (err.code === 'P2025') {
+            return res.status(404).json({ success: false, message: 'Record not found.' });
+        }
+        if (err.code === 'P2002') {
+            return res.status(409).json({ success: false, message: 'A record with this value already exists.' });
+        }
+        return res.status(400).json({ success: false, message: err.message });
+    }
     if (err.name === 'TokenExpiredError') {
         return res.status(401).json({ success: false, message: 'Token expired' });
     }

@@ -14,7 +14,7 @@ exports.updateUserSchema = zod_1.z.object({
     body: zod_1.z.object({
         name: zod_1.z.string().min(1).optional(),
         email: zod_1.z.string().email('Invalid email').optional(),
-        role: zod_1.z.enum(['USER', 'ADMIN']).optional(),
+        role: zod_1.z.enum(['USER', 'ADMIN', 'SALES']).optional(),
     }),
 });
 exports.deleteUserSchema = exports.getUserSchema;

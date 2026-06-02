@@ -12,10 +12,12 @@ const helpers_1 = require("../../utils/helpers");
 const jwt_1 = require("../../utils/jwt");
 const env_1 = require("../../config/env");
 const email_service_1 = require("../../services/email.service");
+const logger_1 = require("../../utils/logger");
 class AuthService {
     static async signup(data) {
+        const normalizedEmail = data.email.toLowerCase().trim();
         const existingUser = await db_1.prisma.user.findUnique({
-            where: { email: data.email },
+            where: { email: normalizedEmail },
         });
         if (existingUser) {
             throw new helpers_1.AppError('Email already in use', 400);
@@ -23,8 +25,9 @@ class AuthService {
         const hashedPassword = await bcrypt_1.default.hash(data.password, 10);
         const user = await db_1.prisma.user.create({
             data: {
-                email: data.email,
+                email: normalizedEmail,
                 password: hashedPassword,
+                name: data.name?.trim() || null,
                 role: data.role || 'USER',
             },
         });
@@ -34,17 +37,21 @@ class AuthService {
         const accessToken = (0, jwt_1.generateAccessToken)({ userId: user.id, role: user.role });
         const refreshToken = (0, jwt_1.generateRefreshToken)({ userId: user.id, role: user.role });
         return {
-            user: { id: user.id, email: user.email, role: user.role },
+            user: { id: user.id, email: user.email, name: user.name, role: user.role },
             accessToken,
             refreshToken,
         };
     }
     static async login(data) {
+        const normalizedEmail = data.email.toLowerCase().trim();
         const user = await db_1.prisma.user.findUnique({
-            where: { email: data.email },
+            where: { email: normalizedEmail },
         });
-        if (!user || !user.password) {
+        if (!user) {
             throw new helpers_1.AppError('Invalid email or password', 401);
+        }
+        if (!user.password) {
+            throw new helpers_1.AppError('This account was created with Google. Please sign in with Google.', 401);
         }
         const isValidPassword = await bcrypt_1.default.compare(data.password, user.password);
         if (!isValidPassword) {
@@ -53,30 +60,49 @@ class AuthService {
         const accessToken = (0, jwt_1.generateAccessToken)({ userId: user.id, role: user.role });
         const refreshToken = (0, jwt_1.generateRefreshToken)({ userId: user.id, role: user.role });
         return {
-            user: { id: user.id, email: user.email, role: user.role },
+            user: { id: user.id, email: user.email, name: user.name, role: user.role },
             accessToken,
             refreshToken,
         };
     }
-    static async googleAuth(credential) {
-        const verifyResponse = await fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${encodeURIComponent(credential)}`);
-        if (!verifyResponse.ok) {
-            throw new helpers_1.AppError('Invalid Google credential', 401);
+    static async googleAuth(credential, accessToken) {
+        let email;
+        let name;
+        if (accessToken) {
+            // access_token flow — from useGoogleLogin custom button
+            const userinfoRes = await fetch(`https://www.googleapis.com/oauth2/v3/userinfo?access_token=${encodeURIComponent(accessToken)}`);
+            if (!userinfoRes.ok)
+                throw new helpers_1.AppError('Invalid Google access token', 401);
+            const userinfo = await userinfoRes.json();
+            if (!userinfo.email || !userinfo.email_verified)
+                throw new helpers_1.AppError('Google email is not verified', 401);
+            email = userinfo.email.toLowerCase().trim();
+            name = userinfo.name;
         }
-        const tokenInfo = (await verifyResponse.json());
-        const email = tokenInfo.email?.toLowerCase().trim();
-        if (!email || tokenInfo.email_verified !== 'true') {
-            throw new helpers_1.AppError('Google email is not verified', 401);
+        else if (credential) {
+            // id_token flow — from GoogleLogin iframe button
+            const verifyResponse = await fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${encodeURIComponent(credential)}`);
+            if (!verifyResponse.ok)
+                throw new helpers_1.AppError('Invalid Google credential', 401);
+            const tokenInfo = (await verifyResponse.json());
+            email = tokenInfo.email?.toLowerCase().trim();
+            name = tokenInfo.name;
+            if (!email || (tokenInfo.email_verified !== 'true' && tokenInfo.email_verified !== true)) {
+                throw new helpers_1.AppError('Google email is not verified', 401);
+            }
+            if (env_1.config.googleClientId && tokenInfo.aud !== env_1.config.googleClientId) {
+                throw new helpers_1.AppError('Google token audience mismatch', 401);
+            }
         }
-        if (env_1.config.googleClientId && tokenInfo.aud !== env_1.config.googleClientId) {
-            throw new helpers_1.AppError('Google token audience mismatch', 401);
+        else {
+            throw new helpers_1.AppError('Google credential or access token required', 400);
         }
         let user = await db_1.prisma.user.findUnique({ where: { email } });
         if (!user) {
             user = await db_1.prisma.user.create({
                 data: {
-                    email,
-                    name: tokenInfo.name || null,
+                    email: email,
+                    name: name || null,
                     role: 'USER',
                 },
             });
@@ -86,11 +112,11 @@ class AuthService {
             update: {},
             create: { userId: user.id },
         });
-        const accessToken = (0, jwt_1.generateAccessToken)({ userId: user.id, role: user.role });
+        const newAccessToken = (0, jwt_1.generateAccessToken)({ userId: user.id, role: user.role });
         const refreshToken = (0, jwt_1.generateRefreshToken)({ userId: user.id, role: user.role });
         return {
-            user: { id: user.id, email: user.email, role: user.role },
-            accessToken,
+            user: { id: user.id, email: user.email, name: user.name, role: user.role },
+            accessToken: newAccessToken,
             refreshToken,
         };
     }
@@ -98,7 +124,7 @@ class AuthService {
         const normalizedEmail = email.toLowerCase().trim();
         const user = await db_1.prisma.user.findUnique({ where: { email: normalizedEmail } });
         if (!user)
-            return;
+            return {};
         await db_1.prisma.passwordResetToken.deleteMany({
             where: {
                 userId: user.id,
@@ -116,17 +142,122 @@ class AuthService {
             },
         });
         const resetLink = `${env_1.config.appBaseUrl}/reset-password?token=${rawToken}`;
-        await email_service_1.emailService.sendMail({
-            to: user.email,
-            subject: 'Reset your Gauyog password',
-            html: `
-        <p>Hello,</p>
-        <p>We received a request to reset your password.</p>
-        <p><a href="${resetLink}">Click here to reset your password</a></p>
-        <p>This link will expire in 30 minutes.</p>
-      `,
-            text: `Reset your password: ${resetLink}`,
-        });
+        const displayName = user.name ? user.name.split(' ')[0] : 'there';
+        const html = `<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"/></head>
+<body style="margin:0;padding:0;background:#f1f5f9;font-family:Helvetica,Arial,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#f1f5f9;padding:40px 16px;">
+<tr><td align="center">
+<table width="560" cellpadding="0" cellspacing="0"
+       style="background:#ffffff;border-radius:20px;overflow:hidden;
+              box-shadow:0 4px 32px rgba(0,0,0,.08);">
+
+  <!-- Header -->
+  <tr>
+    <td style="background:#4a703f;padding:36px 40px;text-align:center;">
+      <p style="margin:0 0 4px;font-size:10px;font-weight:800;text-transform:uppercase;
+        letter-spacing:.2em;color:rgba(255,255,255,.5);">GAUYOG KENDR</p>
+      <h1 style="margin:0 0 8px;font-size:26px;font-weight:900;color:#ffffff;letter-spacing:-.02em;">
+        🔒 Reset Your Password
+      </h1>
+      <p style="margin:0;font-size:13px;color:rgba(255,255,255,.7);">
+        This link expires in <strong style="color:#e9aa43;">30 minutes</strong>
+      </p>
+    </td>
+  </tr>
+
+  <!-- Body -->
+  <tr>
+    <td style="padding:36px 40px;">
+      <p style="margin:0 0 20px;font-size:15px;color:#374151;line-height:1.7;">
+        Hi <strong>${displayName}</strong>,
+      </p>
+      <p style="margin:0 0 28px;font-size:14px;color:#6b7280;line-height:1.75;">
+        We received a request to reset the password for your Gauyog Kendr account
+        (<strong style="color:#111827;">${user.email}</strong>).
+        Click the button below to create a new password.
+      </p>
+
+      <!-- CTA Button -->
+      <table cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+          <td align="center" style="padding:8px 0 32px;">
+            <a href="${resetLink}"
+               style="display:inline-block;background:#4a703f;color:#ffffff;
+                      font-size:13px;font-weight:800;text-transform:uppercase;
+                      letter-spacing:.1em;text-decoration:none;
+                      padding:16px 40px;border-radius:999px;">
+              Reset My Password →
+            </a>
+          </td>
+        </tr>
+      </table>
+
+      <!-- Fallback link -->
+      <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:16px 20px;">
+        <p style="margin:0 0 6px;font-size:11px;font-weight:700;text-transform:uppercase;
+          letter-spacing:.08em;color:#9ca3af;">
+          Button not working? Copy this link:
+        </p>
+        <p style="margin:0;font-size:12px;color:#4a703f;word-break:break-all;font-weight:600;">
+          ${resetLink}
+        </p>
+      </div>
+
+      <!-- Security note -->
+      <p style="margin:24px 0 0;font-size:12px;color:#9ca3af;line-height:1.7;">
+        If you didn't request a password reset, you can safely ignore this email.
+        Your password will not change unless you click the button above.
+      </p>
+    </td>
+  </tr>
+
+  <!-- Footer -->
+  <tr>
+    <td style="background:#f9fafb;border-top:1px solid #e5e7eb;padding:18px 40px;text-align:center;">
+      <p style="margin:0;font-size:11px;color:#9ca3af;">
+        Gauyog Kendr · Village Badalpara, Veraval, Gir Somnath, Gujarat 362268
+      </p>
+    </td>
+  </tr>
+
+</table>
+</td></tr>
+</table>
+</body>
+</html>`;
+        let emailDelivered = false;
+        try {
+            const result = await email_service_1.emailService.sendMail({
+                to: user.email,
+                subject: 'Reset your Gauyog Kendr password',
+                html,
+                text: [
+                    `Hi ${displayName},`,
+                    '',
+                    'Reset your Gauyog Kendr password using the link below.',
+                    'This link expires in 30 minutes.',
+                    '',
+                    resetLink,
+                    '',
+                    'If you did not request this, ignore this email.',
+                ].join('\n'),
+            });
+            emailDelivered = !result.skipped;
+        }
+        catch (err) {
+            // Never throw — token is already saved. Log clearly so dev knows what to fix.
+            logger_1.logger.error(`[ForgotPassword] Email failed for ${user.email}: ${err?.message}`);
+            if (env_1.config.nodeEnv === 'development') {
+                logger_1.logger.warn('[ForgotPassword] To send real emails, add GMAIL_APP_PASSWORD to .env');
+                logger_1.logger.warn(`[ForgotPassword] Dev reset link: ${resetLink}`);
+            }
+        }
+        // Development only: return the reset link in the API response so the full
+        // flow can be tested without a working email provider.
+        const isDev = env_1.config.nodeEnv === 'development';
+        return isDev ? { devResetLink: resetLink, emailDelivered } : {};
     }
     static async resetPassword(token, newPassword) {
         const tokenHash = crypto_1.default.createHash('sha256').update(token).digest('hex');
@@ -148,7 +279,24 @@ class AuthService {
             }),
         ]);
     }
-    static async logout(userId) {
+    static async getProfile(userId) {
+        const user = await db_1.prisma.user.findUnique({
+            where: { id: userId },
+            select: { id: true, email: true, name: true, role: true },
+        });
+        if (!user)
+            throw new helpers_1.AppError('User not found', 404);
+        return user;
+    }
+    static async updateProfile(userId, name) {
+        const user = await db_1.prisma.user.update({
+            where: { id: userId },
+            data: { name: name?.trim() || null },
+            select: { id: true, email: true, name: true, role: true },
+        });
+        return user;
+    }
+    static async logout(_userId) {
         // await redisClient.del(`refresh_token:${userId}`);
     }
     static async refreshToken(token) {

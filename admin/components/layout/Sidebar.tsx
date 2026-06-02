@@ -14,6 +14,7 @@ import {
   ChevronRight,
   Leaf,
   X,
+  FileText,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useUIStore } from "@/store/uiStore";
@@ -28,12 +29,13 @@ type NavItem = {
 };
 
 const navItems: NavItem[] = [
-  { label: "Dashboard", href: "/dashboard",  icon: LayoutDashboard, roles: ["ADMIN", "SALES"] },
-  { label: "Users",     href: "/users",       icon: Users,           roles: ["ADMIN"] },
-  { label: "Products",  href: "/products",    icon: Package,         roles: ["ADMIN", "SALES"] },
-  { label: "Orders",    href: "/orders",      icon: ShoppingCart,    roles: ["ADMIN", "SALES"] },
-  { label: "Contacts",  href: "/contacts",    icon: Mail,            roles: ["ADMIN", "SALES"] },
-  { label: "Settings",  href: "/settings",    icon: Settings,        roles: ["ADMIN"] },
+  { label: "Dashboard", href: "/dashboard",   icon: LayoutDashboard, roles: ["ADMIN", "SALES"] },
+  { label: "Users",     href: "/users",        icon: Users,           roles: ["ADMIN"] },
+  { label: "Products",  href: "/products",     icon: Package,         roles: ["ADMIN", "SALES"] },
+  { label: "Orders",    href: "/orders",       icon: ShoppingCart,    roles: ["ADMIN", "SALES"] },
+  { label: "Blog",      href: "/blog-posts",   icon: FileText,        roles: ["ADMIN"] },
+  { label: "Contacts",  href: "/contacts",     icon: Mail,            roles: ["ADMIN", "SALES"] },
+  { label: "Settings",  href: "/settings",     icon: Settings,        roles: ["ADMIN"] },
 ];
 
 function SidebarContent({

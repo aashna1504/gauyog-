@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.resetPassword = exports.forgotPassword = exports.refresh = exports.logout = exports.googleAuth = exports.login = exports.signup = void 0;
+exports.updateProfile = exports.getProfile = exports.resetPassword = exports.forgotPassword = exports.refresh = exports.logout = exports.googleAuth = exports.login = exports.signup = void 0;
 const auth_service_1 = require("./auth.service");
 const helpers_1 = require("../../utils/helpers");
 const signup = async (req, res, next) => {
@@ -25,7 +25,7 @@ const login = async (req, res, next) => {
 exports.login = login;
 const googleAuth = async (req, res, next) => {
     try {
-        const result = await auth_service_1.AuthService.googleAuth(req.body.credential);
+        const result = await auth_service_1.AuthService.googleAuth(req.body.credential, req.body.access_token);
         res.status(200).json((0, helpers_1.formatResponse)(true, 'Google authentication successful', result));
     }
     catch (error) {
@@ -58,8 +58,13 @@ const refresh = async (req, res, next) => {
 exports.refresh = refresh;
 const forgotPassword = async (req, res, next) => {
     try {
-        await auth_service_1.AuthService.forgotPassword(req.body.email);
-        res.status(200).json((0, helpers_1.formatResponse)(true, 'If an account with this email exists, a reset link has been sent'));
+        const result = await auth_service_1.AuthService.forgotPassword(req.body.email);
+        const isDev = process.env.NODE_ENV === 'development';
+        // In production we always return the same message (prevents email enumeration)
+        // In dev we include the reset link directly so the full flow can be tested
+        res.status(200).json((0, helpers_1.formatResponse)(true, result?.emailDelivered
+            ? 'Reset link sent! Check your email inbox.'
+            : 'If an account with this email exists, a reset link has been sent.', isDev ? { devResetLink: result?.devResetLink ?? null, emailDelivered: result?.emailDelivered ?? false } : null));
     }
     catch (error) {
         next(error);
@@ -76,3 +81,23 @@ const resetPassword = async (req, res, next) => {
     }
 };
 exports.resetPassword = resetPassword;
+const getProfile = async (req, res, next) => {
+    try {
+        const user = await auth_service_1.AuthService.getProfile(req.user.userId);
+        res.status(200).json((0, helpers_1.formatResponse)(true, 'Profile retrieved', user));
+    }
+    catch (error) {
+        next(error);
+    }
+};
+exports.getProfile = getProfile;
+const updateProfile = async (req, res, next) => {
+    try {
+        const user = await auth_service_1.AuthService.updateProfile(req.user.userId, req.body.name);
+        res.status(200).json((0, helpers_1.formatResponse)(true, 'Profile updated', user));
+    }
+    catch (error) {
+        next(error);
+    }
+};
+exports.updateProfile = updateProfile;

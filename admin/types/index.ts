@@ -161,6 +161,58 @@ export interface ChartDataPoint {
   revenue?: number;
 }
 
+// ─── Blog ─────────────────────────────────────────────────────────────────────
+
+export type ContentBlockType = 'intro' | 'text' | 'heading' | 'list' | 'conclusion';
+
+export interface ContentBlock {
+  type: ContentBlockType;
+  text?: string;
+  items?: string[];
+}
+
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+export interface BlogPost {
+  id: string;
+  slug: string;
+  title: string;
+  metaDescription: string | null;
+  category: string;
+  author: string;
+  date: string;
+  readTime: string;
+  image: string | null;
+  excerpt: string;
+  content: ContentBlock[];
+  tags: string[];
+  faq: FaqItem[];
+  published: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateBlogInput {
+  title: string;
+  slug?: string;
+  metaDescription?: string;
+  category: string;
+  author?: string;
+  date: string;
+  readTime?: string;
+  image?: string;
+  excerpt: string;
+  content?: ContentBlock[];
+  tags?: string[];
+  faq?: FaqItem[];
+  published?: boolean;
+}
+
+export interface UpdateBlogInput extends Partial<CreateBlogInput> {}
+
 export interface ContactMessage {
   id: string;
   name: string;

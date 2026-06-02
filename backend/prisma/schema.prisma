@@ -185,3 +185,22 @@ model OrderItem {
   price     Float
   name      String
 }
+
+model Blog {
+  id              String   @id @default(uuid())
+  slug            String   @unique
+  title           String
+  metaDescription String?
+  category        String   @default("Organic Farming")
+  author          String   @default("Gauyog Kendr")
+  date            String
+  readTime        String   @default("5 min read")
+  image           String?
+  excerpt         String
+  content         Json     @default("[]")
+  tags            String[] @default([])
+  faq             Json     @default("[]")
+  published       Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}

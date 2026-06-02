@@ -15,6 +15,7 @@ import userRoutes from './modules/user/user.routes';
 import contactRoutes from './modules/contact/contact.routes';
 import orderRoutes from './modules/order/order.routes';
 import uploadRoutes from './modules/upload/upload.routes';
+import blogRoutes from './modules/blog/blog.routes';
 
 const app: Express = express();
 
@@ -65,6 +66,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/upload', uploadRoutes);
+app.use('/api/blog', blogRoutes);
 
 // Global Error Handler
 app.use(errorHandler);
