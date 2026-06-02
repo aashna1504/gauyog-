@@ -73,7 +73,7 @@ export default function WhyChooseUs() {
               <div className="text-[#4a703f] font-bold text-xs uppercase tracking-[0.4em] mb-3 md:mb-4 flex items-center gap-3">
                 <span className="w-8 md:w-10 h-[1px] bg-[#4a703f]" /> Why Gauyog Kendr
               </div>
-              <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-gray-900 tracking-wider leading-tight">
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-gray-900 tracking-wider ">
                 Pure By <span className="text-[#4a703f]">Nature,</span> <br />
                 Proven By <span className="text-[#744926]">Earth.</span>
               </h2>
@@ -111,19 +111,17 @@ export default function WhyChooseUs() {
                           />
                         </div>
 
-                        <motion.div
-                          initial={false}
-                          animate={{
-                            height: isActive ? "auto" : 0,
-                            opacity: isActive ? 1 : 0,
-                            marginTop: isActive ? 8 : 0,
-                          }}
-                          className="overflow-hidden"
+                        <div
+                          className={`overflow-hidden transition-all duration-500 ${
+                            isActive
+                              ? "max-h-24 opacity-100 mt-2"
+                              : "max-h-0 opacity-0 mt-0"
+                          }`}
                         >
                           <p className="text-gray-500 text-sm leading-relaxed max-w-sm font-medium">
                             {item.desc}
                           </p>
-                        </motion.div>
+                        </div>
                       </div>
                     </div>
                   </div>

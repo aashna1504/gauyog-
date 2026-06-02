@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { clUrl, clSrcSet } from "../../utils/cloudinary";
 import {
   ChevronRight,
   MessageCircle,
@@ -351,7 +352,7 @@ export default function KineticContactBanner() {
                       Call Us
                     </p>
                     <p className="text-[#4a703f] font-bold text-sm">
-                      +91 98765 43210
+                      +91 79849 97996
                     </p>
                   </div>
                 </div>
@@ -365,7 +366,7 @@ export default function KineticContactBanner() {
                       Email Us
                     </p>
                     <p className="text-[#4a703f] font-bold text-sm">
-                      info@gauyog.com
+                      support@gauyogkendr.com
                     </p>
                   </div>
                 </div>
@@ -414,12 +415,12 @@ export default function KineticContactBanner() {
                       Direct Channel
                     </span>
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-black text-white leading-tight">
+                  <h2 className="text-2xl md:text-3xl font-black text-white ">
                     Let's{" "}
                     <span className="text-[#e9aa43] italic font-medium">
                       Grow Together
                     </span>
-                  </h3>
+                  </h2>
                   <p className="text-white/55 text-sm mt-1.5 max-w-md leading-relaxed">
                     Fill in your details and we'll reach out to nurture the
                     partnership.
@@ -464,7 +465,7 @@ export default function KineticContactBanner() {
                         <div className="relative">
                           <input
                             type="tel"
-                            placeholder="+91 98765 43210"
+                            placeholder="+91 79849 97996"
                             value={form.phone}
                             onChange={(e) =>
                               handleChange("phone", e.target.value)
@@ -649,9 +650,15 @@ export default function KineticContactBanner() {
               {/* Large Vertical Image */}
               <div className="aspect-[3/4] rounded-[2.5rem] overflow-hidden bg-[#4a703f]/10 group shadow-xl">
                 <img
-                  src="https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778741619/DSC00374_1_rc1jjo.jpg"
+                  src={clUrl("https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/v1778741619/DSC00374_1_rc1jjo.jpg", 600)}
+                  srcSet={clSrcSet("https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/v1778741619/DSC00374_1_rc1jjo.jpg", [300, 600])}
+                  sizes="(max-width: 1024px) 50vw, 300px"
                   alt="Rooted in Community"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  loading="lazy"
+                  decoding="async"
+                  width={600}
+                  height={800}
                 />
               </div>
               {/* Established Badge */}
@@ -669,17 +676,29 @@ export default function KineticContactBanner() {
               {/* Small Top Image */}
               <div className="aspect-square rounded-[2.5rem] overflow-hidden bg-[#4a703f]/10 group shadow-xl">
                 <img
-                  src="https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778740198/DSC00585_1_ypoyj7.jpg"
+                  src={clUrl("https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/v1778740198/DSC00585_1_ypoyj7.jpg", 600)}
+                  srcSet={clSrcSet("https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/v1778740198/DSC00585_1_ypoyj7.jpg", [300, 600])}
+                  sizes="(max-width: 1024px) 50vw, 300px"
                   alt="Global Trade"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  loading="lazy"
+                  decoding="async"
+                  width={600}
+                  height={600}
                 />
               </div>
               {/* Large Bottom Image */}
               <div className="aspect-square rounded-[2.5rem] overflow-hidden bg-[#4a703f]/10 group shadow-xl">
                 <img
-                  src="https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778741041/DSC00541_1_sofgme.jpg"
+                  src={clUrl("https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/v1778741041/DSC00541_1_sofgme.jpg", 600)}
+                  srcSet={clSrcSet("https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/v1778741041/DSC00541_1_sofgme.jpg", [300, 600])}
+                  sizes="(max-width: 1024px) 50vw, 300px"
                   alt="Leadership"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  loading="lazy"
+                  decoding="async"
+                  width={600}
+                  height={600}
                 />
               </div>
             </div>
@@ -726,9 +745,9 @@ export default function KineticContactBanner() {
                   <Leaf className="text-green-600" size={18} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-white text-sm">
+                  <h3 className="font-bold text-white text-sm">
                     Natural Farming
-                  </h4>
+                  </h3>
                   <p className="text-xs text-slate-200 mt-1">
                     100% organic, chemical-free production.
                   </p>
@@ -740,7 +759,7 @@ export default function KineticContactBanner() {
                   <Users className="text-[#e9aa43]" size={18} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-white text-sm">Women First</h4>
+                  <h3 className="font-bold text-white text-sm">Women First</h3>
                   <p className="text-xs text-slate-200 mt-1">
                     Employing and empowering local women.
                   </p>
@@ -752,7 +771,7 @@ export default function KineticContactBanner() {
                   <Globe className="text-blue-700" size={18} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-white text-sm">Global Reach</h4>
+                  <h3 className="font-bold text-white text-sm">Global Reach</h3>
                   <p className="text-xs text-slate-200 mt-1">
                     International quality, worldwide coverage.
                   </p>
@@ -764,9 +783,9 @@ export default function KineticContactBanner() {
                   <Heart className="text-red-600" size={18} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-white text-sm">
+                  <h3 className="font-bold text-white text-sm">
                     Farmer Support
-                  </h4>
+                  </h3>
                   <p className="text-xs text-slate-200 mt-1">
                     Helping farmers transition to organic.
                   </p>
@@ -786,7 +805,7 @@ export default function KineticContactBanner() {
             >
               Our Commitment
             </motion.span>
-            <h2 className="text-2xl md:text-6xl font-bold tracking-wider leading-tight max-w-2xl">
+            <h2 className="text-2xl md:text-6xl font-bold tracking-wider  max-w-2xl">
               Sustainability Is Our{" "}
               <span className="text-[#4a703f] italic">Foundation</span>
             </h2>

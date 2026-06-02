@@ -201,10 +201,10 @@ export default function FloatingNexusDashboard() {
                   <UserCircle2 size={18} />
                 </div>
                 <div className="min-w-0">
-                  <h3 className="text-base font-black text-slate-900 leading-tight truncate">
+                  <h2 className="text-base font-black text-slate-900  truncate">
                     {user?.name || user?.email?.split("@")[0] || "Guest User"}
-                  </h3>
-                  <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widerst truncate max-w-[140px]">
+                  </h2>
+                  <p className="text-[10px] font-bold text-slate-600 uppercase tracking-widerst truncate max-w-[140px]">
                     {user?.email || "No email"}
                   </p>
                 </div>
@@ -272,9 +272,9 @@ export default function FloatingNexusDashboard() {
                 <div className="p-2 bg-[#e9aa43]/10 rounded-full text-[#e9aa43]">
                   <Package size={18} />
                 </div>
-                <h3 className="text-[10px] font-black uppercase tracking-widerst text-slate-900">
+                <h2 className="text-[10px] font-black uppercase tracking-widerst text-slate-900">
                   Track Orders
-                </h3>
+                </h2>
               </div>
               <div className="flex items-center gap-2 mb-4 text-[#e9aa43]">
                 <Clock size={14} className="animate-pulse" />
@@ -297,9 +297,9 @@ export default function FloatingNexusDashboard() {
                   <div className="p-2 bg-blue-50 rounded-full text-blue-500">
                     <ShoppingCart size={18} />
                   </div>
-                  <h3 className="text-[10px] font-black uppercase tracking-widerst text-slate-900">
+                  <h2 className="text-[10px] font-black uppercase tracking-widerst text-slate-900">
                     My Cart
-                  </h3>
+                  </h2>
                 </div>
                 <span className="text-[9px] font-black text-blue-500 bg-blue-50 px-2 py-1 rounded-lg">
                   {cartCount} Items
@@ -344,9 +344,9 @@ export default function FloatingNexusDashboard() {
                       Assistance
                     </span>
                   </div>
-                  <h3 className="text-3xl md:text-4xl font-black tracking-wider leading-none uppercase">
+                  <h2 className="text-3xl md:text-4xl font-black tracking-wider leading-none uppercase">
                     Need <span className="text-[#e9aa43]">Support?</span>
-                  </h3>
+                  </h2>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
@@ -379,10 +379,10 @@ export default function FloatingNexusDashboard() {
                   </a>
 
                   <a
-                    href="mailto:support@gauyog.com"
+                    href="mailto:support@gauyogkendr.com"
                     onClick={(e) => {
                       e.stopPropagation();
-                      window.location.href = "mailto:support@gauyog.com";
+                      window.location.href = "mailto:support@gauyogkendr.com";
                     }}
                     className="flex items-center justify-center gap-2 bg-white/20 backdrop-blur-md border border-white/20 px-4 py-5 rounded-full hover:bg-white hover:text-[#4a703f] transition-all shadow-xl active:scale-95 group/email"
                   >

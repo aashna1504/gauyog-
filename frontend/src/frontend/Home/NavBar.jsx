@@ -12,6 +12,7 @@ import {
   PersonStanding,
 } from "lucide-react";
 import ProductImage from "../../Components/ProductImage";
+import { clUrl, clSrcSet } from "../../utils/cloudinary";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import useAuthStore from "../../store/authStore";
@@ -97,12 +98,17 @@ export default function Header() {
            
             <Link
               to="/"
+              aria-label="Gauyog Kendr — go to homepage"
               className="flex-shrink-0 transition-transform active:scale-95"
             >
               <img
-                src="https://res.cloudinary.com/dbpzzvcik/image/upload/v1775301193/logo_copy.jpg_buosrm-removebg-preview_ot372q.png"
+                src={clUrl("https://res.cloudinary.com/dbpzzvcik/image/upload/v1775301193/logo_copy.jpg_buosrm-removebg-preview_ot372q.png", 200)}
+                srcSet={clSrcSet("https://res.cloudinary.com/dbpzzvcik/image/upload/v1775301193/logo_copy.jpg_buosrm-removebg-preview_ot372q.png", [100, 200])}
+                sizes="(max-width: 1024px) 102px, 180px"
                 className="lg:h-20 h-12 w-auto object-contain"
                 alt="Logo"
+                width={200}
+                height={94}
               />
             </Link>
 
@@ -126,28 +132,24 @@ export default function Header() {
             <div className="hidden lg:flex items-center gap-5 text-gray-700">
               <div className="flex items-center gap-4 pr-4 border-r border-gray-100">
                
-                <div
+                <button
                   onClick={() => navigate("/dashboard")}
-                  className="cursor-pointer"
+                  aria-label="My account"
+                  className="cursor-pointer bg-transparent border-none p-0"
                 >
-                  <User
-                    size={25}
-                    className="text-[#e9aa43] fill-[#e9aa43] hover:text-[#744926] transition-colors"
-                  />
-                </div>
-              
-                <div
-                  className="relative cursor-pointer group"
+                  <User size={25} aria-hidden="true" className="text-[#e9aa43] fill-[#e9aa43] hover:text-[#744926] transition-colors" />
+                </button>
+
+                <button
+                  className="relative cursor-pointer group bg-transparent border-none p-0"
                   onClick={() => setCartOpen(true)}
+                  aria-label={`Open cart, ${cartCount} item${cartCount !== 1 ? "s" : ""}`}
                 >
-                  <ShoppingCart
-                    size={25}
-                    className="text-[#744926] fill-[#744926] group-hover:text-[#4a703f] transition-colors"
-                  />
-                  <span className="absolute -top-2 -right-2 bg-[#4a703f] text-white text-[10px] font-black w-4 h-4 flex items-center justify-center rounded-full">
+                  <ShoppingCart size={25} aria-hidden="true" className="text-[#744926] fill-[#744926] group-hover:text-[#4a703f] transition-colors" />
+                  <span aria-hidden="true" className="absolute -top-2 -right-2 bg-[#4a703f] text-white text-[10px] font-black w-4 h-4 flex items-center justify-center rounded-full">
                     {cartCount}
                   </span>
-                </div>
+                </button>
               </div>
 
               {isAuthenticated ? (
@@ -249,26 +251,26 @@ export default function Header() {
 
             
             <div className="flex lg:hidden items-center gap-3">
-              <div onClick={() => navigate("/dashboard")} className="p-1">
-                <User size={22} className="text-[#e9aa43] fill-[#e9aa43]" />
-              </div>
-              <div
-                className="relative p-1 mr-1"
+              <button onClick={() => navigate("/dashboard")} aria-label="My account" className="p-1 bg-transparent border-none">
+                <User size={22} aria-hidden="true" className="text-[#e9aa43] fill-[#e9aa43]" />
+              </button>
+              <button
+                className="relative p-1 mr-1 bg-transparent border-none"
                 onClick={() => setCartOpen(true)}
+                aria-label={`Open cart, ${cartCount} item${cartCount !== 1 ? "s" : ""}`}
               >
-                <ShoppingCart
-                  size={22}
-                  className="text-[#744926] fill-[#744926]"
-                />
-                <span className="absolute -top-1 -right-1 bg-[#4a703f] text-white text-[10px] font-black w-3.5 h-3.5 flex items-center justify-center rounded-full">
+                <ShoppingCart size={22} aria-hidden="true" className="text-[#744926] fill-[#744926]" />
+                <span aria-hidden="true" className="absolute -top-1 -right-1 bg-[#4a703f] text-white text-[10px] font-black w-3.5 h-3.5 flex items-center justify-center rounded-full">
                   {cartCount}
                 </span>
-              </div>
+              </button>
               <button
                 className="p-2 bg-gray-50 rounded-full text-slate-900 ml-1"
                 onClick={() => setMenuOpen(!menuOpen)}
+                aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+                aria-expanded={menuOpen}
               >
-                {menuOpen ? <X size={20} /> : <Menu size={20} />}
+                {menuOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
               </button>
             </div>
           </nav>
@@ -381,9 +383,10 @@ export default function Header() {
                 </div>
                 <button
                   onClick={() => setCartOpen(false)}
+                  aria-label="Close cart"
                   className="p-3 hover:bg-slate-100 rounded-full transition-colors text-slate-400 hover:text-slate-600"
                 >
-                  <X size={24} />
+                  <X size={24} aria-hidden="true" />
                 </button>
               </div>
 
@@ -402,7 +405,7 @@ export default function Header() {
                     </div>
                     <div className="flex-1 flex flex-col justify-between py-1">
                       <div>
-                        <h4 className="text-sm font-black text-slate-900 leading-tight uppercase tracking-wider">
+                        <h4 className="text-sm font-black text-slate-900  uppercase tracking-wider">
                           {item.name}
                         </h4>
                         <div className="flex items-center justify-between mt-1">
@@ -423,9 +426,10 @@ export default function Header() {
                         </button>
                         <button
                           onClick={() => removeItem(item.id)}
-                          className="p-2 text-slate-300 hover:text-[#744926] transition-colors border border-slate-100 rounded-full"
+                          aria-label={`Remove ${item.name} from cart`}
+                          className="p-2 text-slate-400 hover:text-[#744926] transition-colors border border-slate-100 rounded-full"
                         >
-                          <Trash2 size={16} />
+                          <Trash2 size={16} aria-hidden="true" />
                         </button>
                       </div>
                     </div>

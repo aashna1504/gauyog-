@@ -6,7 +6,7 @@ import NavBar from "./frontend/Home/NavBar.jsx";
 import Footer from "./frontend/Home/Footer.jsx";
 import AuthNotification from "./Components/AuthNotification.jsx";
 import { motion } from "framer-motion";
-const WHATSAPP_NUMBER = "916284380585";
+const WHATSAPP_NUMBER = "917984997996";
 const WHATSAPP_MESSAGE = "Hi! I need help with my order.";
 
 const WhatsAppButton = () => {

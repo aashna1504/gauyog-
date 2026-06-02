@@ -1,4 +1,5 @@
 import { AnimatePresence } from "framer-motion";
+import { clUrl, clSrcSet } from "../../utils/cloudinary";
 import { useEffect, useState } from "react";
 import {
   ArrowLeft,
@@ -141,21 +142,21 @@ export default function ProductSection() {
               <div className="space-y-3 md:space-y-4">
                 {/* Logo Area */}
                 <div className="flex flex-col">
-                  <h2 className="text-3xl font-black text-[#4a703f] tracking-wider">
+                  <p className="text-3xl font-black text-[#4a703f] tracking-wider">
                     Gauyog Kendr
-                  </h2>
-                  <span className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400">
+                  </p>
+                  <span className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-600">
                     Sustainables
                   </span>
                 </div>
 
-                <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-black leading-[1.1]">
+                <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-black leading-[1.1]">
                   Our Gift from{" "}
                   <span className="text-[#4a703f] italic underline decoration-[#e9aa43]/30 underline-offset-8">
                     Gujarat, India
                   </span>{" "}
                   to the World
-                </h1>
+                </h2>
 
                 <p className="text-[#4a703f] italic font-semibold text-base md:text-lg flex items-center gap-3">
                   <span className="w-6 h-[2px] bg-[#4a703f]" />
@@ -210,9 +211,15 @@ export default function ProductSection() {
             {/* Main Image Card */}
             <div className="relative rounded-[40px] overflow-hidden shadow-2xl group transition-transform duration-500 hover:scale-[1.02]">
               <img
-                src="https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778739708/DSC00642_2_1_vch4fe.jpg"
+                src={clUrl("https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/v1778739708/DSC00642_2_1_vch4fe.jpg", 640)}
+                srcSet={clSrcSet("https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/v1778739708/DSC00642_2_1_vch4fe.jpg", [480, 640])}
+                sizes="(max-width: 1024px) 100vw, 640px"
                 alt="Gauyog Team at Gujarat Expo"
-                className="w-full lg:h-[450px] h-[350px] object-cover"
+                className="w-full lg:h-[350px] h-[250px] object-cover"
+                loading="lazy"
+                decoding="async"
+                width={640}
+                height={427}
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-8">
                 <p className="text-white/90 font-medium text-sm flex items-center gap-2">
@@ -229,10 +236,10 @@ export default function ProductSection() {
                   key={idx}
                   className="bg-white border border-slate-100 p-3 md:p-6 rounded-2xl flex flex-col justify-center items-center text-center space-y-2 shadow-sm hover:shadow-md transition-shadow"
                 >
-                  <span className="text-[#e9aa43] font-bold text-2xl lg:text-xl xl:text-2xl">
+                  <span className="text-[#744926] font-bold text-2xl lg:text-xl xl:text-2xl">
                     {stat.label}
                   </span>
-                  <span className="text-[11px] text-slate-700 leading-tight">
+                  <span className="text-[11px] text-slate-700 ">
                     {stat.sub}
                   </span>
                 </div>
@@ -251,9 +258,15 @@ export default function ProductSection() {
             <div className="relative group flex justify-center order-2 md:order-1">
               <div className="absolute w-[220px] h-[220px] md:w-[450px] md:h-[450px] bg-gradient-to-tr from-green-100/40 to-emerald-50/20 rounded-full animate-pulse shadow-inner" />
               <img
-                src="https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1775037259/cow_v6ymwb.png"
+                src={clUrl("https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/v1775037259/cow_v6ymwb.png", 500)}
+                srcSet={clSrcSet("https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/v1775037259/cow_v6ymwb.png", [280, 420, 500])}
+                sizes="(max-width: 768px) 280px, 420px"
                 className="relative w-full max-w-[420px] z-10 drop-shadow-2xl hover:scale-105 transition-transform duration-700 ease-out"
                 alt="Mascot"
+                loading="lazy"
+                decoding="async"
+                width={500}
+                height={500}
               />
               <div className="absolute bottom-4 right-10 z-20 bg-white/80 backdrop-blur-md p-4 rounded-full shadow-xl border border-white flex items-center gap-3 animate-bounce">
                 <div className="bg-[#4a703f] p-2 rounded-full text-white shadow-lg shadow-green-200">
@@ -312,17 +325,11 @@ export default function ProductSection() {
               </div>
               {/* Arrows — desktop only */}
               <div className="hidden md:flex gap-3">
-                <button className="group border-2 border-gray-100 p-4 rounded-full hover:bg-black hover:border-black transition-all">
-                  <ArrowLeft
-                    size={20}
-                    className="group-hover:text-white transition-colors"
-                  />
+                <button aria-label="Previous products" className="group border-2 border-gray-100 p-4 rounded-full hover:bg-black hover:border-black transition-all">
+                  <ArrowLeft size={20} aria-hidden="true" className="group-hover:text-white transition-colors" />
                 </button>
-                <button className="group border-2 border-gray-100 p-4 rounded-full hover:bg-black hover:border-black transition-all">
-                  <ArrowRight
-                    size={20}
-                    className="group-hover:text-white transition-colors"
-                  />
+                <button aria-label="Next products" className="group border-2 border-gray-100 p-4 rounded-full hover:bg-black hover:border-black transition-all">
+                  <ArrowRight size={20} aria-hidden="true" className="group-hover:text-white transition-colors" />
                 </button>
               </div>
             </div>
@@ -355,16 +362,11 @@ export default function ProductSection() {
 
             {/* Arrows — mobile only, below the product grid */}
             <div className="flex md:hidden justify-center gap-4 mb-9">
-              <button className="group border-2 border-gray-100 p-4 rounded-full hover:bg-black hover:border-black transition-all">
-                <ArrowLeft
-                  size={20}
-                  className="group-hover:text-white transition-colors"
-                />
+              <button aria-label="Previous products" className="group border-2 border-gray-100 p-4 rounded-full hover:bg-black hover:border-black transition-all">
+                <ArrowLeft size={20} aria-hidden="true" className="group-hover:text-white transition-colors" />
               </button>
-              <button className="group border-2 border-gray-100 p-4 rounded-full hover:bg-black hover:border-black transition-all">
-                <ArrowRight
-                  size={20}
-                  className="group-hover:text-white transition-colors"
+              <button aria-label="Next products" className="group border-2 border-gray-100 p-4 rounded-full hover:bg-black hover:border-black transition-all">
+                <ArrowRight size={20} aria-hidden="true" className="group-hover:text-white transition-colors"
                 />
               </button>
             </div>
@@ -375,7 +377,7 @@ export default function ProductSection() {
             {/* Header Section */}
             <div className="flex flex-col md:flex-row justify-between items-end mb-8 md:mb-16 gap-4 md:gap-6">
               <div className="space-y-2 md:space-y-3">
-                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#e9aa43]">
+                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white">
                   Product Selection
                 </span>
                 <h2 className="text-3xl md:text-5xl font-bold text-slate-100">
@@ -408,20 +410,17 @@ export default function ProductSection() {
                       >
                         {tier.icon}
                       </div>
-                      <span className="text-[10px] font-black text-slate-300 uppercase tracking-widerst">
+                      <span className="text-[10px] font-black text-slate-500 uppercase tracking-widerst">
                         {tier.badge}
                       </span>
                     </div>
 
                     {/* Title block */}
                     <div>
-                      <h4
-                        className="text-[10px] font-black uppercase tracking-[0.3em] mb-1"
-                        style={{ color: tier.color }}
-                      >
+                      <p className="text-[10px] font-black uppercase tracking-[0.3em] mb-1 text-slate-600">
                         {tier.category}
-                      </h4>
-                      <h3 className="text-2xl font-black text-slate-900 leading-tight mb-3">
+                      </p>
+                      <h3 className="text-2xl font-black text-slate-900  mb-3">
                         {tier.name}
                       </h3>
                       <p className="text-sm text-slate-500 font-medium leading-relaxed">
@@ -466,7 +465,7 @@ export default function ProductSection() {
                     {/* CTA */}
                     <button
                       onClick={() => (window.location.href = "/shop")}
-                      className="w-full py-4 rounded-2xl flex items-center justify-center gap-3 font-black text-[10px] uppercase tracking-widerst transition-all text-white shadow-md hover:brightness-110 active:scale-95"
+                      className="w-full py-4 rounded-2xl flex items-center justify-center gap-3 font-black text-[10px] uppercase tracking-widerst transition-all text-slate-900 shadow-md hover:brightness-90 active:scale-95"
                       style={{ backgroundColor: tier.color }}
                     >
                       Browse Products <ArrowUpRight size={14} />
@@ -547,9 +546,9 @@ export default function ProductSection() {
                         {item.icon}
                       </div>
                       <div>
-                        <h4 className="text-lg font-bold text-slate-900 tracking-wider">
+                        <h3 className="text-lg font-bold text-slate-900 tracking-wider">
                           {item.title}
-                        </h4>
+                        </h3>
                         <p className="text-slate-500 text-sm leading-relaxed">
                           {item.desc}
                         </p>
@@ -562,24 +561,23 @@ export default function ProductSection() {
               {/* --- RIGHT SIDE: STATS & QUOTE --- */}
               <div className="lg:col-span-5 flex flex-col gap-6">
                 {/* High-Impact Testimonial */}
-                <div className="flex-1 relative overflow-hidden bg-[#4a703f] rounded-[2rem] md:rounded-[3rem] p-6 md:p-12 text-white shadow-2xl shadow-[#4a703f]/30 min-h-[auto] md:min-h-[600px] flex flex-col justify-center">
+                <div className="flex-1 relative overflow-hidden bg-[#4a703f] rounded-[2rem] md:rounded-[3rem] p-6 md:p-12 text-white shadow-2xl shadow-[#4a703f]/30 md:min-h-[600px] flex flex-col justify-between space-y-8">
                   {/* Decorative Background Element */}
-                  <div className="absolute -top-10 -right-10 text-white/5 font-black text-[15rem] pointer-events-none select-none">
+                  <div className="absolute -top-10 -right-10 text-white/5 font-black text-[15rem] pointer-events-none select-none -z-10">
                     G
                   </div>
 
-                  <div className="relative z-10 h-full flex flex-col justify-between space-y-8">
                     {/* Header Section */}
                     <div className="space-y-4">
                       <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/10 text-[9px] font-black uppercase tracking-[0.2em]">
-                        <div className="w-1.5 h-1.5 rounded-full bg-[#e9aa43]" />
+                        <div className="w-1.5 h-1.5 rounded-full bg-white" />
                         Our Philosophy
                       </div>
                       <h2 className="text-2xl md:text-5xl font-black tracking-wider">
                         Returning to <br />
-                        <span className="text-[#e9aa43]">Mother Earth</span>
+                        <span className="text-white">Mother Earth</span>
                       </h2>
-                      <p className="text-white/80 text-sm font-medium leading-relaxed max-w-md italic">
+                      <p className="text-white/90 text-sm font-medium leading-relaxed max-w-md italic">
                         "The answer to healthier food and a better planet lies
                         in going back to nature — not away from it."
                       </p>
@@ -598,10 +596,10 @@ export default function ProductSection() {
                           key={i}
                           className="bg-white/20 backdrop-blur-md p-5 rounded-[2.5rem] flex flex-col items-center text-center space-y-2 shadow-sm"
                         >
-                          <span className="text-4xl  font-black text-slate-50">
+                          <span className="text-4xl  font-black text-white">
                             {stat.val}
                           </span>
-                          <span className="text-[10px] font-black uppercase tracking-widerst text-slate-200">
+                          <span className="text-[10px] font-black uppercase tracking-widerst text-white">
                             {stat.lab}
                           </span>
                         </div>
@@ -630,21 +628,20 @@ export default function ProductSection() {
                           key={idx}
                           className="group flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 transition-colors"
                         >
-                          <span className="text-[#e9aa43] font-black text-xs mt-1 opacity-50 group-hover:opacity-100 transition-opacity">
+                          <span className="text-white/70 font-black text-xs mt-1 group-hover:text-white transition-colors">
                             {item.icon}
                           </span>
                           <div>
                             <p className="font-black text-[10px] uppercase tracking-[0.2em] text-white">
                               {item.label}
                             </p>
-                            <p className="text-white/60 text-[11px] font-medium leading-tight mt-1">
+                            <p className="text-slate-200 text-[11px] font-medium mt-1">
                               {item.desc}
                             </p>
                           </div>
                         </div>
                       ))}
                     </div>
-                  </div>
                 </div>
               </div>
             </div>

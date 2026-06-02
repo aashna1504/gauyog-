@@ -17,7 +17,7 @@ const contactInfo = [
     detail: " support@gauyogkendr.com",
     label: "Drop a Message",
     icon: Mail,
-    href: "mailto:info@gauyogkendr.com",
+    href: "mailto:support@gauyogkendr.com",
     color: "text-[#744926]",
   },
   {
@@ -76,7 +76,7 @@ export default function ModernContactStrip() {
                     </span>
                   </div>
 
-                  <p className="text-lg md:text-3xl font-bold text-gray-800 leading-tight pr-4">
+                  <p className="text-lg md:text-3xl font-bold text-gray-800  pr-4">
                     {item.detail}
                   </p>
                 </div>

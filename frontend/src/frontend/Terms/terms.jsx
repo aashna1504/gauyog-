@@ -72,7 +72,7 @@ export default function TermsConditionsPage() {
             <div>
               <motion.h1
                 variants={itemVariants}
-                className="text-5xl md:text-7xl font-extrabold text-gray-900 leading-tight"
+                className="text-5xl md:text-7xl font-extrabold text-gray-900 "
               >
                 Terms &
                 <span className="text-[#4a703f] italic font-semibold">

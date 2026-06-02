@@ -1,20 +1,24 @@
+import { Suspense, lazy } from "react";
 import "./App.css";
 import Hero from "./frontend/Home/Hero";
-import Testimonial from "./frontend/Home/Testimonial";
-import Map from "./frontend/Home/Map";
-import ProductSection from "./frontend/Home/Products";
-import WhyChooseUs from "./frontend/Home/ChooseUs";
-import AllProducts from "./frontend/Home/Allproducts";
+
+const ProductSection = lazy(() => import("./frontend/Home/Products"));
+const WhyChooseUs    = lazy(() => import("./frontend/Home/ChooseUs"));
+const AllProducts    = lazy(() => import("./frontend/Home/Allproducts"));
+const Testimonial    = lazy(() => import("./frontend/Home/Testimonial"));
+const Map            = lazy(() => import("./frontend/Home/Map"));
 
 function App() {
   return (
     <>
       <Hero />
-      <ProductSection />
-      <WhyChooseUs />
-      <AllProducts />
-      <Testimonial />
-      <Map />
+      <Suspense fallback={null}>
+        <ProductSection />
+        <WhyChooseUs />
+        <AllProducts />
+        <Testimonial />
+        <Map />
+      </Suspense>
     </>
   );
 }

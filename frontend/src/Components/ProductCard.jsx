@@ -142,12 +142,14 @@ export default function ProductCard({
             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center gap-3 bg-black/5 backdrop-blur-[2px]">
               <button
                 onClick={handleOpenModal}
+                aria-label={`Quick view ${p.name}`}
                 className="w-12 h-12 bg-white rounded-full shadow-xl flex items-center justify-center text-gray-700 hover:bg-[#744926] hover:text-white transition-all transform translate-y-4 group-hover:translate-y-0"
               >
-                <Eye size={20} />
+                <Eye size={20} aria-hidden="true" />
               </button>
               <button
                 onClick={handleWishlist}
+                aria-label={isInWishlist ? `Remove ${p.name} from wishlist` : `Add ${p.name} to wishlist`}
                 className={`w-12 h-12 rounded-full shadow-xl flex items-center justify-center transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 delay-75 ${
                   isInWishlist
                     ? "bg-[#e9aa43] ring-2 ring-[#e9aa43]/50 ring-offset-2 hover:text-white shadow-[0_0_16px_rgba(233,170,67,0.45)]"
@@ -156,6 +158,7 @@ export default function ProductCard({
               >
                 <Heart
                   size={20}
+                  aria-hidden="true"
                   fill={isInWishlist ? "currentColor" : "none"}
                   className={`transition-all duration-300 ${
                     isInWishlist ? "text-white" : "text-[#e9aa43]"
@@ -171,7 +174,7 @@ export default function ProductCard({
                 <h3 className="font-bold text-xl text-gray-800 line-clamp-1 group-hover:text-[#4a703f] transition-colors uppercase tracking-wider">
                   {p.name}
                 </h3>
-                <p className="text-[10px] text-gray-400 font-black uppercase tracking-widerst mt-1">
+                <p className="text-[10px] text-gray-600 font-black uppercase tracking-widerst mt-1">
                   {[p.category, selectedWeight || p.size]
                     .filter(Boolean)
                     .join(" • ")}
@@ -256,24 +259,22 @@ export default function ProductCard({
                   <motion.button
                     whileHover={{ scale: 1.1 }}
                     onClick={handleWishlist}
+                    aria-label={isInWishlist ? `Remove ${detail.name} from wishlist` : `Add ${detail.name} to wishlist`}
                     className={`p-3 rounded-full transition-all ${
                       isInWishlist
                         ? "bg-[#e9aa43] text-white"
                         : "bg-[#e9aa43]/10 text-[#e9aa43] hover:bg-[#e9aa43] hover:text-white"
                     }`}
                   >
-                    <Heart
-                      size={20}
-                      strokeWidth={2.5}
-                      fill={isInWishlist ? "currentColor" : "none"}
-                    />
+                    <Heart size={20} strokeWidth={2.5} fill={isInWishlist ? "currentColor" : "none"} aria-hidden="true" />
                   </motion.button>
                 </div>
                 <button
                   onClick={handleCloseModal}
+                  aria-label="Close product preview"
                   className="p-4 bg-gray-900 text-white rounded-full hover:bg-black transition-all shadow-lg"
                 >
-                  <X size={24} />
+                  <X size={24} aria-hidden="true" />
                 </button>
               </div>
 
@@ -298,11 +299,11 @@ export default function ProductCard({
                   </span>
                 </div>
 
-                <h2 className="text-xl md:text-4xl font-black text-gray-900 mb-1 tracking-wider leading-tight">
+                <h2 className="text-xl md:text-4xl font-black text-gray-900 mb-1 tracking-wider ">
                   {detail.name}
                 </h2>
                 {detail.scientificName && (
-                  <p className="text-xs md:text-sm text-gray-400 italic mb-2 md:mb-4">
+                  <p className="text-xs md:text-sm text-gray-600 italic mb-2 md:mb-4">
                     {detail.scientificName}
                   </p>
                 )}
@@ -312,7 +313,7 @@ export default function ProductCard({
                     ₹{activePrice}
                   </p>
                   {(selectedWeight || detail.size) && (
-                    <p className="text-gray-400 font-bold uppercase tracking-widerst text-xs md:text-sm">
+                    <p className="text-gray-600 font-bold uppercase tracking-widerst text-xs md:text-sm">
                       {selectedWeight || detail.size}
                     </p>
                   )}

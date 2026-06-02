@@ -133,7 +133,7 @@ export default function VedicDhoopMosaicPage() {
               <span className="inline-block px-3 py-1 bg-[#4a703f]/10 text-[#4a703f] rounded-full text-[10px] font-black uppercase tracking-[0.3em] mb-2">
                 {product.category}
               </span>
-              <h1 className="text-2xl md:text-4xl font-black text-slate-900 tracking-wider leading-tight mb-1">
+              <h1 className="text-2xl md:text-4xl font-black text-slate-900 tracking-wider  mb-1">
                 {product.name}
               </h1>
               {product.scientificName && (
@@ -173,6 +173,7 @@ export default function VedicDhoopMosaicPage() {
                 </span>
                 <button
                   onClick={handleToggleWishlist}
+                  aria-label={wishlisted ? `Remove ${product?.name} from wishlist` : `Add ${product?.name} to wishlist`}
                   className={`p-2.5 md:p-3 rounded-full shadow-md transition-all duration-300 group ${
                     wishlisted
                       ? "bg-[#e9aa43] shadow-[#e9aa43]/20 hover:bg-[#e9aa43]/90"
@@ -181,9 +182,10 @@ export default function VedicDhoopMosaicPage() {
                 >
                   <Heart
                     size={20}
+                    aria-hidden="true"
                     fill={wishlisted ? "white" : "none"}
                     className={`transition-all duration-300 group-hover:scale-110 ${
-                      wishlisted ? "text-white" : "text-slate-400 group-hover:text-[#e9aa43]"
+                      wishlisted ? "text-white" : "text-slate-600 group-hover:text-[#e9aa43]"
                     }`}
                   />
                 </button>
@@ -205,15 +207,17 @@ export default function VedicDhoopMosaicPage() {
                   <>
                     <button
                       onClick={() => setActiveImg(i => (i - 1 + productImages.length) % productImages.length)}
-                      className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 md:w-9 md:h-9 bg-[#4a703f]/20 backdrop-blur-sm rounded-full flex items-center justify-center text-[#4a703f] opacity-0 group-hover/img:opacity-100 transition-all duration-200 hover:bg-[#4a703f]/40 hover:scale-110"
+                      aria-label="Previous product image"
+                      className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-11 h-11 md:w-9 md:h-9 bg-[#4a703f]/20 backdrop-blur-sm rounded-full flex items-center justify-center text-[#4a703f] opacity-0 group-hover/img:opacity-100 transition-all duration-200 hover:bg-[#4a703f]/40 hover:scale-110"
                     >
-                      <ChevronLeft size={16} strokeWidth={2.5} />
+                      <ChevronLeft size={16} strokeWidth={2.5} aria-hidden="true" />
                     </button>
                     <button
                       onClick={() => setActiveImg(i => (i + 1) % productImages.length)}
-                      className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 md:w-9 md:h-9 bg-[#4a703f]/20 backdrop-blur-sm rounded-full flex items-center justify-center text-[#4a703f] opacity-0 group-hover/img:opacity-100 transition-all duration-200 hover:bg-[#4a703f]/40 hover:scale-110"
+                      aria-label="Next product image"
+                      className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-11 h-11 md:w-9 md:h-9 bg-[#4a703f]/20 backdrop-blur-sm rounded-full flex items-center justify-center text-[#4a703f] opacity-0 group-hover/img:opacity-100 transition-all duration-200 hover:bg-[#4a703f]/40 hover:scale-110"
                     >
-                      <ChevronRight size={16} strokeWidth={2.5} />
+                      <ChevronRight size={16} strokeWidth={2.5} aria-hidden="true" />
                     </button>
                   </>
                 )}

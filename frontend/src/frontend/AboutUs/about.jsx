@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-
 import { motion } from "framer-motion";
+import { clUrl, clSrcSet } from "../../utils/cloudinary";
 import { ArrowUpRight, Sparkle, Trees } from "lucide-react";
 import { Target, Eye, ShieldCheck } from "lucide-react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -191,6 +191,7 @@ function about() {
     },
   ];
   const scrollRef = useRef(null);
+  const cachedScrollWidth = useRef(0);
   const partnershipImages = [
     "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778739066/DSC00727_1_cgyreu.jpg",
     "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778740839/DSC00531_1_ufdg3f.jpg",
@@ -201,14 +202,20 @@ function about() {
   ];
   const [partnershipSlide, setPartnershipSlide] = useState(0);
 
+  // Cache offsetWidth so the scroll handler never triggers a forced reflow
+  useEffect(() => {
+    const update = () => {
+      if (scrollRef.current) cachedScrollWidth.current = scrollRef.current.offsetWidth;
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
   const scroll = (direction) => {
-    const { current } = scrollRef;
-    const scrollAmount = current.offsetWidth * 0.8; // Match the 80% width of cards
-    if (direction === "left") {
-      current.scrollBy({ left: -scrollAmount, behavior: "smooth" });
-    } else {
-      current.scrollBy({ left: scrollAmount, behavior: "smooth" });
-    }
+    const amount = cachedScrollWidth.current * 0.8;
+    if (!scrollRef.current || !amount) return;
+    scrollRef.current.scrollBy({ left: direction === "left" ? -amount : amount, behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -343,9 +350,9 @@ function about() {
                         <span className="text-[10px] font-black text-[#744926] tracking-wider">
                           {item.n}
                         </span>
-                        <h4 className="text-sm font-black uppercase tracking-widerst text-slate-900 group-hover:text-[#4a703f] transition-colors">
+                        <h3 className="text-sm font-black uppercase tracking-widerst text-slate-900 group-hover:text-[#4a703f] transition-colors">
                           {item.t}
-                        </h4>
+                        </h3>
                       </div>
                       <p className="text-[12px] text-slate-500 font-medium leading-relaxed mt-1 max-w-xs">
                         {item.d}
@@ -373,9 +380,9 @@ function about() {
                   >
                     {item.icon}
                   </div>
-                  <h4 className="text-[11px] font-black uppercase tracking-widerst text-slate-900">
+                  <h3 className="text-[11px] font-black uppercase tracking-widerst text-slate-900">
                     {item.title}
-                  </h4>
+                  </h3>
                 </div>
                 <p className="text-[12px] text-slate-500 font-medium leading-relaxed group-hover:text-slate-900 transition-colors">
                   {item.desc}
@@ -394,7 +401,7 @@ function about() {
               whileInView={{ opacity: 1, y: 0 }}
               className="text-center mb-5 md:mb-16"
             >
-              <h2 className="text-3xl md:text-8xl font-black text-slate-100 tracking-wider leading-tight md:leading-[0.85]">
+              <h2 className="text-3xl md:text-8xl font-black text-slate-100 tracking-wider  md:leading-[0.85]">
                 Built <span className="text-[#e9aa43]">on Truth.</span>
               </h2>
             </motion.div>
@@ -461,12 +468,18 @@ function about() {
               <div className="h-[300px] w-full lg:h-auto lg:aspect-[3/4] rounded-[32px] overflow-hidden relative border border-slate-100 shadow-sm bg-[#eef5ea]">
                 <motion.img
                   key={partnershipSlide}
-                  src={partnershipImages[partnershipSlide]}
+                  src={clUrl(partnershipImages[partnershipSlide], 700)}
+                  srcSet={clSrcSet(partnershipImages[partnershipSlide], [350, 700, 900])}
+                  sizes="(max-width: 1024px) 100vw, 420px"
                   alt="Partnership"
                   initial={{ opacity: 0.7, scale: 1.03 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.45, ease: "easeOut" }}
-                  className="w-full h-full object-cover "
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                  width={700}
+                  height={933}
                 />
 
                 <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/55 to-transparent">
@@ -479,14 +492,14 @@ function about() {
                   <>
                     <button
                       onClick={prevPartnershipSlide}
-                      className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 text-[#2d3a29] flex items-center justify-center hover:bg-white transition-colors"
+                      className="absolute left-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/90 text-[#2d3a29] flex items-center justify-center hover:bg-white transition-colors"
                       aria-label="Previous partnership image"
                     >
                       <ArrowLeft size={16} />
                     </button>
                     <button
                       onClick={nextPartnershipSlide}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-white/90 text-[#2d3a29] flex items-center justify-center hover:bg-white transition-colors"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/90 text-[#2d3a29] flex items-center justify-center hover:bg-white transition-colors"
                       aria-label="Next partnership image"
                     >
                       <ArrowRight size={16} />
@@ -496,13 +509,15 @@ function about() {
                         <button
                           key={idx}
                           onClick={() => setPartnershipSlide(idx)}
-                          className={`h-2 rounded-full transition-all ${
+                          className="min-w-[44px] min-h-[44px] flex items-center justify-center"
+                          aria-label={`Go to partnership image ${idx + 1}`}
+                        >
+                          <span className={`h-2 block rounded-full transition-all ${
                             idx === partnershipSlide
                               ? "w-6 bg-white"
                               : "w-2 bg-white/60 hover:bg-white/90"
-                          }`}
-                          aria-label={`Go to partnership image ${idx + 1}`}
-                        />
+                          }`} />
+                        </button>
                       ))}
                     </div>
                   </>
@@ -516,7 +531,7 @@ function about() {
                 <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#e9aa43]">
                   Our Partnership
                 </span>
-                <h2 className="text-2xl md:text-5xl font-bold text-[#2d3a29] leading-tight">
+                <h2 className="text-2xl md:text-5xl font-bold text-[#2d3a29] ">
                   Where Western Vision Meets Indian Heritage
                 </h2>
                 <p className="text-slate-700 text-sm md:text-lg leading-relaxed font-medium">
@@ -580,11 +595,11 @@ function about() {
 
                 <div className="flex items-center gap-3 mb-2">
                   <div className="h-[1px] w-12 bg-[#4a703f]" />
-                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">
+                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-600">
                     The Gauyog Kendr Advantages
                   </span>
                 </div>
-                <h2 className="text-3xl md:text-7xl font-black text-slate-950 tracking-wider leading-tight md:leading-[0.85]">
+                <h2 className="text-3xl md:text-7xl font-black text-slate-950 tracking-wider  md:leading-[0.85]">
                   Why <span className="text-[#4a703f]">Gauyog Kendr</span>
                 </h2>
                 <p className="text-slate-500 text-sm md:text-xl leading-relaxed mt-3 md:mt-6 font-medium">
@@ -623,12 +638,12 @@ function about() {
                         </div>
 
                         {/* Subtitle / Labelling */}
-                        <p className="text-[11px] font-black uppercase tracking-[0.3em] text-slate-400 group-hover:text-slate-600 transition-colors pt-2">
+                        <p className="text-[11px] font-black uppercase tracking-[0.3em] text-slate-600 group-hover:text-slate-800 transition-colors pt-2">
                           {item.subtitle}
                         </p>
 
                         {/* Main Title - Smaller and cleaner */}
-                        <h3 className="text-2xl md:text-3xl font-black text-slate-900 tracking-wider leading-tight">
+                        <h3 className="text-2xl md:text-3xl font-black text-slate-900 tracking-wider ">
                           {item.title}
                         </h3>
 
@@ -652,7 +667,7 @@ function about() {
                   <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#e9aa43]">
                     Community & Women
                   </span>
-                  <h2 className="text-2xl md:text-5xl font-bold leading-tight tracking-wider">
+                  <h2 className="text-2xl md:text-5xl font-bold  tracking-wider">
                     Empowering the Hands that Feed the Earth
                   </h2>
                 </div>
@@ -693,9 +708,15 @@ function about() {
                 <div className="group aspect-square bg-[#336a36] rounded-3xl border border-white/10 overflow-hidden relative shadow-inner">
                   {/* Full Image */}
                   <img
-                    src="https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778741236/DSC00393_1_wmyf6e.jpg" // Replace with your image path (cover recommended)
+                    src={clUrl("https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/v1778741236/DSC00393_1_wmyf6e.jpg", 600)}
+                    srcSet={clSrcSet("https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/v1778741236/DSC00393_1_wmyf6e.jpg", [300, 600])}
+                    sizes="(max-width: 1024px) 50vw, 320px"
                     alt="Hand-sorted workforce"
-                    className="w-full h-full object-cover  filter brightness-110 transition-transform duration-700 ease-out group-hover:scale-110"
+                    className="w-full h-full object-cover filter brightness-110 transition-transform duration-700 ease-out group-hover:scale-110"
+                    loading="lazy"
+                    decoding="async"
+                    width={600}
+                    height={600}
                   />
                   {/* Optional subtle gradient overlay to match dark brand */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -705,9 +726,15 @@ function about() {
                 <div className="group aspect-square bg-[#336a36] rounded-3xl border border-white/10 overflow-hidden relative shadow-inner">
                   {/* Full Image */}
                   <img
-                    src="https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778741619/DSC00374_1_rc1jjo.jpg" // Replace with your image path (cover recommended)
+                    src={clUrl("https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/v1778741619/DSC00374_1_rc1jjo.jpg", 600)}
+                    srcSet={clSrcSet("https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/v1778741619/DSC00374_1_rc1jjo.jpg", [300, 600])}
+                    sizes="(max-width: 1024px) 50vw, 320px"
                     alt="Quality weighing process"
                     className="w-full h-full object-cover filter brightness-110 transition-transform duration-700 ease-out group-hover:scale-110"
+                    loading="lazy"
+                    decoding="async"
+                    width={600}
+                    height={600}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
@@ -716,9 +743,15 @@ function about() {
                 <div className="group col-span-2 aspect-[2/1] rounded-3xl border border-white/10 overflow-hidden relative shadow-inner">
                   {/* Full Image */}
                   <img
-                    src="https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778741516/DSC00359_1_yojjjm.jpg" // Replace with your image path (contain or cover recommended)
+                    src={clUrl("https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/v1778741516/DSC00359_1_yojjjm.jpg", 900)}
+                    srcSet={clSrcSet("https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/v1778741516/DSC00359_1_yojjjm.jpg", [480, 900])}
+                    sizes="(max-width: 1024px) 100vw, 640px"
                     alt="Gauyog Kendr full team"
                     className="w-full h-full object-cover filter brightness-110 transition-transform duration-700 ease-out group-hover:scale-110"
+                    loading="lazy"
+                    decoding="async"
+                    width={900}
+                    height={450}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
@@ -736,11 +769,11 @@ function about() {
                   whileInView={{ opacity: 1, x: 0 }}
                   className="flex items-center gap-2 mb-3"
                 >
-                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">
+                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-600">
                     The Collective
                   </span>
                 </motion.div>
-                <h2 className="text-3xl md:text-7xl font-black tracking-wider text-slate-900 leading-tight md:leading-[0.9]">
+                <h2 className="text-3xl md:text-7xl font-black tracking-wider text-slate-900  md:leading-[0.9]">
                   Hands
                   <span className="text-[#4a703f]"> Behind the Bloom.</span>
                 </h2>
@@ -763,18 +796,24 @@ function about() {
                 >
                   <div className="relative aspect-[4/5] rounded-[40px] overflow-hidden bg-slate-100 shadow-sm transition-all duration-700 group-hover:shadow-2xl group-hover:shadow-slate-200">
                     <img
-                      src={member.image}
+                      src={clUrl(member.image, 600)}
+                      srcSet={clSrcSet(member.image, [300, 600])}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
                       alt={member.name}
                       className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105"
+                      loading="lazy"
+                      decoding="async"
+                      width={600}
+                      height={750}
                     />
 
                     <div className="absolute inset-x-5 bottom-5 top-20 bg-black/65 backdrop-blur-md border border-white/20 rounded-[24px] p-4 md:p-5 opacity-0 translate-y-3 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 overflow-y-auto">
                       <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#e9aa43] mb-2">
                         {member.role1}
                       </p>
-                      <h4 className="text-lg font-black text-white leading-tight mb-2">
+                      <h3 className="text-lg font-black text-white  mb-2">
                         {member.name}
-                      </h4>
+                      </h3>
                       <p className="text-[13px] font-medium text-white/90 leading-relaxed">
                         {member.bio}
                       </p>
@@ -788,7 +827,7 @@ function about() {
                       <p className="text-[9px] uppercase tracking-[0.2em] font-black text-[#744926]">
                         {member.role1}
                       </p>
-                      <p className="text-sm font-black text-slate-900 leading-tight">
+                      <p className="text-sm font-black text-slate-900 ">
                         {member.name}
                       </p>
                     </div>
@@ -817,7 +856,7 @@ function about() {
                     Behind the Scenes
                   </span>
                 </motion.div>
-                <h2 className="text-3xl md:text-7xl font-black tracking-wider text-slate-100 leading-tight md:leading-[0.9]">
+                <h2 className="text-3xl md:text-7xl font-black tracking-wider text-slate-100  md:leading-[0.9]">
                   Our Hands To
                   <br />
                   <span className="text-[#e9aa43]">Your Fields</span>
@@ -832,15 +871,17 @@ function about() {
             <div className="flex md:hidden items-center gap-4">
               <button
                 onClick={() => scroll("left")}
+                aria-label="Scroll gallery left"
                 className="size-12 rounded-full border border-slate-200 flex items-center justify-center text-slate-900 active:bg-[#4a703f] active:text-white transition-all"
               >
-                <ArrowRight className="rotate-180" size={20} />
+                <ArrowRight className="rotate-180" size={20} aria-hidden="true" />
               </button>
               <button
                 onClick={() => scroll("right")}
+                aria-label="Scroll gallery right"
                 className="size-12 rounded-full bg-slate-900 flex items-center justify-center text-white active:bg-[#4a703f] transition-all shadow-lg"
               >
-                <ArrowRight size={20} />
+                <ArrowRight size={20} aria-hidden="true" />
               </button>
             </div>
           </div>
@@ -851,17 +892,17 @@ function about() {
             style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
             {[
-              "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778741619/DSC00374_1_rc1jjo.jpg",
-              "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778742848/DSC00757_1_mrx5rk.jpg",
-              "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778742382/DSC00385_1_iivpfp.jpg",
-              "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778741405/DSC00367_1_frji1m.jpg",
-              "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778743001/DSC00737_1_yuwn5e.jpg",
-              "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778739708/DSC00642_2_1_vch4fe.jpg",
-              "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778741516/DSC00359_1_yojjjm.jpg",
-              "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778738318/DSC00345_jtxnnk.jpg",
-              "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778741041/DSC00541_1_sofgme.jpg",
-              "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778740839/DSC00531_1_ufdg3f.jpg",
-            ].map((url, index) => (
+              "v1778741619/DSC00374_1_rc1jjo.jpg",
+              "v1778742848/DSC00757_1_mrx5rk.jpg",
+              "v1778742382/DSC00385_1_iivpfp.jpg",
+              "v1778741405/DSC00367_1_frji1m.jpg",
+              "v1778743001/DSC00737_1_yuwn5e.jpg",
+              "v1778739708/DSC00642_2_1_vch4fe.jpg",
+              "v1778741516/DSC00359_1_yojjjm.jpg",
+              "v1778738318/DSC00345_jtxnnk.jpg",
+              "v1778741041/DSC00541_1_sofgme.jpg",
+              "v1778740839/DSC00531_1_ufdg3f.jpg",
+            ].map((path, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
@@ -871,9 +912,15 @@ function about() {
                 className="group relative min-w-[85%] md:min-w-0 aspect-square overflow-hidden bg-slate-100 border-[8px] border-transparent md:hover:border-white transition-all duration-500 z-10 snap-center"
               >
                 <img
-                  src={url}
+                  src={clUrl(`https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/${path}`, 600)}
+                  srcSet={clSrcSet(`https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/${path}`, [300, 600])}
+                  sizes="(max-width: 1024px) 85vw, 260px"
                   alt="Field Work"
                   className="w-full h-full object-cover transition-all duration-700"
+                  loading="lazy"
+                  decoding="async"
+                  width={600}
+                  height={600}
                 />
                 <div className="absolute bottom-4 left-4 bg-white/10 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
                   <span className="text-[9px] font-black text-white uppercase tracking-wider">
@@ -907,8 +954,8 @@ function Director({ name, role, initial }) {
         {initial}
       </div>
       <div>
-        <h4 className="text-sm font-black text-slate-900">{name}</h4>
-        <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+        <p className="text-sm font-black text-slate-900">{name}</p>
+        <p className="text-[10px] font-bold text-slate-600 uppercase tracking-wider">
           {role}
         </p>
       </div>
@@ -920,7 +967,7 @@ function Stat({ value, label }) {
   return (
     <div className="space-y-1">
       <div className="text-2xl font-bold text-[#e9aa43]">{value}</div>
-      <div className="text-[9px] font-black tracking-widerst text-white/60 leading-tight uppercase">
+      <div className="text-[9px] font-black tracking-widerst text-white/60  uppercase">
         {label}
       </div>
     </div>

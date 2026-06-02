@@ -25,10 +25,10 @@ const footerLinks = {
     { name: "Refund Policy", href: "/refund" },
   ],
   socials: [
-    { icon: Instagram, href: "#", color: "hover:text-pink-500" },
-    { icon: Twitter, href: "#", color: "hover:text-blue-400" },
-    { icon: Facebook, href: "#", color: "hover:text-blue-600" },
-    { icon: Youtube, href: "#", color: "hover:text-red-500" },
+    { icon: Instagram, href: "#", color: "hover:text-pink-500", name: "Instagram" },
+    { icon: Twitter, href: "#", color: "hover:text-blue-400", name: "Twitter / X" },
+    { icon: Facebook, href: "#", color: "hover:text-blue-600", name: "Facebook" },
+    { icon: Youtube, href: "#", color: "hover:text-red-500", name: "YouTube" },
   ],
 };
 
@@ -41,9 +41,12 @@ export default function ModernFooter() {
             <div className="space-y-3 md:space-y-4">
               <div className="cursor-pointer">
                 <img
-                  src="https://res.cloudinary.com/dbpzzvcik/image/upload/v1775049866/final_logo_copy.jpg_puj109.jpg"
+                  src="https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto,w_200/v1775049866/final_logo_copy.jpg_puj109.jpg"
                   className="h-[100px] md:h-[140px] w-auto object-contain transition-all"
                   alt="Logo"
+                  decoding="async"
+                  width={200}
+                  height={140}
                 />
                 <p className="text-gray-500 max-w-sm leading-relaxed text-xs md:text-sm">
                   Sign up to receive updates on new products and exclusive
@@ -71,7 +74,7 @@ export default function ModernFooter() {
           </div>
 
           <div className="lg:col-span-2 space-y-3 md:space-y-6">
-            <h3 className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-400">
+            <h3 className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-600">
               Quick Menu
             </h3>
             <ul className="grid grid-cols-1 gap-y-2 md:gap-y-3">
@@ -90,7 +93,7 @@ export default function ModernFooter() {
           </div>
 
           <div className="lg:col-span-2 space-y-3 md:space-y-6">
-            <h3 className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-400">
+            <h3 className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-600">
               Legal
             </h3>
             <ul className="grid grid-cols-1 gap-y-2 md:gap-y-3">
@@ -110,7 +113,7 @@ export default function ModernFooter() {
 
           <div className="col-span-2 lg:col-span-3 space-y-4 md:space-y-8">
             <div className="space-y-4">
-              <h3 className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-400">
+              <h3 className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-600">
                 Social Connect
               </h3>
               <div className="flex gap-3">
@@ -119,9 +122,10 @@ export default function ModernFooter() {
                     key={i}
                     href={social.href}
                     whileHover={{ y: -5 }}
-                    className={`w-10 h-10 md:w-11 md:h-11 rounded-full bg-gray-50 flex items-center justify-center text-gray-400 border border-transparent hover:border-gray-100 hover:bg-white transition-all ${social.color}`}
+                    aria-label={`Follow us on ${social.name}`}
+                    className={`w-11 h-11 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 border border-transparent hover:border-gray-100 hover:bg-white transition-all ${social.color}`}
                   >
-                    <social.icon size={18} strokeWidth={2.5} />
+                    <social.icon size={18} strokeWidth={2.5} aria-hidden="true" />
                   </motion.a>
                 ))}
               </div>
@@ -132,7 +136,7 @@ export default function ModernFooter() {
                 <ShieldCheck size={18} />
               </div>
               <div>
-                <p className="text-[9px] font-black uppercase tracking-widerst text-gray-400 leading-none mb-1">
+                <p className="text-[9px] font-black uppercase tracking-widerst text-gray-600 leading-none mb-1">
                   Security
                 </p>
                 <p className="text-xs font-bold text-gray-900 leading-none">
@@ -144,7 +148,7 @@ export default function ModernFooter() {
         </div>
 
         <div className="pt-6 md:pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6">
-          <div className="flex flex-col items-center md:items-start gap-1.5 md:gap-2 text-gray-400 text-[10px] font-bold uppercase tracking-wider text-center">
+          <div className="flex flex-col items-center md:items-start gap-1.5 md:gap-2 text-gray-600 text-[10px] font-bold uppercase tracking-wider text-center">
             <div className="flex items-center gap-2">
               <Globe size={14} />
               <span>English (India)</span>
@@ -175,6 +179,10 @@ export default function ModernFooter() {
                   src={img.src}
                   className="h-full w-full object-contain"
                   alt={img.alt}
+                  loading="lazy"
+                  decoding="async"
+                  width={64}
+                  height={40}
                 />
               </div>
             ))}
