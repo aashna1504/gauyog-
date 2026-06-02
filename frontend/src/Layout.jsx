@@ -60,35 +60,31 @@ const Layout = () => {
       <AuthNotification />
       <Toaster
         position="top-right"
+        gutter={10}
         toastOptions={{
           duration: 4000,
           style: {
-            borderRadius: "999px",
+            borderRadius: "18px",
             fontWeight: 700,
-            fontSize: "12px",
+            fontSize: "13px",
+            padding: "14px 18px",
             color: "#ffffff",
-            border: "1px solid rgba(255,255,255,0.2)",
-            boxShadow: "0 10px 25px rgba(0,0,0,0.18)",
+            maxWidth: "380px",
+            boxShadow: "0 20px 40px rgba(0,0,0,0.15), inset 0 0 0 1px rgba(255,255,255,0.1)",
           },
           success: {
             style: {
               background: "#4a703f",
-              color: "#ffffff",
+              boxShadow: "0 20px 40px rgba(74,112,63,0.35), inset 0 0 0 1px rgba(255,255,255,0.12)",
             },
-            iconTheme: {
-              primary: "#ffffff",
-              secondary: "#4a703f",
-            },
+            iconTheme: { primary: "#ffffff", secondary: "#4a703f" },
           },
           error: {
             style: {
               background: "#744926",
-              color: "#ffffff",
+              boxShadow: "0 20px 40px rgba(116,73,38,0.35), inset 0 0 0 1px rgba(255,255,255,0.12)",
             },
-            iconTheme: {
-              primary: "#ffffff",
-              secondary: "#744926",
-            },
+            iconTheme: { primary: "#ffffff", secondary: "#744926" },
           },
         }}
       />

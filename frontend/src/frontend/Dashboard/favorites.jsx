@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import toast from "react-hot-toast";
 import { motion } from "framer-motion";
 import ProductImage from "../../Components/ProductImage";
 import {
@@ -24,7 +25,7 @@ export default function NexusFavourites() {
 
   const handleAddToCart = async (item) => {
     const result = await addToCart(item.product || { id: item.productId });
-    if (!result?.success && result?.message) alert(result.message);
+    if (!result?.success && result?.message) toast.error(result.message);
   };
 
   const handleRemove = (productId, productName) => {

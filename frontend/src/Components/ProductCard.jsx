@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, forwardRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import ProductImage from "./ProductImage";
 import {
@@ -14,13 +14,13 @@ import {
 import { useNavigate } from "react-router-dom";
 import api from "../api/axios";
 
-export default function ProductCard({
+const ProductCard = forwardRef(function ProductCard({
   product,
   onAddToCart,
   onBuyNow,
   onToggleWishlist,
   isInWishlist,
-}) {
+}, ref) {
   const [showModal, setShowModal] = useState(false);
   const [modalProduct, setModalProduct] = useState(null);
   const [modalLoading, setModalLoading] = useState(false);
@@ -103,6 +103,7 @@ export default function ProductCard({
   return (
     <>
       <motion.div
+        ref={ref}
         layout
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -439,4 +440,6 @@ export default function ProductCard({
       </AnimatePresence>
     </>
   );
-}
+});
+
+export default ProductCard;

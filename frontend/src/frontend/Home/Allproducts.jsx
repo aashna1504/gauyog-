@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
 import { AnimatePresence } from "framer-motion";
 import ProductCard from "../../Components/ProductCard";
 import api from "../../api/axios";
@@ -38,7 +39,7 @@ export default function AllProducts() {
       ? await removeByProductId(product.id)
       : await addToCart(product);
     if (!result?.success && result?.message) {
-      alert(result.message);
+      toast.error(result.message);
     }
   };
 
@@ -46,7 +47,7 @@ export default function AllProducts() {
     if (!isInCart(product.id)) {
       const result = await addToCart(product);
       if (!result?.success) {
-        if (result?.message) alert(result.message);
+        if (result?.message) toast.error(result.message);
         return;
       }
     }

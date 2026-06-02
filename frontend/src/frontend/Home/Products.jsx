@@ -1,4 +1,5 @@
 import { AnimatePresence } from "framer-motion";
+import toast from "react-hot-toast";
 import { clUrl, clSrcSet } from "../../utils/cloudinary";
 import { useEffect, useState } from "react";
 import {
@@ -55,7 +56,7 @@ export default function ProductSection() {
       ? await removeByProductId(product.id)
       : await addToCart(product);
     if (!result?.success && result?.message) {
-      alert(result.message);
+      toast.error(result.message);
     }
   };
 
@@ -63,7 +64,7 @@ export default function ProductSection() {
     if (!isInCart(product.id)) {
       const result = await addToCart(product);
       if (!result?.success) {
-        if (result?.message) alert(result.message);
+        if (result?.message) toast.error(result.message);
         return;
       }
     }

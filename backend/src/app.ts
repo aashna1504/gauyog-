@@ -22,7 +22,13 @@ const app: Express = express();
 // CORS must run before helmet so OPTIONS preflights are handled correctly
 app.use(
   cors({
-    origin: ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:3001'],
+    origin: [
+      'http://localhost:5173',
+      'http://localhost:5174',
+      'http://localhost:3001',
+      'https://gauyogkendr.com',
+      'https://www.gauyogkendr.com',
+    ],
     credentials: true,
     methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],

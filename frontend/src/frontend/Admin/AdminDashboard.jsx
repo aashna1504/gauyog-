@@ -226,6 +226,23 @@ function Orders() {
   );
 }
 
+const CATEGORIES = ["Fertilizer", "Coco", "Garden", "Dairy", "Ghee", "Herbs", "Grains", "Wellness", "Pantry"];
+
+function TextField({ label, value, onChange, type = "text", placeholder = "" }) {
+  return (
+    <div>
+      <label className="text-[10px] font-black uppercase tracking-widerst text-slate-400 mb-1 block">{label}</label>
+      <input
+        type={type}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={placeholder}
+        className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-[#4a703f] transition-colors"
+      />
+    </div>
+  );
+}
+
 // ── Edit Product Modal ───────────────────────────────────────────────────────
 function EditProductModal({ product, onClose, onSaved }) {
   const [form, setForm] = useState({
@@ -234,9 +251,16 @@ function EditProductModal({ product, onClose, onSaved }) {
     price: product.price ?? "",
     discountPrice: product.discountPrice ?? "",
     stock: product.stock ?? "",
-    category: product.category ?? "Dairy",
+    category: product.category ?? "Fertilizer",
     inStock: product.inStock ?? true,
     imageUrl: product.imageUrl ?? "",
+    image1kg: product.image1kg ?? "",
+    price1kg: product.price1kg ?? "",
+    image3kg: product.image3kg ?? "",
+    price3kg: product.price3kg ?? "",
+    image5kg: product.image5kg ?? "",
+    price5kg: product.price5kg ?? "",
+    weightOptions: (product.weightOptions ?? []).join(", "),
   });
   const [saving, setSaving] = useState(false);
 
@@ -249,6 +273,10 @@ function EditProductModal({ product, onClose, onSaved }) {
     }
     setSaving(true);
     try {
+      const weightOpts = form.weightOptions
+        .split(",")
+        .map((w) => w.trim().toLowerCase())
+        .filter(Boolean);
       const payload = {
         name: form.name.trim(),
         description: form.description.trim(),
@@ -256,7 +284,14 @@ function EditProductModal({ product, onClose, onSaved }) {
         stock: parseInt(form.stock) || 0,
         category: form.category,
         inStock: form.inStock,
-        imageUrl: form.imageUrl.trim() || undefined,
+        weightOptions: weightOpts,
+        imageUrl: form.imageUrl.trim() || null,
+        image1kg: form.image1kg.trim() || null,
+        price1kg: form.price1kg ? parseFloat(form.price1kg) : undefined,
+        image3kg: form.image3kg.trim() || null,
+        price3kg: form.price3kg ? parseFloat(form.price3kg) : undefined,
+        image5kg: form.image5kg.trim() || null,
+        price5kg: form.price5kg ? parseFloat(form.price5kg) : undefined,
         ...(form.discountPrice ? { discountPrice: parseFloat(form.discountPrice) } : {}),
       };
       await api.patch(`/products/${product.id}`, payload);
@@ -272,76 +307,188 @@ function EditProductModal({ product, onClose, onSaved }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
-      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
           <p className="font-black text-slate-900">Edit Product</p>
-          <button onClick={onClose} className="text-slate-400 hover:text-slate-700 transition-colors">
-            <X size={18} />
-          </button>
+          <button onClick={onClose} className="text-slate-400 hover:text-slate-700 transition-colors"><X size={18} /></button>
         </div>
-        <div className="px-6 py-5 space-y-4">
-          {[
-            { label: "Name *", key: "name", type: "text" },
-            { label: "Image URL", key: "imageUrl", type: "text" },
-            { label: "Price (₹) *", key: "price", type: "number" },
-            { label: "Discount Price (₹)", key: "discountPrice", type: "number" },
-            { label: "Stock", key: "stock", type: "number" },
-          ].map(({ label, key, type }) => (
-            <div key={key}>
-              <label className="text-[10px] font-black uppercase tracking-widerst text-slate-400 mb-1 block">{label}</label>
-              <input
-                type={type}
-                value={form[key]}
-                onChange={(e) => set(key, e.target.value)}
-                className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-[#4a703f] transition-colors"
-              />
+        <div className="px-6 py-5 space-y-5">
+          <div className="grid grid-cols-2 gap-4">
+            <TextField label="Name *" value={form.name} onChange={(v) => set("name", v)} />
+            <div>
+              <label className="text-[10px] font-black uppercase tracking-widerst text-slate-400 mb-1 block">Category</label>
+              <select value={form.category} onChange={(e) => set("category", e.target.value)}
+                className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-[#4a703f] transition-colors">
+                {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
+              </select>
             </div>
-          ))}
+            <TextField label="Price (₹) *" value={form.price} onChange={(v) => set("price", v)} type="number" />
+            <TextField label="Discount Price (₹)" value={form.discountPrice} onChange={(v) => set("discountPrice", v)} type="number" />
+            <TextField label="Stock" value={form.stock} onChange={(v) => set("stock", v)} type="number" />
+            <div>
+              <label className="text-[10px] font-black uppercase tracking-widerst text-slate-400 mb-1 block">Weight Options <span className="normal-case font-semibold">(comma-separated, e.g. 1kg, 3kg, 5kg)</span></label>
+              <input type="text" value={form.weightOptions} onChange={(e) => set("weightOptions", e.target.value)} placeholder="1kg, 3kg, 5kg"
+                className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-[#4a703f] transition-colors" />
+            </div>
+          </div>
+
           <div>
             <label className="text-[10px] font-black uppercase tracking-widerst text-slate-400 mb-1 block">Description</label>
-            <textarea
-              rows={3}
-              value={form.description}
-              onChange={(e) => set("description", e.target.value)}
-              className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-[#4a703f] transition-colors resize-none"
-            />
+            <textarea rows={3} value={form.description} onChange={(e) => set("description", e.target.value)}
+              className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-[#4a703f] transition-colors resize-none" />
           </div>
-          <div>
-            <label className="text-[10px] font-black uppercase tracking-widerst text-slate-400 mb-1 block">Category</label>
-            <select
-              value={form.category}
-              onChange={(e) => set("category", e.target.value)}
-              className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-[#4a703f] transition-colors"
-            >
-              {["Dairy", "Ghee", "Herbs", "Grains", "Wellness", "Garden", "Pantry"].map((c) => (
-                <option key={c} value={c}>{c}</option>
-              ))}
-            </select>
+
+          <div className="border border-slate-100 rounded-2xl p-4 space-y-3">
+            <p className="text-[10px] font-black uppercase tracking-widerst text-slate-400">Images (paste Cloudinary URL)</p>
+            <TextField label="Main Image URL" value={form.imageUrl} onChange={(v) => set("imageUrl", v)} placeholder="https://res.cloudinary.com/..." />
+            {form.imageUrl && (
+              <img src={form.imageUrl} alt="preview" className="h-16 rounded-xl object-contain border border-slate-100" />
+            )}
+            <div className="grid grid-cols-3 gap-3">
+              <div className="space-y-2">
+                <TextField label="1kg Image URL" value={form.image1kg} onChange={(v) => set("image1kg", v)} placeholder="https://res.cloudinary.com/..." />
+                <TextField label="1kg Price (₹)" value={form.price1kg} onChange={(v) => set("price1kg", v)} type="number" />
+                {form.image1kg && <img src={form.image1kg} alt="1kg" className="h-12 rounded-xl object-contain border border-slate-100 w-full" />}
+              </div>
+              <div className="space-y-2">
+                <TextField label="3kg Image URL" value={form.image3kg} onChange={(v) => set("image3kg", v)} placeholder="https://res.cloudinary.com/..." />
+                <TextField label="3kg Price (₹)" value={form.price3kg} onChange={(v) => set("price3kg", v)} type="number" />
+                {form.image3kg && <img src={form.image3kg} alt="3kg" className="h-12 rounded-xl object-contain border border-slate-100 w-full" />}
+              </div>
+              <div className="space-y-2">
+                <TextField label="5kg Image URL" value={form.image5kg} onChange={(v) => set("image5kg", v)} placeholder="https://res.cloudinary.com/..." />
+                <TextField label="5kg Price (₹)" value={form.price5kg} onChange={(v) => set("price5kg", v)} type="number" />
+                {form.image5kg && <img src={form.image5kg} alt="5kg" className="h-12 rounded-xl object-contain border border-slate-100 w-full" />}
+              </div>
+            </div>
           </div>
+
           <div className="flex items-center gap-3">
             <label className="text-[10px] font-black uppercase tracking-widerst text-slate-400">In Stock</label>
-            <button
-              type="button"
-              onClick={() => set("inStock", !form.inStock)}
-              className={`relative w-10 h-5 rounded-full transition-colors ${form.inStock ? "bg-[#4a703f]" : "bg-slate-200"}`}
-            >
+            <button type="button" onClick={() => set("inStock", !form.inStock)}
+              className={`relative w-10 h-5 rounded-full transition-colors ${form.inStock ? "bg-[#4a703f]" : "bg-slate-200"}`}>
               <span className={`absolute top-0.5 w-4 h-4 bg-white rounded-full shadow transition-transform ${form.inStock ? "translate-x-5" : "translate-x-0.5"}`} />
             </button>
           </div>
         </div>
         <div className="px-6 py-4 border-t border-slate-100 flex justify-end gap-3">
-          <button
-            onClick={onClose}
-            className="px-5 py-2 rounded-full border border-slate-200 text-sm font-black text-slate-600 hover:bg-slate-50 transition-colors"
-          >
-            Cancel
-          </button>
-          <button
-            onClick={handleSave}
-            disabled={saving}
-            className="px-5 py-2 rounded-full bg-[#4a703f] text-white text-sm font-black hover:bg-[#3d5e34] disabled:opacity-60 transition-colors flex items-center gap-2"
-          >
+          <button onClick={onClose} className="px-5 py-2 rounded-full border border-slate-200 text-sm font-black text-slate-600 hover:bg-slate-50 transition-colors">Cancel</button>
+          <button onClick={handleSave} disabled={saving}
+            className="px-5 py-2 rounded-full bg-[#4a703f] text-white text-sm font-black hover:bg-[#3d5e34] disabled:opacity-60 transition-colors flex items-center gap-2">
             {saving ? "Saving..." : <><Check size={14} /> Save</>}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Add Product Modal ────────────────────────────────────────────────────────
+function AddProductModal({ onClose, onSaved }) {
+  const EMPTY = {
+    name: "", description: "", price: "", discountPrice: "", stock: "0",
+    category: "Fertilizer", inStock: true, weightOptions: "",
+    imageUrl: "", image1kg: "", price1kg: "", image3kg: "", price3kg: "", image5kg: "", price5kg: "",
+  };
+  const [form, setForm] = useState(EMPTY);
+  const [saving, setSaving] = useState(false);
+  const set = (key, val) => setForm((prev) => ({ ...prev, [key]: val }));
+
+  const handleSave = async () => {
+    if (!form.name.trim() || !form.price || !form.description.trim()) {
+      toast.error("Name, price and description are required");
+      return;
+    }
+    setSaving(true);
+    try {
+      const weightOpts = form.weightOptions
+        .split(",").map((w) => w.trim().toLowerCase()).filter(Boolean);
+      const payload = {
+        name: form.name.trim(),
+        description: form.description.trim(),
+        price: parseFloat(form.price),
+        stock: parseInt(form.stock) || 0,
+        category: form.category,
+        inStock: form.inStock,
+        weightOptions: weightOpts,
+        imageUrl: form.imageUrl.trim() || undefined,
+        image1kg: form.image1kg.trim() || undefined,
+        price1kg: form.price1kg ? parseFloat(form.price1kg) : undefined,
+        image3kg: form.image3kg.trim() || undefined,
+        price3kg: form.price3kg ? parseFloat(form.price3kg) : undefined,
+        image5kg: form.image5kg.trim() || undefined,
+        price5kg: form.price5kg ? parseFloat(form.price5kg) : undefined,
+        ...(form.discountPrice ? { discountPrice: parseFloat(form.discountPrice) } : {}),
+      };
+      await api.post("/products", payload);
+      toast.success("Product created");
+      onSaved();
+      onClose();
+    } catch (err) {
+      toast.error(err.response?.data?.message || "Failed to create product");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
+      <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
+          <p className="font-black text-slate-900">Add New Product</p>
+          <button onClick={onClose} className="text-slate-400 hover:text-slate-700 transition-colors"><X size={18} /></button>
+        </div>
+        <div className="px-6 py-5 space-y-5">
+          <div className="grid grid-cols-2 gap-4">
+            <TextField label="Name *" value={form.name} onChange={(v) => set("name", v)} />
+            <div>
+              <label className="text-[10px] font-black uppercase tracking-widerst text-slate-400 mb-1 block">Category</label>
+              <select value={form.category} onChange={(e) => set("category", e.target.value)}
+                className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-[#4a703f] transition-colors">
+                {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
+              </select>
+            </div>
+            <TextField label="Price (₹) *" value={form.price} onChange={(v) => set("price", v)} type="number" />
+            <TextField label="Discount Price (₹)" value={form.discountPrice} onChange={(v) => set("discountPrice", v)} type="number" />
+            <TextField label="Stock *" value={form.stock} onChange={(v) => set("stock", v)} type="number" />
+            <div>
+              <label className="text-[10px] font-black uppercase tracking-widerst text-slate-400 mb-1 block">Weight Options <span className="normal-case font-semibold">(comma-sep, e.g. 1kg, 3kg)</span></label>
+              <input type="text" value={form.weightOptions} onChange={(e) => set("weightOptions", e.target.value)} placeholder="1kg, 3kg, 5kg"
+                className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-[#4a703f] transition-colors" />
+            </div>
+          </div>
+          <div>
+            <label className="text-[10px] font-black uppercase tracking-widerst text-slate-400 mb-1 block">Description *</label>
+            <textarea rows={3} value={form.description} onChange={(e) => set("description", e.target.value)}
+              className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-semibold text-slate-800 focus:outline-none focus:border-[#4a703f] transition-colors resize-none" />
+          </div>
+          <div className="border border-slate-100 rounded-2xl p-4 space-y-3">
+            <p className="text-[10px] font-black uppercase tracking-widerst text-slate-400">Images (paste Cloudinary URL)</p>
+            <TextField label="Main Image URL" value={form.imageUrl} onChange={(v) => set("imageUrl", v)} placeholder="https://res.cloudinary.com/..." />
+            {form.imageUrl && <img src={form.imageUrl} alt="preview" className="h-16 rounded-xl object-contain border border-slate-100" />}
+            <div className="grid grid-cols-3 gap-3">
+              {[["1kg", "image1kg", "price1kg"], ["3kg", "image3kg", "price3kg"], ["5kg", "image5kg", "price5kg"]].map(([label, imgKey, priceKey]) => (
+                <div key={label} className="space-y-2">
+                  <TextField label={`${label} Image URL`} value={form[imgKey]} onChange={(v) => set(imgKey, v)} placeholder="https://..." />
+                  <TextField label={`${label} Price (₹)`} value={form[priceKey]} onChange={(v) => set(priceKey, v)} type="number" />
+                  {form[imgKey] && <img src={form[imgKey]} alt={label} className="h-12 rounded-xl object-contain border border-slate-100 w-full" />}
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <label className="text-[10px] font-black uppercase tracking-widerst text-slate-400">In Stock</label>
+            <button type="button" onClick={() => set("inStock", !form.inStock)}
+              className={`relative w-10 h-5 rounded-full transition-colors ${form.inStock ? "bg-[#4a703f]" : "bg-slate-200"}`}>
+              <span className={`absolute top-0.5 w-4 h-4 bg-white rounded-full shadow transition-transform ${form.inStock ? "translate-x-5" : "translate-x-0.5"}`} />
+            </button>
+          </div>
+        </div>
+        <div className="px-6 py-4 border-t border-slate-100 flex justify-end gap-3">
+          <button onClick={onClose} className="px-5 py-2 rounded-full border border-slate-200 text-sm font-black text-slate-600 hover:bg-slate-50 transition-colors">Cancel</button>
+          <button onClick={handleSave} disabled={saving}
+            className="px-5 py-2 rounded-full bg-[#744926] text-white text-sm font-black hover:bg-[#5e3a1e] disabled:opacity-60 transition-colors flex items-center gap-2">
+            {saving ? "Creating..." : <><Check size={14} /> Create Product</>}
           </button>
         </div>
       </div>
@@ -403,6 +550,7 @@ function Products() {
   const [loading, setLoading] = useState(true);
   const [editTarget, setEditTarget] = useState(null);
   const [deleteTarget, setDeleteTarget] = useState(null);
+  const [showAdd, setShowAdd] = useState(false);
 
   const fetchProducts = () => {
     setLoading(true);
@@ -418,6 +566,7 @@ function Products() {
 
   return (
     <>
+      {showAdd && <AddProductModal onClose={() => setShowAdd(false)} onSaved={fetchProducts} />}
       {editTarget && (
         <EditProductModal
           product={editTarget}
@@ -435,9 +584,17 @@ function Products() {
       <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
         <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between">
           <p className="text-xs font-black uppercase tracking-widerst text-slate-400">All Products ({products.length})</p>
-          <button onClick={fetchProducts} className="text-slate-400 hover:text-[#4a703f] transition-colors">
-            <RefreshCw size={14} />
-          </button>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setShowAdd(true)}
+              className="px-4 py-1.5 rounded-full bg-[#744926] text-white text-[10px] font-black uppercase tracking-widerst hover:bg-[#5e3a1e] transition-colors flex items-center gap-1.5"
+            >
+              + Add Product
+            </button>
+            <button onClick={fetchProducts} className="text-slate-400 hover:text-[#4a703f] transition-colors">
+              <RefreshCw size={14} />
+            </button>
+          </div>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
