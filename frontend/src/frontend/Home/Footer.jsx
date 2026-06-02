@@ -4,8 +4,7 @@ import {
   Twitter,
   Facebook,
   Youtube,
-  Send,
-  ArrowRight,
+  Linkedin,
   ShieldCheck,
   Globe,
 } from "lucide-react";
@@ -16,6 +15,7 @@ const footerLinks = {
     { name: "Home", href: "/" },
     { name: "About", href: "/about" },
     { name: "Shop", href: "/shop" },
+    { name: "Blog", href: "/blog" },
     { name: "Track Order", href: "/trackorder" },
     { name: "Contact Us", href: "/contact" },
   ],
@@ -25,10 +25,36 @@ const footerLinks = {
     { name: "Refund Policy", href: "/refund" },
   ],
   socials: [
-    { icon: Instagram, href: "#", color: "hover:text-pink-500", name: "Instagram" },
-    { icon: Twitter, href: "#", color: "hover:text-blue-400", name: "Twitter / X" },
-    { icon: Facebook, href: "#", color: "hover:text-blue-600", name: "Facebook" },
-    { icon: Youtube, href: "#", color: "hover:text-red-500", name: "YouTube" },
+    {
+      icon: Instagram,
+      href: "https://www.instagram.com/gauyogkendr",
+      color: "hover:text-pink-500",
+      name: "Instagram",
+    },
+    {
+      icon: Facebook,
+      href: "https://www.facebook.com/gauyogkendr",
+      color: "hover:text-blue-600",
+      name: "Facebook",
+    },
+    {
+      icon: Youtube,
+      href: "https://www.youtube.com/@gauyogkendr",
+      color: "hover:text-red-500",
+      name: "YouTube",
+    },
+    {
+      icon: Twitter,
+      href: "https://twitter.com/gauyogkendr",
+      color: "hover:text-blue-400",
+      name: "Twitter / X",
+    },
+    {
+      icon: Linkedin,
+      href: "https://www.linkedin.com/company/gauyogkendr",
+      color: "hover:text-blue-700",
+      name: "LinkedIn",
+    },
   ],
 };
 
@@ -43,34 +69,18 @@ export default function ModernFooter() {
                 <img
                   src="https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto,w_200/v1775049866/final_logo_copy.jpg_puj109.jpg"
                   className="h-[100px] md:h-[140px] w-auto object-contain transition-all"
-                  alt="Logo"
+                  alt="Gauyog Kendr — Organic Cow-Based Products"
+                  loading="lazy"
                   decoding="async"
                   width={200}
                   height={140}
                 />
                 <p className="text-gray-500 max-w-sm leading-relaxed text-xs md:text-sm">
-                  Sign up to receive updates on new products and exclusive
-                  deals. Don’t miss out on the latest offers and promotions!
+                  100% certified organic cow-based products for your farm,
+                  home, and wellness. Pure. Natural. Trusted.
                 </p>
               </div>
             </div>
-
-            {/* <div className="relative max-w-md group">
-              <div className="absolute inset-0 bg-[#4a703f]/5 blur-xl rounded-full opacity-0 group-focus-within:opacity-100 transition-opacity" />
-              <div className="relative flex items-center bg-white border border-gray-200 rounded-full p-1 focus-within:border-[#4a703f] transition-all shadow-sm">
-                <div className="pl-3 md:pl-4 text-gray-400">
-                  <Send size={16} />
-                </div>
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="w-full bg-transparent border-none focus:ring-0 text-[13px] font-medium px-3 text-gray-900 placeholder:text-gray-400"
-                />
-                <button className="bg-[#4a703f] text-white px-4 md:px-6 py-2.5 md:py-3 rounded-full font-bold text-[10px] md:text-xs uppercase tracking-widerst hover:bg-[#744926] transition-colors flex items-center gap-2">
-                  Join <ArrowRight size={14} className="hidden sm:block" />
-                </button>
-              </div>
-            </div> */}
           </div>
 
           <div className="lg:col-span-2 space-y-3 md:space-y-6">
@@ -114,15 +124,17 @@ export default function ModernFooter() {
           <div className="col-span-2 lg:col-span-3 space-y-4 md:space-y-8">
             <div className="space-y-4">
               <h3 className="text-[10px] font-black uppercase tracking-[0.25em] text-gray-600">
-                Social Connect
+                Follow Us
               </h3>
-              <div className="flex gap-3">
+              <div className="flex flex-wrap gap-3">
                 {footerLinks.socials.map((social, i) => (
                   <motion.a
                     key={i}
                     href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     whileHover={{ y: -5 }}
-                    aria-label={`Follow us on ${social.name}`}
+                    aria-label={`Follow Gauyog Kendr on ${social.name}`}
                     className={`w-11 h-11 rounded-full bg-gray-50 flex items-center justify-center text-gray-500 border border-transparent hover:border-gray-100 hover:bg-white transition-all ${social.color}`}
                   >
                     <social.icon size={18} strokeWidth={2.5} aria-hidden="true" />
@@ -153,18 +165,18 @@ export default function ModernFooter() {
               <Globe size={14} />
               <span>English (India)</span>
             </div>
-            <span>© 2026 Gauyog kendr. All Rights Reserved.</span>
+            <span>© 2026 Gauyog Kendr. All Rights Reserved.</span>
           </div>
 
           <div className="flex items-center gap-3 md:gap-4">
             {[
               {
                 src: "https://t3.ftcdn.net/jpg/05/60/50/16/360_F_560501607_x7crxqBWbmbgK2k8zOL0gICbIbK9hP6y.jpg",
-                alt: "UPI",
+                alt: "UPI Payment",
               },
               {
                 src: "https://www.edigitalagency.com.au/wp-content/uploads/new-visa-logo-high-quality-png-latest-800x258.png",
-                alt: "Visa",
+                alt: "Visa Card",
               },
               {
                 src: "https://www.emerce.nl/content/uploads/2017/07/Mastercard_logo5.png",

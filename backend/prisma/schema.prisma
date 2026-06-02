@@ -44,6 +44,7 @@ model DeliveryDetails {
 model Product {
   id             String     @id @default(uuid())
   name           String
+  slug           String?    @unique
   scientificName String?
   description    String
   ingredients    String?

@@ -2,10 +2,11 @@ import { useEffect, useMemo, useState } from "react";
 import { Heart, Package, Layers, Check, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import ProductImage from "../../Components/ProductImage";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import api from "../../api/axios";
 import useCartStore from "../../store/cartStore";
 import useWishlistStore from "../../store/wishlistStore";
+import { extractIdFromParam, setPageMeta } from "../../utils/seo";
 
 
 export default function VedicDhoopMosaicPage() {
@@ -19,8 +20,9 @@ export default function VedicDhoopMosaicPage() {
   };
   const [loading, setLoading] = useState(true);
 
-  const { id } = useParams();
+  const { slug } = useParams();
   const navigate = useNavigate();
+  const productId = extractIdFromParam(slug || "");
 
   const {
     addItem: addToCart,
@@ -31,9 +33,9 @@ export default function VedicDhoopMosaicPage() {
   const { toggleWishlist, isInWishlist, fetchWishlist } = useWishlistStore();
 
   useEffect(() => {
-    if (!id) return;
+    if (!productId) return;
     api
-      .get(`/products/${id}`)
+      .get(`/products/${productId}`)
       .then((res) => {
         const p = res.data?.data;
         setProduct(p ?? null);
@@ -45,7 +47,77 @@ export default function VedicDhoopMosaicPage() {
       .finally(() => setLoading(false));
     fetchWishlist();
     fetchCart();
-  }, [id, fetchWishlist, fetchCart]);
+  }, [productId, fetchWishlist, fetchCart]);
+
+  // Dynamic meta tags + Product schema
+  useEffect(() => {
+    if (!product) return;
+    const price = getVariantPrice(selectedWeight || product.weight || "");
+    const img = getVariantImage(selectedWeight || product.weight || "");
+    setPageMeta({
+      title: `${product.name} — ${product.category || "Organic Product"}`,
+      description: product.description
+        ? product.description.slice(0, 155)
+        : `Buy ${product.name} online — certified organic, pure, and natural from Gauyog Kendr.`,
+      image: img || undefined,
+      url: `https://www.gauyogkendr.com${window.location.pathname}`,
+      type: "product",
+    });
+
+    // Product schema JSON-LD
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: product.name,
+      description: product.description,
+      image: [img].filter(Boolean),
+      sku: product.sku || product.id,
+      brand: { "@type": "Brand", name: "Gauyog Kendr" },
+      offers: {
+        "@type": "Offer",
+        priceCurrency: "INR",
+        price: price || product.price,
+        availability: product.inStock
+          ? "https://schema.org/InStock"
+          : "https://schema.org/OutOfStock",
+        url: `https://www.gauyogkendr.com${window.location.pathname}`,
+        seller: { "@type": "Organization", name: "Gauyog Kendr" },
+      },
+    };
+
+    let el = document.getElementById("product-schema");
+    if (!el) {
+      el = document.createElement("script");
+      el.id = "product-schema";
+      el.type = "application/ld+json";
+      document.head.appendChild(el);
+    }
+    el.textContent = JSON.stringify(schema);
+
+    // Breadcrumb schema
+    const breadcrumb = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://www.gauyogkendr.com/" },
+        { "@type": "ListItem", position: 2, name: "Shop", item: "https://www.gauyogkendr.com/shop" },
+        { "@type": "ListItem", position: 3, name: product.name, item: `https://www.gauyogkendr.com${window.location.pathname}` },
+      ],
+    };
+    let bcEl = document.getElementById("breadcrumb-schema");
+    if (!bcEl) {
+      bcEl = document.createElement("script");
+      bcEl.id = "breadcrumb-schema";
+      bcEl.type = "application/ld+json";
+      document.head.appendChild(bcEl);
+    }
+    bcEl.textContent = JSON.stringify(breadcrumb);
+
+    return () => {
+      document.getElementById("product-schema")?.remove();
+      document.getElementById("breadcrumb-schema")?.remove();
+    };
+  }, [product, selectedWeight]);
 
   // Resolve variant image and price for the currently selected weight
   const getVariantImage = (weight) => {
@@ -120,6 +192,14 @@ export default function VedicDhoopMosaicPage() {
   return (
     <div className="lg:pt-40 pt-28 pb-16 px-3 md:px-8 bg-[#f8f9f5] min-h-screen">
       <div className="max-w-[1400px] mx-auto">
+        {/* Breadcrumb */}
+        <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs font-bold text-slate-400 mb-6">
+          <Link to="/" className="hover:text-[#4a703f] transition-colors">Home</Link>
+          <ChevronRight size={12} />
+          <Link to="/shop" className="hover:text-[#4a703f] transition-colors">Shop</Link>
+          <ChevronRight size={12} />
+          <span className="text-slate-600 line-clamp-1">{product.name}</span>
+        </nav>
         <div className="flex flex-col gap-4 lg:grid lg:grid-cols-2 lg:gap-6 lg:items-start">
 
           {/* ── INFO CARD: top on mobile, col-2 row-1 on desktop ── */}
@@ -195,8 +275,8 @@ export default function VedicDhoopMosaicPage() {
               <div className="relative flex items-center justify-center min-h-[240px] md:min-h-[480px] bg-white mx-3 md:mx-4 mt-3 mb-0 border border-gray-100 rounded-2xl px-4 py-6 group/img">
                 <ProductImage
                   src={productImages[activeImg]}
-                  alt={product.name}
-                  className="w-full max-w-[220px] md:max-w-[420px] object-contain"
+                  alt={`${product.name} — ${product.category || "Organic Product"} by Gauyog Kendr`}
+                  className="w-full max-w-[220px] md:max-w-[420px] object-contain aspect-square"
                 />
                 <span className="absolute bottom-3 right-3 text-[28px] md:text-[70px] font-black text-[#4a703f]/5 leading-none tracking-wider uppercase select-none pointer-events-none">
                   Gauyog

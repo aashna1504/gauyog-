@@ -14,6 +14,9 @@ const Shop            = lazy(() => import("./frontend/Shop/shop.jsx"));
 const PreviewCard     = lazy(() => import("./frontend/Shop/Previewcard.jsx"));
 const AboutUs         = lazy(() => import("./frontend/AboutUs/about.jsx"));
 const ContactUs       = lazy(() => import("./frontend/ContactUs/contact.jsx"));
+const Blog            = lazy(() => import("./frontend/Blog/Blog.jsx"));
+const BlogPost        = lazy(() => import("./frontend/Blog/BlogPost.jsx"));
+const NotFound        = lazy(() => import("./frontend/NotFound.jsx"));
 const SignIn          = lazy(() => import("./frontend/SignIn/Signin.jsx"));
 const SignUp          = lazy(() => import("./frontend/SignUp/Signup.jsx"));
 const Forgotpassword  = lazy(() => import("./frontend/Forgotpassword/forgot.jsx"));
@@ -44,9 +47,11 @@ const router = createBrowserRouter([
     children: [
       { path: "/",            element: <App /> },
       { path: "/shop",        element: <Suspense fallback={<PageLoader />}><Shop /></Suspense> },
-      { path: "/product/:id", element: <Suspense fallback={<PageLoader />}><PreviewCard /></Suspense> },
+      { path: "/product/:slug", element: <Suspense fallback={<PageLoader />}><PreviewCard /></Suspense> },
       { path: "/about",       element: <Suspense fallback={<PageLoader />}><AboutUs /></Suspense> },
       { path: "/contact",     element: <Suspense fallback={<PageLoader />}><ContactUs /></Suspense> },
+      { path: "/blog",        element: <Suspense fallback={<PageLoader />}><Blog /></Suspense> },
+      { path: "/blog/:slug",  element: <Suspense fallback={<PageLoader />}><BlogPost /></Suspense> },
       { path: "/signin",      element: <Suspense fallback={<PageLoader />}><GoogleAuthLayout><SignIn /></GoogleAuthLayout></Suspense> },
       { path: "/signup",      element: <Suspense fallback={<PageLoader />}><GoogleAuthLayout><SignUp /></GoogleAuthLayout></Suspense> },
       { path: "/forgotpassword", element: <Suspense fallback={<PageLoader />}><Forgotpassword /></Suspense> },
@@ -86,6 +91,11 @@ const router = createBrowserRouter([
       {
         path: "/admin",
         element: <AdminRoute><Suspense fallback={<PageLoader />}><AdminDashboard /></Suspense></AdminRoute>,
+      },
+      // 404 catch-all — must be last
+      {
+        path: "*",
+        element: <Suspense fallback={<PageLoader />}><NotFound /></Suspense>,
       },
     ],
   },

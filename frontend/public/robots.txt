@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /dashboard
+Disallow: /settings
+Disallow: /orders
+Disallow: /favorites
+Disallow: /cart
+Disallow: /shipping
+Disallow: /payment
+Disallow: /signin
+Disallow: /signup
+Disallow: /forgotpassword
+Disallow: /reset-password
+
+Sitemap: https://www.gauyogkendr.com/sitemap.xml

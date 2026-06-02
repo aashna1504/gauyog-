@@ -1,10 +1,11 @@
-import React from "react"; // eslint-disable-line no-unused-vars
+import React, { Suspense, lazy } from "react";
 import { Outlet } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import ScrollToTop from "./ScrollToTop.jsx";
 import NavBar from "./frontend/Home/NavBar.jsx";
-import Footer from "./frontend/Home/Footer.jsx";
 import AuthNotification from "./Components/AuthNotification.jsx";
+
+const Footer = lazy(() => import("./frontend/Home/Footer.jsx"));
 import { motion } from "framer-motion";
 const WHATSAPP_NUMBER = "917984997996";
 const WHATSAPP_MESSAGE = "Hi! I need help with my order.";
@@ -91,7 +92,7 @@ const Layout = () => {
       <main className="flex-grow">
         <Outlet />
       </main>
-      <Footer />
+      <Suspense fallback={null}><Footer /></Suspense>
       <WhatsAppButton />
     </div>
   );

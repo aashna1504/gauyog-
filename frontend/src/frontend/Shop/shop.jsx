@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { CheckCircle, ChevronRight, ShoppingBag } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import ProductListing from "./productlisting";
+import { setPageMeta } from "../../utils/seo";
 
 // Animation Variants
 const containerVariants = {
@@ -36,6 +37,15 @@ const statsBoxVariants = {
 };
 
 export default function ModernShopBanner() {
+  useEffect(() => {
+    setPageMeta({
+      title: "Shop — Organic Cow-Based Products",
+      description:
+        "Browse 48+ certified organic cow-based products: Panchgavya fertilizer, Ayurvedic wellness products, natural incense, and more. Pure products, delivered to your doorstep.",
+      url: "https://www.gauyogkendr.com/shop",
+    });
+  }, []);
+
   return (
     <div className="lg:mt-32 mt-20">
       {/* <motion.div

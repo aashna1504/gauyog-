@@ -52,4 +52,16 @@
   .btn-text-sm {
     @apply text-xs font-black uppercase tracking-widerst;
   }
+
+  /* ── Image aspect ratio helpers ────────────────────────────── */
+  .img-cover {
+    @apply w-full h-full object-cover;
+  }
+  .img-contain {
+    @apply w-full h-full object-contain;
+  }
+  /* Prevent image stretching — all img tags default to contain */
+  img:not([class*="object-"]) {
+    object-fit: contain;
+  }
 }

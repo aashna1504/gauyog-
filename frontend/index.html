@@ -10,13 +10,43 @@
     />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gauyog</title>
-    <!-- Preconnect so font CSS + woff2 files are fetched in parallel, not serially -->
+
+    <!-- Primary Meta Tags -->
+    <title>Gauyog Kendr | Organic Cow-Based Products & Natural Fertilizers</title>
+    <meta name="title" content="Gauyog Kendr | Organic Cow-Based Products & Natural Fertilizers" />
+    <meta name="description" content="Gauyog Kendr offers 100% certified organic cow-based products including Panchgavya, natural fertilizers, Ayurvedic wellness products and more. Pure, natural, delivered to your doorstep." />
+    <meta name="keywords" content="organic farming, panchgavya, cow dung fertilizer, ayurvedic products, natural fertilizer, cow based products, organic products India, gauyog, gaumata products" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English" />
+    <meta name="author" content="Gauyog Kendr" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.gauyogkendr.com/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.gauyogkendr.com/" />
+    <meta property="og:title" content="Gauyog Kendr | Organic Cow-Based Products & Natural Fertilizers" />
+    <meta property="og:description" content="Gauyog Kendr offers 100% certified organic cow-based products including Panchgavya, natural fertilizers, Ayurvedic wellness products and more. Pure, natural, delivered to your doorstep." />
+    <meta property="og:image" content="https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto,w_1200/v1775302434/0fc480c8-6acf-4ff0-a587-cea5c58e069b_lii8qp.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Gauyog Kendr" />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://www.gauyogkendr.com/" />
+    <meta name="twitter:title" content="Gauyog Kendr | Organic Cow-Based Products & Natural Fertilizers" />
+    <meta name="twitter:description" content="100% certified organic cow-based products — Panchgavya, natural fertilizers, Ayurvedic wellness and more. Pure. Natural. Delivered to your doorstep." />
+    <meta name="twitter:image" content="https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto,w_1200/v1775302434/0fc480c8-6acf-4ff0-a587-cea5c58e069b_lii8qp.jpg" />
+
+    <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Cloudinary images load on every page; pre-establish the TCP/TLS connection -->
     <link rel="preconnect" href="https://res.cloudinary.com" crossorigin />
-    <!-- Use media trick to load font stylesheet non-render-blocking, then swap to all -->
+
+    <!-- Fonts — non-render-blocking -->
     <link
       href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap"
       rel="stylesheet"
@@ -29,7 +59,8 @@
         rel="stylesheet"
       />
     </noscript>
-    <!-- Preload LCP hero image with responsive hints so mobile gets the 480w version -->
+
+    <!-- LCP hero image preload -->
     <link
       rel="preload"
       as="image"
@@ -38,6 +69,43 @@
       imagesizes="(max-width: 1024px) 100vw, 600px"
       fetchpriority="high"
     />
+
+    <!-- Organization Schema (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Gauyog Kendr",
+      "url": "https://www.gauyogkendr.com",
+      "logo": "https://res.cloudinary.com/dbpzzvcik/image/upload/v1775049866/final_logo_copy.jpg_puj109.jpg",
+      "description": "Gauyog Kendr offers 100% certified organic cow-based products including Panchgavya, natural fertilizers, Ayurvedic wellness products, and more.",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "url": "https://www.gauyogkendr.com/contact"
+      },
+      "sameAs": [
+        "https://www.facebook.com/gauyogkendr",
+        "https://www.instagram.com/gauyogkendr",
+        "https://www.youtube.com/@gauyogkendr"
+      ]
+    }
+    </script>
+
+    <!-- Website Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Gauyog Kendr",
+      "url": "https://www.gauyogkendr.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.gauyogkendr.com/shop?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import api from "../api/axios";
+import { toProductUrl } from "../utils/seo";
 
 const ProductCard = forwardRef(function ProductCard({
   product,
@@ -321,7 +322,7 @@ const ProductCard = forwardRef(function ProductCard({
                 </div>
 
                 <button
-                  onClick={() => navigate(`/product/${p.id}`)}
+                  onClick={() => navigate(toProductUrl(p))}
                   className="w-full md:hidden mb-3 bg-[#e9aa43] py-3.5 rounded-full font-black text-xs uppercase tracking-widerst text-white flex items-center justify-center gap-2 active:scale-95"
                 >
                   <Eye size={16} />
@@ -376,7 +377,7 @@ const ProductCard = forwardRef(function ProductCard({
                     {inCart ? "Remove From Cart" : "Add To Cart"}
                   </button>
                   <button
-                    onClick={() => navigate(`/product/${p.id}`)}
+                    onClick={() => navigate(toProductUrl(p))}
                     className="hidden md:flex flex-1 bg-[#e9aa43] py-4 px-8 rounded-full font-bold text-xs uppercase tracking-widerst hover:text-gray-600 text-white transition-all items-center justify-center gap-2 active:scale-95"
                   >
                     <Eye size={18} />
