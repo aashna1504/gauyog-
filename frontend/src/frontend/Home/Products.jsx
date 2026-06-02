@@ -212,8 +212,8 @@ export default function ProductSection() {
             {/* Main Image Card */}
             <div className="relative rounded-[40px] overflow-hidden shadow-2xl group transition-transform duration-500 hover:scale-[1.02]">
               <img
-                src={clUrl("https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/v1778739708/DSC00642_2_1_vch4fe.jpg", 640)}
-                srcSet={clSrcSet("https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto,f_auto/v1778739708/DSC00642_2_1_vch4fe.jpg", [480, 640])}
+                src={clUrl("https://res.cloudinary.com/dbpzzvcik/image/upload/v1780404230/compressed_DSC00642_v7ddg5.jpg", 640)}
+                srcSet={clSrcSet("https://res.cloudinary.com/dbpzzvcik/image/upload/v1780404230/compressed_DSC00642_v7ddg5.jpg", [480, 640])}
                 sizes="(max-width: 1024px) 100vw, 640px"
                 alt="Gauyog Team at Gujarat Expo"
                 className="w-full lg:h-[350px] h-[250px] object-cover"

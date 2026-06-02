@@ -2,7 +2,7 @@ import axios from 'axios';
 import useAuthStore from '../store/authStore';
 
 const api = axios.create({
-  baseURL: 'https://backend.gauyogkendr.com/api', // Backend base URL
+  baseURL: import.meta.env.VITE_API_URL || 'https://backend.gauyogkendr.com/api',
 });
 
 // Request interceptor to append access token

@@ -193,7 +193,7 @@ function about() {
   const scrollRef = useRef(null);
   const cachedScrollWidth = useRef(0);
   const partnershipImages = [
-    "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778739066/DSC00727_1_cgyreu.jpg",
+    "https://res.cloudinary.com/dbpzzvcik/image/upload/v1780397039/DSC00727_11zon_w8ij1p.webp",
     "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778740839/DSC00531_1_ufdg3f.jpg",
 
     "https://res.cloudinary.com/dbpzzvcik/image/upload/q_auto:best,f_auto/v1778739371/DSC00751_1_oj5pup.jpg",
@@ -475,11 +475,11 @@ function about() {
                   initial={{ opacity: 0.7, scale: 1.03 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.45, ease: "easeOut" }}
-                  className="w-full h-full object-cover"
+                  className="absolute inset-0 w-full h-full object-cover object-center"
                   loading="lazy"
                   decoding="async"
                   width={700}
-                  height={933}
+                  height={700}
                 />
 
                 <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/55 to-transparent">

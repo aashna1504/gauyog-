@@ -187,8 +187,8 @@ export default function BlogPostPage() {
             <BookOpen size={64} className="text-[#4a703f]/20" />
           </div>
         )}
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/10" />
+        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/40 to-black/10" />
 
         <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-16 pb-10 md:pb-14">
           <div className="max-w-4xl">

@@ -90,14 +90,14 @@ export default function BlogPage() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="mb-12 md:mb-16"
+              className="mb-8 md:mb-10"
             >
               <Link
                 to={`/blog/${featured.slug}`}
                 className="group block bg-white rounded-3xl overflow-hidden shadow-lg shadow-[#4a703f]/5 border border-slate-100 hover:shadow-xl hover:shadow-[#4a703f]/10 transition-all duration-300"
               >
-                <div className="grid md:grid-cols-2">
-                  <div className="relative h-64 md:h-auto overflow-hidden bg-[#f0f7ee]">
+                <div className="grid md:grid-cols-2 md:h-64">
+                  <div className="relative h-56 md:h-full overflow-hidden bg-[#f0f7ee]">
                     {featured.image ? (
                       <img
                         src={featured.image}
@@ -105,7 +105,7 @@ export default function BlogPage() {
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         loading="eager"
                         width={600}
-                        height={400}
+                        height={256}
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center bg-[#f0f7ee]">
@@ -117,17 +117,17 @@ export default function BlogPage() {
                       Featured
                     </span>
                   </div>
-                  <div className="p-8 md:p-12 flex flex-col justify-center">
-                    <div className="flex items-center gap-2 mb-3">
+                  <div className="p-6 md:p-8 flex flex-col justify-center">
+                    <div className="flex items-center gap-2 mb-2">
                       <Tag size={12} className="text-[#e9aa43]" />
                       <span className="text-[10px] font-black uppercase tracking-widest text-[#e9aa43]">
                         {featured.category}
                       </span>
                     </div>
-                    <h2 className="text-2xl md:text-3xl font-black text-slate-900 tracking-wider mb-4 group-hover:text-[#4a703f] transition-colors leading-tight">
+                    <h2 className="text-xl md:text-2xl font-black text-slate-900 tracking-wider mb-3 group-hover:text-[#4a703f] transition-colors leading-tight">
                       {featured.title}
                     </h2>
-                    <p className="text-slate-500 leading-relaxed mb-6 text-sm font-medium line-clamp-3">
+                    <p className="text-slate-500 leading-relaxed mb-4 text-sm font-medium line-clamp-2">
                       {featured.excerpt}
                     </p>
                     <div className="flex items-center justify-between">
