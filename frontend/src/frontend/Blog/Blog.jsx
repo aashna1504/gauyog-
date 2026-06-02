@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Clock, Tag, ArrowRight, BookOpen } from "lucide-react";
 import { setPageMeta } from "../../utils/seo";
 import api from "../../api/axios";
+import { blogPosts as STATIC_POSTS } from "../../data/blogPosts";
 
 const CATEGORIES = ["Organic Farming", "Natural Fertilizer", "Ayurvedic Benefits", "Cow-Based Products", "Sustainability", "Farming Tips"];
 
@@ -23,8 +24,15 @@ export default function BlogPage() {
   useEffect(() => {
     api
       .get("/blog?limit=50")
-      .then((res) => setPosts(res.data.data?.blogs || []))
-      .catch(() => setPosts([]))
+      .then((res) => {
+        const live = res.data.data?.blogs || [];
+        // Use API data when available; fall back to static posts when API
+        // isn't deployed yet (production deployment pending).
+        setPosts(live.length > 0 ? live : STATIC_POSTS.filter((p) => p.published !== false));
+      })
+      .catch(() => {
+        setPosts(STATIC_POSTS.filter((p) => p.published !== false));
+      })
       .finally(() => setLoading(false));
   }, []);
 

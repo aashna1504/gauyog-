@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Clock, Tag, ArrowLeft, ArrowRight, ChevronRight, BookOpen } from "lucide-react";
 import { setPageMeta } from "../../utils/seo";
 import api from "../../api/axios";
+import { getBlogPost, getRelatedPosts } from "../../data/blogPosts";
 
 function renderBlock(block, i) {
   switch (block.type) {
@@ -48,22 +49,27 @@ export default function BlogPostPage() {
   useEffect(() => {
     setLoading(true);
     setNotFound(false);
+
     api
       .get(`/blog/${slug}`)
       .then((res) => {
         const p = res.data.data;
         setPost(p);
-        // Fetch related posts (same category, exclude current)
         return api.get(`/blog?limit=50`).then((r) => {
           const all = r.data.data?.blogs || [];
-          const rel = all
-            .filter((b) => b.slug !== slug && b.category === p.category)
-            .slice(0, 3);
+          const rel = all.filter((b) => b.slug !== slug && b.category === p.category).slice(0, 3);
           setRelated(rel.length >= 2 ? rel : all.filter((b) => b.slug !== slug).slice(0, 3));
         });
       })
-      .catch((err) => {
-        if (err.response?.status === 404) setNotFound(true);
+      .catch(() => {
+        // API not available — try static fallback
+        const staticPost = getBlogPost(slug);
+        if (staticPost) {
+          setPost(staticPost);
+          setRelated(getRelatedPosts(slug, 3));
+        } else {
+          setNotFound(true);
+        }
       })
       .finally(() => setLoading(false));
   }, [slug]);
