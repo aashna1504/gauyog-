@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Clock, Tag, ArrowLeft, ArrowRight, ChevronRight, BookOpen } from "lucide-react";
+import { Calendar, Tag, ArrowLeft, ArrowRight, ChevronRight, BookOpen } from "lucide-react";
+
+function formatDate(dateStr) {
+  if (!dateStr) return "";
+  const [y, m, d] = String(dateStr).split("-");
+  return new Date(+y, +m - 1, +d).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" });
+}
 import { setPageMeta } from "../../utils/seo";
 import api from "../../api/axios";
 import { getBlogPost, getRelatedPosts } from "../../data/blogPosts";
@@ -208,10 +214,7 @@ export default function BlogPostPage() {
             <div className="flex items-center gap-4 text-white text-xs font-bold"
               style={{ textShadow: "0 1px 6px rgba(0,0,0,0.9)" }}>
               <span className="flex items-center gap-1.5 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/20">
-                <Clock size={12} /> {post.readTime}
-              </span>
-              <span className="bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/20">
-                {post.date}
+                <Calendar size={12} /> {formatDate(post.date)}
               </span>
               <span className="bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/20 hidden md:inline">
                 {post.author}

@@ -2,6 +2,7 @@
 
 import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
 import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -265,6 +266,16 @@ function AdminAuthForm() {
                   <p className="text-[10px] text-red-500 font-bold ml-4">
                     {errors.password.message}
                   </p>
+                )}
+                {authMode === "signin" && (
+                  <div className="flex justify-end pr-1">
+                    <Link
+                      href="/forgot-password"
+                      className="text-[10px] font-bold text-[#4a703f] hover:text-[#3a5a30] transition-colors uppercase tracking-wider"
+                    >
+                      Forgot password?
+                    </Link>
+                  </div>
                 )}
               </div>
 

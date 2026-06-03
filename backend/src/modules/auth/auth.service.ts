@@ -145,7 +145,7 @@ export class AuthService {
     };
   }
 
-  static async forgotPassword(email: string): Promise<{ devResetLink?: string; emailDelivered?: boolean }> {
+  static async forgotPassword(email: string, redirectBase?: string): Promise<{ devResetLink?: string; emailDelivered?: boolean }> {
     const normalizedEmail = email.toLowerCase().trim();
     const user = await prisma.user.findUnique({ where: { email: normalizedEmail } });
 
@@ -170,7 +170,8 @@ export class AuthService {
       },
     });
 
-    const resetLink = `${config.appBaseUrl}/reset-password?token=${rawToken}`;
+    const base = redirectBase ?? config.appBaseUrl;
+    const resetLink = `${base}/reset-password?token=${rawToken}`;
     const displayName = user.name ? user.name.split(' ')[0] : 'there';
 
     const html = `<!DOCTYPE html>
@@ -223,17 +224,6 @@ export class AuthService {
           </td>
         </tr>
       </table>
-
-      <!-- Fallback link -->
-      <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:16px 20px;">
-        <p style="margin:0 0 6px;font-size:11px;font-weight:700;text-transform:uppercase;
-          letter-spacing:.08em;color:#9ca3af;">
-          Button not working? Copy this link:
-        </p>
-        <p style="margin:0;font-size:12px;color:#4a703f;word-break:break-all;font-weight:600;">
-          ${resetLink}
-        </p>
-      </div>
 
       <!-- Security note -->
       <p style="margin:24px 0 0;font-size:12px;color:#9ca3af;line-height:1.7;">

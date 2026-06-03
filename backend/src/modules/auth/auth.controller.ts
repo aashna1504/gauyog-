@@ -52,7 +52,7 @@ export const refresh = async (req: Request, res: Response, next: NextFunction) =
 
 export const forgotPassword = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const result = await AuthService.forgotPassword(req.body.email);
+    const result = await AuthService.forgotPassword(req.body.email, req.body.redirectBase);
     const isDev = process.env.NODE_ENV === 'development';
 
     // In production we always return the same message (prevents email enumeration)

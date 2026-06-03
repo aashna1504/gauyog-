@@ -167,16 +167,25 @@ export default function ModernSignIn() {
               </div>
             </div>
 
-            {/* Remember me */}
-            <div className="flex items-center gap-3 py-1 ml-1">
-              <input
-                type="checkbox"
-                id="remember"
-                className="w-4 h-4 rounded border-slate-200 focus:ring-0 cursor-pointer accent-[#4a703f]"
-              />
-              <label htmlFor="remember" className="text-xs font-semibold text-slate-500 cursor-pointer">
-                Remember me
-              </label>
+            {/* Remember me + Forgot password */}
+            <div className="flex items-center justify-between py-1 ml-1">
+              <div className="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  id="remember"
+                  className="w-4 h-4 rounded border-slate-200 focus:ring-0 cursor-pointer accent-[#4a703f]"
+                />
+                <label htmlFor="remember" className="text-xs font-semibold text-slate-500 cursor-pointer">
+                  Remember me
+                </label>
+              </div>
+              <button
+                type="button"
+                onClick={() => navigate("/forgotpassword")}
+                className="text-xs font-bold text-[#4a703f] hover:text-[#744926] transition-colors"
+              >
+                Forgot password?
+              </button>
             </div>
 
             {/* Submit */}

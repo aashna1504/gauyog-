@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Clock, Tag, ArrowRight, BookOpen } from "lucide-react";
+import { Calendar, Tag, ArrowRight, BookOpen } from "lucide-react";
+
+function formatDate(dateStr) {
+  if (!dateStr) return "";
+  const [y, m, d] = String(dateStr).split("-");
+  return new Date(+y, +m - 1, +d).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" });
+}
 import { setPageMeta } from "../../utils/seo";
 import api from "../../api/axios";
 import { blogPosts as STATIC_POSTS } from "../../data/blogPosts";
@@ -133,9 +139,8 @@ export default function BlogPage() {
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-4 text-slate-400 text-xs font-bold">
                         <span className="flex items-center gap-1">
-                          <Clock size={12} /> {featured.readTime}
+                          <Calendar size={12} /> {formatDate(featured.date)}
                         </span>
-                        <span>{featured.date}</span>
                       </div>
                       <div className="flex items-center gap-1 text-[#4a703f] font-black text-xs uppercase tracking-wider group-hover:gap-3 transition-all">
                         Read More <ArrowRight size={14} />
@@ -194,7 +199,7 @@ export default function BlogPage() {
                       <div className="flex items-center justify-between mt-auto pt-4 border-t border-slate-100">
                         <div className="flex items-center gap-3 text-slate-400 text-[11px] font-bold">
                           <span className="flex items-center gap-1">
-                            <Clock size={11} /> {post.readTime}
+                            <Calendar size={11} /> {formatDate(post.date)}
                           </span>
                         </div>
                         <div className="flex items-center gap-1 text-[#4a703f] font-black text-[11px] uppercase tracking-wider group-hover:gap-2 transition-all">

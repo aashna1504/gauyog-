@@ -153,8 +153,12 @@ export default function GlobalModernHero() {
             transition={{ duration: 0.65, delay: 0.2 }}
             className="relative"
           >
-            <div className="relative rounded-[34px] border border-[#d7d0c1] bg-white/45 backdrop-blur-sm p-3 shadow-[0_30px_70px_-32px_rgba(23,53,45,0.45)]">
-              <div className="relative h-[340px] md:h-[405px] rounded-[26px] overflow-hidden bg-gradient-to-br from-[#f6f0e1] to-[#e8f1dc]">
+            {/* Outer glow */}
+            <div className="absolute -inset-3 rounded-[44px] bg-gradient-to-br from-[#4a703f]/10 via-transparent to-[#744926]/10 blur-2xl" />
+
+            <div className="relative rounded-[32px] overflow-hidden shadow-[0_32px_80px_-24px_rgba(23,53,45,0.5)]">
+              {/* Image area */}
+              <div className="relative h-[360px] md:h-[430px] bg-gradient-to-br from-[#f6f0e1] to-[#e8f1dc]">
                 {currentSlide ? (
                   <AnimatePresence mode="wait">
                     <motion.img
@@ -163,11 +167,11 @@ export default function GlobalModernHero() {
                       srcSet={currentSlide.srcSet}
                       sizes="(max-width: 1024px) 100vw, 600px"
                       alt={`Slide ${activeSlide + 1}`}
-                      initial={activeSlide === 0 ? false : { opacity: 0, scale: 1.05 }}
+                      initial={activeSlide === 0 ? false : { opacity: 0, scale: 1.04 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.98 }}
-                      transition={{ duration: 0.45, ease: "easeOut" }}
-                      className="w-full h-full object-cover drop-shadow-[0_24px_30px_rgba(22,52,42,0.2)]"
+                      exit={{ opacity: 0, scale: 0.97 }}
+                      transition={{ duration: 0.5, ease: "easeOut" }}
+                      className="w-full h-full object-cover"
                       fetchpriority={activeSlide === 0 ? "high" : "low"}
                       decoding="async"
                       width={600}
@@ -176,44 +180,82 @@ export default function GlobalModernHero() {
                   </AnimatePresence>
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-stone-500 font-semibold">
-                    No images found
+                    No images
                   </div>
                 )}
 
+                {/* Bottom gradient overlay */}
+                <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black/60 via-black/20 to-transparent pointer-events-none" />
+
+                {/* Slide counter — bottom left */}
+                <div className="absolute bottom-4 left-5 flex items-end gap-1 select-none">
+                  <span className="text-white font-black text-2xl leading-none tabular-nums">
+                    {String(activeSlide + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-white/50 font-bold text-sm leading-none mb-0.5">
+                    /{String(sliderItems.length).padStart(2, "0")}
+                  </span>
+                </div>
+
+                {/* Progress bars — bottom right area */}
                 {sliderItems.length > 1 && (
-                  <>
+                  <div className="absolute bottom-5 right-5 flex items-center gap-1.5">
+                    {sliderItems.map((item, index) => (
+                      <button
+                        key={item.id || index}
+                        onClick={() => setActiveSlide(index)}
+                        aria-label={`Go to slide ${index + 1}`}
+                        className="h-[3px] rounded-full overflow-hidden bg-white/30 transition-all duration-300 focus:outline-none"
+                        style={{ width: index === activeSlide ? 32 : 12 }}
+                      >
+                        {index === activeSlide && (
+                          <motion.span
+                            key={activeSlide}
+                            className="block h-full bg-white rounded-full origin-left"
+                            initial={{ scaleX: 0 }}
+                            animate={{ scaleX: 1 }}
+                            transition={{ duration: 5.5, ease: "linear" }}
+                          />
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                )}
+
+                {/* Prev / Next — floating pill */}
+                {sliderItems.length > 1 && (
+                  <div className="absolute top-4 right-4 flex items-center gap-1.5 bg-black/30 backdrop-blur-md rounded-full p-1 border border-white/10">
                     <button
                       onClick={goPrev}
-                      className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/95 text-[#4a703f] border border-[#d4ddcf] flex items-center justify-center hover:bg-[#edf5ea] transition-colors"
                       aria-label="Previous slide"
+                      className="w-8 h-8 rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors"
                     >
-                      <ArrowLeft size={18} />
+                      <ArrowLeft size={15} strokeWidth={2.5} />
                     </button>
+                    <div className="w-px h-4 bg-white/20" />
                     <button
                       onClick={goNext}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/95 text-[#4a703f] border border-[#d4ddcf] flex items-center justify-center hover:bg-[#edf5ea] transition-colors"
                       aria-label="Next slide"
+                      className="w-8 h-8 rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-colors"
                     >
-                      <ArrowRight size={18} />
+                      <ArrowRight size={15} strokeWidth={2.5} />
                     </button>
-                  </>
+                  </div>
                 )}
               </div>
 
-              {sliderItems.length > 1 && (
-                <div className="mt-4 flex items-center justify-center gap-2">
-                  {sliderItems.map((item, index) => (
-                    <button
-                      key={item.id || index}
-                      onClick={() => setActiveSlide(index)}
-                      className="min-w-[44px] min-h-[44px] flex items-center justify-center"
-                      aria-label={`Go to slide ${index + 1}`}
-                    >
-                      <span className={`h-2.5 block rounded-full transition-all ${index === activeSlide ? "w-8 bg-[#4a703f]" : "w-2.5 bg-stone-300 hover:bg-stone-400"}`} />
-                    </button>
-                  ))}
+              {/* Bottom strip */}
+              <div className="bg-white/90 backdrop-blur-sm px-5 py-3.5 flex items-center justify-between border-t border-stone-100">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#4a703f] animate-pulse" />
+                  <span className="text-[10px] font-black uppercase tracking-[0.22em] text-stone-500">
+                    Gauyog Kendr — Gir Somnath
+                  </span>
                 </div>
-              )}
+                <span className="text-[10px] font-bold uppercase tracking-widest text-[#4a703f]">
+                  100% Natural
+                </span>
+              </div>
             </div>
           </motion.div>
         </div>

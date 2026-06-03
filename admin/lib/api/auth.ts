@@ -34,3 +34,18 @@ export async function refreshTokenRequest(refreshToken: string): Promise<{ acces
   );
   return data.data;
 }
+
+export async function forgotPasswordRequest(
+  email: string,
+  redirectBase?: string,
+): Promise<{ devResetLink?: string | null; emailDelivered?: boolean }> {
+  const { data } = await axios.post<ApiResponse<{ devResetLink?: string | null; emailDelivered?: boolean }>>(
+    `${BASE}/auth/forgot-password`,
+    { email, redirectBase },
+  );
+  return data.data ?? {};
+}
+
+export async function resetPasswordRequest(token: string, password: string): Promise<void> {
+  await axios.post(`${BASE}/auth/reset-password`, { token, password });
+}
