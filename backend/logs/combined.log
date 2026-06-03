@@ -1957,3 +1957,5 @@
 {"level":"info","message":"[Email/Resend] → aashnasagar19@gmail.com | Reset your Gauyog Kendr password","service":"backend-api","timestamp":"2026-06-03T05:22:19.953Z"}
 {"level":"info","message":"[Email/Resend] ✓ delivered to aashnasagar19@gmail.com | id: 1ec92407-4be4-4026-b75b-5c667191348b","service":"backend-api","timestamp":"2026-06-03T05:22:21.596Z"}
 {"level":"error","message":"[Error] Error: Invalid email or password","service":"backend-api","stack":"Error: Invalid email or password\n    at Function.login (C:\\Users\\91884\\Documents\\Aussie work\\gauyog\\backend\\src\\modules\\auth\\auth.service.ts:65:13)\n    at login (C:\\Users\\91884\\Documents\\Aussie work\\gauyog\\backend\\src\\modules\\auth\\auth.controller.ts:16:20)","timestamp":"2026-06-03T05:23:11.330Z"}
+{"level":"info","message":"PostgreSQL connected successfully","service":"backend-api","timestamp":"2026-06-03T05:24:30.429Z"}
+{"level":"info","message":"Server running in development mode on port 5000","service":"backend-api","timestamp":"2026-06-03T05:24:30.435Z"}
